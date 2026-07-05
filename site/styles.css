@@ -1,7 +1,7 @@
 :root {
-  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
   --font-script: "Beau Rivage", var(--font-display);
-  --font-body: "Karla", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --cream: #efe7d9;
   --cream-soft: #f6f1e6;
@@ -146,7 +146,7 @@ img { max-width: 100%; display: block; }
   width: 100%;
   text-align: center;
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(64px, 15vw, 220px);
   color: rgba(239, 231, 217, 0.14);
   letter-spacing: 0.04em;
@@ -212,7 +212,7 @@ img { max-width: 100%; display: block; }
 
 .hero__headline {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(46px, 8vw, 92px);
   line-height: 1.02;
   margin: 0;
@@ -282,7 +282,7 @@ img { max-width: 100%; display: block; }
 .section__num { font-family: var(--font-display); font-size: 15px; color: var(--taupe); }
 .section__head h2 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(28px, 4vw, 42px);
   margin: 0;
   line-height: 1.15;
@@ -412,7 +412,7 @@ img { max-width: 100%; display: block; }
 }
 .format-card { padding-top: 24px; border-top: 1px solid rgba(239, 231, 217, 0.2); }
 .format-card__icon { color: var(--taupe-soft); display: inline-flex; margin-bottom: 18px; }
-.format-card h3 { font-family: var(--font-display); font-weight: 500; font-size: 22px; margin: 0 0 10px; }
+.format-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 22px; margin: 0 0 10px; }
 .format-card p { font-size: 14px; line-height: 1.6; color: rgba(239, 231, 217, 0.75); margin: 0; max-width: 32ch; }
 
 /* ---------- Contacts ---------- */
@@ -420,7 +420,7 @@ img { max-width: 100%; display: block; }
 .contacts { background: var(--cream); text-align: left; }
 .contacts__headline {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(38px, 7vw, 74px);
   line-height: 1.05;
   margin: 0 0 clamp(40px, 6vw, 64px);
