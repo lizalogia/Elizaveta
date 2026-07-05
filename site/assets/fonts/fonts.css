@@ -164,3 +164,12 @@
   font-display: swap;
   src: url('FuturaLight.woff2') format('woff2');
 }
+
+/* Hero accent ("feel the vibe") */
+@font-face {
+  font-family: 'Sign That';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('SignThat.woff2') format('woff2');
+}
