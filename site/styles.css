@@ -319,49 +319,59 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
 }
 
+/* MUZ TV — stand-in for Mrs Eaves Roman Petite Caps: Cormorant set as
+   small caps, since Mrs Eaves is a commercial font we can't self-host. */
 .logo-muztv {
   flex-direction: column;
-  gap: 2px;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.04em;
+  gap: 3px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
+/* VOICE — stand-in for Amandine Regular: Fraunces italic, closest free
+   characterful display serif. */
 .logo-voice {
-  font-family: var(--font-display);
+  font-family: 'Fraunces', var(--font-display);
   font-style: italic;
   font-weight: 700;
-  font-size: 26px;
+  font-size: 27px;
   letter-spacing: 0.01em;
 }
 
+/* instadium — stand-in for Normalidad Extended Black. */
 .logo-instadium {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: -0.01em;
+  font-family: 'Archivo Expanded', var(--font-body);
+  font-weight: 900;
+  font-size: 19px;
+  letter-spacing: 0;
 }
 
+/* НЕСКУЧНЫЕ ФИНАНСЫ — stand-in for Presicav Bold: Comfortaa, closest free
+   rounded-geometric bold with Cyrillic. */
 .logo-finance {
-  font-family: var(--font-body);
+  font-family: 'Comfortaa', var(--font-body);
   font-weight: 700;
   font-size: 11px;
   line-height: 1.3;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 
+/* REVYLINE — exact match, Nunito Sans Light. */
 .logo-revyline {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 16px;
+  font-family: 'Nunito Sans', var(--font-body);
+  font-weight: 300;
+  font-size: 17px;
   letter-spacing: 0.14em;
 }
 
+/* CURAPROX — stand-in for Futura PT Book: Jost, a free Futura-alike. */
 .logo-curaprox {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 17px;
+  font-family: 'Jost', var(--font-body);
+  font-weight: 400;
+  font-size: 19px;
   letter-spacing: 0.02em;
 }
 
@@ -372,9 +382,22 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.06em;
 }
 
+/* Нефорбсы — stand-in for BC Ludva Bold BackSlant: Montserrat Black,
+   skewed the opposite way from italic to fake a backslant cut. */
+.logo-neforbsy {
+  font-family: 'Montserrat', var(--font-body);
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0;
+  display: inline-block;
+  transform: skewX(8deg);
+}
+
+/* KION — stand-in for Uniwars SemiBold Italic: Jost italic. */
 .logo-kion {
-  font-family: var(--font-body);
-  font-weight: 800;
+  font-family: 'Jost', var(--font-body);
+  font-style: italic;
+  font-weight: 600;
   font-size: 20px;
   letter-spacing: 0.01em;
 }
