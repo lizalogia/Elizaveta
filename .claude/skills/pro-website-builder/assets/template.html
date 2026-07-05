@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio — professional website template</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="template.css">
+</head>
+<body>
+
+<header class="nav reveal" style="--d:0">
+  <span class="nav__logo">Studio</span>
+  <nav class="nav__links">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a class="btn btn--ghost" href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1 class="hero__title reveal" style="--d:1">
+    We build interfaces<br>that feel <em>alive</em>.
+  </h1>
+  <p class="hero__subtitle reveal" style="--d:2">
+    A small studio for product design, motion, and front-end craft.
+  </p>
+  <a class="btn btn--primary reveal" id="cta" style="--d:3" href="#work">See our work</a>
+</section>
+
+<section class="marquee">
+  <div class="marquee__track">
+    <span>DESIGN</span><span>MOTION</span><span>CODE</span><span>BRAND</span>
+    <span>DESIGN</span><span>MOTION</span><span>CODE</span><span>BRAND</span>
+  </div>
+</section>
+
+<section id="work" class="grid">
+  <article class="card reveal" style="--d:0">
+    <h3>Product design</h3>
+    <p>Interfaces engineered for clarity first, delight second.</p>
+  </article>
+  <article class="card reveal" style="--d:1">
+    <h3>Motion systems</h3>
+    <p>Purposeful animation that guides attention instead of decorating it.</p>
+  </article>
+  <article class="card reveal" style="--d:2">
+    <h3>Front-end craft</h3>
+    <p>Fast, accessible, framework-agnostic implementation.</p>
+  </article>
+</section>
+
+<footer id="contact" class="footer reveal">
+  <p>Let's build something. hello@studio.example</p>
+</footer>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<script src="template.js"></script>
+</body>
+</html>
