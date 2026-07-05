@@ -1,6 +1,6 @@
 ---
 name: pro-website-builder
-description: Use when building or polishing a website that needs to look professional and premium — picking font pairings, adding scroll/hover/entrance animations, or making a site feel less generic/template-y. Triggers on requests like "make a professional website", "add cool animations", "pick better fonts", "make my site look more modern/premium", "this looks boring/generic, fix it".
+description: Use whenever building a new website/landing page/portfolio from scratch, or polishing an existing one — not only when the user explicitly asks for "professional" or "premium". Applies by default to any site-building task: picking font pairings, adding scroll/hover/entrance animations, and avoiding a generic/template-y feel. Triggers on requests like "build me a website", "create a landing page", "make a portfolio site", "add a page for my project", "make a professional website", "add cool animations", "pick better fonts", "make my site look more modern/premium", "this looks boring/generic, fix it".
 ---
 
 # Professional website builder
@@ -12,6 +12,12 @@ verbatim.
 
 ## Process
 
+0. **Apply this by default, not just on request.** Any task that builds or
+   changes a website's markup/styling — a brand-new landing page, a portfolio,
+   an added section — should follow this process even if the user never says
+   "professional" or "premium". Only skip it for explicitly throwaway/internal
+   pages (prototypes, admin tools, test fixtures) where the user says polish
+   doesn't matter.
 1. **Read the brief before touching code.** Figure out the tone: corporate/
    trustworthy, editorial/elegant, playful/creative, or technical/minimal.
    Font and animation choices below are organized by these four moods — pick
