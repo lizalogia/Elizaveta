@@ -1,7 +1,7 @@
 :root {
-  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-display: "Cormorant", Georgia, "Times New Roman", serif;
   --font-script: "Beau Rivage", var(--font-display);
-  --font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --cream: #efe7d9;
   --cream-soft: #f6f1e6;
@@ -239,7 +239,8 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 12px;
   font-family: var(--font-display);
-  font-size: 17px;
+  font-weight: 600;
+  font-size: 20px;
   color: var(--cream-soft);
   text-decoration: none;
   padding-bottom: 6px;
@@ -279,7 +280,7 @@ img { max-width: 100%; display: block; }
 .section { padding: clamp(64px, 10vw, 120px) clamp(20px, 5vw, 64px); }
 
 .section__head { display: flex; align-items: baseline; gap: 18px; margin-bottom: clamp(32px, 5vw, 56px); }
-.section__num { font-family: var(--font-display); font-size: 15px; color: var(--taupe); }
+.section__num { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--taupe); }
 .section__head h2 {
   font-family: var(--font-display);
   font-weight: 600;
@@ -307,7 +308,8 @@ img { max-width: 100%; display: block; }
 }
 .clients__row span {
   font-family: var(--font-display);
-  font-size: clamp(15px, 1.6vw, 19px);
+  font-weight: 600;
+  font-size: clamp(20px, 1.8vw, 24px);
   letter-spacing: 0.03em;
   color: var(--brown-mid);
   white-space: nowrap;
@@ -333,7 +335,7 @@ img { max-width: 100%; display: block; }
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(60, 47, 40, 0.15);
 }
-.values__index { font-family: var(--font-display); color: var(--taupe); font-size: 15px; }
+.values__index { font-family: var(--font-display); font-weight: 600; color: var(--taupe); font-size: 15px; }
 
 /* ---------- Marquee ---------- */
 
@@ -450,7 +452,7 @@ img { max-width: 100%; display: block; }
 }
 .contacts__grid a:hover { opacity: 0.6; transform: translateX(4px); }
 .contacts__label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--taupe); }
-.contacts__value { font-family: var(--font-display); font-size: 20px; }
+.contacts__value { font-family: var(--font-display); font-weight: 600; font-size: 20px; }
 
 .site-footer {
   padding: 24px clamp(20px, 5vw, 64px) 40px;
