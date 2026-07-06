@@ -197,9 +197,9 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__intro {
-  font-family: 'Onest', var(--font-display);
+  font-family: 'Montserrat', var(--font-display);
   font-size: clamp(16px, 1.9vw, 20px);
-  font-weight: 400;
+  font-weight: 300;
   margin: 0 0 14px;
   line-height: 1.5;
 }
@@ -303,7 +303,7 @@ img { max-width: 100%; display: block; }
 }
 
 .clients .section__head h2 {
-  font-family: 'Unbounded', var(--font-display);
+  font-family: 'Montserrat', var(--font-display);
   font-weight: 300;
   font-size: clamp(24px, 3.4vw, 34px);
   letter-spacing: -0.005em;
