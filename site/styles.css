@@ -249,7 +249,7 @@ img { max-width: 100%; display: block; }
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: 'Onest', var(--font-display);
+  font-family: 'Jost', var(--font-display);
   font-weight: 400;
   font-size: 18px;
   color: var(--cream-soft);
@@ -272,7 +272,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 10px;
   color: var(--brown-mid);
-  font-family: 'Onest', var(--font-display);
+  font-family: 'Jost', var(--font-display);
   font-weight: 400;
   font-size: 12px;
   letter-spacing: 0.18em;
