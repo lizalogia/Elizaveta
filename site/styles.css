@@ -207,7 +207,7 @@ img { max-width: 100%; display: block; }
   font-size: 14px;
   line-height: 1.6;
   max-width: 320px;
-  margin: 0 0 24px;
+  margin: 0 0 40px;
   color: rgba(239, 231, 217, 0.85);
 }
 
@@ -230,7 +230,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.15;
   white-space: nowrap;
   color: rgba(239, 231, 217, 0.45);
-  margin: 0 0 24px 0.3em;
+  margin: 0 0 40px 0.3em;
 }
 
 @media (max-width: 720px) {
