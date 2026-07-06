@@ -225,7 +225,7 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__script {
-  font-family: var(--font-script);
+  font-family: 'Ballet', var(--font-script);
   font-weight: 400;
   font-size: clamp(114px, 18vw, 229px);
   line-height: 1.15;
