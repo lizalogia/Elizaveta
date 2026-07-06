@@ -431,6 +431,24 @@ img { max-width: 100%; display: block; }
   to   { transform: translateX(-50%); }
 }
 
+.marquee--artists { padding: 22px 0; }
+.artist-row { display: inline-flex; align-items: center; gap: 14px; padding-right: 14px; }
+.artist-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.artist-chip svg { flex-shrink: 0; opacity: 0.6; }
+.marquee--dark .artist-chip { border-color: rgba(239, 231, 217, 0.22); background: rgba(239, 231, 217, 0.04); }
+.marquee--light .artist-chip { border-color: rgba(60, 47, 40, 0.16); background: rgba(60, 47, 40, 0.03); }
+
 /* ---------- Projects ---------- */
 
 .projects { background: var(--cream); }
@@ -450,7 +468,9 @@ img { max-width: 100%; display: block; }
   justify-content: flex-end;
   color: var(--cream-soft);
   background: linear-gradient(150deg, var(--card-a), var(--card-b));
+  cursor: pointer;
 }
+.project-card:focus-visible { outline: 2px solid var(--cream-soft); outline-offset: 3px; }
 .project-card__art {
   position: absolute;
   inset: 0;
@@ -458,6 +478,30 @@ img { max-width: 100%; display: block; }
   transition: transform 0.5s var(--ease-out-expo);
 }
 .project-card:hover .project-card__art { transform: scale(1.08); }
+.project-card__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(20, 15, 12, 0.35);
+  border: 1px solid rgba(239, 231, 217, 0.55);
+  color: var(--cream-soft);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.85);
+  transition: opacity 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo), background 0.3s ease;
+}
+.project-card__play svg { margin-left: 2px; }
+.project-card:hover .project-card__play,
+.project-card:focus-visible .project-card__play {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  background: rgba(20, 15, 12, 0.55);
+}
 .project-card h3 {
   font-family: var(--font-display);
   font-weight: 600;
@@ -484,10 +528,77 @@ img { max-width: 100%; display: block; }
 @media (min-width: 720px) {
   .formats__grid { grid-template-columns: repeat(3, 1fr); }
 }
-.format-card { padding-top: 24px; border-top: 1px solid rgba(239, 231, 217, 0.2); }
-.format-card__icon { color: var(--taupe-soft); display: inline-flex; margin-bottom: 18px; }
+.format-card {
+  display: block;
+  padding-top: 24px;
+  border-top: 1px solid rgba(239, 231, 217, 0.2);
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.25s ease, transform 0.25s var(--ease-out-expo);
+}
+.format-card:hover, .format-card:focus-visible { opacity: 0.75; transform: translateY(-3px); }
+.format-card__icon { color: var(--taupe-soft); display: inline-flex; margin-bottom: 18px; transition: color 0.25s ease; }
+.format-card:hover .format-card__icon { color: var(--cream-soft); }
 .format-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 22px; margin: 0 0 10px; }
 .format-card p { font-size: 14px; line-height: 1.6; color: rgba(239, 231, 217, 0.75); margin: 0; max-width: 32ch; }
+
+/* ---------- Video modal ---------- */
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.video-modal.is-open { opacity: 1; visibility: visible; }
+.video-modal__scrim { position: absolute; inset: 0; background: rgba(18, 14, 11, 0.88); }
+.video-modal__box {
+  position: relative;
+  width: min(920px, 92vw);
+  background: var(--brown-deep);
+  border-radius: 10px;
+  padding: clamp(14px, 2vw, 20px);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.45);
+  transform: scale(0.96);
+  transition: transform 0.3s var(--ease-out-expo);
+}
+.video-modal.is-open .video-modal__box { transform: scale(1); }
+.video-modal__player {
+  display: block;
+  width: 100%;
+  max-height: 78vh;
+  border-radius: 5px;
+  background: #000;
+}
+.video-modal__empty {
+  display: none;
+  margin: 0;
+  padding: 90px 20px;
+  text-align: center;
+  color: rgba(239, 231, 217, 0.7);
+  font-size: 15px;
+}
+.video-modal__close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--cream);
+  color: var(--brown-deep);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
 
 /* ---------- Contacts ---------- */
 

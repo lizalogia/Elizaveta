@@ -36,4 +36,47 @@
   });
   scrim.addEventListener('click', closeNav);
   drawer.querySelectorAll('[data-close]').forEach((a) => a.addEventListener('click', closeNav));
+
+  // Project video modal
+  const videoModal = document.getElementById('videoModal');
+  const videoPlayer = document.getElementById('videoModalPlayer');
+  const videoEmpty = document.getElementById('videoModalEmpty');
+
+  const openVideoModal = (src) => {
+    if (src) {
+      videoPlayer.src = src;
+      videoPlayer.style.display = '';
+      videoEmpty.style.display = 'none';
+      videoPlayer.play().catch(() => {});
+    } else {
+      videoPlayer.removeAttribute('src');
+      videoPlayer.style.display = 'none';
+      videoEmpty.style.display = 'block';
+    }
+    videoModal.classList.add('is-open');
+    videoModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeVideoModal = () => {
+    videoModal.classList.remove('is-open');
+    videoModal.setAttribute('aria-hidden', 'true');
+    videoPlayer.pause();
+    videoPlayer.removeAttribute('src');
+    videoPlayer.load();
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('.project-card').forEach((card) => {
+    card.addEventListener('click', () => openVideoModal(card.dataset.video));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openVideoModal(card.dataset.video);
+      }
+    });
+  });
+  videoModal.querySelectorAll('[data-video-close]').forEach((el) => el.addEventListener('click', closeVideoModal));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && videoModal.classList.contains('is-open')) closeVideoModal();
+  });
 })();
