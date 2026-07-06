@@ -309,6 +309,13 @@ img { max-width: 100%; display: block; }
   letter-spacing: -0.005em;
 }
 
+.values .section__head h2 {
+  font-family: 'Unbounded', var(--font-display);
+  font-weight: 500;
+  font-size: clamp(24px, 3.2vw, 32px);
+  letter-spacing: -0.005em;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(24px);
