@@ -218,6 +218,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.08;
   text-transform: uppercase;
   letter-spacing: 0.01em;
+  text-align: center;
   margin: 0 0 22px;
   color: var(--cream-soft);
 }
@@ -225,10 +226,15 @@ img { max-width: 100%; display: block; }
 .hero__script {
   font-family: var(--font-script);
   font-weight: 400;
-  font-size: clamp(230px, 37.5vw, 460px);
+  font-size: clamp(77px, 12.5vw, 153px);
   line-height: 1.15;
+  white-space: nowrap;
   color: rgba(239, 231, 217, 0.45);
   margin: 0 0 38px 0.3em;
+}
+
+@media (max-width: 720px) {
+  .hero__script { font-size: clamp(48px, 15vw, 64px); }
 }
 
 .hero__note {
