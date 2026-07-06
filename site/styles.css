@@ -346,62 +346,6 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
 }
 
-/* MUZ TV — stand-in for Mrs Eaves Roman Petite Caps: Cormorant set as
-   small caps, since Mrs Eaves is a commercial font we can't self-host. */
-.brandmark-muztv {
-  flex-direction: column;
-  gap: 3px;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 15px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
-/* VOICE — stand-in for Amandine Regular: Fraunces italic, closest free
-   characterful display serif. */
-.brandmark-voice {
-  font-family: 'Fraunces', var(--font-display);
-  font-style: italic;
-  font-weight: 700;
-  font-size: 27px;
-  letter-spacing: 0.01em;
-}
-
-/* instadium — stand-in for Normalidad Extended Black. */
-.brandmark-instadium {
-  font-family: 'Archivo Expanded', var(--font-body);
-  font-weight: 900;
-  font-size: 19px;
-  letter-spacing: 0;
-}
-
-/* НЕСКУЧНЫЕ ФИНАНСЫ — stand-in for Presicav Bold: Comfortaa, closest free
-   rounded-geometric bold with Cyrillic. */
-.brandmark-finance {
-  font-family: 'Comfortaa', var(--font-body);
-  font-weight: 700;
-  font-size: 11px;
-  line-height: 1.3;
-  letter-spacing: 0.01em;
-}
-
-/* REVYLINE — exact match, Nunito Sans Light. */
-.brandmark-revyline {
-  font-family: 'Nunito Sans', var(--font-body);
-  font-weight: 300;
-  font-size: 17px;
-  letter-spacing: 0.14em;
-}
-
-/* CURAPROX — stand-in for Futura PT Book: Jost, a free Futura-alike. */
-.brandmark-curaprox {
-  font-family: 'Jost', var(--font-body);
-  font-weight: 400;
-  font-size: 19px;
-  letter-spacing: 0.02em;
-}
-
 .brandmark-founders {
   font-family: var(--font-body);
   font-weight: 700;
@@ -409,40 +353,38 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.06em;
 }
 
-/* Нефорбсы — stand-in for BC Ludva Bold BackSlant: Montserrat Black,
-   skewed the opposite way from italic to fake a backslant cut. */
-.brandmark-neforbsy {
-  font-family: 'Montserrat', var(--font-body);
-  font-weight: 900;
-  font-size: 15px;
-  letter-spacing: 0;
-  display: inline-block;
-  transform: skewX(8deg);
+/* Client logo lockups — recolored to the site's brown-mid tone, on a soft
+   blurred cream halo so screenshot edges melt into the marquee background. */
+.brandmark-logo {
+  position: relative;
+  isolation: isolate;
 }
-
-/* KION — stand-in for Uniwars SemiBold Italic: Jost italic. */
-.brandmark-kion {
-  font-family: 'Jost', var(--font-body);
-  font-style: italic;
-  font-weight: 600;
-  font-size: 20px;
-  letter-spacing: 0.01em;
+.brandmark-logo::before {
+  content: '';
+  position: absolute;
+  inset: -12px -18px;
+  background: radial-gradient(closest-side, var(--cream) 55%, rgba(239, 231, 217, 0));
+  filter: blur(9px);
+  z-index: -1;
 }
-.brandmark-kion__o {
-  display: inline-block;
-  width: 0.8em;
-  height: 0.5em;
-  border: 2px solid currentColor;
-  border-radius: 999px;
-  font-style: normal;
+.brandmark-logo img {
+  display: block;
+  height: var(--logo-h, 24px);
+  width: auto;
+  opacity: 0.94;
 }
-
-.brandmark-wink {
-  font-family: var(--font-body);
-  font-weight: 800;
-  font-size: 19px;
-  letter-spacing: 0.01em;
-}
+.brandmark-logo--muz { --logo-h: 26px; }
+.brandmark-logo--voice { --logo-h: 22px; }
+.brandmark-logo--instadium { --logo-h: 24px; }
+.brandmark-logo--nf { --logo-h: 30px; }
+.brandmark-logo--revyline { --logo-h: 15px; }
+.brandmark-logo--curaprox { --logo-h: 22px; }
+.brandmark-logo--neforbsy { --logo-h: 13px; }
+.brandmark-logo--kion { --logo-h: 20px; }
+.brandmark-logo--wink { --logo-h: 24px; }
+.brandmark-logo--ivi { --logo-h: 26px; }
+.brandmark-logo--komandy { --logo-h: 30px; }
+.brandmark-logo--golosa { --logo-h: 22px; }
 
 /* ---------- Values ---------- */
 
