@@ -174,37 +174,47 @@
       <span class="section__num">04.</span>
       <h2>Проекты</h2>
     </div>
-    <div class="projects__grid">
-      <article class="project-card reveal" style="--card-a:#3a2e28;--card-b:#6b4b3a" tabindex="0" role="button" aria-label="Смотреть видео: VOICE, Премия 2025" data-video="">
-        <div class="project-card__art" aria-hidden="true"></div>
-        <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-        <h3>VOICE</h3>
-        <p>Премия 2025</p>
-      </article>
-      <article class="project-card reveal" style="--card-a:#241f2e;--card-b:#5a3e73" tabindex="0" role="button" aria-label="Смотреть видео: MUZ TV, Выпускной Московский Кремль" data-video="">
-        <div class="project-card__art" aria-hidden="true"></div>
-        <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-        <h3>MUZ TV</h3>
-        <p>Выпускной Московский Кремль</p>
-      </article>
-      <article class="project-card reveal" style="--card-a:#241618;--card-b:#7a1f2b" tabindex="0" role="button" aria-label="Смотреть видео: KION, Премьера" data-video="">
-        <div class="project-card__art" aria-hidden="true"></div>
-        <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-        <h3>KION</h3>
-        <p>Премьера</p>
-      </article>
-      <article class="project-card reveal" style="--card-a:#1c1c22;--card-b:#454554" tabindex="0" role="button" aria-label="Смотреть видео: INSTADIUM, Фестиваль" data-video="">
-        <div class="project-card__art" aria-hidden="true"></div>
-        <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-        <h3>INSTADIUM</h3>
-        <p>Фестиваль</p>
-      </article>
-      <article class="project-card reveal" style="--card-a:#26211d;--card-b:#5a4a38" tabindex="0" role="button" aria-label="Смотреть видео: REVYLINE, Мероприятие" data-video="">
-        <div class="project-card__art" aria-hidden="true"></div>
-        <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-        <h3>REVYLINE</h3>
-        <p>Мероприятие</p>
-      </article>
+    <div class="projects__carousel">
+      <div class="projects__grid" id="projectsGrid">
+        <article class="project-card reveal" style="--card-a:#3a2e28;--card-b:#6b4b3a" tabindex="0" role="button" aria-label="Смотреть видео: VOICE, Премия 2025" data-video="">
+          <div class="project-card__art" aria-hidden="true"></div>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>VOICE</h3>
+          <p>Премия 2025</p>
+        </article>
+        <article class="project-card reveal" style="--card-a:#241f2e;--card-b:#5a3e73" tabindex="0" role="button" aria-label="Смотреть видео: MUZ TV, Выпускной Московский Кремль" data-video="">
+          <div class="project-card__art" aria-hidden="true"></div>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>MUZ TV</h3>
+          <p>Выпускной Московский Кремль</p>
+        </article>
+        <article class="project-card reveal" style="--card-a:#241618;--card-b:#7a1f2b" tabindex="0" role="button" aria-label="Смотреть видео: KION, Премьера" data-video="">
+          <div class="project-card__art" aria-hidden="true"></div>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>KION</h3>
+          <p>Премьера</p>
+        </article>
+        <article class="project-card reveal" style="--card-a:#1c1c22;--card-b:#454554" tabindex="0" role="button" aria-label="Смотреть видео: INSTADIUM, Фестиваль" data-video="">
+          <div class="project-card__art" aria-hidden="true"></div>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>INSTADIUM</h3>
+          <p>Фестиваль</p>
+        </article>
+        <article class="project-card reveal" style="--card-a:#26211d;--card-b:#5a4a38" tabindex="0" role="button" aria-label="Смотреть видео: REVYLINE, Мероприятие" data-video="">
+          <div class="project-card__art" aria-hidden="true"></div>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>REVYLINE</h3>
+          <p>Мероприятие</p>
+        </article>
+      </div>
+      <div class="projects__nav">
+        <button class="projects__arrow" id="projectsPrev" aria-label="Предыдущие проекты">
+          <svg width="18" height="14" viewBox="0 0 22 16" fill="none"><path d="M1 8h19M8 1 1 8l7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="projects__arrow" id="projectsNext" aria-label="Следующие проекты">
+          <svg width="18" height="14" viewBox="0 0 22 16" fill="none"><path d="M21 8H2M14 1l7 7-7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </div>
   </section>
 

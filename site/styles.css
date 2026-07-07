@@ -296,11 +296,12 @@ img { max-width: 100%; display: block; }
 .section__head { display: flex; align-items: baseline; gap: 18px; margin-bottom: clamp(32px, 5vw, 56px); }
 .section__num { font-family: 'Unbounded', var(--font-display); font-weight: 500; font-size: 15px; color: var(--taupe); }
 .section__head h2 {
-  font-family: var(--font-display);
-  font-weight: 600;
+  font-family: 'Jost', var(--font-display);
+  font-weight: 500;
   font-size: clamp(28px, 4vw, 42px);
   margin: 0;
   line-height: 1.15;
+  letter-spacing: 0.01em;
 }
 
 .reveal {
@@ -439,13 +440,24 @@ img { max-width: 100%; display: block; }
 /* ---------- Projects ---------- */
 
 .projects { background: var(--cream); }
+
+.projects__carousel { position: relative; }
 .projects__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  display: flex;
   gap: clamp(16px, 2vw, 24px);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-padding-left: clamp(20px, 5vw, 64px);
+  padding-bottom: 6px;
+  margin: 0 clamp(-20px, -5vw, -64px);
+  padding-left: clamp(20px, 5vw, 64px);
+  padding-right: clamp(20px, 5vw, 64px);
+  scrollbar-width: none;
 }
+.projects__grid::-webkit-scrollbar { display: none; }
 .project-card {
   position: relative;
+  flex: 0 0 clamp(230px, 26vw, 300px);
   border-radius: 4px;
   overflow: hidden;
   aspect-ratio: 3 / 4;
@@ -456,6 +468,7 @@ img { max-width: 100%; display: block; }
   color: var(--cream-soft);
   background: linear-gradient(150deg, var(--card-a), var(--card-b));
   cursor: pointer;
+  scroll-snap-align: start;
 }
 .project-card:focus-visible { outline: 2px solid var(--cream-soft); outline-offset: 3px; }
 .project-card__art {
@@ -502,6 +515,28 @@ img { max-width: 100%; display: block; }
   color: rgba(239, 231, 217, 0.75);
   position: relative;
 }
+
+.projects__nav {
+  display: flex;
+  gap: 12px;
+  margin-top: clamp(20px, 3vw, 32px);
+}
+.projects__arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(60, 47, 40, 0.25);
+  background: transparent;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.projects__arrow:hover { background: var(--ink); color: var(--cream-soft); border-color: var(--ink); }
+.projects__arrow:disabled { opacity: 0.35; cursor: default; }
+.projects__arrow:disabled:hover { background: transparent; color: var(--ink); border-color: rgba(60, 47, 40, 0.25); }
 
 /* ---------- Formats ---------- */
 

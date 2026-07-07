@@ -79,4 +79,29 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && videoModal.classList.contains('is-open')) closeVideoModal();
   });
+
+  // Projects carousel
+  const projectsGrid = document.getElementById('projectsGrid');
+  const projectsPrev = document.getElementById('projectsPrev');
+  const projectsNext = document.getElementById('projectsNext');
+
+  if (projectsGrid && projectsPrev && projectsNext) {
+    const scrollByCard = (dir) => {
+      const card = projectsGrid.querySelector('.project-card');
+      const gap = parseFloat(getComputedStyle(projectsGrid).gap) || 0;
+      const amount = card ? card.getBoundingClientRect().width + gap : 300;
+      projectsGrid.scrollBy({ left: dir * amount, behavior: 'smooth' });
+    };
+    const updateArrows = () => {
+      const max = projectsGrid.scrollWidth - projectsGrid.clientWidth;
+      projectsPrev.disabled = projectsGrid.scrollLeft <= 4;
+      projectsNext.disabled = projectsGrid.scrollLeft >= max - 4;
+    };
+
+    projectsPrev.addEventListener('click', () => scrollByCard(-1));
+    projectsNext.addEventListener('click', () => scrollByCard(1));
+    projectsGrid.addEventListener('scroll', updateArrows, { passive: true });
+    window.addEventListener('resize', updateArrows);
+    updateArrows();
+  }
 })();
