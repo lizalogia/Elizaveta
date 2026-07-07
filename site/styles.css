@@ -303,7 +303,7 @@ img { max-width: 100%; display: block; }
 
 /* ---------- Shared section scaffolding ---------- */
 
-.section { padding: clamp(64px, 10vw, 120px) clamp(20px, 5vw, 64px); }
+.section { padding: clamp(64px, 10vw, 120px) clamp(20px, 5vw, 64px); scroll-margin-top: 130px; }
 
 .section__head { display: flex; align-items: baseline; gap: 18px; margin-bottom: clamp(32px, 5vw, 56px); }
 .section__num { font-family: 'Unbounded', var(--font-display); font-weight: 500; font-size: 15px; color: var(--taupe); }
@@ -671,6 +671,7 @@ img { max-width: 100%; display: block; }
 .contacts__grid a:hover { opacity: 0.6; transform: translateX(4px); }
 .contacts__label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--taupe); }
 .contacts__value { font-family: var(--font-display); font-weight: 600; font-size: 20px; }
+.contacts__value--telegram { font-family: 'Montserrat', var(--font-display); font-weight: 600; }
 
 .site-footer {
   padding: 24px clamp(20px, 5vw, 64px) 40px;
