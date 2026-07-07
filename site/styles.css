@@ -206,8 +206,8 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__intro {
-  font-family: 'Doloman Pavljenko', var(--font-display);
-  font-size: clamp(18px, 2.1vw, 22px);
+  font-family: 'Montserrat', var(--font-display);
+  font-size: clamp(17px, 2vw, 21px);
   font-weight: 300;
   margin: 0 0 14px;
   line-height: 1.5;
