@@ -228,7 +228,8 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   width: max-content;
   max-width: none;
-  margin: 4px 0 16px calc(0.3em - 90px);
+  margin: calc(4px - 80px) 0 16px calc(0.3em - 90px);
+  padding-top: 80px;
   padding-left: 90px;
 }
 
