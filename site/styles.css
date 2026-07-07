@@ -224,6 +224,14 @@ img { max-width: 100%; display: block; }
   color: var(--cream-soft);
 }
 
+.hero__script-wrap {
+  overflow: hidden;
+  width: max-content;
+  max-width: none;
+  margin: 4px 0 16px calc(0.3em - 90px);
+  padding-left: 90px;
+}
+
 .hero__script {
   font-family: 'Ballet', var(--font-script);
   font-weight: 400;
@@ -231,7 +239,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.15;
   white-space: nowrap;
   color: rgba(239, 231, 217, 0.6);
-  margin: 4px 0 40px 0.3em;
+  margin: 0 0 0 0.3em;
 }
 
 @media (max-width: 720px) {
