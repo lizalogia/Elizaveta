@@ -61,7 +61,19 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.02em;
   mix-blend-mode: difference;
   margin-top: 7px;
+  transition: color 0.3s ease;
 }
+
+/* Past the hero, mix-blend-mode against scrolled content isn't reliable
+   across browsers, so the header switches to an explicit color per
+   section instead (see script.js theme-watcher). */
+.site-header--light .logo { color: var(--ink); mix-blend-mode: normal; }
+.site-header--light .menu-toggle { mix-blend-mode: normal; }
+.site-header--light .menu-toggle span { background: var(--ink); }
+
+.site-header--dark .logo { color: var(--cream-soft); mix-blend-mode: normal; }
+.site-header--dark .menu-toggle { mix-blend-mode: normal; }
+.site-header--dark .menu-toggle span { background: var(--cream-soft); }
 
 .menu-toggle {
   width: 44px;
@@ -80,7 +92,7 @@ img { max-width: 100%; display: block; }
   width: 26px;
   height: 1px;
   background: var(--cream-soft);
-  transition: transform 0.35s var(--ease-out-expo), opacity 0.25s ease;
+  transition: transform 0.35s var(--ease-out-expo), opacity 0.25s ease, background 0.3s ease;
 }
 .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
@@ -561,7 +573,7 @@ img { max-width: 100%; display: block; }
 .format-card:hover, .format-card:focus-visible { opacity: 0.75; transform: translateY(-3px); }
 .format-card__icon { color: var(--taupe-soft); display: inline-flex; margin-bottom: 18px; transition: color 0.25s ease; }
 .format-card:hover .format-card__icon { color: var(--cream-soft); }
-.format-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 22px; margin: 0 0 10px; }
+.format-card h3 { font-family: 'Montserrat', var(--font-display); font-weight: 600; font-size: 22px; margin: 0 0 10px; }
 .format-card p { font-size: 14px; line-height: 1.6; color: rgba(239, 231, 217, 0.75); margin: 0; max-width: 32ch; }
 
 /* ---------- Video modal ---------- */
