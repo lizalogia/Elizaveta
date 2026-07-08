@@ -49,6 +49,10 @@ img { max-width: 100%; display: block; }
   justify-content: space-between;
   padding: 28px clamp(20px, 5vw, 64px);
   pointer-events: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
 }
 .site-header > * { pointer-events: auto; }
 
