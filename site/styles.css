@@ -501,10 +501,24 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .project-card__art {
   position: absolute;
   inset: 0;
-  background: radial-gradient(120% 90% at 20% 0%, rgba(255,255,255,0.14), transparent 60%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.5s var(--ease-out-expo);
 }
+.project-card:not(:has(.project-card__art))::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 20% 0%, rgba(255,255,255,0.14), transparent 60%);
+}
 .project-card:hover .project-card__art { transform: scale(1.08); }
+.project-card__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 11, 9, 0.88), rgba(15, 11, 9, 0.1) 55%, rgba(255, 255, 255, 0.06) 100%);
+  pointer-events: none;
+}
 .project-card__play {
   position: absolute;
   top: 50%;
