@@ -402,10 +402,10 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .values__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: 0;
 }
 @media (min-width: 720px) {
-  .values__grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  .values__grid { grid-template-columns: 1fr 1fr; align-items: start; gap: 40px; }
 }
 .values__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 22px; }
 .values__list li {
