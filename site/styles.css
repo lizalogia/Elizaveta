@@ -378,15 +378,16 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   display: block;
   height: var(--logo-h, 24px);
   width: auto;
+  margin-top: -3px;
   opacity: 0.94;
   transition: transform 0.35s var(--ease-out-expo), opacity 0.35s ease;
 }
-.brandmark-logo:hover img { transform: scale(1.14); opacity: 1; }
+.brandmark-logo:hover img { transform: scale(1.14) translateY(-1px); opacity: 1; }
 .brandmark-logo--muz { --logo-h: 21px; }
 .brandmark-logo--voice { --logo-h: 18px; }
 .brandmark-logo--instadium { --logo-h: 19px; }
 .brandmark-logo--nf { --logo-h: 24px; }
-.brandmark-logo--revyline { --logo-h: 14px; }
+.brandmark-logo--revyline { --logo-h: 18px; }
 .brandmark-logo--curaprox { --logo-h: 18px; }
 .brandmark-logo--neforbsy { --logo-h: 16px; }
 .brandmark-logo--kion { --logo-h: 16px; }
