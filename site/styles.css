@@ -218,7 +218,7 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 720px) {
-  .hero__content { max-width: 78%; padding-top: clamp(300px, 31vw, 330px); }
+  .hero__content { max-width: 78%; padding-top: clamp(215px, 22vw, 245px); }
 }
 
 .hero__intro {
