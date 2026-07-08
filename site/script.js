@@ -158,6 +158,22 @@
       });
     };
     document.querySelectorAll('.projects__arrow, .video-modal__close').forEach((el) => magnetize(el, 0.35));
+    document.querySelectorAll('.format-card, .contacts__grid a').forEach((el) => magnetize(el, 0.06));
+
+    // Ambient spotlight that follows the cursor on dark sections
+    document.querySelectorAll('.formats').forEach((section) => {
+      const glow = document.createElement('div');
+      glow.className = 'section-glow';
+      glow.setAttribute('aria-hidden', 'true');
+      section.prepend(glow);
+      section.addEventListener('mouseenter', () => glow.classList.add('is-active'));
+      section.addEventListener('mouseleave', () => glow.classList.remove('is-active'));
+      section.addEventListener('mousemove', (e) => {
+        const r = section.getBoundingClientRect();
+        glow.style.setProperty('--gx', `${e.clientX - r.left}px`);
+        glow.style.setProperty('--gy', `${e.clientY - r.top}px`);
+      });
+    });
 
     // Roaming cursor over project cards
     const cursor = document.getElementById('customCursor');
