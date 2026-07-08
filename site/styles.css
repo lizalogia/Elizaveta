@@ -394,6 +394,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .brandmark-logo--ivi { --logo-h: 21px; }
 .brandmark-logo--komandy { --logo-h: 24px; }
 .brandmark-logo--golosa { --logo-h: 18px; }
+.brandmark-logo--musicbox { --logo-h: 20px; }
 
 /* ---------- Values ---------- */
 
