@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ТВ и медиапроекты — lizalogia</title>
+<meta name="description" content="Премьеры, бэкстейдж, телепроекты, интервью.">
+<script>document.documentElement.classList.add('js');</script>
+
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="logo">lizalogia</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="navDrawer">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="nav-drawer" id="navDrawer">
+  <a href="index.html#clients" data-close>02. Среди клиентов</a>
+  <a href="index.html#values" data-close>03. Что для меня важно</a>
+  <a href="index.html#projects" data-close>04. Проекты</a>
+  <a href="index.html#formats" data-close>05. Форматы работы</a>
+  <a href="index.html#contacts" data-close>06. Контакты</a>
+</nav>
+<div class="nav-scrim" id="navScrim"></div>
+
+<main>
+  <section class="category-hero">
+    <a href="index.html#formats" class="category-hero__back">
+      <svg width="14" height="11" viewBox="0 0 22 16" fill="none"><path d="M1 8h19M8 1 1 8l7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Все форматы
+    </a>
+    <span class="category-hero__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 8h11l2.5-3H21a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><circle cx="12" cy="14" r="4" stroke="currentColor" stroke-width="1.2"/></svg></span>
+    <h1>ТВ и медиапроекты</h1>
+    <p>Премьеры, бэкстейдж, телепроекты, интервью.</p>
+  </section>
+
+  <div class="category-grid">
+    <p class="category-empty">Видео скоро появятся здесь</p>
+  </div>
+</main>
+
+<div class="video-modal" id="videoModal" aria-hidden="true">
+  <div class="video-modal__scrim" data-video-close></div>
+  <div class="video-modal__box">
+    <button class="video-modal__close" data-video-close aria-label="Закрыть">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 4 20 20M20 4 4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <video class="video-modal__player" id="videoModalPlayer" controls playsinline></video>
+    <iframe class="video-modal__frame" id="videoModalFrame" allow="autoplay" allowfullscreen></iframe>
+    <p class="video-modal__empty" id="videoModalEmpty">Видео скоро появится здесь</p>
+  </div>
+</div>
+
+<div class="custom-cursor" id="customCursor" aria-hidden="true"><span>Смотреть</span></div>
+
+<script src="script.js"></script>
+</body>
+</html>

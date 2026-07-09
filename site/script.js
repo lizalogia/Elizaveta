@@ -21,30 +21,37 @@
   const hero = document.getElementById('hero');
   let headerTicking = false;
 
-  const updateHeaderTheme = () => {
-    headerTicking = false;
-    const heroBottom = hero.getBoundingClientRect().bottom;
-    if (heroBottom > 10) {
-      siteHeader.classList.remove('site-header--light', 'site-header--dark');
-      return;
-    }
-    const probeX = 24;
-    const probeY = 60;
-    const stack = document.elementsFromPoint(probeX, probeY);
-    const themed = stack.find((el) => el.dataset && el.dataset.theme);
-    const theme = themed ? themed.dataset.theme : 'light';
-    siteHeader.classList.toggle('site-header--light', theme === 'light');
-    siteHeader.classList.toggle('site-header--dark', theme === 'dark');
-  };
+  if (hero) {
+    const updateHeaderTheme = () => {
+      headerTicking = false;
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      if (heroBottom > 10) {
+        siteHeader.classList.remove('site-header--light', 'site-header--dark');
+        return;
+      }
+      const probeX = 24;
+      const probeY = 60;
+      const stack = document.elementsFromPoint(probeX, probeY);
+      const themed = stack.find((el) => el.dataset && el.dataset.theme);
+      const theme = themed ? themed.dataset.theme : 'light';
+      siteHeader.classList.toggle('site-header--light', theme === 'light');
+      siteHeader.classList.toggle('site-header--dark', theme === 'dark');
+    };
 
-  window.addEventListener('scroll', () => {
-    if (!headerTicking) {
-      headerTicking = true;
-      requestAnimationFrame(updateHeaderTheme);
-    }
-  }, { passive: true });
-  window.addEventListener('resize', updateHeaderTheme);
-  updateHeaderTheme();
+    window.addEventListener('scroll', () => {
+      if (!headerTicking) {
+        headerTicking = true;
+        requestAnimationFrame(updateHeaderTheme);
+      }
+    }, { passive: true });
+    window.addEventListener('resize', updateHeaderTheme);
+    updateHeaderTheme();
+  } else {
+    // Sub-pages (format categories) have no hero band, so the header stays
+    // in its default light-on-photo blend mode; give it an explicit theme
+    // instead since there's no scrolled content underneath to blend against.
+    siteHeader.classList.add('site-header--dark');
+  }
 
   // Mobile nav drawer
   const toggle = document.getElementById('menuToggle');
