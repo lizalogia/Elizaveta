@@ -72,17 +72,30 @@
   // Project video modal
   const videoModal = document.getElementById('videoModal');
   const videoPlayer = document.getElementById('videoModalPlayer');
+  const videoFrame = document.getElementById('videoModalFrame');
   const videoEmpty = document.getElementById('videoModalEmpty');
 
+  // Google Drive doesn't serve a stable direct file URL for hotlinking, so
+  // Drive-sourced videos play through Drive's own embeddable preview (full
+  // original quality, no re-encoding) instead of the native <video> tag.
+  const getDriveEmbedUrl = (src) => {
+    const match = src.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+    return match ? `https://drive.google.com/file/d/${match[1]}/preview` : null;
+  };
+
   const openVideoModal = (src) => {
-    if (src) {
+    const driveEmbed = src ? getDriveEmbedUrl(src) : null;
+    videoPlayer.style.display = 'none';
+    videoFrame.style.display = 'none';
+    videoEmpty.style.display = 'none';
+    if (driveEmbed) {
+      videoFrame.src = driveEmbed;
+      videoFrame.style.display = '';
+    } else if (src) {
       videoPlayer.src = src;
       videoPlayer.style.display = '';
-      videoEmpty.style.display = 'none';
       videoPlayer.play().catch(() => {});
     } else {
-      videoPlayer.removeAttribute('src');
-      videoPlayer.style.display = 'none';
       videoEmpty.style.display = 'block';
     }
     videoModal.classList.add('is-open');
@@ -95,6 +108,7 @@
     videoPlayer.pause();
     videoPlayer.removeAttribute('src');
     videoPlayer.load();
+    videoFrame.removeAttribute('src');
     document.body.style.overflow = '';
   };
 
