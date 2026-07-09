@@ -90,13 +90,19 @@
     return match ? `https://drive.google.com/file/d/${match[1]}/preview` : null;
   };
 
+  // RuTube links (including /shorts/) embed the same way via its own player.
+  const getRutubeEmbedUrl = (src) => {
+    const match = src.match(/rutube\.ru\/(?:video|shorts)\/([a-zA-Z0-9]+)/);
+    return match ? `https://rutube.ru/play/embed/${match[1]}` : null;
+  };
+
   const openVideoModal = (src) => {
-    const driveEmbed = src ? getDriveEmbedUrl(src) : null;
+    const embedUrl = src ? (getDriveEmbedUrl(src) || getRutubeEmbedUrl(src)) : null;
     videoPlayer.style.display = 'none';
     videoFrame.style.display = 'none';
     videoEmpty.style.display = 'none';
-    if (driveEmbed) {
-      videoFrame.src = driveEmbed;
+    if (embedUrl) {
+      videoFrame.src = embedUrl;
       videoFrame.style.display = '';
     } else if (src) {
       videoPlayer.src = src;
