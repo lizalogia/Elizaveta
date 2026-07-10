@@ -417,35 +417,6 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   border-bottom: 1px solid rgba(60, 47, 40, 0.15);
 }
 .values__index { font-family: 'Unbounded', var(--font-display); font-weight: 500; color: var(--taupe); font-size: 15px; }
-.values__origin {
-  grid-column: 1 / -1;
-  margin-top: 8px;
-  padding-top: 28px;
-  border-top: 1px solid rgba(60, 47, 40, 0.15);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-}
-.values__origin-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'Unbounded', var(--font-display);
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 0.02em;
-  color: var(--brown-deep);
-  text-decoration: none;
-  padding: 12px 22px;
-  border: 1px solid rgba(60, 47, 40, 0.35);
-  border-radius: 999px;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.3s var(--ease-out-expo);
-}
-.values__origin-btn:hover { background: var(--brown-deep); color: var(--cream-soft); transform: translateX(4px); }
-.values__origin-btn svg { transition: transform 0.3s var(--ease-out-expo); }
-.values__origin-btn:hover svg { transform: translateX(3px); }
-.values__origin-caption { font-size: 13px; color: var(--taupe); max-width: 420px; line-height: 1.5; }
 
 /* ---------- Marquee ---------- */
 
@@ -646,6 +617,39 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .format-card:hover .format-card__icon { color: var(--cream-soft); }
 .format-card h3 { font-family: 'Montserrat', var(--font-display); font-weight: 600; font-size: 22px; margin: 0 0 10px; }
 .format-card p { font-size: 14px; line-height: 1.6; color: rgba(239, 231, 217, 0.75); margin: 0; max-width: 32ch; }
+
+.formats__origin {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(48px, 7vw, 72px);
+  padding-top: clamp(28px, 4vw, 36px);
+  border-top: 1px solid rgba(239, 231, 217, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+.formats__origin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Doloman Pavljenko', var(--font-display);
+  font-size: 20px;
+  color: var(--cream-soft);
+  text-decoration: none;
+  padding: 14px 26px;
+  border: 1px solid rgba(239, 231, 217, 0.4);
+  border-radius: 999px;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s var(--ease-out-expo);
+}
+.formats__origin-btn:hover {
+  background: var(--cream-soft);
+  color: var(--brown-deep);
+  transform: translateX(4px);
+}
+.formats__origin-btn svg { transition: transform 0.3s var(--ease-out-expo); }
+.formats__origin-btn:hover svg { transform: translateX(3px); }
+.formats__origin-caption { font-size: 15px; line-height: 1.6; color: rgba(239, 231, 217, 0.75); max-width: 40ch; margin: 0; }
 
 /* ---------- Video modal ---------- */
 
