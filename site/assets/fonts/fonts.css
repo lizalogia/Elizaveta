@@ -98,6 +98,15 @@
   src: url('FuturaLight.woff2') format('woff2');
 }
 
+/* Section headings (Форматы работы, Проекты, etc.) */
+@font-face {
+  font-family: 'Doloman Pavljenko';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('DolomanPavljenko.otf') format('opentype');
+}
+
 /* "feel the vibe" hero accent — matches the reference's tall-loop script */
 @font-face {
   font-family: 'Ballet';
