@@ -383,18 +383,18 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   transition: transform 0.35s var(--ease-out-expo), opacity 0.35s ease;
 }
 .brandmark-logo:hover img { transform: scale(1.14) translateY(-1px); opacity: 1; }
-.brandmark-logo--muz { --logo-h: 21.6px; }
+.brandmark-logo--muz { --logo-h: 23.5px; }
 .brandmark-logo--voice { --logo-h: 19.9px; }
 .brandmark-logo--instadium { --logo-h: 17.6px; }
-.brandmark-logo--nf { --logo-h: 18.3px; }
+.brandmark-logo--nf { --logo-h: 16px; }
 .brandmark-logo--curaprox { --logo-h: 18.5px; }
-.brandmark-logo--neforbsy { --logo-h: 20.4px; }
-.brandmark-logo--kion { --logo-h: 20.1px; }
+.brandmark-logo--neforbsy { --logo-h: 17px; }
+.brandmark-logo--kion { --logo-h: 17px; }
 .brandmark-logo--wink { --logo-h: 21.8px; }
-.brandmark-logo--ivi { --logo-h: 16.7px; }
-.brandmark-logo--komandy { --logo-h: 16.9px; }
+.brandmark-logo--ivi { --logo-h: 21px; }
+.brandmark-logo--komandy { --logo-h: 24px; }
 .brandmark-logo--golosa { --logo-h: 20.2px; }
-.brandmark-logo--musicbox { --logo-h: 23.1px; }
+.brandmark-logo--musicbox { --logo-h: 29px; }
 
 /* ---------- Values ---------- */
 
