@@ -356,8 +356,8 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .brandmark-founders {
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 0.06em;
+  font-size: 13px;
+  letter-spacing: 0.05em;
 }
 
 /* Client logo lockups — recolored to the site's brown-mid tone, on a soft
@@ -387,13 +387,13 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .brandmark-logo--voice { --logo-h: 19.9px; }
 .brandmark-logo--instadium { --logo-h: 17.6px; }
 .brandmark-logo--nf { --logo-h: 16px; }
-.brandmark-logo--curaprox { --logo-h: 18.5px; }
+.brandmark-logo--curaprox { --logo-h: 23px; }
 .brandmark-logo--neforbsy { --logo-h: 17px; }
 .brandmark-logo--kion { --logo-h: 17px; }
 .brandmark-logo--wink { --logo-h: 21.8px; }
 .brandmark-logo--ivi { --logo-h: 21px; }
 .brandmark-logo--komandy { --logo-h: 24px; }
-.brandmark-logo--golosa { --logo-h: 20.2px; }
+.brandmark-logo--golosa { --logo-h: 24px; }
 .brandmark-logo--musicbox { --logo-h: 29px; }
 
 /* ---------- Values ---------- */
