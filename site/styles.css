@@ -197,98 +197,59 @@ img { max-width: 100%; display: block; }
   will-change: transform;
 }
 
-.hero__glow {
+.hero__aurora {
   position: absolute;
-  top: -6%;
-  right: -12%;
-  width: clamp(340px, 46vw, 640px);
+  border-radius: 42% 58% 64% 36% / 46% 40% 60% 54%;
+  filter: blur(58px);
+  mix-blend-mode: soft-light;
+}
+.hero__aurora--1 {
+  top: -12%;
+  right: -14%;
+  width: clamp(380px, 50vw, 680px);
   aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(246, 241, 230, 0.5), rgba(246, 241, 230, 0) 72%);
-  filter: blur(60px);
-  animation: glow-breathe 12s ease-in-out infinite alternate;
+  background: radial-gradient(closest-side, rgba(246, 241, 230, 0.75), rgba(246, 241, 230, 0) 74%);
+  animation: aurora-morph-1 26s ease-in-out infinite alternate;
 }
-
-@keyframes glow-breathe {
-  0% { transform: scale(1); opacity: 0.85; }
-  100% { transform: scale(1.12); opacity: 1; }
-}
-
-.hero__ring {
-  position: absolute;
-  top: 16%;
-  right: 10%;
-  width: clamp(260px, 30vw, 460px);
+.hero__aurora--2 {
+  top: 22%;
+  right: 8%;
+  width: clamp(260px, 34vw, 480px);
   aspect-ratio: 1;
-  border-radius: 50%;
-  border: 1px solid rgba(239, 231, 217, 0.32);
-  transform-style: preserve-3d;
-  transform: perspective(1000px) rotateX(64deg) rotateZ(-14deg);
-  animation: ring-spin 44s linear infinite;
+  background: radial-gradient(closest-side, rgba(182, 164, 136, 0.7), rgba(182, 164, 136, 0) 72%);
+  animation: aurora-morph-2 21s ease-in-out infinite alternate;
 }
-.hero__ring::before {
-  content: '';
-  position: absolute;
-  inset: 14%;
-  border-radius: 50%;
-  border: 1px solid rgba(239, 231, 217, 0.16);
+.hero__aurora--3 {
+  top: 46%;
+  right: -8%;
+  width: clamp(300px, 38vw, 540px);
+  aspect-ratio: 1;
+  background: radial-gradient(closest-side, rgba(107, 84, 66, 0.55), rgba(107, 84, 66, 0) 74%);
+  animation: aurora-morph-3 32s ease-in-out infinite alternate;
 }
 
-@keyframes ring-spin {
-  from { transform: perspective(1000px) rotateX(64deg) rotateZ(-14deg); }
-  to { transform: perspective(1000px) rotateX(64deg) rotateZ(346deg); }
+@keyframes aurora-morph-1 {
+  0% { border-radius: 42% 58% 64% 36% / 46% 40% 60% 54%; transform: translate(0, 0) scale(1); }
+  50% { border-radius: 62% 38% 42% 58% / 58% 62% 38% 42%; transform: translate(-24px, 20px) scale(1.08); }
+  100% { border-radius: 38% 62% 55% 45% / 40% 50% 50% 60%; transform: translate(16px, -14px) scale(1); }
 }
-
-.hero__card {
-  position: absolute;
-  border-radius: 14px;
-  border: 1px solid rgba(239, 231, 217, 0.38);
-  background: linear-gradient(135deg, rgba(246, 241, 230, 0.16), rgba(246, 241, 230, 0.02));
-  box-shadow: 0 24px 60px rgba(15, 11, 9, 0.3);
-  transform-style: preserve-3d;
+@keyframes aurora-morph-2 {
+  0% { border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%; transform: translate(0, 0) scale(1); }
+  50% { border-radius: 40% 60% 60% 40% / 42% 58% 42% 58%; transform: translate(20px, -22px) scale(0.94); }
+  100% { border-radius: 58% 42% 46% 54% / 55% 45% 55% 45%; transform: translate(-18px, 12px) scale(1.04); }
 }
-.hero__card--1 {
-  top: 20%;
-  right: 18%;
-  width: clamp(88px, 9vw, 148px);
-  height: clamp(128px, 13vw, 208px);
-  animation: card-tumble-1 19s ease-in-out infinite;
-}
-.hero__card--2 {
-  top: 50%;
-  right: 34%;
-  width: clamp(68px, 7vw, 108px);
-  height: clamp(96px, 10vw, 154px);
-  animation: card-tumble-2 23s ease-in-out infinite;
-}
-.hero__card--3 {
-  top: 58%;
-  right: 6%;
-  width: clamp(58px, 6vw, 94px);
-  height: clamp(82px, 8vw, 136px);
-  animation: card-tumble-3 27s ease-in-out infinite;
-}
-
-@keyframes card-tumble-1 {
-  0%, 100% { transform: perspective(900px) rotateY(-20deg) rotateX(10deg) translateY(0); }
-  50% { transform: perspective(900px) rotateY(16deg) rotateX(-8deg) translateY(-20px); }
-}
-@keyframes card-tumble-2 {
-  0%, 100% { transform: perspective(900px) rotateY(14deg) rotateX(-12deg) translateY(0); }
-  50% { transform: perspective(900px) rotateY(-18deg) rotateX(6deg) translateY(16px); }
-}
-@keyframes card-tumble-3 {
-  0%, 100% { transform: perspective(900px) rotateY(-10deg) rotateX(-6deg) translateY(0); }
-  50% { transform: perspective(900px) rotateY(20deg) rotateX(10deg) translateY(-14px); }
+@keyframes aurora-morph-3 {
+  0% { border-radius: 55% 45% 40% 60% / 50% 55% 45% 50%; transform: translate(0, 0) scale(1); }
+  50% { border-radius: 40% 60% 58% 42% / 60% 40% 60% 40%; transform: translate(-14px, -18px) scale(1.06); }
+  100% { border-radius: 60% 40% 50% 50% / 45% 55% 45% 55%; transform: translate(12px, 16px) scale(0.98); }
 }
 
 @media (max-width: 720px) {
-  .hero__card--2 { display: none; }
-  .hero__ring { width: 70vw; right: -4%; }
+  .hero__aurora--2 { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__glow, .hero__ring, .hero__card { animation: none; }
+  .hero__aurora { animation: none; }
 }
 
 @media (max-width: 720px) {
@@ -297,10 +258,10 @@ img { max-width: 100%; display: block; }
     letter-spacing: 0.02em;
     top: 10%;
   }
-  .hero__glow {
+  .hero__aurora--1 {
     width: 85%;
     right: -18%;
-    top: 20%;
+    top: 10%;
   }
 }
 
