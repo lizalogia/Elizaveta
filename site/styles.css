@@ -183,28 +183,112 @@ img { max-width: 100%; display: block; }
   mix-blend-mode: overlay;
 }
 
-.hero__foliage {
+.hero__scene {
   position: absolute;
-  top: 6%;
-  right: -8%;
-  width: 62%;
-  max-width: 620px;
-  height: auto;
+  inset: 0;
   z-index: 1;
-  filter: blur(14px);
-  opacity: 0.65;
-  animation: foliage-drift 28s ease-in-out infinite alternate;
-  transform-origin: 60% 40%;
+  perspective: 1400px;
+  overflow: hidden;
+}
+.hero__layer {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
-@keyframes foliage-drift {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-  50% { transform: translate(-16px, 22px) scale(1.05) rotate(1.6deg); }
-  100% { transform: translate(12px, -16px) scale(1.02) rotate(-1.2deg); }
+.hero__glow {
+  position: absolute;
+  top: -6%;
+  right: -12%;
+  width: clamp(340px, 46vw, 640px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(246, 241, 230, 0.5), rgba(246, 241, 230, 0) 72%);
+  filter: blur(60px);
+  animation: glow-breathe 12s ease-in-out infinite alternate;
+}
+
+@keyframes glow-breathe {
+  0% { transform: scale(1); opacity: 0.85; }
+  100% { transform: scale(1.12); opacity: 1; }
+}
+
+.hero__ring {
+  position: absolute;
+  top: 16%;
+  right: 10%;
+  width: clamp(260px, 30vw, 460px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(239, 231, 217, 0.32);
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(64deg) rotateZ(-14deg);
+  animation: ring-spin 44s linear infinite;
+}
+.hero__ring::before {
+  content: '';
+  position: absolute;
+  inset: 14%;
+  border-radius: 50%;
+  border: 1px solid rgba(239, 231, 217, 0.16);
+}
+
+@keyframes ring-spin {
+  from { transform: perspective(1000px) rotateX(64deg) rotateZ(-14deg); }
+  to { transform: perspective(1000px) rotateX(64deg) rotateZ(346deg); }
+}
+
+.hero__card {
+  position: absolute;
+  border-radius: 14px;
+  border: 1px solid rgba(239, 231, 217, 0.38);
+  background: linear-gradient(135deg, rgba(246, 241, 230, 0.16), rgba(246, 241, 230, 0.02));
+  box-shadow: 0 24px 60px rgba(15, 11, 9, 0.3);
+  transform-style: preserve-3d;
+}
+.hero__card--1 {
+  top: 20%;
+  right: 18%;
+  width: clamp(88px, 9vw, 148px);
+  height: clamp(128px, 13vw, 208px);
+  animation: card-tumble-1 19s ease-in-out infinite;
+}
+.hero__card--2 {
+  top: 50%;
+  right: 34%;
+  width: clamp(68px, 7vw, 108px);
+  height: clamp(96px, 10vw, 154px);
+  animation: card-tumble-2 23s ease-in-out infinite;
+}
+.hero__card--3 {
+  top: 58%;
+  right: 6%;
+  width: clamp(58px, 6vw, 94px);
+  height: clamp(82px, 8vw, 136px);
+  animation: card-tumble-3 27s ease-in-out infinite;
+}
+
+@keyframes card-tumble-1 {
+  0%, 100% { transform: perspective(900px) rotateY(-20deg) rotateX(10deg) translateY(0); }
+  50% { transform: perspective(900px) rotateY(16deg) rotateX(-8deg) translateY(-20px); }
+}
+@keyframes card-tumble-2 {
+  0%, 100% { transform: perspective(900px) rotateY(14deg) rotateX(-12deg) translateY(0); }
+  50% { transform: perspective(900px) rotateY(-18deg) rotateX(6deg) translateY(16px); }
+}
+@keyframes card-tumble-3 {
+  0%, 100% { transform: perspective(900px) rotateY(-10deg) rotateX(-6deg) translateY(0); }
+  50% { transform: perspective(900px) rotateY(20deg) rotateX(10deg) translateY(-14px); }
+}
+
+@media (max-width: 720px) {
+  .hero__card--2 { display: none; }
+  .hero__ring { width: 70vw; right: -4%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__foliage { animation: none; }
+  .hero__glow, .hero__ring, .hero__card { animation: none; }
 }
 
 @media (max-width: 720px) {
@@ -213,11 +297,10 @@ img { max-width: 100%; display: block; }
     letter-spacing: 0.02em;
     top: 10%;
   }
-  .hero__foliage {
+  .hero__glow {
     width: 85%;
     right: -18%;
-    top: 30%;
-    filter: blur(10px);
+    top: 20%;
   }
 }
 

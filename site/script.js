@@ -218,6 +218,37 @@
       if (!cursorRafId) cursorRafId = requestAnimationFrame(positionCursor);
     });
 
+    // Hero 3D parallax scene — orbs and foliage drift toward the cursor at
+    // different depths, lerped for smoothness. Idle CSS keyframes on the
+    // child elements keep it alive when the cursor isn't moving.
+    const heroScene = document.querySelector('.hero__scene');
+    if (heroScene && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const heroLayers = Array.from(heroScene.querySelectorAll('.hero__layer'));
+      let targetX = 0;
+      let targetY = 0;
+      let curX = 0;
+      let curY = 0;
+      document.getElementById('hero').addEventListener('mousemove', (e) => {
+        const r = heroScene.getBoundingClientRect();
+        targetX = (e.clientX - r.left) / r.width - 0.5;
+        targetY = (e.clientY - r.top) / r.height - 0.5;
+      });
+      const tickParallax = () => {
+        curX += (targetX - curX) * 0.06;
+        curY += (targetY - curY) * 0.06;
+        heroLayers.forEach((layer) => {
+          const depth = parseFloat(layer.dataset.depth) || 0;
+          const tx = curX * depth * 300;
+          const ty = curY * depth * 200;
+          const rx = curY * depth * -40;
+          const ry = curX * depth * 40;
+          layer.style.transform = `translate3d(${tx}px, ${ty}px, 0) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        });
+        requestAnimationFrame(tickParallax);
+      };
+      tickParallax();
+    }
+
     // 3D tilt + cursor activation on project cards
     document.querySelectorAll('.project-card').forEach((card) => {
       card.addEventListener('mouseenter', () => {
