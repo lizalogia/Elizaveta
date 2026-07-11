@@ -614,6 +614,12 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   color: rgba(239, 231, 217, 0.75);
   position: relative;
 }
+.project-card__credit {
+  font-size: 11px;
+  margin: 4px 0 0;
+  color: rgba(239, 231, 217, 0.55);
+  position: relative;
+}
 
 .projects__nav {
   display: flex;
