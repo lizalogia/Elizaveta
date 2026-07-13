@@ -148,6 +148,15 @@
   src: url('Seenonim.ttf') format('truetype');
 }
 
+/* Main-page section headings (Среди клиентов, Что для меня важно, Все проекты, etc.) */
+@font-face {
+  font-family: 'Project Space';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('ProjectSpace.ttf') format('truetype');
+}
+
 /* Section number labels (01, 02, 03...) */
 @font-face {
   font-family: 'Unbounded';
