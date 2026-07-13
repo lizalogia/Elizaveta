@@ -116,6 +116,38 @@
   src: url('Ballet.woff2') format('woff2');
 }
 
+/* Nav drawer + section headings (Среди клиентов, Что для меня важно, etc.) */
+@font-face {
+  font-family: 'Cormorant';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Cormorant-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Cormorant';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('Cormorant-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Cormorant';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('Cormorant-SemiBold.ttf') format('truetype');
+}
+
+/* Format-card titles (Концерты, Мероприятия, ТВ и медиапроекты, etc.) */
+@font-face {
+  font-family: 'Seenonim';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Seenonim.ttf') format('truetype');
+}
+
 /* Section number labels (01, 02, 03...) */
 @font-face {
   font-family: 'Unbounded';
