@@ -82,8 +82,11 @@ Steps:
 
 Trigger: the user asks what Claude knows/remembers about something, refers
 to earlier discussion Claude has no record of in the current context ("as
-we talked about", "like last time"), or a new conversation opens on a topic
-where prior context would obviously change the answer.
+we talked about", "like last time"), a new conversation opens on a topic
+where prior context would obviously change the answer, **or the user simply
+mentions a name/project/topic that matches something in the index** — that
+last case must not require an explicit question. See "Recognizing mentions
+automatically" below.
 
 Steps:
 1. Check whether the memory store exists at all before doing anything else
@@ -97,15 +100,42 @@ Steps:
    the user can correct it if it's stale.
 5. If nothing relevant is found, say so instead of guessing.
 
-## Auto-loading at session start (optional, one-time setup)
+## Recognizing mentions automatically
 
-Reading memory only when asked misses the common case: the user expects
-Claude to *already* know something without prompting. To fix this, a
-`SessionStart` hook can inject `index.md` into context automatically at the
-start of every session.
+The point of this skill is that the user shouldn't have to ask "what do you
+remember about X" — mentioning X should be enough, the way it would be with
+a person. Two things make that work together:
 
-Set this up once, when the user asks for "always remember" behavior (not on
-every invocation of this skill):
+1. **The index must already be in context.** Set up the `SessionStart` hook
+   below the first time this skill is used in an environment — it is not
+   optional extra credit, it's what makes recognition passive instead of
+   requiring a manual lookup every turn. Do it once per environment without
+   waiting to be asked separately.
+2. **Treat the loaded index as active knowledge, not archive.** Once
+   `index.md` is in context (via the hook, or because you read it earlier
+   this session), scan each new user message for any name/topic/keyword
+   that matches an index entry — including partial matches, nicknames, or
+   the Russian/English equivalent of a term. The moment one matches:
+   - Silently open the matching `topics/<slug>.md` (don't narrate "let me
+     check my memory" as a separate step — just do it).
+   - Fold the relevant facts into your response naturally, flagged as
+     recalled (e.g. "ты говорила раньше, что...").
+   - Don't do this for generic words that happen to overlap with a slug —
+     only act when the mention is plausibly about the same
+     person/project/topic.
+
+If the hook isn't set up yet in the current environment (no memory content
+appeared automatically at the start of this conversation), read
+`index.md` yourself as the first step of handling this skill, so the rest
+of the conversation can pattern-match against it.
+
+## Setting up auto-loading (do this once per environment)
+
+A `SessionStart` hook injects `index.md` into context automatically at the
+start of every session, so recognition (above) works without a manual
+lookup. Set this up the first time this skill is relevant in a given
+environment — don't wait for the user to separately ask for "always
+remember" behavior, that's what they mean when they ask for this skill.
 
 1. Load the `session-start-hook` skill if available — it covers the hook
    mechanics in this repo/environment.
@@ -130,9 +160,11 @@ every invocation of this skill):
 ```
 
 Adjust the path to `.claude/memory/index.md` for the git-backed case. This
-only surfaces the index — Claude still needs to open the relevant
-`topics/*.md` file per the recall steps above when a specific topic
-matters.
+only surfaces the index — Claude still opens the relevant `topics/*.md`
+file per the steps above when a specific topic actually comes up. Tell the
+user once that this is set up and will take effect starting next session
+(hooks fire at session start, so it won't retroactively affect the current
+one).
 
 ## Maintenance
 
