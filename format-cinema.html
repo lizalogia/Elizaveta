@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кино — l.media</title>
+<meta name="description" content="Кино — часть портфолио видеографа Елизаветы (l.media). Съёмки в Москве.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect width=%2224%22 height=%2224%22 rx=%224%22 fill=%22%2314100D%22/><circle cx=%228%22 cy=%2212%22 r=%223%22 fill=%22%23C89B5C%22/></svg>">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="cinema">
+
+<nav class="nav">
+  <a href="index.html" class="logo"><span class="word">l<span class="dot">.</span>media</span><b>videographer &middot; moscow</b></a>
+  <div class="nav-links">
+    <a href="index.html#reel">Портфолио</a>
+    <a href="index.html#formats">Форматы</a>
+    <a href="index.html#about">Обо мне</a>
+    <a href="index.html#contact">Контакты</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:18px;">
+    <div class="rec-badge"><span class="rec-dot"></span>REC &middot; MSK</div>
+    <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="hero sub" id="hero">
+  <div class="letterbox top"></div>
+  <div class="letterbox bottom"></div>
+  <div class="hero-inner">
+    <a class="back-link" href="index.html#formats">&larr; Все форматы</a>
+    <div class="hero-eyebrow">
+      <svg viewBox="0 0 24 24" width="16" height="16" stroke="#C89B5C" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"><path id="catIconPath" d=""/></svg>
+      ФОРМАТ СЪЁМКИ
+    </div>
+    <h1 id="catTitle">Кино</h1>
+    <p class="hero-sub" id="catDesc"></p>
+  </div>
+  <div class="hero-foot">
+    <div class="tc">РАБОТ В РАЗДЕЛЕ <b class="tc-val" id="catCount">&mdash;</b></div>
+  </div>
+</header>
+
+<section class="listing">
+  <div class="wrap">
+    <div class="crumbs reveal" id="crumbs"></div>
+    <div class="grid reveal" id="grid" style="margin-top:44px;"></div>
+  </div>
+</section>
+
+<footer>
+  <span>&copy; l.media, 2026</span>
+  <span class="legal">Все упомянутые на сайте названия, логотипы и товарные знаки принадлежат соответствующим правообладателям и используются исключительно в целях демонстрации выполненных работ (портфолио).</span>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner" id="lbInner">
+    <div class="lb-close" id="lbClose">&#10005; Закрыть</div>
+    <div class="lb-title" id="lbTitle"></div>
+  </div>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
