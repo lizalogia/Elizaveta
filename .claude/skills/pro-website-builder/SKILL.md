@@ -77,3 +77,8 @@ verbatim.
 - `assets/template.html`, `assets/template.css`, `assets/template.js` — a
   small working page (hero, feature grid, testimonial marquee, footer) that
   demonstrates the font-loading pattern and every animation recipe at once.
+
+For freestanding motion graphics that aren't page micro-interactions —
+logo reveals, kinetic typography, intro/outro bumpers, anything that needs
+to render as an mp4/gif rather than play embedded in a page — use the
+sibling `motion-graphics` skill instead.

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Motion graphics template — beat-sheet demo</title>
+<style>
+  :root {
+    --c1: #6d5bff;
+    --c2: #0a0a0f;
+    --ink: #f5f4ff;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: var(--c2);
+    color: var(--ink);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    overflow: hidden;
+  }
+
+  /* ---- stage ---- */
+  .stage {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  /* ---- beat 0: ambient background loop (never the focal motion) ---- */
+  .ambient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 30%, var(--c1) 0%, transparent 60%),
+                radial-gradient(circle at 70% 70%, #2be1c9 0%, transparent 55%);
+    opacity: 0.35;
+    animation: drift 16s linear infinite;
+    z-index: 0;
+  }
+  @keyframes drift {
+    0%   { filter: hue-rotate(0deg); transform: scale(1); }
+    50%  { transform: scale(1.08); }
+    100% { filter: hue-rotate(360deg); transform: scale(1); }
+  }
+
+  /* ---- beat 1: SVG mark line-draw + fill/settle ---- */
+  .mark {
+    width: 96px;
+    height: 96px;
+    position: relative;
+    z-index: 1;
+  }
+  .mark path {
+    fill: var(--c1);
+    fill-opacity: 0;
+    stroke: var(--ink);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ---- beat 2: kinetic wordmark (per-word stagger) ---- */
+  .wordmark {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    display: flex;
+    gap: 0.4ch;
+    z-index: 1;
+  }
+  .word {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(0.4em) rotate(2deg);
+  }
+
+  /* ---- beat 3: tagline fade, overlaps wordmark settle (follow-through) ---- */
+  .tagline {
+    font-size: 0.95rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    z-index: 1;
+    transform: translateY(8px);
+    opacity: 0;
+  }
+
+  .replay {
+    position: absolute;
+    bottom: 2rem;
+    z-index: 1;
+    background: transparent;
+    border: 1px solid rgb(245 244 255 / 0.3);
+    color: var(--ink);
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s cubic-bezier(0.16,1,0.3,1);
+  }
+  .replay:hover { background: rgb(245 244 255 / 0.1); }
+
+  /* ---- reduced motion: show the end state instantly, keep only the ambient loop still (subtle, non-focal) ---- */
+  @media (prefers-reduced-motion: reduce) {
+    .mark path { animation: none !important; stroke-dashoffset: 0 !important; fill-opacity: 1 !important; }
+    .word { animation: none !important; opacity: 1 !important; filter: none !important; transform: none !important; }
+    .tagline { animation: none !important; opacity: 0.7 !important; transform: none !important; }
+    .ambient { animation-duration: 32s; } /* keep it, just slow and non-distracting */
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="ambient"></div>
+
+    <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M 20 80 L 20 20 L 50 55 L 80 20 L 80 80" />
+    </svg>
+
+    <div class="wordmark" aria-label="STUDIO">STUDIO</div>
+
+    <div class="tagline">Motion &amp; Design</div>
+
+    <button class="replay" type="button">Replay</button>
+  </div>
+
+<script>
+(() => {
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const markPath = document.querySelector('.mark path');
+  const wordmark = document.querySelector('.wordmark');
+  const tagline = document.querySelector('.tagline');
+  const replayBtn = document.querySelector('.replay');
+
+  // split wordmark into per-word spans (kinetic typography, technique #3)
+  wordmark.innerHTML = wordmark.textContent
+    .trim()
+    .split(' ')
+    .map((w) => `<span class="word">${w}</span>`)
+    .join(' ');
+
+  const len = markPath.getTotalLength();
+  markPath.style.strokeDasharray = len;
+  markPath.style.strokeDashoffset = len;
+
+  function play() {
+    if (reduceMotion) return; // end state already shown via CSS, nothing to animate
+
+    // beat 1: line-draw (900ms, linear — see principles.md) then fill/settle
+    markPath.animate(
+      [{ strokeDashoffset: len }, { strokeDashoffset: 0 }],
+      { duration: 900, easing: 'linear', fill: 'forwards' }
+    );
+    markPath.animate(
+      [{ fillOpacity: 0 }, { fillOpacity: 1 }],
+      { duration: 400, delay: 900, easing: 'cubic-bezier(0.16,1,0.3,1)', fill: 'forwards' }
+    );
+
+    // beat 2: kinetic wordmark, starts right as the mark settles (slight overlap = follow-through)
+    const words = wordmark.querySelectorAll('.word');
+    words.forEach((w, i) => {
+      w.animate(
+        [
+          { opacity: 0, filter: 'blur(6px)', transform: 'translateY(0.4em) rotate(2deg)' },
+          { opacity: 1, filter: 'blur(0)', transform: 'translateY(0) rotate(0)' },
+        ],
+        { duration: 450, delay: 1200 + i * 90, easing: 'cubic-bezier(0.16,1,0.3,1)', fill: 'forwards' }
+      );
+    });
+
+    // beat 3: tagline, starts 100-200ms after wordmark settles (follow-through, not simultaneous)
+    tagline.animate(
+      [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 0.7, transform: 'translateY(0)' }],
+      { duration: 500, delay: 1200 + words.length * 90 + 350 + 150, easing: 'cubic-bezier(0.16,1,0.3,1)', fill: 'forwards' }
+    );
+  }
+
+  play();
+  replayBtn.addEventListener('click', () => {
+    markPath.getAnimations().forEach((a) => a.cancel());
+    wordmark.querySelectorAll('.word').forEach((w) => w.getAnimations().forEach((a) => a.cancel()));
+    tagline.getAnimations().forEach((a) => a.cancel());
+    play();
+  });
+})();
+</script>
+</body>
+</html>
