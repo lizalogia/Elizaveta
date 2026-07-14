@@ -382,4 +382,39 @@
   font-display: swap;
   src: url('HelveticaLightOblique.otf') format('opentype');
 }
+@font-face {
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('HelveticaBold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Helvetica';
+  font-style: oblique;
+  font-weight: 700;
+  font-display: swap;
+  src: url('HelveticaBoldOblique.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Notepad';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('NotepadFont.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('InterRegular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('InterSemiBold.ttf') format('truetype');
+}
 
