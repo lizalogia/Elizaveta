@@ -609,4 +609,11 @@
   font-display: swap;
   src: url('Arsenica-Bold.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'Arsenica';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('Arsenica-Thin.ttf') format('truetype');
+}
 
