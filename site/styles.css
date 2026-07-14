@@ -472,7 +472,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   gap: 20px;
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
-  font-size: clamp(18px, 2vw, 22px);
+  font-size: clamp(15px, 1.7vw, 18px);
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(60, 47, 40, 0.15);
 }
@@ -687,7 +687,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .format-card__icon { color: var(--taupe-soft); display: inline-flex; margin-bottom: 18px; transition: color 0.25s ease; }
 .format-card:hover .format-card__icon { color: var(--cream-soft); }
 .format-card h3 { font-family: 'Neutral Face', var(--font-display); font-weight: 700; font-size: 23px; margin: 0 0 10px; }
-.format-card p { font-family: 'Neutral Face', var(--font-display); font-weight: 400; font-size: 15px; line-height: 1.6; color: rgba(239, 231, 217, 0.75); margin: 0; max-width: 32ch; }
+.format-card p { font-family: 'Neutral Face', var(--font-display); font-weight: 400; font-size: 13px; line-height: 1.6; color: rgba(239, 231, 217, 0.75); margin: 0; max-width: 32ch; }
 
 .formats__origin {
   position: relative;
@@ -911,7 +911,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   line-height: 1.1;
 }
 .category-hero p {
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.6;
   max-width: 520px;
   margin: 0;
