@@ -371,7 +371,7 @@ img { max-width: 100%; display: block; }
 .section__head h2 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: clamp(28px, 4vw, 40px);
+  font-size: clamp(18px, 3.2vw, 23px);
   margin: 0;
   line-height: 1.2;
   letter-spacing: 0.005em;
@@ -678,7 +678,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .format-card:hover, .format-card:focus-visible { opacity: 0.75; transform: translateY(-3px); }
 .format-card__icon { color: var(--taupe-soft); display: inline-flex; margin-bottom: 18px; transition: color 0.25s ease; }
 .format-card:hover .format-card__icon { color: var(--cream-soft); }
-.format-card h3 { font-family: 'Neutral Face', var(--font-display); font-weight: 700; font-size: 24px; margin: 0 0 10px; }
+.format-card h3 { font-family: 'Neutral Face', var(--font-display); font-weight: 700; font-size: 23px; margin: 0 0 10px; }
 .format-card p { font-family: 'Neutral Face', var(--font-display); font-weight: 400; font-size: 15px; line-height: 1.6; color: rgba(239, 231, 217, 0.75); margin: 0; max-width: 32ch; }
 
 .formats__origin {
