@@ -120,8 +120,9 @@ img { max-width: 100%; display: block; }
 }
 .nav-drawer.is-open { transform: translateX(0); }
 .nav-drawer a {
-  font-family: 'Neutral Face', var(--font-display);
+  font-family: 'Golca', var(--font-display);
   font-weight: 700;
+  text-transform: uppercase;
   font-size: clamp(18px, 3.2vw, 23px);
   color: var(--cream-soft);
   text-decoration: none;
@@ -607,8 +608,9 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 }
 .has-fine-pointer .project-card:hover .project-card__play { opacity: 0; }
 .project-card h3 {
-  font-family: 'Neutral Face', var(--font-display);
+  font-family: 'Golca', var(--font-display);
   font-weight: 700;
+  text-transform: uppercase;
   font-size: 13px;
   white-space: nowrap;
   overflow: hidden;
@@ -687,7 +689,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .format-card:hover, .format-card:focus-visible { opacity: 0.75; transform: translateY(-3px); }
 .format-card__icon { color: var(--taupe-soft); display: inline-flex; margin-bottom: 18px; transition: color 0.25s ease; }
 .format-card:hover .format-card__icon { color: var(--cream-soft); }
-.format-card h3 { font-family: 'Neutral Face', var(--font-display); font-weight: 700; font-size: 23px; margin: 0 0 10px; }
+.format-card h3 { font-family: 'Golca', var(--font-display); font-weight: 700; text-transform: uppercase; font-size: 23px; margin: 0 0 10px; }
 .format-card p { font-family: 'Neutral Face', var(--font-display); font-weight: 400; font-size: 15px; line-height: 1.6; color: rgba(239, 231, 217, 0.75); margin: 0; max-width: 32ch; }
 
 .formats__origin {
@@ -905,8 +907,9 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   margin-bottom: 20px;
 }
 .category-hero h1 {
-  font-family: 'Doloman Pavljenko', var(--font-display);
-  font-weight: 400;
+  font-family: 'Golca', var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
   font-size: clamp(32px, 5vw, 52px);
   margin: 0 0 12px;
   line-height: 1.1;
