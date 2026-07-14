@@ -806,7 +806,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .video-modal__scrim { position: absolute; inset: 0; background: rgba(18, 14, 11, 0.88); }
 .video-modal__box {
   position: relative;
-  width: min(920px, 92vw);
+  width: min(1280px, 94vw);
   background: var(--brown-deep);
   border-radius: var(--radius);
   padding: clamp(14px, 2vw, 20px);
