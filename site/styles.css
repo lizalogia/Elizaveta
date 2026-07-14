@@ -279,9 +279,9 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__intro {
-  font-family: 'Neutral Face', var(--font-display);
+  font-family: 'Montserrat', var(--font-display);
   font-size: clamp(17px, 2vw, 21px);
-  font-weight: 400;
+  font-weight: 300;
   margin: 0 0 14px;
   line-height: 1.5;
 }
@@ -330,8 +330,6 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__note {
-  font-family: 'Neutral Face', var(--font-display);
-  font-weight: 400;
   font-size: 14px;
   line-height: 1.65;
   max-width: 300px;
@@ -607,13 +605,15 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 }
 .has-fine-pointer .project-card:hover .project-card__play { opacity: 0; }
 .project-card h3 {
-  font-family: var(--font-display);
-  font-weight: 600;
+  font-family: 'Neutral Face', var(--font-display);
+  font-weight: 400;
   font-size: 22px;
   margin: 0 0 4px;
   position: relative;
 }
 .project-card p {
+  font-family: 'Neutral Face', var(--font-display);
+  font-weight: 400;
   font-size: 13px;
   margin: 0;
   color: rgba(239, 231, 217, 0.75);
@@ -702,8 +702,6 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   gap: 12px;
   font-family: 'Montserrat', var(--font-display);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
   font-size: 16px;
   color: var(--cream-soft);
   text-decoration: none;
