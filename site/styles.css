@@ -606,8 +606,11 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .has-fine-pointer .project-card:hover .project-card__play { opacity: 0; }
 .project-card h3 {
   font-family: 'Neutral Face', var(--font-display);
-  font-weight: 400;
-  font-size: 22px;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 0 0 4px;
   position: relative;
 }
