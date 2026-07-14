@@ -581,4 +581,18 @@
   font-display: swap;
   src: url('Lafemina.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('GilroyLight.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('GilroyExtraBold.otf') format('opentype');
+}
 
