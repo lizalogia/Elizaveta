@@ -183,7 +183,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(64px, 15vw, 220px);
-  color: rgba(239, 231, 217, 0.14);
+  color: rgba(239, 231, 217, 0.05);
   letter-spacing: 0.04em;
   white-space: nowrap;
   z-index: 1;
@@ -295,7 +295,7 @@ img { max-width: 100%; display: block; }
 
 .hero__intro {
   font-family: 'Golca', var(--font-display);
-  font-size: clamp(15px, 1.8vw, 19px);
+  font-size: clamp(14px, 1.7vw, 17.5px);
   font-weight: 300;
   margin: 0 0 14px;
   line-height: 1.6;
@@ -303,7 +303,7 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__desc {
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.9;
   max-width: 320px;
   margin: 0 0 55px;
@@ -313,7 +313,7 @@ img { max-width: 100%; display: block; }
 .hero__headline {
   font-family: 'Futura Light', var(--font-display);
   font-weight: 300;
-  font-size: clamp(35px, 6.1vw, 70px);
+  font-size: clamp(31px, 5.4vw, 62px);
   line-height: 1.03;
   text-transform: uppercase;
   letter-spacing: 0.01em;
@@ -334,7 +334,7 @@ img { max-width: 100%; display: block; }
 .hero__script {
   font-family: 'Ballet', var(--font-script);
   font-weight: 400;
-  font-size: clamp(109px, 18vw, 224px);
+  font-size: clamp(91px, 15vw, 186px);
   line-height: 1.15;
   white-space: nowrap;
   color: rgba(239, 231, 217, 0.6);
@@ -342,7 +342,7 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 720px) {
-  .hero__script { font-size: clamp(55px, 19vw, 75px); }
+  .hero__script { font-size: clamp(46px, 16vw, 62px); }
 }
 
 .hero__note {
@@ -356,7 +356,7 @@ img { max-width: 100%; display: block; }
 .hero__scroll {
   position: absolute;
   right: clamp(20px, 5vw, 56px);
-  top: calc(100svh - clamp(30px, 6vw, 54px));
+  top: calc(100svh - clamp(18px, 4vw, 36px));
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -408,6 +408,18 @@ img { max-width: 100%; display: block; }
 #formats .section__head h2 {
   letter-spacing: 0.02em;
 }
+/* On narrow screens each heading is seen alone (not side by side), so the
+   optical size compensation above is unnecessary and reads as inconsistent
+   instead — lock every section heading to one shared size on mobile. */
+@media (max-width: 720px) {
+  .section__head h2,
+  #projects .section__head h2,
+  #contacts .section__head h2,
+  #values .section__head h2,
+  #formats .section__head h2 {
+    font-size: 17px;
+  }
+}
 
 /* Reveal-on-scroll only hides content once JS confirms it can un-hide it
    (html.js, set by an inline script in <head>) — if JS fails to load or
@@ -424,14 +436,14 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 .clients { background: var(--cream); padding-bottom: 0; }
 
-.marquee--clients { background: var(--cream); padding: 8px 0 clamp(64px, 10vw, 120px); }
+.marquee--clients { background: var(--cream); padding: 6px 0 clamp(64px, 10vw, 120px); }
 .marquee--clients .marquee__track { animation-duration: 36s; }
 
 .brandmark-row {
   display: inline-flex;
   align-items: center;
-  gap: clamp(31px, 4.2vw, 58px);
-  padding-right: clamp(31px, 4.2vw, 58px);
+  gap: clamp(36px, 4.8vw, 67px);
+  padding-right: clamp(36px, 4.8vw, 67px);
 }
 
 .brandmark {
@@ -465,25 +477,25 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 }
 .brandmark-logo img {
   display: block;
-  height: var(--logo-h, 20px);
+  height: var(--logo-h, 18px);
   width: auto;
   margin-top: -3px;
   opacity: 0.88;
   transition: transform 0.35s var(--ease-out-expo), opacity 0.35s ease;
 }
 .brandmark-logo:hover img { transform: scale(1.08) translateY(-1px); opacity: 0.96; }
-.brandmark-logo--muz { --logo-h: 20px; }
-.brandmark-logo--voice { --logo-h: 19.5px; }
-.brandmark-logo--instadium { --logo-h: 18.5px; }
-.brandmark-logo--nf { --logo-h: 17px; }
-.brandmark-logo--curaprox { --logo-h: 21px; }
-.brandmark-logo--neforbsy { --logo-h: 18px; }
-.brandmark-logo--kion { --logo-h: 18px; }
-.brandmark-logo--wink { --logo-h: 20px; }
-.brandmark-logo--ivi { --logo-h: 20px; }
-.brandmark-logo--komandy { --logo-h: 20px; }
-.brandmark-logo--golosa { --logo-h: 20px; }
-.brandmark-logo--musicbox { --logo-h: 21px; }
+.brandmark-logo--muz { --logo-h: 18px; }
+.brandmark-logo--voice { --logo-h: 17.5px; }
+.brandmark-logo--instadium { --logo-h: 16.5px; }
+.brandmark-logo--nf { --logo-h: 15px; }
+.brandmark-logo--curaprox { --logo-h: 19px; }
+.brandmark-logo--neforbsy { --logo-h: 16px; }
+.brandmark-logo--kion { --logo-h: 16px; }
+.brandmark-logo--wink { --logo-h: 18px; }
+.brandmark-logo--ivi { --logo-h: 18px; }
+.brandmark-logo--komandy { --logo-h: 18px; }
+.brandmark-logo--golosa { --logo-h: 18px; }
+.brandmark-logo--musicbox { --logo-h: 19px; }
 
 /* ---------- Values ---------- */
 
@@ -503,14 +515,14 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   gap: 20px;
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
-  font-size: 13px;
-  letter-spacing: -0.015em;
-  line-height: 1.45;
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
   color: rgba(36, 27, 22, 0.6);
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(60, 47, 40, 0.06);
 }
-.values__index { font-family: 'Unbounded', var(--font-display); font-weight: 500; color: var(--taupe-soft); font-size: 13px; }
+.values__index { font-family: 'Unbounded', var(--font-display); font-weight: 500; color: var(--taupe-soft); font-size: 11.5px; }
 
 /* ---------- Marquee ---------- */
 
@@ -682,10 +694,10 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   margin-top: clamp(20px, 3vw, 32px);
 }
 .projects__arrow {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  border: 1px solid rgba(60, 47, 40, 0.14);
+  border: 1px solid rgba(60, 47, 40, 0.28);
   background: transparent;
   color: var(--ink);
   display: flex;
@@ -694,8 +706,8 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   cursor: pointer;
   transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s var(--ease-out-expo);
 }
-.projects__arrow svg { width: 16px; height: 13px; }
-.projects__arrow svg path { stroke-width: 0.85; }
+.projects__arrow svg { width: 18px; height: 14.5px; }
+.projects__arrow svg path { stroke-width: 1.1; }
 .projects__arrow:hover { background: var(--ink); color: var(--cream-soft); border-color: var(--ink); }
 .projects__arrow:disabled { opacity: 0.35; cursor: default; }
 .projects__arrow:disabled:hover { background: transparent; color: var(--ink); border-color: rgba(60, 47, 40, 0.25); }
@@ -880,16 +892,16 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .contacts__headline {
   font-family: 'Futura Light', var(--font-display);
   font-weight: 300;
-  font-size: clamp(29px, 5vw, 52px);
+  font-size: clamp(27px, 4.7vw, 49px);
   line-height: 1.08;
   letter-spacing: 0.01em;
-  margin: 0 0 clamp(40px, 6vw, 64px);
+  margin: 0 0 clamp(48px, 7.2vw, 77px);
 }
 .contacts__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
-  border-top: 1px solid rgba(60, 47, 40, 0.15);
+  border-top: 1px solid rgba(60, 47, 40, 0.08);
 }
 @media (min-width: 640px) {
   .contacts__grid { grid-template-columns: repeat(3, 1fr); }
@@ -901,11 +913,11 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   padding: 22px 4px;
   text-decoration: none;
   color: var(--ink);
-  border-bottom: 1px solid rgba(60, 47, 40, 0.15);
+  border-bottom: 1px solid rgba(60, 47, 40, 0.08);
   transition: opacity 0.25s ease, transform 0.25s var(--ease-out-expo);
 }
 @media (min-width: 640px) {
-  .contacts__grid a { border-right: 1px solid rgba(60, 47, 40, 0.15); padding: 26px 24px; }
+  .contacts__grid a { border-right: 1px solid rgba(60, 47, 40, 0.08); padding: 26px 24px; }
   .contacts__grid a:last-child { border-right: none; }
 }
 .contacts__grid a:hover { opacity: 0.6; transform: translateX(4px); }
@@ -923,7 +935,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   margin: 0 0 14px;
   text-align: center;
   font-style: italic;
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1.5;
   color: rgba(60, 47, 40, 0.55);
 }
