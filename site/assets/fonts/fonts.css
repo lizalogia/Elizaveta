@@ -417,4 +417,39 @@
   font-display: swap;
   src: url('InterSemiBold.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('InterExtraLight.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('InterLight.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Heading Now';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('HeadingNowThin.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Heading Now';
+  font-style: italic;
+  font-weight: 100;
+  font-display: swap;
+  src: url('HeadingNowThinItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Heading Now';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('HeadingNowBookItalic.ttf') format('truetype');
+}
 
