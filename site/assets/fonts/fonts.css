@@ -159,6 +159,13 @@
 
 /* Nav drawer + main-page section headings (Среди клиентов, Все проекты, etc.) */
 @font-face {
+  font-family: 'Neutral Face';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('NeutralFace.otf') format('opentype');
+}
+@font-face {
   font-family: 'Mak';
   font-style: normal;
   font-weight: 400;
