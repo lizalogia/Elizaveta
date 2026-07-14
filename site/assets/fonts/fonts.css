@@ -229,6 +229,69 @@
   src: url('Compact.ttf') format('truetype');
 }
 @font-face {
+  font-family: 'Bauhaus';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Bauhaus.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Futura Condensed';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('FuturaCondensed.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Futura Mdb';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('FuturaMdbBold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Made The Artist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('MadeTheArtist.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Nauryz Red Keds';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('NauryzRedKeds.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto Serif Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('NotoSerifDisplay-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto Serif Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('NotoSerifDisplay-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sligoil Micro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('SligoilMicro.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Sloop Script';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('SloopScriptBold.otf') format('opentype');
+}
+@font-face {
   font-family: 'Mak';
   font-style: normal;
   font-weight: 400;
