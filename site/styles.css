@@ -279,9 +279,9 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__intro {
-  font-family: 'Montserrat', var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-size: clamp(17px, 2vw, 21px);
-  font-weight: 300;
+  font-weight: 400;
   margin: 0 0 14px;
   line-height: 1.5;
 }
@@ -330,6 +330,8 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__note {
+  font-family: 'Neutral Face', var(--font-display);
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.65;
   max-width: 300px;
@@ -469,6 +471,8 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   display: flex;
   align-items: baseline;
   gap: 20px;
+  font-family: 'Neutral Face', var(--font-display);
+  font-weight: 400;
   font-size: clamp(18px, 2vw, 22px);
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(60, 47, 40, 0.15);
@@ -696,8 +700,11 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: 'Doloman Pavljenko', var(--font-display);
-  font-size: 20px;
+  font-family: 'Montserrat', var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 16px;
   color: var(--cream-soft);
   text-decoration: none;
   padding: 14px 26px;
@@ -817,7 +824,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .contacts__headline {
   font-family: 'Futura Light', var(--font-display);
   font-weight: 300;
-  font-size: clamp(38px, 7vw, 74px);
+  font-size: clamp(32px, 5.6vw, 58px);
   line-height: 1.08;
   letter-spacing: 0.01em;
   margin: 0 0 clamp(40px, 6vw, 64px);
