@@ -487,4 +487,39 @@
   font-display: swap;
   src: url('PPNeueMachinaRegular.otf') format('opentype');
 }
+@font-face {
+  font-family: 'Druk Wide';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('DrukWideBold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Old Soviet';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('OldSoviet.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Pepper Zerno';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('PepperZernoExtraLight.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Nudla';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('NudlaThin.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Yellow Peas';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('YellowPeasUltraLight.ttf') format('truetype');
+}
 
