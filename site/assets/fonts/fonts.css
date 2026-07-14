@@ -166,6 +166,13 @@
   src: url('NeutralFace.otf') format('opentype');
 }
 @font-face {
+  font-family: 'Neutral Face';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('NeutralFaceBold.otf') format('opentype');
+}
+@font-face {
   font-family: 'Felidae';
   font-style: normal;
   font-weight: 400;
