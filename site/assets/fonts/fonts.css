@@ -595,4 +595,18 @@
   font-display: swap;
   src: url('GilroyExtraBold.otf') format('opentype');
 }
+@font-face {
+  font-family: 'Arsenica';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Arsenica-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Arsenica';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('Arsenica-Bold.ttf') format('truetype');
+}
 
