@@ -472,7 +472,8 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   gap: 20px;
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
-  font-size: clamp(15px, 1.7vw, 18px);
+  font-size: 14px;
+  color: rgba(36, 27, 22, 0.6);
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(60, 47, 40, 0.15);
 }
