@@ -166,6 +166,69 @@
   src: url('NeutralFace.otf') format('opentype');
 }
 @font-face {
+  font-family: 'Felidae';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Felidae.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Arev';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Arev.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Akony';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Akony.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Abraxas';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Abraxas.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Helios Bold';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('HeliosBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Angst';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('AngstNormal.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Oceanic';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Oceanic.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Bergamasco';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('BergamascoBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Compact';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Compact.ttf') format('truetype');
+}
+@font-face {
   font-family: 'Mak';
   font-style: normal;
   font-weight: 400;
