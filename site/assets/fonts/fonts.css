@@ -522,4 +522,63 @@
   font-display: swap;
   src: url('YellowPeasUltraLight.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'AA Stetica';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('AAStetica-Light.otf') format('opentype');
+}
+@font-face {
+  font-family: 'AA Stetica';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('AAStetica-LightItalic.otf') format('opentype');
+}
+/* No Cyrillic glyphs — Latin text only */
+@font-face {
+  font-family: 'The Spectra';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('TheSpectra.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Lighthaus';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Lighthaus.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Golca';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Golca.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Golca Alt';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Golca2.ttf') format('truetype');
+}
+/* No Cyrillic glyphs — Latin text only */
+@font-face {
+  font-family: 'Made Coachella';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('MadeCoachella.ttf') format('truetype');
+}
+/* No Cyrillic glyphs — Latin text only */
+@font-face {
+  font-family: 'Lafemina';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Lafemina.ttf') format('truetype');
+}
 
