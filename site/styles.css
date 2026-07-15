@@ -298,7 +298,7 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   width: max-content;
   max-width: none;
-  margin: calc(20px - 60px) 0 11px -68px;
+  margin: calc(20px - 60px) 0 20px -68px;
   padding-top: 60px;
   padding-left: 68px;
 }
@@ -318,9 +318,9 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__desc {
-  font-size: 13px;
-  line-height: 1.78;
-  max-width: 232px;
+  font-size: 12px;
+  line-height: 1.8;
+  max-width: 220px;
   margin: 0 0 20px;
   color: rgba(239, 231, 217, 0.85);
 }
@@ -954,13 +954,7 @@ html.js .format-card.reveal:hover, html.js .format-card.reveal:focus-visible { o
 
 /* ---------- Contacts ---------- */
 
-.contacts { background: var(--warm-gradient); text-align: left; }
-.contacts__layout {
-  display: flex;
-  align-items: stretch;
-  gap: clamp(32px, 6vw, 72px);
-}
-.contacts__col-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.contacts { background: var(--warm-gradient); text-align: left; padding-bottom: 0; overflow: hidden; }
 .contacts__headline {
   font-family: 'Futura Light', var(--font-display);
   font-weight: 300;
@@ -976,26 +970,25 @@ html.js .format-card.reveal:hover, html.js .format-card.reveal:focus-visible { o
   color: rgba(36, 27, 22, 0.62);
   margin: 0 0 clamp(48px, 7.2vw, 77px);
 }
-.contacts__col-photo {
+.contacts__photo-band {
   position: relative;
-  flex: 0 0 clamp(200px, 24vw, 320px);
-  align-self: stretch;
+  margin: clamp(56px, 8vw, 88px) clamp(-20px, -5vw, -64px) 0;
+  height: clamp(200px, 30vw, 380px);
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 14%, black 86%, transparent 100%);
-  mask-image: linear-gradient(180deg, transparent 0%, black 14%, black 86%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 30%);
+  mask-image: linear-gradient(180deg, transparent 0%, black 30%);
 }
-.contacts__col-photo img { width: 100%; height: 100%; object-fit: cover; }
-html.js .contacts__col-photo.reveal { transform: translateX(60px); }
-html.js .contacts__col-photo.reveal.is-visible { transform: translateX(0); }
-@media (max-width: 860px) {
-  .contacts__layout { flex-direction: column; }
-  .contacts__col-photo {
-    flex: 0 0 auto;
-    width: 100%;
-    height: clamp(220px, 62vw, 320px);
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 18%, black 82%, transparent 100%);
-    mask-image: linear-gradient(180deg, transparent 0%, black 18%, black 82%, transparent 100%);
-  }
+.contacts__photo-band img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+  filter: sepia(0.16) saturate(1.05) hue-rotate(-6deg) brightness(1.03);
+}
+html.js .contacts__photo-band.reveal { transform: translateY(40px); }
+html.js .contacts__photo-band.reveal.is-visible { transform: translateY(0); }
+@media (max-width: 720px) {
+  .contacts__photo-band { height: clamp(180px, 52vw, 260px); }
 }
 .contacts__grid {
   display: grid;
