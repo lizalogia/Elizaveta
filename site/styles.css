@@ -1102,7 +1102,7 @@ html.js .contacts__bg.reveal.is-visible img { transform: scale(1.04); }
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: radial-gradient(65% 90% at 4% 46%, rgba(245, 242, 236, 0.92), rgba(238, 231, 221, 0.55) 45%, rgba(238, 231, 221, 0.1) 68%, transparent 82%);
+  background: linear-gradient(100deg, rgba(245, 242, 236, 0.96) 0%, rgba(245, 242, 236, 0.8) 22%, rgba(238, 231, 221, 0.45) 42%, rgba(238, 231, 221, 0.15) 60%, transparent 76%);
   mix-blend-mode: screen;
   opacity: 0;
   pointer-events: none;
