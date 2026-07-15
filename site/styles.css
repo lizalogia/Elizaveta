@@ -177,7 +177,7 @@ img { max-width: 100%; display: block; }
   height: 106%;
   object-fit: cover;
   object-position: center 68%;
-  filter: blur(7px) saturate(1.05) brightness(0.92);
+  filter: saturate(1.05) brightness(0.92);
 }
 @media (prefers-reduced-motion: no-preference) {
   .hero__photo { animation: hero-kenburns 20s ease-in-out infinite alternate; }
