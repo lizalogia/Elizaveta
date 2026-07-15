@@ -11,11 +11,11 @@
 <link rel="preload" href="assets/fonts/Golca.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="assets/fonts/FuturaLight.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Ballet.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/images/hero/crowd-lights.jpg" as="image" fetchpriority="high">
+<link rel="preload" href="assets/images/hero/stage-singer.jpg" as="image" fetchpriority="high">
 
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 
-<link rel="stylesheet" href="styles.css?v=14">
+<link rel="stylesheet" href="styles.css?v=15">
 </head>
 <body>
 
@@ -42,37 +42,40 @@
   <!-- 01. Hero -->
   <section class="hero" id="hero">
     <div class="hero__photo-wrap" aria-hidden="true">
-      <picture>
-        <source srcset="assets/images/hero/crowd-lights.webp" type="image/webp">
-        <img class="hero__photo" src="assets/images/hero/crowd-lights.jpg" alt="" fetchpriority="high">
-      </picture>
-      <div class="hero__twinkles">
-        <span class="hero__twinkle" style="left:3.7%; top:87.8%; animation-delay:.4s;"></span>
-        <span class="hero__twinkle" style="left:10.1%; top:67.8%; animation-delay:1.9s;"></span>
-        <span class="hero__twinkle" style="left:11.4%; top:87.1%; animation-delay:.1s;"></span>
-        <span class="hero__twinkle" style="left:15.4%; top:62.1%; animation-delay:2.6s;"></span>
-        <span class="hero__twinkle" style="left:16.6%; top:68.4%; animation-delay:1.2s;"></span>
-        <span class="hero__twinkle" style="left:33%; top:68.4%; animation-delay:.8s;"></span>
-        <span class="hero__twinkle" style="left:35.4%; top:90.3%; animation-delay:2.1s;"></span>
-        <span class="hero__twinkle" style="left:40.2%; top:60.1%; animation-delay:1.6s;"></span>
-        <span class="hero__twinkle" style="left:41.2%; top:70.3%; animation-delay:.3s;"></span>
-        <span class="hero__twinkle" style="left:42.5%; top:70.2%; animation-delay:2.4s;"></span>
-        <span class="hero__twinkle" style="left:43.2%; top:81.4%; animation-delay:1s;"></span>
-        <span class="hero__twinkle" style="left:45.8%; top:58%; animation-delay:1.8s;"></span>
-        <span class="hero__twinkle" style="left:46.9%; top:91.7%; animation-delay:.6s;"></span>
-        <span class="hero__twinkle" style="left:62.7%; top:75.8%; animation-delay:2.2s;"></span>
-        <span class="hero__twinkle" style="left:74.8%; top:91.4%; animation-delay:1.4s;"></span>
-        <span class="hero__twinkle" style="left:90.8%; top:60.5%; animation-delay:.2s;"></span>
+      <div class="hero__photo-parallax">
+        <picture>
+          <source srcset="assets/images/hero/stage-singer.webp" type="image/webp">
+          <img class="hero__photo" src="assets/images/hero/stage-singer.jpg" alt="" fetchpriority="high">
+        </picture>
       </div>
+      <div class="hero__twinkles">
+        <span class="hero__twinkle" style="left:9.6%; top:50.3%; animation-delay:.4s;"></span>
+        <span class="hero__twinkle" style="left:12.4%; top:91.2%; animation-delay:1.9s;"></span>
+        <span class="hero__twinkle" style="left:12.8%; top:87.8%; animation-delay:.1s;"></span>
+        <span class="hero__twinkle" style="left:14.6%; top:51.6%; animation-delay:2.6s;"></span>
+        <span class="hero__twinkle" style="left:25.4%; top:57.1%; animation-delay:1.2s;"></span>
+        <span class="hero__twinkle" style="left:27.6%; top:59.9%; animation-delay:.8s;"></span>
+        <span class="hero__twinkle" style="left:28.9%; top:52.4%; animation-delay:2.1s;"></span>
+        <span class="hero__twinkle" style="left:33.1%; top:53.2%; animation-delay:1.6s;"></span>
+        <span class="hero__twinkle" style="left:35.7%; top:51.3%; animation-delay:.3s;"></span>
+        <span class="hero__twinkle" style="left:38%; top:52.9%; animation-delay:2.4s;"></span>
+        <span class="hero__twinkle" style="left:46%; top:53.2%; animation-delay:1s;"></span>
+        <span class="hero__twinkle" style="left:48.6%; top:49.1%; animation-delay:1.8s;"></span>
+        <span class="hero__twinkle" style="left:51.7%; top:44.3%; animation-delay:.6s;"></span>
+        <span class="hero__twinkle" style="left:52.2%; top:42.4%; animation-delay:2.2s;"></span>
+        <span class="hero__twinkle" style="left:60.8%; top:57.4%; animation-delay:1.4s;"></span>
+        <span class="hero__twinkle" style="left:62.7%; top:45.8%; animation-delay:.2s;"></span>
+      </div>
+      <div class="hero__fog"></div>
     </div>
     <div class="hero__watermark" aria-hidden="true">LIZALOGIA</div>
 
     <div class="hero__grid">
       <div class="hero__text">
-        <h1 class="hero__headline"><span class="hero__word">make</span> <span class="hero__word">your</span><br><span class="hero__word">content</span> <span class="hero__word">better</span></h1>
+        <h1 class="hero__headline"><span class="hero__word">make</span> <span class="hero__word">your</span><br><span class="hero__word">content</span> <span class="hero__word">better.</span></h1>
         <div class="hero__script-wrap"><p class="hero__script" aria-hidden="true">feel the vibe</p></div>
         <p class="hero__desc">Снимаю концерты, премьеры, мероприятия и экспертный контент. Создаю видео, которые передают атмосферу события и работают на ваш образ.</p>
-        <a href="#contacts" class="hero__cta">Обсудить проект</a>
+        <a href="#contacts" class="hero__cta">Обсудить проект <span aria-hidden="true">↗</span></a>
       </div>
     </div>
 
@@ -104,6 +107,7 @@
           <span class="brandmark brandmark-logo brandmark-logo--komandy"><img src="assets/images/logos/komandy.png" alt="Команды будущего" loading="lazy" width="899" height="377"></span>
           <span class="brandmark brandmark-logo brandmark-logo--golosa"><img src="assets/images/logos/golosa.png" alt="Голоса мира" loading="lazy" width="343" height="96"></span>
           <span class="brandmark brandmark-logo brandmark-logo--musicbox"><img src="assets/images/logos/musicbox.png" alt="Russian MusicBox" loading="lazy" width="157" height="52"></span>
+          <span class="brandmark brandmark-founders">VK FEST</span>
         </span>
         <span class="brandmark-row">
           <span class="brandmark brandmark-logo brandmark-logo--muz"><img src="assets/images/logos/muz.png" alt="МУЗ ТВ" loading="lazy" width="314" height="77"></span>
@@ -119,6 +123,7 @@
           <span class="brandmark brandmark-logo brandmark-logo--komandy"><img src="assets/images/logos/komandy.png" alt="Команды будущего" loading="lazy" width="899" height="377"></span>
           <span class="brandmark brandmark-logo brandmark-logo--golosa"><img src="assets/images/logos/golosa.png" alt="Голоса мира" loading="lazy" width="343" height="96"></span>
           <span class="brandmark brandmark-logo brandmark-logo--musicbox"><img src="assets/images/logos/musicbox.png" alt="Russian MusicBox" loading="lazy" width="157" height="52"></span>
+          <span class="brandmark brandmark-founders">VK FEST</span>
         </span>
       </div>
     </div>
@@ -357,36 +362,39 @@
       <span class="section__num">05.</span>
       <h2>Как проходит<br>съёмка</h2>
     </div>
-    <div class="process__grid">
-      <div class="process__col reveal">
-        <span class="process__icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 3h10a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M9 8h6M9 12h6M9 16h3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+    <div class="timeline">
+      <div class="timeline__item reveal">
+        <span class="timeline__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 3h10a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M9 8h6M9 12h6M9 16h3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
         </span>
-        <span class="process__num">01</span>
-        <h3>До съёмки</h3>
-        <p>Обсуждаем задачи, важные кадры, формат ролика и пожелания к монтажу. Чем лучше подготовка — тем точнее результат.</p>
+        <div class="timeline__content">
+          <h3>До съёмки</h3>
+          <p>Обсуждаем задачи, формат ролика и ваши пожелания.</p>
+        </div>
       </div>
-      <div class="process__col reveal">
-        <span class="process__icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" stroke="currentColor" stroke-width="1.2"/></svg>
+      <div class="timeline__item reveal">
+        <span class="timeline__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" stroke="currentColor" stroke-width="1.2"/></svg>
         </span>
-        <span class="process__num">02</span>
-        <h3>Во время съёмки</h3>
-        <p>От вас — только хорошее настроение. Я беру на себя организацию процесса: подбираю лучшие кадры, слежу за светом, помогаю с ракурсами, подсказываю, чтобы вы выглядели в кадре максимально выигрышно.</p>
+        <div class="timeline__content">
+          <h3>Во время съёмки</h3>
+          <p>От вас — только хорошее настроение.</p>
+        </div>
       </div>
-      <div class="process__col reveal">
-        <span class="process__icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.2"/><path d="m8 12.5 2.5 2.5L16 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="timeline__item reveal">
+        <span class="timeline__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.2"/><path d="m8 12.5 2.5 2.5L16 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
-        <span class="process__num">03</span>
-        <h3>После съёмки</h3>
-        <ul class="process__list">
-          <li>Исходники — до 24 часов</li>
-          <li>Готовые ролики — до 48 часов</li>
-          <li>До 5 правок</li>
-          <li>Все материалы проходят согласование</li>
-          <li>Личные кадры никогда не публикуются без вашего разрешения</li>
-        </ul>
+        <div class="timeline__content">
+          <h3>После съёмки</h3>
+          <ul class="process__list">
+            <li>Исходники — до 24 часов</li>
+            <li>Готовые ролики — до 48 часов</li>
+            <li>До 5 правок</li>
+            <li>Материалы проходят согласование</li>
+            <li>Личные моменты никогда не публикуются без вашего разрешения</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -403,35 +411,35 @@
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.2"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
         </span>
         <h3>Работа с людьми</h3>
-        <p>Проходила обучение по ораторскому искусству. Во время съёмки всегда подскажу, как лучше держаться в кадре и что сказать.</p>
+        <p>Во время съёмки помогу расслабиться, подскажу с позированием и сделаю процесс максимально комфортным.</p>
       </article>
       <article class="why-card reveal">
         <span class="why-card__icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
         </span>
         <h3>Постоянное развитие</h3>
-        <p>Инвестировала более 500 000&nbsp;₽ в индивидуальное обучение съёмке, монтажу и работе с людьми у специалистов из шоу-бизнеса.</p>
+        <p>Регулярно инвестирую в новое оборудование и обучение. Проходила индивидуальное обучение у специалистов из шоу-бизнеса.</p>
       </article>
       <article class="why-card reveal">
         <span class="why-card__icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 17 9 11 13 15 21 6M21 6h-6M21 6v6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
         <h3>Современный подход</h3>
-        <p>Регулярно изучаю новые приёмы съёмки и монтажа. Адаптирую тренды под задачи каждого проекта.</p>
-      </article>
-      <article class="why-card reveal">
-        <span class="why-card__icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="13" height="12" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="m16 10 5-3v10l-5-3" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
-        </span>
-        <h3>Профессиональная техника</h3>
-        <p>Использую современное оборудование: профессиональный свет, стабилизатор, камеру, iPhone, микрофоны. Это позволяет получать стабильный результат практически в любых условиях.</p>
+        <p>Использую актуальные форматы и адаптирую тренды под вашу нишу.</p>
       </article>
       <article class="why-card reveal">
         <span class="why-card__icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
         </span>
-        <h3>Быстрая работа</h3>
-        <p>Исходники — до 24 часов. Готовые ролики — до 48 часов.</p>
+        <h3>Быстрые сроки сдачи</h3>
+        <p>От съёмки до публикации ролика — минимум времени.</p>
+      </article>
+      <article class="why-card reveal">
+        <span class="why-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="currentColor" stroke-width="1.2"/></svg>
+        </span>
+        <h3>Конфиденциальность</h3>
+        <p>Личные моменты и материалы никогда не публикуются без вашего согласия.</p>
       </article>
     </div>
   </section>
@@ -469,7 +477,7 @@
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="9" y="2" width="6" height="12" rx="3" stroke="currentColor" stroke-width="1.2"/><path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
         </span>
         <h3>Экспертный контент</h3>
-        <p>Короткие экспертные ролики для врачей и специалистов.</p>
+        <p>Экспертные ролики для предпринимателей и бизнеса.</p>
       </a>
       <a href="format-cinema.html" class="format-card reveal">
         <span class="format-card__icon" aria-hidden="true">
@@ -524,6 +532,8 @@
         <span class="contacts__value">+7 909 673-19-53</span>
       </a>
     </div>
+
+    <a href="https://t.me/lizalogia" target="_blank" rel="noopener" class="contacts__cta reveal">Обсудить проект</a>
   </section>
 
   <footer class="site-footer">

@@ -14,6 +14,25 @@
     io.observe(el);
   });
 
+  // Subtle hero parallax — the photo drifts slower than the scroll, capped
+  // so it never moves more than a few percent of the viewport.
+  const heroParallax = document.querySelector('.hero__photo-parallax');
+  if (heroParallax && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let ticking = false;
+    const updateParallax = () => {
+      ticking = false;
+      const offset = Math.min(Math.max(window.scrollY * 0.12, 0), 60);
+      heroParallax.style.transform = `translate3d(0, ${offset}px, 0)`;
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateParallax);
+      }
+    }, { passive: true });
+    updateParallax();
+  }
+
   // Header contrast: mix-blend-mode against scrolled content is unreliable
   // across browsers, so past the hero we switch to an explicit light/dark
   // class based on whichever [data-theme] band sits under the header.
