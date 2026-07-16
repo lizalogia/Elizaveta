@@ -279,16 +279,16 @@ img { max-width: 100%; display: block; }
   width: 100%;
   max-width: 1360px;
   margin: 0 auto;
-  padding: clamp(64px, 11vw, 98px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 64px);
+  padding: clamp(112px, 15vw, 150px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 64px);
 }
 
 .hero__headline {
   font-family: 'Futura Light', var(--font-display);
   font-weight: 300;
-  font-size: clamp(24px, 3.9vw, 45px);
-  line-height: 1.05;
+  font-size: clamp(31px, 5.4vw, 62px);
+  line-height: 1.03;
   text-transform: uppercase;
-  letter-spacing: 0.015em;
+  letter-spacing: 0.01em;
   text-align: left;
   margin: 0;
   color: var(--cream-soft);
@@ -298,13 +298,15 @@ img { max-width: 100%; display: block; }
   overflow: visible;
   width: max-content;
   max-width: none;
-  margin: 8px 0 20px 0;
+  margin: calc(14px - 80px) 0 13px -90px;
+  padding-top: 80px;
+  padding-left: 90px;
 }
 
 .hero__script {
   font-family: 'Ballet', var(--font-script);
   font-weight: 400;
-  font-size: clamp(52px, 8vw, 92px);
+  font-size: clamp(91px, 15vw, 186px);
   line-height: 1.15;
   white-space: nowrap;
   color: rgba(239, 231, 217, 0.78);
@@ -312,14 +314,14 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 720px) {
-  .hero__script { font-size: clamp(34px, 11vw, 44px); }
+  .hero__script { font-size: clamp(46px, 16vw, 62px); }
 }
 
 .hero__desc {
-  font-size: 12px;
-  line-height: 1.8;
-  max-width: 220px;
-  margin: 0 0 20px;
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 340px;
+  margin: 0 0 32px;
   color: rgba(239, 231, 217, 0.85);
 }
 
