@@ -231,14 +231,15 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
 }
 
-.hero__twinkles { position: absolute; inset: 0; z-index: 0; }
+.hero__twinkles { position: absolute; inset: 0; z-index: 0; --tw-scale: 1; }
 .hero__twinkle {
   position: absolute;
-  width: 6px;
-  height: 6px;
-  margin: -3px;
+  --tw-size: calc(var(--s, 10px) * var(--tw-scale, 1));
+  width: var(--tw-size);
+  height: var(--tw-size);
+  margin: calc(var(--tw-size) / -2);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.85) 45%, transparent 75%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.85) 28%, rgba(255, 255, 255, 0.32) 55%, rgba(255, 255, 255, 0) 100%);
   mix-blend-mode: screen;
   opacity: 0;
 }
@@ -248,6 +249,9 @@ img { max-width: 100%; display: block; }
 @keyframes hero-twinkle {
   0%, 100% { opacity: 0; transform: scale(0.5); }
   50% { opacity: 1; transform: scale(1.6); }
+}
+@media (max-width: 720px) {
+  .hero__twinkles { --tw-scale: 0.55; }
 }
 
 .hero__watermark {
@@ -264,7 +268,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   width: max-content;
   gap: clamp(50px, 7vw, 120px);
-  animation: hero-watermark-scroll 34s linear infinite;
+  animation: hero-watermark-scroll 42s linear infinite;
 }
 @media (prefers-reduced-motion: reduce) {
   .hero__watermark-track { animation: none; }

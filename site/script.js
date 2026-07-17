@@ -33,6 +33,36 @@
     updateParallax();
   }
 
+  // Hero twinkles — real per-element CSS animation (opacity/scale, both
+  // compositor-only so hundreds of them stay cheap), stratified across the
+  // photo's known lit band so lights genuinely ignite across the whole
+  // crowd area rather than sitting as a static baked image.
+  const twinkleContainer = document.querySelector('.hero__twinkles');
+  if (twinkleContainer) {
+    const TWINKLE_COUNT = 220;
+    const BAND_MIN = 33;
+    const BAND_MAX = 79;
+    const STRATA = 10;
+    const perStratum = Math.ceil(TWINKLE_COUNT / STRATA);
+    const frag = document.createDocumentFragment();
+    for (let s = 0; s < STRATA; s++) {
+      const yFrom = BAND_MIN + (s / STRATA) * (BAND_MAX - BAND_MIN);
+      const yTo = BAND_MIN + ((s + 1) / STRATA) * (BAND_MAX - BAND_MIN);
+      for (let i = 0; i < perStratum; i++) {
+        const span = document.createElement('span');
+        span.className = 'hero__twinkle';
+        const left = (Math.random() * 100).toFixed(1);
+        const top = (yFrom + Math.random() * (yTo - yFrom)).toFixed(1);
+        const size = (9 + Math.random() * 15).toFixed(1);
+        const delay = (Math.random() * 2.4).toFixed(2);
+        const duration = (1.6 + Math.random() * 1.4).toFixed(2);
+        span.style.cssText = `left:${left}%; top:${top}%; --s:${size}px; animation-delay:${delay}s; animation-duration:${duration}s;`;
+        frag.appendChild(span);
+      }
+    }
+    twinkleContainer.appendChild(frag);
+  }
+
   // Hero starfield — a fine shimmer of dust behind a much brighter layer of
   // soft, lantern-like glow points, baked once into a canvas and sitting
   // under the smaller set of DOM spans that actually twinkle. Both layers
