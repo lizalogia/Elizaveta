@@ -224,11 +224,11 @@ img { max-width: 100%; display: block; }
 .hero__twinkles { position: absolute; inset: 0; z-index: 0; }
 .hero__twinkle {
   position: absolute;
-  width: 5px;
-  height: 5px;
-  margin: -2.5px;
+  width: 6px;
+  height: 6px;
+  margin: -3px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 246, 214, 1) 0%, rgba(255, 246, 214, 0.65) 45%, transparent 75%);
+  background: radial-gradient(circle, rgba(255, 246, 214, 1) 0%, rgba(255, 246, 214, 0.7) 45%, transparent 75%);
   mix-blend-mode: screen;
   opacity: 0;
 }
@@ -236,8 +236,8 @@ img { max-width: 100%; display: block; }
   .hero__twinkle { animation: hero-twinkle 2s ease-in-out infinite; }
 }
 @keyframes hero-twinkle {
-  0%, 100% { opacity: 0; transform: scale(0.6); }
-  50% { opacity: 1; transform: scale(1.4); }
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.6); }
 }
 
 .hero__watermark {
@@ -249,8 +249,8 @@ img { max-width: 100%; display: block; }
   text-align: center;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(64px, 15vw, 220px);
-  color: rgba(239, 231, 217, 0.16);
+  font-size: clamp(32px, 7.5vw, 110px);
+  color: rgba(239, 231, 217, 0.11);
   letter-spacing: 0.04em;
   white-space: nowrap;
   z-index: 1;
@@ -268,7 +268,7 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 720px) {
   .hero__watermark {
-    font-size: 22vw;
+    font-size: 11vw;
     letter-spacing: 0.02em;
     top: 15%;
   }
