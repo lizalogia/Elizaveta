@@ -33,6 +33,75 @@
     updateParallax();
   }
 
+  // Hero starfield — a dense field of tiny light points baked once into a
+  // canvas, sitting under the smaller set of DOM spans that actually
+  // twinkle. It's a static bitmap (redrawn only on resize), so 100k points
+  // cost nothing per animation frame.
+  const starCanvas = document.querySelector('.hero__starfield');
+  if (starCanvas) {
+    const sctx = starCanvas.getContext('2d');
+    const STAR_COUNT = 100000;
+    const BAND_MIN = 0.33;
+    const BAND_MAX = 0.79;
+    let points = null;
+
+    const renderStars = () => {
+      const rect = starCanvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = Math.max(1, Math.round(rect.width * dpr));
+      const h = Math.max(1, Math.round(rect.height * dpr));
+      starCanvas.width = w;
+      starCanvas.height = h;
+
+      if (!points) {
+        points = {
+          x: new Float32Array(STAR_COUNT),
+          y: new Float32Array(STAR_COUNT),
+          a: new Uint8Array(STAR_COUNT),
+          big: new Uint8Array(STAR_COUNT),
+        };
+        for (let i = 0; i < STAR_COUNT; i++) {
+          points.x[i] = Math.random();
+          points.y[i] = BAND_MIN + Math.random() * (BAND_MAX - BAND_MIN);
+          points.a[i] = 18 + Math.floor(Math.random() * 90);
+          points.big[i] = Math.random() < 0.04 ? 1 : 0;
+        }
+      }
+
+      const img = sctx.createImageData(w, h);
+      const data = img.data;
+      const plot = (px, py, a) => {
+        if (px < 0 || px >= w || py < 0 || py >= h) return;
+        const idx = (py * w + px) * 4;
+        if (a > data[idx + 3]) {
+          data[idx] = 255;
+          data[idx + 1] = 255;
+          data[idx + 2] = 255;
+          data[idx + 3] = a;
+        }
+      };
+      for (let i = 0; i < STAR_COUNT; i++) {
+        const px = Math.floor(points.x[i] * w);
+        const py = Math.floor(points.y[i] * h);
+        const a = points.a[i];
+        plot(px, py, a);
+        if (points.big[i]) {
+          plot(px + 1, py, a);
+          plot(px, py + 1, a);
+          plot(px + 1, py + 1, a);
+        }
+      }
+      sctx.putImageData(img, 0, 0);
+    };
+
+    renderStars();
+    let starResizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(starResizeTimer);
+      starResizeTimer = setTimeout(renderStars, 200);
+    });
+  }
+
   // Header contrast: mix-blend-mode against scrolled content is unreliable
   // across browsers, so past the hero we switch to an explicit light/dark
   // class based on whichever [data-theme] band sits under the header.

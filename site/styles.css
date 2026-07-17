@@ -221,6 +221,16 @@ img { max-width: 100%; display: block; }
   background: radial-gradient(120% 100% at 50% 100%, rgba(214, 191, 158, 0.28), transparent 65%);
 }
 
+.hero__starfield {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
 .hero__twinkles { position: absolute; inset: 0; z-index: 0; }
 .hero__twinkle {
   position: absolute;
