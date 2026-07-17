@@ -53,7 +53,7 @@
         span.className = 'hero__twinkle';
         const left = (Math.random() * 100).toFixed(1);
         const top = (yFrom + Math.random() * (yTo - yFrom)).toFixed(1);
-        const size = (9 + Math.random() * 15).toFixed(1);
+        const size = (4 + Math.random() * 5).toFixed(1);
         const delay = (Math.random() * 2.4).toFixed(2);
         const duration = (1.6 + Math.random() * 1.4).toFixed(2);
         span.style.cssText = `left:${left}%; top:${top}%; --s:${size}px; animation-delay:${delay}s; animation-duration:${duration}s;`;

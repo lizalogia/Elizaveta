@@ -234,12 +234,12 @@ img { max-width: 100%; display: block; }
 .hero__twinkles { position: absolute; inset: 0; z-index: 0; --tw-scale: 1; }
 .hero__twinkle {
   position: absolute;
-  --tw-size: calc(var(--s, 10px) * var(--tw-scale, 1));
+  --tw-size: calc(var(--s, 6px) * var(--tw-scale, 1));
   width: var(--tw-size);
   height: var(--tw-size);
   margin: calc(var(--tw-size) / -2);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.85) 28%, rgba(255, 255, 255, 0.32) 55%, rgba(255, 255, 255, 0) 100%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 35%, rgba(255, 255, 255, 0.25) 65%, rgba(255, 255, 255, 0) 100%);
   mix-blend-mode: screen;
   opacity: 0;
 }
@@ -251,7 +251,7 @@ img { max-width: 100%; display: block; }
   50% { opacity: 1; transform: scale(1.6); }
 }
 @media (max-width: 720px) {
-  .hero__twinkles { --tw-scale: 0.55; }
+  .hero__twinkles { --tw-scale: 0.85; }
 }
 
 .hero__watermark {
@@ -498,7 +498,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .clients__trust {
   max-width: 640px;
   margin: 0 auto;
-  padding: 0 clamp(20px, 5vw, 64px) clamp(48px, 7vw, 84px);
+  padding: clamp(40px, 6vw, 64px) clamp(20px, 5vw, 64px) clamp(16px, 3vw, 32px);
   text-align: center;
   font-size: 13px;
   line-height: 1.6;
@@ -506,7 +506,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   color: rgba(60, 47, 40, 0.55);
 }
 
-.marquee--clients { background: var(--warm-gradient); padding: 6px 0 clamp(64px, 10vw, 120px); }
+.marquee.marquee--clients { background: var(--warm-gradient); padding: 6px 0 clamp(64px, 10vw, 120px); }
 .marquee--clients .marquee__track { animation-duration: 22s; }
 .marquee--clients.is-touched .marquee__track { animation-play-state: paused; }
 
