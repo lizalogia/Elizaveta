@@ -21,3 +21,8 @@ echo "whisper setup complete: $(whisper --help >/dev/null 2>&1 && echo ok)"
 pip install --break-system-packages --upgrade requests librosa matplotlib pillow numpy
 
 echo "video-use deps installed: $(python3 -c 'import librosa, matplotlib, PIL, numpy, requests' >/dev/null 2>&1 && echo ok)"
+
+# Install moviepy for the video-toolkit "moviepy" skill (vendored at .claude/skills/moviepy).
+pip install --break-system-packages --upgrade moviepy
+
+echo "moviepy installed: $(python3 -c 'import moviepy' >/dev/null 2>&1 && echo ok)"
