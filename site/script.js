@@ -33,17 +33,38 @@
     updateParallax();
   }
 
-  // Hero starfield — a dense field of tiny light points baked once into a
-  // canvas, sitting under the smaller set of DOM spans that actually
-  // twinkle. It's a static bitmap (redrawn only on resize), so 100k points
-  // cost nothing per animation frame.
+  // Hero starfield — a fine shimmer of dust behind a much brighter layer of
+  // soft, lantern-like glow points, baked once into a canvas and sitting
+  // under the smaller set of DOM spans that actually twinkle. Both layers
+  // are static bitmaps (redrawn only on resize), so the huge point count
+  // costs nothing per animation frame. Dust alone at very high density just
+  // reads as flat noise on screen, so the "brighter, like flashlights" look
+  // comes from the lantern layer's soft round glow, not from raw point count.
   const starCanvas = document.querySelector('.hero__starfield');
   if (starCanvas) {
     const sctx = starCanvas.getContext('2d');
-    const STAR_COUNT = 100000;
+    const DUST_COUNT = 150000;
+    const LANTERN_COUNT = 2200;
     const BAND_MIN = 0.33;
     const BAND_MAX = 0.79;
-    let points = null;
+    let dust = null;
+    let lanterns = null;
+    let glowSprite = null;
+
+    const buildGlowSprite = () => {
+      const size = 16;
+      const sprite = document.createElement('canvas');
+      sprite.width = size;
+      sprite.height = size;
+      const spctx = sprite.getContext('2d');
+      const grad = spctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+      grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+      grad.addColorStop(0.4, 'rgba(255, 255, 255, 0.6)');
+      grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      spctx.fillStyle = grad;
+      spctx.fillRect(0, 0, size, size);
+      return sprite;
+    };
 
     const renderStars = () => {
       const rect = starCanvas.getBoundingClientRect();
@@ -53,45 +74,76 @@
       starCanvas.width = w;
       starCanvas.height = h;
 
-      if (!points) {
-        points = {
-          x: new Float32Array(STAR_COUNT),
-          y: new Float32Array(STAR_COUNT),
-          a: new Uint8Array(STAR_COUNT),
-          big: new Uint8Array(STAR_COUNT),
+      if (!dust) {
+        dust = {
+          x: new Float32Array(DUST_COUNT),
+          y: new Float32Array(DUST_COUNT),
+          a: new Uint8Array(DUST_COUNT),
         };
-        for (let i = 0; i < STAR_COUNT; i++) {
-          points.x[i] = Math.random();
-          points.y[i] = BAND_MIN + Math.random() * (BAND_MAX - BAND_MIN);
-          points.a[i] = 18 + Math.floor(Math.random() * 90);
-          points.big[i] = Math.random() < 0.04 ? 1 : 0;
+        for (let i = 0; i < DUST_COUNT; i++) {
+          dust.x[i] = Math.random();
+          dust.y[i] = BAND_MIN + Math.random() * (BAND_MAX - BAND_MIN);
+          dust.a[i] = 10 + Math.floor(Math.random() * 45);
         }
       }
+      if (!lanterns) {
+        // Placed on a jittered grid rather than pure random — at this count,
+        // random placement clusters heavily enough that overlapping glows
+        // saturate into solid white patches. A grid keeps them as distinct
+        // points spread evenly across the band.
+        const aspect = 1 / (BAND_MAX - BAND_MIN);
+        const cols = Math.max(1, Math.round(Math.sqrt(LANTERN_COUNT * aspect)));
+        const rows = Math.max(1, Math.ceil(LANTERN_COUNT / cols));
+        const total = cols * rows;
+        lanterns = {
+          x: new Float32Array(total),
+          y: new Float32Array(total),
+          scale: new Float32Array(total),
+          alpha: new Float32Array(total),
+          count: total,
+        };
+        const cellW = 1 / cols;
+        const cellH = (BAND_MAX - BAND_MIN) / rows;
+        let idx = 0;
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            lanterns.x[idx] = (c + 0.5) * cellW + (Math.random() - 0.5) * cellW * 0.85;
+            lanterns.y[idx] = BAND_MIN + (r + 0.5) * cellH + (Math.random() - 0.5) * cellH * 0.85;
+            lanterns.scale[idx] = 0.5 + Math.random();
+            lanterns.alpha[idx] = 0.5 + Math.random() * 0.5;
+            idx++;
+          }
+        }
+      }
+      if (!glowSprite) glowSprite = buildGlowSprite();
 
       const img = sctx.createImageData(w, h);
       const data = img.data;
-      const plot = (px, py, a) => {
-        if (px < 0 || px >= w || py < 0 || py >= h) return;
+      for (let i = 0; i < DUST_COUNT; i++) {
+        const px = Math.floor(dust.x[i] * w);
+        const py = Math.floor(dust.y[i] * h);
+        if (px < 0 || px >= w || py < 0 || py >= h) continue;
         const idx = (py * w + px) * 4;
+        const a = dust.a[i];
         if (a > data[idx + 3]) {
           data[idx] = 255;
           data[idx + 1] = 255;
           data[idx + 2] = 255;
           data[idx + 3] = a;
         }
-      };
-      for (let i = 0; i < STAR_COUNT; i++) {
-        const px = Math.floor(points.x[i] * w);
-        const py = Math.floor(points.y[i] * h);
-        const a = points.a[i];
-        plot(px, py, a);
-        if (points.big[i]) {
-          plot(px + 1, py, a);
-          plot(px, py + 1, a);
-          plot(px + 1, py + 1, a);
-        }
       }
+      sctx.clearRect(0, 0, w, h);
       sctx.putImageData(img, 0, 0);
+
+      const baseSize = Math.max(3, w * 0.0035);
+      for (let i = 0; i < lanterns.count; i++) {
+        const px = lanterns.x[i] * w;
+        const py = lanterns.y[i] * h;
+        const size = baseSize * lanterns.scale[i];
+        sctx.globalAlpha = lanterns.alpha[i];
+        sctx.drawImage(glowSprite, px - size / 2, py - size / 2, size, size);
+      }
+      sctx.globalAlpha = 1;
     };
 
     renderStars();
