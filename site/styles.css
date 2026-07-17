@@ -186,7 +186,7 @@ img { max-width: 100%; display: block; }
   height: 106%;
   max-width: none;
   object-fit: cover;
-  object-position: center 80%;
+  object-position: center 58%;
   filter: sepia(0.16) saturate(1.05) hue-rotate(-6deg) brightness(1.03);
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -228,7 +228,7 @@ img { max-width: 100%; display: block; }
   height: 6px;
   margin: -3px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 246, 214, 1) 0%, rgba(255, 246, 214, 0.7) 45%, transparent 75%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.85) 45%, transparent 75%);
   mix-blend-mode: screen;
   opacity: 0;
 }
@@ -249,7 +249,7 @@ img { max-width: 100%; display: block; }
   text-align: center;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(32px, 7.5vw, 110px);
+  font-size: clamp(60px, 17vw, 320px);
   color: rgba(239, 231, 217, 0.11);
   letter-spacing: 0.04em;
   white-space: nowrap;
@@ -268,8 +268,8 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 720px) {
   .hero__watermark {
-    font-size: 11vw;
-    letter-spacing: 0.02em;
+    font-size: 17vw;
+    letter-spacing: 0.01em;
     top: 15%;
   }
 }
