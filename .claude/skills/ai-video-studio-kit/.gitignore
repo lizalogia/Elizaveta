@@ -1,0 +1,29 @@
+# Runtime state, secrets, and generated artifacts — never commit these
+.env
+.env.*
+!.env.example
+node_modules/
+*.log
+*.lock
+.sanitize-bak/
+
+# Auth / session material (regenerated locally, never shared)
+auth/
+*.session
+*.qr.png
+
+# Local data / caches
+memory/
+data/
+tmp/
+cache/
+*.pt
+
+# CC0 sample assets are re-fetchable (node assets/arsenal-fetch.cjs); keep the
+# large binaries out of version control — only the manifest/README are tracked.
+assets/samples/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" role="img" aria-label="AI Video Studio Kit — An AI-assisted studio for turning raw footage and ideas into finished short-form video.">
+  <defs>
+    <style>
+      :root { color-scheme: light dark; }
+      .bg    { fill: #0A0D12; }
+      .grid  { stroke: #F5B454; stroke-opacity: .07; }
+      .title { fill: #E6EDF3; font-family: ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace; font-weight: 700; }
+      .tag   { fill: #8B98A5; font-family: ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace; }
+      .accent{ fill: #F5B454; }
+      .chip  { fill: #11151d; stroke: #1e2733; }
+      .chipt { fill: #8B98A5; font-family: ui-monospace,monospace; }
+      @media (prefers-color-scheme: light) {
+        .bg { fill: #EEF3F1; } .title { fill: #0F1720; } .tag { fill: #4d5b57; }
+        .chip { fill: #ffffff; stroke: #dbe4df; } .chipt { fill: #4d5b57; } .grid { stroke-opacity: .10; }
+      }
+    </style>
+    <pattern id="g" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path class="grid" d="M44 0H0V44" fill="none" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect class="bg" width="1200" height="340"/>
+  <rect width="1200" height="340" fill="url(#g)"/>
+
+  <!-- accent bar -->
+  <rect class="accent" x="72" y="120" width="6" height="100" rx="3"/>
+
+  <!-- eyebrow -->
+  <text class="accent" x="98" y="108" font-family="ui-monospace,monospace" font-size="15" letter-spacing="6" font-weight="600">OPEN MONTAGE & SHORT-FORM VIDEO KIT</text>
+
+  <!-- title -->
+  <text class="title" x="96" y="188" font-size="48">🎬 AI Video Studio Kit</text>
+
+  <!-- tagline -->
+  <text class="tag" x="98" y="232" font-size="22">An AI-assisted studio for turning raw footage and ideas into finished short-form video.</text>
+
+  <!-- chips -->
+  <rect class="chip" x="96" y="272" width="123" height="30" rx="15"/>
+  <text class="chipt" x="109" y="292" font-size="13">auto-clipper</text>
+  <rect class="chip" x="231" y="272" width="156" height="30" rx="15"/>
+  <text class="chipt" x="244" y="292" font-size="13">whisper-captions</text>
+  <rect class="chip" x="399" y="272" width="131" height="30" rx="15"/>
+  <text class="chipt" x="412" y="292" font-size="13">html-to-video</text>
+  <rect class="chip" x="542" y="272" width="123" height="30" rx="15"/>
+  <text class="chipt" x="555" y="292" font-size="13">9:16 reframe</text>
+  <rect class="chip" x="677" y="272" width="81" height="30" rx="15"/>
+  <text class="chipt" x="690" y="292" font-size="13">montage</text>
+</svg>
