@@ -1,0 +1,25 @@
+{
+  "name": "ai-video-studio-kit",
+  "version": "1.0.0",
+  "description": "An AI-assisted studio for turning raw footage and ideas into finished short-form video.",
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "test": "node clipper/check-deps.js || true",
+    "check": "node --check clipper/clip.js && node --check clipper/highlight-select.cjs"
+  },
+  "keywords": [
+    "video",
+    "short-form",
+    "montage",
+    "whisper",
+    "ffmpeg",
+    "captions",
+    "auto-clip"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
