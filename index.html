@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F6F1E9">
+  <title>Lizalogia — видеограф. Make your content better</title>
+  <meta name="description" content="Lizalogia — видеограф. Больше, чем просто съёмка. Создаю видео, которые помогают вам стать ближе к своей аудитории.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lizalogia — видеограф">
+  <meta property="og:description" content="Больше, чем просто съёмка. Создаю видео, которые помогают вам стать ближе к своей аудитории.">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="adaptive.css">
+</head>
+<body>
+
+  <!-- Progress bar -->
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="header">
+    <div class="container header__inner">
+      <a href="#hero" class="brand" aria-label="Lizalogia — на главную">Lizalogia</a>
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ NAV OVERLAY ============ -->
+  <nav class="nav" id="nav" aria-hidden="true">
+    <div class="nav__inner">
+      <ul class="nav__list">
+        <li style="--i:0"><a href="#directions" data-nav>Направления</a></li>
+        <li style="--i:1"><a href="#projects" data-nav>Проекты</a></li>
+        <li style="--i:2"><a href="#clients" data-nav>Клиенты</a></li>
+        <li style="--i:3"><a href="#process" data-nav>Съёмка</a></li>
+        <li style="--i:4"><a href="#contacts" data-nav>Контакты</a></li>
+      </ul>
+      <div class="nav__foot" style="--i:5">
+        <a href="https://t.me/" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ============ 1. HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__stage"></div>
+        <div class="hero__bokeh"></div>
+        <div class="hero__grad hero__grad--top"></div>
+        <div class="hero__grad hero__grad--bottom"></div>
+      </div>
+
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <p class="hero__eyebrow reveal">feel the vibe</p>
+          <h1 class="hero__title">
+            <span class="reveal" style="--d:0">Make</span>
+            <span class="reveal" style="--d:1">your content</span>
+            <span class="reveal hero__title--accent" style="--d:2">better</span>
+          </h1>
+          <p class="hero__lead reveal" style="--d:3">
+            Больше, чем просто съёмка. Создаю видео, которые помогают вам
+            стать ближе к своей аудитории.
+          </p>
+          <div class="hero__actions reveal" style="--d:4">
+            <a href="#projects" class="btn btn--solid" data-magnetic>
+              <span>Смотреть работы</span>
+            </a>
+            <a href="#contacts" class="btn btn--ghost" data-magnetic>
+              <span>Связаться</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Phone mockup -->
+        <div class="hero__phone reveal" style="--d:3" data-parallax="0.12">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <div class="phone__screen">
+              <div class="phone__reel">
+                <button class="phone__play" aria-label="Пример ролика">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+                </button>
+                <span class="phone__tag">reel</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#directions" class="hero__scroll" aria-label="Листайте вниз">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- Big decorative wordmark -->
+    <section class="wordmark" aria-hidden="true">
+      <div class="wordmark__row" data-parallax="0.08">
+        <span class="wordmark__text">LIZALOGIA</span>
+      </div>
+    </section>
+
+    <!-- ============ 2. НАПРАВЛЕНИЯ ============ -->
+    <section class="section directions" id="directions">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label reveal">Направления</p>
+          <h2 class="section__title reveal" style="--d:1">
+            Видео для тех, кому важно, <em>как их видят</em>
+          </h2>
+        </header>
+
+        <ul class="dir-grid">
+          <li class="dir-card reveal" style="--d:0">
+            <h3>Съёмка&nbsp;мероприятий</h3>
+            <p>Концерты, фестивали и события в динамике живого кадра.</p>
+          </li>
+          <li class="dir-card reveal" style="--d:1">
+            <h3>Reels&nbsp;и короткий контент</h3>
+            <p>Вертикальные видео, которые работают на охваты.</p>
+          </li>
+          <li class="dir-card reveal" style="--d:2">
+            <h3>Промо&nbsp;и реклама</h3>
+            <p>Ролики для брендов, продуктов и запусков.</p>
+          </li>
+          <li class="dir-card reveal" style="--d:3">
+            <h3>Личный&nbsp;бренд</h3>
+            <p>Контент, который формирует ваш образ.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ СМЫСЛОВЫЕ БЛОКИ ============ -->
+    <section class="section statement">
+      <div class="container">
+        <p class="statement__lead reveal">
+          <span class="line">Личный бренд начинается с&nbsp;контента.</span>
+          <span class="line muted">Именно так формируется то, как вас видят и&nbsp;воспринимают.</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section statement statement--alt">
+      <div class="container">
+        <p class="statement__lead reveal">
+          <span class="line">Так появляется доверие, которое становится&nbsp;основой&nbsp;сотрудничества.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ ВСЕ ПРОЕКТЫ (CTA) ============ -->
+    <section class="section allprojects">
+      <div class="container allprojects__inner reveal">
+        <p class="allprojects__kicker">Все проекты</p>
+        <a href="#projects" class="btn btn--solid btn--lg" data-magnetic>
+          <span>Смотреть все ролики</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ ПРОЕКТЫ ============ -->
+    <section class="section projects" id="projects">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label reveal">Проекты</p>
+          <h2 class="section__title reveal" style="--d:1">Избранные&nbsp;работы</h2>
+        </header>
+
+        <div class="proj-grid">
+          <article class="proj-card reveal" style="--d:0" data-tilt>
+            <div class="proj-card__media proj-card__media--a">
+              <button class="proj-card__play" aria-label="Открыть ролик"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
+            </div>
+            <div class="proj-card__meta"><h3>Концертный ролик</h3><span>event</span></div>
+          </article>
+          <article class="proj-card reveal" style="--d:1" data-tilt>
+            <div class="proj-card__media proj-card__media--b">
+              <button class="proj-card__play" aria-label="Открыть ролик"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
+            </div>
+            <div class="proj-card__meta"><h3>Промо бренда</h3><span>promo</span></div>
+          </article>
+          <article class="proj-card reveal" style="--d:2" data-tilt>
+            <div class="proj-card__media proj-card__media--c">
+              <button class="proj-card__play" aria-label="Открыть ролик"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
+            </div>
+            <div class="proj-card__meta"><h3>Reels-серия</h3><span>reels</span></div>
+          </article>
+          <article class="proj-card reveal" style="--d:0" data-tilt>
+            <div class="proj-card__media proj-card__media--d">
+              <button class="proj-card__play" aria-label="Открыть ролик"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
+            </div>
+            <div class="proj-card__meta"><h3>Личный бренд</h3><span>brand</span></div>
+          </article>
+          <article class="proj-card reveal" style="--d:1" data-tilt>
+            <div class="proj-card__media proj-card__media--e">
+              <button class="proj-card__play" aria-label="Открыть ролик"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
+            </div>
+            <div class="proj-card__meta"><h3>Фестиваль</h3><span>event</span></div>
+          </article>
+          <article class="proj-card reveal" style="--d:2" data-tilt>
+            <div class="proj-card__media proj-card__media--f">
+              <button class="proj-card__play" aria-label="Открыть ролик"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
+            </div>
+            <div class="proj-card__meta"><h3>Продуктовый ролик</h3><span>promo</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ЛОГОТИПЫ КЛИЕНТОВ ============ -->
+    <section class="section clients" id="clients">
+      <div class="container">
+        <header class="section__head section__head--center">
+          <p class="section__label reveal">Клиенты</p>
+        </header>
+      </div>
+
+      <div class="marquee" data-marquee>
+        <div class="marquee__track">
+          <span>CURAPROX</span><span>Revyline</span><span>Основатели</span><span>НЕФОРБСЫ</span><span>Голоса&nbsp;мира</span><span>МУЗ-ТВ</span><span>Music&nbsp;Box</span><span>VOICE</span><span>VK&nbsp;Fest</span><span>IVI</span>
+        </div>
+      </div>
+      <div class="marquee marquee--rev" data-marquee>
+        <div class="marquee__track">
+          <span>KION</span><span>OKKO</span><span>Wink</span><span>Instadium</span><span>ВТБ&nbsp;Арена</span><span>Кремлёвский&nbsp;дворец</span><span>Московский&nbsp;выпускной</span><span>Timati&nbsp;Karting</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ СТАТИСТИКА ============ -->
+    <section class="section stats">
+      <div class="container">
+        <ul class="stat-grid">
+          <li class="stat reveal" style="--d:0"><span class="stat__num" data-count="3" data-suffix="+">3+</span><span class="stat__label">года создаю контент</span></li>
+          <li class="stat reveal" style="--d:1"><span class="stat__num" data-count="100" data-suffix="+">100+</span><span class="stat__label">клиентов</span></li>
+          <li class="stat reveal" style="--d:2"><span class="stat__num" data-count="50" data-suffix="+">50+</span><span class="stat__label">реализованных проектов</span></li>
+          <li class="stat reveal" style="--d:3"><span class="stat__num" data-count="15" data-suffix="+">15+</span><span class="stat__label">известных брендов и мероприятий</span></li>
+          <li class="stat reveal stat--wide" style="--d:4"><span class="stat__num" data-count="50000" data-suffix="+">50&nbsp;000+</span><span class="stat__label">зрителей крупнейшего события</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ КАК ПРОХОДИТ СЪЁМКА (ПРОЦЕСС) ============ -->
+    <section class="section process" id="process">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label reveal">Как проходит съёмка</p>
+          <h2 class="section__title reveal" style="--d:1">Простой путь <em>от идеи до&nbsp;результата</em></h2>
+        </header>
+
+        <ol class="steps">
+          <li class="step reveal" style="--d:0">
+            <span class="step__dot" aria-hidden="true"></span>
+            <div class="step__body"><h3>Обсуждение</h3><p>Разбираем задачу, референсы и формат под вашу аудиторию.</p></div>
+          </li>
+          <li class="step reveal" style="--d:1">
+            <span class="step__dot" aria-hidden="true"></span>
+            <div class="step__body"><h3>Подготовка</h3><p>Продумываю сценарий, свет и локацию — до съёмочного дня.</p></div>
+          </li>
+          <li class="step reveal" style="--d:2">
+            <span class="step__dot" aria-hidden="true"></span>
+            <div class="step__body"><h3>Съёмка</h3><p>Работаю с профессиональным оборудованием и в любом ритме события.</p></div>
+          </li>
+          <li class="step reveal" style="--d:3">
+            <span class="step__dot" aria-hidden="true"></span>
+            <div class="step__body"><h3>Монтаж</h3><p>Собираю ролики под площадки и отдаю точно в срок.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ ПРЕИМУЩЕСТВА ============ -->
+    <section class="section advantages">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label reveal">Преимущества</p>
+        </header>
+        <ul class="adv-grid">
+          <li class="adv reveal" style="--d:0">Быстрые сроки</li>
+          <li class="adv reveal" style="--d:1">Постоянное развитие</li>
+          <li class="adv reveal" style="--d:2">Адаптация к&nbsp;любым условиям</li>
+          <li class="adv reveal" style="--d:3">Профессиональное оборудование</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ ЧТО ПОЛУЧАЕТ КЛИЕНТ ============ -->
+    <section class="section gets">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__label reveal">Что получает клиент</p>
+        </header>
+        <ul class="gets-grid">
+          <li class="gets__item reveal" style="--d:0"><h3>Готовые ролики</h3><p>Под все площадки — от вертикальных Reels до горизонтального видео.</p></li>
+          <li class="gets__item reveal" style="--d:1"><h3>Материалы в&nbsp;срок</h3><p>Понятные этапы и предсказуемые дедлайны без лишних правок.</p></li>
+          <li class="gets__item reveal" style="--d:2"><h3>Ваш стиль</h3><p>Контент, который отражает вас и усиливает личный бренд.</p></li>
+          <li class="gets__item reveal" style="--d:3"><h3>Сопровождение</h3><p>Подсказываю по идеям и форматам на каждом этапе.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ КОНТАКТЫ ============ -->
+    <section class="section contacts" id="contacts">
+      <div class="container contacts__inner">
+        <div class="contacts__photo reveal">
+          <div class="portrait">
+            <img src="assets/images/portrait.svg" alt="Портрет — Lizalogia" width="640" height="800" loading="lazy" decoding="async">
+          </div>
+        </div>
+
+        <div class="contacts__body">
+          <p class="section__label reveal">Контакты</p>
+          <h2 class="contacts__title reveal" style="--d:1">Обсудим ваш&nbsp;проект</h2>
+          <p class="contacts__lead reveal" style="--d:2">Напишите — отвечу лично и предложу формат под вашу задачу.</p>
+
+          <ul class="contacts__list">
+            <li class="reveal" style="--d:2">
+              <a href="https://t.me/" target="_blank" rel="noopener" data-magnetic>
+                <img src="assets/icons/telegram.svg" alt="" width="24" height="24" aria-hidden="true">
+                <span>Telegram</span>
+                <svg class="contacts__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </li>
+            <li class="reveal" style="--d:3">
+              <a href="https://instagram.com/" target="_blank" rel="noopener" data-magnetic>
+                <img src="assets/icons/instagram.svg" alt="" width="24" height="24" aria-hidden="true">
+                <span>Instagram</span>
+                <svg class="contacts__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </li>
+            <li class="reveal" style="--d:4">
+              <a href="tel:+70000000000" data-magnetic>
+                <img src="assets/icons/phone.svg" alt="" width="24" height="24" aria-hidden="true">
+                <span>Телефон</span>
+                <svg class="contacts__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span class="site-footer__brand">Lizalogia</span>
+      <span class="site-footer__note">© <span id="year">2026</span> — feel the vibe</span>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
