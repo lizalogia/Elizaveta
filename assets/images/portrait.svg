@@ -1,16 +1,21 @@
 <svg viewBox="0 0 640 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Портрет">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#E2D3BE"/>
-      <stop offset="1" stop-color="#C9B291"/>
+      <stop offset="0" stop-color="#3A2716"/>
+      <stop offset="1" stop-color="#150E08"/>
     </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.32" r="0.5">
+      <stop offset="0" stop-color="#E4C79A" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#E4C79A" stop-opacity="0"/>
+    </radialGradient>
     <linearGradient id="fig" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#6E5138"/>
-      <stop offset="1" stop-color="#4A3524"/>
+      <stop offset="0" stop-color="#7A5A3A"/>
+      <stop offset="1" stop-color="#3A2716"/>
     </linearGradient>
   </defs>
   <rect width="640" height="800" fill="url(#bg)"/>
-  <circle cx="320" cy="300" r="120" fill="url(#fig)"/>
+  <rect width="640" height="800" fill="url(#glow)"/>
+  <circle cx="320" cy="300" r="118" fill="url(#fig)"/>
   <path d="M120 800c0-140 90-250 200-250s200 110 200 250Z" fill="url(#fig)"/>
-  <text x="320" y="770" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#F6F1E9" letter-spacing="6">LIZALOGIA</text>
+  <text x="320" y="770" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="30" fill="#E9DAC1" letter-spacing="4">lizalogia</text>
 </svg>

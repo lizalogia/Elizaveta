@@ -7,12 +7,13 @@
 /* ---------- Small phones (iPhone SE) ---------- */
 @media (max-width: 360px) {
   :root { --gutter: 18px; }
-  .hero { padding-top: 88px; }
+  .hero { padding-top: 104px; }
+  .dir-row { grid-template-columns: auto 1fr; }
+  .dir-row__arrow { display: none; }
 }
 
 /* ---------- Large phone / small tablet ---------- */
 @media (min-width: 560px) {
-  .dir-grid { grid-template-columns: repeat(2, 1fr); }
   .adv-grid { grid-template-columns: repeat(2, 1fr); }
   .proj-grid { grid-template-columns: repeat(2, 1fr); }
   .gets-grid { grid-template-columns: repeat(2, 1fr); }
@@ -22,44 +23,30 @@
 @media (min-width: 768px) {
   .stat-grid { grid-template-columns: repeat(3, 1fr); }
   .stat--wide { grid-column: auto; }
-
-  .contacts__list a { font-size: 1.25rem; }
+  .contacts__list a { font-size: 1.1rem; }
 }
 
 /* ---------- Desktop ---------- */
 @media (min-width: 960px) {
-  .hero__inner {
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(40px, 5vw, 80px);
-  }
+  .hero__inner { grid-template-columns: 1.1fr 0.9fr; gap: clamp(40px, 5vw, 80px); }
   .hero__phone { justify-self: end; }
+  .hero__copy { padding-top: clamp(40px, 8vh, 120px); }
 
-  .dir-grid { grid-template-columns: repeat(4, 1fr); }
   .adv-grid { grid-template-columns: repeat(4, 1fr); }
   .proj-grid { grid-template-columns: repeat(3, 1fr); }
   .gets-grid { grid-template-columns: repeat(4, 1fr); }
-
   .stat-grid { grid-template-columns: repeat(5, 1fr); }
 
   .steps { grid-template-columns: repeat(2, 1fr); column-gap: clamp(32px, 5vw, 80px); }
   .step { border-top: 1px solid var(--line); }
 
   .contacts__inner { grid-template-columns: 0.9fr 1.1fr; gap: clamp(48px, 6vw, 90px); }
-
-  .section__head--split {
-    display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 2rem;
-  }
-}
-
-/* ---------- Wide desktop ---------- */
-@media (min-width: 1280px) {
-  .dir-card { padding-inline: clamp(20px, 2vw, 32px); }
 }
 
 /* ---------- Ultra-wide / 4K ---------- */
 @media (min-width: 1920px) {
   :root { --container: 1480px; }
-  body { font-size: 19px; }
+  body { font-size: 17px; }
 }
 @media (min-width: 2560px) {
   :root { --container: 1680px; }
@@ -67,7 +54,7 @@
 
 /* ---------- Landscape phones: keep hero readable ---------- */
 @media (max-height: 560px) and (orientation: landscape) {
-  .hero { min-height: auto; padding-block: 120px 60px; }
+  .hero { min-height: auto; padding-block: 130px 70px; }
   .hero__scroll { display: none; }
 }
 
