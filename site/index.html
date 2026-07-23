@@ -11,11 +11,11 @@
 <link rel="preload" href="assets/fonts/Golca.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="assets/fonts/FuturaLight.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Ballet.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/images/hero/stadium-crowd.jpg" as="image" fetchpriority="high">
+<link rel="preload" href="assets/images/hero/hero-concert.webp" as="image" fetchpriority="high">
 
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 
-<link rel="stylesheet" href="styles.css?v=49">
+<link rel="stylesheet" href="styles.css?v=50">
 </head>
 <body>
 
@@ -42,12 +42,10 @@
     <div class="hero__photo-wrap" aria-hidden="true">
       <div class="hero__photo-parallax">
         <picture>
-          <source srcset="assets/images/hero/stadium-crowd.webp" type="image/webp">
-          <img class="hero__photo" src="assets/images/hero/stadium-crowd.jpg" alt="" fetchpriority="high">
+          <source srcset="assets/images/hero/hero-concert.webp" type="image/webp">
+          <img class="hero__photo" src="assets/images/hero/hero-concert.jpg" alt="" fetchpriority="high">
         </picture>
       </div>
-      <canvas class="hero__starfield" aria-hidden="true"></canvas>
-      <div class="hero__twinkles"></div>
       <div class="hero__fog"></div>
     </div>
     <div class="hero__watermark" aria-hidden="true">
@@ -134,15 +132,19 @@
 
   <!-- Showreel — самостоятельный кинематографичный экран -->
   <section class="showreel-section" id="showreel" data-theme="dark">
-    <p class="showreel__lead reveal">Личный бренд начинается с&nbsp;контента.</p>
+    <div class="showreel__intro">
+      <p class="showreel__lead reveal">Личный бренд начинается с&nbsp;контента.</p>
+      <span class="showreel__arrow reveal" aria-hidden="true"><svg viewBox="0 0 24 40" fill="none"><path d="M12 1v30M5 25l7 7 7-7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <p class="showreel__caption reveal">Именно так формируется то, как&nbsp;вас видят и&nbsp;воспринимают.</p>
+      <span class="showreel__arrow reveal" aria-hidden="true"><svg viewBox="0 0 24 40" fill="none"><path d="M12 1v30M5 25l7 7 7-7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <p class="showreel__label reveal">Showreel</p>
+    </div>
     <div class="showreel reveal">
-      <div class="showreel__window" role="button" tabindex="0" data-video="" aria-label="Смотреть шоурил 2026">
+      <div class="showreel__window" role="button" tabindex="0" data-video="" aria-label="Смотреть шоурил">
         <span class="showreel__scrim" aria-hidden="true"></span>
         <span class="showreel__play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-        <span class="showreel__badge">Showreel 2026</span>
       </div>
     </div>
-    <p class="showreel__caption reveal">Именно так формируется то, как&nbsp;вас видят и&nbsp;воспринимают.</p>
   </section>
 
   <!-- 02. Статистика (после шоурила) -->
@@ -195,26 +197,19 @@
         <h3>Экспертный контент</h3>
         <p>Экспертные ролики для предпринимателей и бизнеса.</p>
       </a>
-      <a href="format-cinema.html" class="format-card reveal">
+      <a href="format-personal.html" class="format-card reveal">
         <span class="format-card__icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M3 10h18M7 6l-1.5 4M12 6l-1.5 4M17 6l-1.5 4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.2"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
         </span>
-        <h3>Кино</h3>
-        <p>Премьеры фильмов и художественные проекты.</p>
+        <h3>Личный бренд</h3>
+        <p>Reels, сторис и трендовый контент, который формирует ваш образ.</p>
       </a>
-      <a href="format-backstage.html" class="format-card reveal">
+      <a href="format-brands.html" class="format-card reveal">
         <span class="format-card__icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 3h8l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M14 3v4h4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.2"/></svg>
         </span>
-        <h3>Бэкстейдж</h3>
-        <p>Закулисье съёмок — то, что остаётся за кадром.</p>
-      </a>
-      <a href="format-trends.html" class="format-card reveal">
-        <span class="format-card__icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 17 10 10l4 4 7-7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 6h5v5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <h3>Трендовые ролики</h3>
-        <p>Форматы и тренды, адаптированные под нишу.</p>
+        <h3>Бренды</h3>
+        <p>Реклама, промо и премьеры — контент, который работает на бренд.</p>
       </a>
     </div>
   </section>
@@ -235,8 +230,16 @@
         <span class="flow__arrow reveal" aria-hidden="true">
           <svg viewBox="0 0 24 44" fill="none"><path d="M12 1v34M4 29l8 9 8-9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
-        <p class="flow__line reveal">Срок сдачи материала — до 48 часов.</p>
-        <p class="flow__sub reveal">Исходники до 24 часов, хранение 14 дней.</p>
+        <div class="flow__stage reveal">
+          <h3 class="flow__stage-title">После съёмки</h3>
+          <ul class="flow__after-list">
+            <li>Срок сдачи готового материала — до&nbsp;48&nbsp;часов.</li>
+            <li>Исходные материалы отправляю в&nbsp;течение 24&nbsp;часов.</li>
+            <li>Хранение исходников — 14&nbsp;дней.</li>
+            <li>До&nbsp;5&nbsp;правок включено.</li>
+          </ul>
+          <p class="flow__note">*Дополнительные правки после пятой обсуждаются отдельно.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -265,7 +268,6 @@
         <p>Помогу чувствовать себя уверенно в кадре, подскажу, что и как лучше сказать.</p>
       </li>
     </ul>
-    <p class="benefits__note reveal">* До&nbsp;5&nbsp;правок — возможность спокойно довести ролик до&nbsp;желаемого результата.</p>
   </section>
 
   <!-- Финал: Контакты -->
