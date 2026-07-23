@@ -295,7 +295,7 @@
     document.body.style.overflow = '';
   };
 
-  document.querySelectorAll('.project-card').forEach((card) => {
+  document.querySelectorAll('[data-video]').forEach((card) => {
     card.addEventListener('click', () => openVideoModal(card.dataset.video));
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
