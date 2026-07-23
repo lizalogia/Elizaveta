@@ -315,7 +315,7 @@ img { max-width: 100%; display: block; }
 .hero__headline {
   font-family: 'Futura Light', var(--font-display);
   font-weight: 300;
-  font-size: clamp(31px, 5.4vw, 62px);
+  font-size: clamp(27px, 4.7vw, 54px);
   line-height: 1.03;
   text-transform: uppercase;
   letter-spacing: 0.01em;
@@ -336,7 +336,7 @@ img { max-width: 100%; display: block; }
 .hero__script {
   font-family: 'Ballet', var(--font-script);
   font-weight: 400;
-  font-size: clamp(91px, 15vw, 186px);
+  font-size: clamp(80px, 13vw, 162px);
   line-height: 1.15;
   white-space: nowrap;
   color: rgba(239, 231, 217, 0.78);
@@ -344,7 +344,7 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 720px) {
-  .hero__script { font-size: clamp(46px, 16vw, 62px); }
+  .hero__script { font-size: clamp(42px, 14vw, 56px); }
 }
 
 .hero__desc {
@@ -353,10 +353,10 @@ img { max-width: 100%; display: block; }
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.62), 0 0 26px rgba(0, 0, 0, 0.4);
 }
 .hero__desc-lead {
-  margin: 0 0 clamp(22px, 3.4vw, 38px);
+  margin: 0 0 clamp(18px, 2.8vw, 30px);
   font-family: 'Neutral Face', var(--font-display);
-  font-size: clamp(22px, 3.2vw, 40px);
-  line-height: 1.14;
+  font-size: clamp(18px, 2.6vw, 32px);
+  line-height: 1.16;
   font-weight: 400;
   letter-spacing: 0.005em;
   color: var(--cream-soft);
@@ -364,8 +364,8 @@ img { max-width: 100%; display: block; }
 .hero__desc-body {
   margin: 0;
   max-width: 480px;
-  font-size: clamp(14.5px, 1.7vw, 19px);
-  line-height: 1.72;
+  font-size: clamp(13px, 1.5vw, 16.5px);
+  line-height: 1.7;
   letter-spacing: 0.01em;
   color: rgba(247, 242, 234, 0.95);
 }
