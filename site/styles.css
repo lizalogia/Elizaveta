@@ -516,24 +516,29 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 /* ---------- Clients ---------- */
 
-.clients { background: var(--warm-gradient); padding-bottom: 0; padding-top: clamp(92px, 13vw, 168px); }
+.clients { background: var(--warm-gradient); padding-bottom: clamp(96px, 14vw, 180px); padding-top: clamp(104px, 15vw, 188px); }
+.clients__wall {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(30px, 4vw, 56px);
+}
 .clients__trust {
-  max-width: 560px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: clamp(40px, 5.5vw, 60px) var(--pad-x) clamp(20px, 3vw, 32px);
+  padding: clamp(64px, 9vw, 104px) var(--pad-x) 0;
   text-align: center;
-  font-size: 12px;
-  line-height: 1.85;
-  letter-spacing: 0.02em;
-  color: rgba(60, 47, 40, 0.5);
+  font-size: 14px;
+  line-height: 2;
+  letter-spacing: 0.01em;
+  color: rgba(60, 47, 40, 0.72);
 }
 
 .marquee.marquee--clients {
   background: transparent;
   border-top: none;
-  padding: clamp(16px, 2.4vw, 28px) 0;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  padding: clamp(6px, 1vw, 12px) 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 .marquee--clients .marquee__track { animation-duration: 46s; }
 .marquee--clients.is-touched .marquee__track { animation-play-state: paused; }
@@ -541,8 +546,8 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .brandmark-row {
   display: inline-flex;
   align-items: center;
-  gap: clamp(58px, 7.5vw, 116px);
-  padding-right: clamp(58px, 7.5vw, 116px);
+  gap: clamp(44px, 5.5vw, 84px);
+  padding-right: clamp(44px, 5.5vw, 84px);
 }
 
 .brandmark {
@@ -555,9 +560,10 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 .brandmark-founders {
   font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 0.08em;
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: 0.05em;
+  color: rgba(60, 47, 40, 0.66);
 }
 
 /* Client logo lockups — recolored to the site's brown-mid tone, on a soft
@@ -583,18 +589,18 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   transition: transform 0.35s var(--ease-out-expo), opacity 0.35s ease;
 }
 .brandmark-logo:hover img { transform: scale(1.08) translateY(-1px); opacity: 0.96; }
-.brandmark-logo--muz { --logo-h: 19px; }
-.brandmark-logo--voice { --logo-h: 18px; }
-.brandmark-logo--instadium { --logo-h: 17px; }
+.brandmark-logo--muz { --logo-h: 15px; }
+.brandmark-logo--voice { --logo-h: 21px; }
+.brandmark-logo--instadium { --logo-h: 23px; }
 .brandmark-logo--nf { --logo-h: 15px; }
-.brandmark-logo--curaprox { --logo-h: 20px; }
-.brandmark-logo--neforbsy { --logo-h: 16px; }
-.brandmark-logo--kion { --logo-h: 17px; }
-.brandmark-logo--wink { --logo-h: 19px; }
-.brandmark-logo--ivi { --logo-h: 20px; }
-.brandmark-logo--komandy { --logo-h: 18px; }
-.brandmark-logo--golosa { --logo-h: 18px; }
-.brandmark-logo--musicbox { --logo-h: 19px; }
+.brandmark-logo--curaprox { --logo-h: 22px; }
+.brandmark-logo--neforbsy { --logo-h: 13px; }
+.brandmark-logo--kion { --logo-h: 15px; }
+.brandmark-logo--wink { --logo-h: 17px; }
+.brandmark-logo--ivi { --logo-h: 18px; }
+.brandmark-logo--komandy { --logo-h: 23px; }
+.brandmark-logo--golosa { --logo-h: 21px; }
+.brandmark-logo--musicbox { --logo-h: 22px; }
 
 /* ---------- Marquee ---------- */
 
