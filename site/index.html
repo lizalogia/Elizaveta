@@ -15,7 +15,7 @@
 
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 
-<link rel="stylesheet" href="styles.css?v=45">
+<link rel="stylesheet" href="styles.css?v=46">
 </head>
 <body>
 
@@ -27,12 +27,11 @@
 </header>
 
 <nav class="nav-drawer" id="navDrawer">
-  <a href="#directions" data-close>01. Направления</a>
-  <a href="#clients" data-close>02. Проекты и партнёры</a>
-  <a href="#showreel" data-close>03. Шоурил 2026</a>
-  <a href="#projects" data-close>04. Все проекты</a>
-  <a href="#process" data-close>05. Как проходит съёмка</a>
-  <a href="#contacts" data-close>06. Контакты</a>
+  <a href="#clients" data-close>01. Проекты и партнёры</a>
+  <a href="#showreel" data-close>02. Showreel</a>
+  <a href="#projects" data-close>03. Проекты</a>
+  <a href="#process" data-close>04. Как проходит съёмка</a>
+  <a href="#contacts" data-close>05. Контакты</a>
 </nav>
 <div class="nav-scrim" id="navScrim"></div>
 
@@ -64,7 +63,10 @@
       <div class="hero__text">
         <h1 class="hero__headline"><span class="hero__word">make</span> <span class="hero__word">your</span><br><span class="hero__word">content</span> <span class="hero__word">better.</span></h1>
         <div class="hero__script-wrap"><p class="hero__script" aria-hidden="true">feel the vibe</p></div>
-        <p class="hero__desc">Больше, чем просто съёмка. Создаю видео, которые помогают вам стать ближе к своей аудитории.</p>
+        <div class="hero__desc">
+          <p class="hero__desc-lead">Больше, чем просто&nbsp;съёмка.</p>
+          <p class="hero__desc-body">Создаю видео, которые помогают вам стать ближе к&nbsp;своей&nbsp;аудитории.</p>
+        </div>
         <a href="#contacts" class="hero__cta">Обсудить проект <span aria-hidden="true">↗</span></a>
       </div>
     </div>
@@ -75,52 +77,10 @@
     </div>
   </section>
 
-  <!-- 02. Направления -->
-  <section class="formats section" id="directions" data-theme="dark">
-    <div class="section__head reveal">
-      <span class="section__num">01.</span>
-      <h2>Направления</h2>
-    </div>
-    <div class="formats__grid formats__grid--three">
-      <a href="#projects" class="format-card reveal">
-        <span class="format-card__icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2 14.7 9h7.3l-5.9 4.3 2.2 7.2L12 16l-6.3 4.5 2.2-7.2L2 9h7.3L12 2Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
-        </span>
-        <h3>Артисты</h3>
-        <p>Концерты, туры, премьеры и промо — атмосфера события в кадре.</p>
-      </a>
-      <a href="#projects" class="format-card reveal">
-        <span class="format-card__icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.2"/></svg>
-        </span>
-        <h3>Бренды</h3>
-        <p>Реклама, промо и мероприятия — контент, который работает на бренд.</p>
-      </a>
-      <a href="#projects" class="format-card reveal">
-        <span class="format-card__icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.2"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-        </span>
-        <h3>Личный бренд</h3>
-        <p>Экспертный и имиджевый контент, который формирует ваш образ.</p>
-      </a>
-    </div>
-  </section>
-
-  <!-- 03. Смысл -->
-  <section class="statement section" data-theme="light">
-    <p class="statement__text reveal">Личный бренд начинается с&nbsp;контента.</p>
-    <p class="statement__sub reveal">Именно так формируется то, как вас видят и&nbsp;воспринимают.</p>
-  </section>
-
-  <!-- 04. Продолжение смысла -->
-  <section class="statement statement--right section" data-theme="light">
-    <p class="statement__text reveal">Так появляется доверие, которое становится основой сотрудничества.</p>
-  </section>
-
-  <!-- 05. Проекты и партнёры -->
+  <!-- 01. Проекты и партнёры -->
   <section class="clients section" id="clients" data-theme="light">
     <div class="section__head reveal">
-      <span class="section__num">02.</span>
+      <span class="section__num">01.</span>
       <h2>Проекты и партнёры</h2>
     </div>
     <div class="clients__wall">
@@ -172,30 +132,21 @@
     <p class="clients__trust reveal">Более&nbsp;30 артистов, федеральные проекты и мероприятия с&nbsp;аудиторией до&nbsp;50&nbsp;000&nbsp;человек.</p>
   </section>
 
-  <!-- 03. Шоурил 2026 (отдельный блок) -->
-  <section class="showreel-section section" id="showreel" data-theme="light">
-    <div class="section__head reveal">
-      <span class="section__num">03.</span>
-      <h2>Шоурил 2026</h2>
-    </div>
-
+  <!-- Showreel — самостоятельный кинематографичный экран -->
+  <section class="showreel-section" id="showreel" data-theme="dark">
     <div class="showreel reveal">
       <div class="showreel__window" role="button" tabindex="0" data-video="" aria-label="Смотреть шоурил 2026">
         <span class="showreel__scrim" aria-hidden="true"></span>
-        <span class="showreel__play" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+        <span class="showreel__play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
         <span class="showreel__badge">Showreel 2026</span>
-      </div>
-      <div class="showreel__meta">
-        <p class="showreel__caption">Личный бренд начинается с контента.</p>
-        <p class="showreel__sub">Именно так формируется то, как вас видят и воспринимают.</p>
       </div>
     </div>
   </section>
 
-  <!-- 04. Статистика (после шоурила) -->
+  <!-- 02. Статистика (после шоурила) -->
   <section class="stats section" id="stats" data-theme="light">
     <div class="section__head reveal">
-      <span class="section__num">04.</span>
+      <span class="section__num">02.</span>
       <h2>Статистика</h2>
     </div>
     <ul class="stats__grid">
@@ -207,173 +158,62 @@
     </ul>
   </section>
 
-  <!-- 05. Все проекты (карусель) -->
-  <section class="projects section" id="projects" data-theme="light">
+  <!-- 03. Проекты — категории -->
+  <section class="formats section" id="projects" data-theme="dark">
     <div class="section__head reveal">
-      <span class="section__num">05.</span>
-      <h2>Все проекты</h2>
+      <span class="section__num">03.</span>
+      <h2>Проекты</h2>
     </div>
-
-    <div class="projects__carousel">
-      <div class="projects__grid" id="projectsGrid">
-        <article class="project-card reveal" style="--card-a:#3a2e28;--card-b:#6b4b3a" tabindex="0" role="button" aria-label="Смотреть видео: VOICE, Презентация" data-video="https://drive.google.com/file/d/11xbmIZVcaXdanKMqRTVI1OGIi7Lp-B9Y/view">
-          <picture><source srcset="assets/images/projects/voice-prezentatsiya.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/voice-prezentatsiya.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>VOICE</h3>
-          <p>Презентация</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#241418;--card-b:#7a1f3a" tabindex="0" role="button" aria-label="Смотреть видео: Петли поцелуи, Премьера песни" data-video="https://drive.google.com/file/d/1cnmyTjuKlhtJuI6QY9tbGMUnDxPqJHIi/view">
-          <picture><source srcset="assets/images/projects/belye-potselui.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/belye-potselui.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>«Петли поцелуи»</h3>
-          <p>Наталья Королева и Екатерина Гусева</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#141420;--card-b:#2e3a7a" tabindex="0" role="button" aria-label="Смотреть видео: TIMATI KARTING, День рождения" data-video="https://drive.google.com/file/d/1dWWCgUDnKw6zAqaM59xjMI2xvp5r_HW8/view">
-          <picture><source srcset="assets/images/projects/timati-karting.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/timati-karting.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>TIMATI KARTING</h3>
-          <p>День рождения</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#141420;--card-b:#3a3a5c" tabindex="0" role="button" aria-label="Смотреть видео: Стас Пьеха, Концерт в Мурманске" data-video="https://drive.google.com/file/d/1sRK_NoG2IOkK27jPAtUyZmHG_zEOQ2U7/view">
-          <picture><source srcset="assets/images/projects/stas-pekha.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/stas-pekha.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>Стас Пьеха</h3>
-          <p>Концерт, Мурманск</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#241f2e;--card-b:#5a3e73" tabindex="0" role="button" aria-label="Смотреть видео: MUZ TV, Выпускной Московский Кремль" data-video="https://drive.google.com/file/d/1N1HXhgswWz1TXGZ4_Ef0pLfifNIaeoLZ/view">
-          <picture><source srcset="assets/images/projects/muztv-vypusknoy.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/muztv-vypusknoy.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>MUZ TV</h3>
-          <p>Выпускной Московский Кремль</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#1c1c1c;--card-b:#4a4a2e" tabindex="0" role="button" aria-label="Смотреть видео: INSTADIUM, Хедлайнер Филипп Киркоров" data-video="https://drive.google.com/file/d/1lVv4DFrnWjOixTem_rGixQGbZ-VMxC5b/view">
-          <picture><source srcset="assets/images/projects/kirkorov-instadium.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/kirkorov-instadium.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>INSTADIUM</h3>
-          <p>Хедлайнер Филипп Киркоров</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#181c24;--card-b:#3a4a6b" tabindex="0" role="button" aria-label="Смотреть видео: Сказка о царе Салтане, Премьера фильма" data-video="https://drive.google.com/file/d/1uqkEQt4Gpwgb9aDz5tfPVokxDF3vNMS-/view">
-          <picture><source srcset="assets/images/projects/saltan.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/saltan.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>Сказка о царе Салтане</h3>
-          <p>Премьера фильма</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#141824;--card-b:#2e4a6b" tabindex="0" role="button" aria-label="Смотреть видео: INSTADIUM, Хедлайнер Ольга Бузова" data-video="https://drive.google.com/file/d/1WV58rKJhiQj6qnrOmzkR3log1MI_we8U/view">
-          <picture><source srcset="assets/images/projects/olga-buzova.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/olga-buzova.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>INSTADIUM</h3>
-          <p>Хедлайнер Ольга Бузова</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#241830;--card-b:#5a3a73" tabindex="0" role="button" aria-label="Смотреть видео: Music Box, Премия" data-video="">
-          <picture><source srcset="assets/images/projects/musicbox-event.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/musicbox-event.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>Music Box</h3>
-          <p>Премия</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#141c2e;--card-b:#2e5a8a" tabindex="0" role="button" aria-label="Смотреть видео: Команды будущего, Мероприятие" data-video="">
-          <picture><source srcset="assets/images/projects/komandy-event.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/komandy-event.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>Команды будущего</h3>
-          <p>Мероприятие</p>
-          <p class="project-card__credit">Хедлайнер мероприятия — Игорь Рыбаков</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#1c1c22;--card-b:#454554" tabindex="0" role="button" aria-label="Смотреть видео: INSTADIUM, Хедлайнер Татьяна Тур" data-video="">
-          <picture><source srcset="assets/images/projects/instadium-headliner.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/instadium-headliner.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>INSTADIUM</h3>
-          <p>Хедлайнер Татьяна Тур</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#1c1c22;--card-b:#454554" tabindex="0" role="button" aria-label="Смотреть видео: INSTADIUM, VIP-день" data-video="https://drive.google.com/file/d/1142IHCdn5GO3XTuhB_wuwPBYSdu5ePBJ/view">
-          <picture><source srcset="assets/images/projects/instadium-vip.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/instadium-vip.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>INSTADIUM</h3>
-          <p>VIP-день</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#1c2740;--card-b:#5a4a6b" tabindex="0" role="button" aria-label="Смотреть видео: Равиоли, Оли, Премьера фильма" data-video="https://drive.google.com/file/d/17CnepweCgog2FB7CLORoFFe8_ocDXQdm/view">
-          <picture><source srcset="assets/images/projects/ravioli.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/ravioli.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>Равиоли, Оли</h3>
-          <p>Премьера фильма</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#1c1414;--card-b:#7a2020" tabindex="0" role="button" aria-label="Смотреть видео: Нескучные финансы, Мероприятие" data-video="https://drive.google.com/file/d/1uqm9lb6a44KWb1SLTJgRuljFT05Pvy7O/view">
-          <picture><source srcset="assets/images/projects/nescuchnye-finansy.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/nescuchnye-finansy.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>Нескучные финансы</h3>
-          <p>Мероприятие</p>
-          <p class="project-card__credit">Бизнес-мероприятие</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#2e2417;--card-b:#8a6a2e" tabindex="0" role="button" aria-label="Смотреть видео: Анастасия Волочкова, День рождения" data-video="">
-          <picture><source srcset="assets/images/projects/volochkova.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/volochkova.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>Анастасия Волочкова</h3>
-          <p>День рождения</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#241f1c;--card-b:#7a5a2e" tabindex="0" role="button" aria-label="Смотреть видео: Голоса мира, Концерт" data-video="">
-          <picture><source srcset="assets/images/projects/golosa-mira.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/golosa-mira.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>Голоса мира</h3>
-          <p>Концерт</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#221c16;--card-b:#6b5a4a" tabindex="0" role="button" aria-label="Смотреть видео: WINK, Премьера «Первая ракетка»" data-video="https://drive.google.com/file/d/1wWQauux0svxwiLgeoEUOMHTEl6Qj2Kfz/view">
-          <picture><source srcset="assets/images/projects/wink-pervaya-raketka.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/wink-pervaya-raketka.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>WINK</h3>
-          <p>Премьера «Первая ракетка»</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#1c1a16;--card-b:#7a5a2e" tabindex="0" role="button" aria-label="Смотреть видео: Нефорбсы CONF, Бизнес-мероприятие" data-video="https://drive.google.com/file/d/17rxIc2yUrh1-Cen_Jw_2cblPT7rxuSg1/view">
-          <picture><source srcset="assets/images/projects/neforbsy-event.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/neforbsy-event.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>Нефорбсы CONF</h3>
-          <p>Бизнес-мероприятие</p>
-        </article>
-        <article class="project-card reveal" style="--card-a:#141420;--card-b:#2e3a6b" tabindex="0" role="button" aria-label="Смотреть видео: Команды будущего, VIP-день" data-video="https://drive.google.com/file/d/1fX3v6syaAlealV1zXMHudlPNfAjcpGSI/view">
-          <picture><source srcset="assets/images/projects/komandy-vip.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/komandy-vip.jpg" alt="" loading="lazy"></picture>
-          <span class="project-card__scrim" aria-hidden="true"></span>
-          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-          <h3>Команды будущего</h3>
-          <p>VIP-день</p>
-          <p class="project-card__credit">Хедлайнер мероприятия — Игорь Рыбаков</p>
-        </article>
-      </div>
-    </div>
-    <div class="projects__footer reveal">
-      <div class="projects__nav">
-        <button class="projects__arrow" id="projectsPrev" aria-label="Предыдущие проекты">
-          <svg width="18" height="14" viewBox="0 0 22 16" fill="none"><path d="M1 8h19M8 1 1 8l7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="projects__arrow" id="projectsNext" aria-label="Следующие проекты">
-          <svg width="18" height="14" viewBox="0 0 22 16" fill="none"><path d="M21 8H2M14 1l7 7-7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="btn-line btn-line--sm" type="button" data-video="" aria-label="Смотреть все ролики">
-          Смотреть все ролики
-          <svg width="14" height="11" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M1 8h19M13 1l7 7-7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
+    <div class="formats__grid">
+      <a href="format-concerts.html" class="format-card reveal">
+        <span class="format-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2 14.7 9h7.3l-5.9 4.3 2.2 7.2L12 16l-6.3 4.5 2.2-7.2L2 9h7.3L12 2Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        </span>
+        <h3>Концерты</h3>
+        <p>Репортажная съёмка концертов, фестивалей и музыкальных событий.</p>
+      </a>
+      <a href="format-events.html" class="format-card reveal">
+        <span class="format-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 15V9M8 18V6M13 21V3M18 15V9M23 12v0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </span>
+        <h3>Мероприятия</h3>
+        <p>Премии, форумы, закрытые мероприятия, презентации.</p>
+      </a>
+      <a href="format-media.html" class="format-card reveal">
+        <span class="format-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 8h11l2.5-3H21a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><circle cx="12" cy="14" r="4" stroke="currentColor" stroke-width="1.2"/></svg>
+        </span>
+        <h3>ТВ и медиапроекты</h3>
+        <p>Премьеры, телепроекты, интервью.</p>
+      </a>
+      <a href="format-expert.html" class="format-card reveal">
+        <span class="format-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="9" y="2" width="6" height="12" rx="3" stroke="currentColor" stroke-width="1.2"/><path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </span>
+        <h3>Экспертный контент</h3>
+        <p>Экспертные ролики для предпринимателей и бизнеса.</p>
+      </a>
+      <a href="format-personal.html" class="format-card reveal">
+        <span class="format-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.2"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </span>
+        <h3>Личный бренд</h3>
+        <p>Reels, сторис и трендовый контент, который формирует ваш образ.</p>
+      </a>
+      <a href="format-brands.html" class="format-card reveal">
+        <span class="format-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.2"/></svg>
+        </span>
+        <h3>Бренды</h3>
+        <p>Реклама, промо и премьеры — контент, который работает на бренд.</p>
+      </a>
     </div>
   </section>
 
-  <!-- 06. Как проходит съёмка -->
+  <!-- 04. Как проходит съёмка -->
   <section class="process section" id="process" data-theme="light">
     <div class="section__head reveal">
-      <span class="section__num">06.</span>
+      <span class="section__num">04.</span>
       <h2>Как проходит<br>съёмка</h2>
     </div>
     <div class="flow" id="flow">
@@ -395,7 +235,7 @@
   <!-- 07. Что получает клиент -->
   <section class="benefits section" id="benefits" data-theme="light">
     <div class="section__head reveal">
-      <span class="section__num">07.</span>
+      <span class="section__num">05.</span>
       <h2>Почему выбирают меня</h2>
     </div>
     <ul class="benefits__grid">
@@ -449,10 +289,7 @@
 
   <footer class="site-footer">
     <p class="site-footer__disclaimer">Все упомянутые на сайте названия, логотипы и товарные знаки принадлежат соответствующим правообладателям и используются исключительно в целях демонстрации выполненных работ (портфолио).</p>
-    <div class="site-footer__row">
-      <span class="site-footer__copy">© lizalogia 2026</span>
-      <a href="first-cases.html" class="site-footer__origin">Как всё начиналось <span aria-hidden="true">→</span></a>
-    </div>
+    <span class="site-footer__copy">© lizalogia 2026</span>
   </footer>
 
 </main>
