@@ -366,4 +366,50 @@
     marquee.addEventListener('touchend', () => marquee.classList.remove('is-touched'));
     marquee.addEventListener('touchcancel', () => marquee.classList.remove('is-touched'));
   });
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Process arrow-flow: draw the vertical line when it scrolls into view.
+  const flow = document.getElementById('flow');
+  if (flow) {
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      flow.classList.add('is-drawn');
+    } else {
+      const fo = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) { flow.classList.add('is-drawn'); fo.unobserve(flow); }
+        });
+      }, { threshold: 0.25 });
+      fo.observe(flow);
+    }
+  }
+
+  // Statistics count-up animation.
+  const stats = document.querySelectorAll('.stat__num[data-count]');
+  if (stats.length) {
+    const runCount = (el) => {
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || '';
+      if (reduceMotion) { el.textContent = target.toLocaleString('ru-RU') + suffix; return; }
+      const dur = 1400;
+      const start = performance.now();
+      const tick = (now) => {
+        const t = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(target * eased).toLocaleString('ru-RU') + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    if ('IntersectionObserver' in window) {
+      const so = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) { runCount(entry.target); so.unobserve(entry.target); }
+        });
+      }, { threshold: 0.6 });
+      stats.forEach((el) => so.observe(el));
+    } else {
+      stats.forEach(runCount);
+    }
+  }
 })();
