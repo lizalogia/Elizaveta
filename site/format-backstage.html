@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бэкстейдж — lizalogia</title>
+<meta name="description" content="Закулисье съёмок — то, что остаётся за кадром.">
+<script>document.documentElement.classList.add('js');</script>
+
+<link rel="preload" href="assets/fonts/NeutralFaceBold.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="assets/fonts/Golca.ttf" as="font" type="font/ttf" crossorigin>
+
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+
+<link rel="stylesheet" href="styles.css?v=36">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="logo">lizalogia</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="navDrawer">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="nav-drawer" id="navDrawer">
+  <a href="index.html#clients" data-close>02. Среди клиентов</a>
+  <a href="index.html#projects" data-close>03. Проекты</a>
+  <a href="index.html#process" data-close>04. Как проходит съёмка</a>
+  <a href="index.html#formats" data-close>05. Все проекты</a>
+  <a href="index.html#contacts" data-close>06. Контакты</a>
+</nav>
+<div class="nav-scrim" id="navScrim"></div>
+
+<main>
+  <section class="category-hero">
+    <a href="index.html#formats" class="category-hero__back">
+      <svg width="14" height="11" viewBox="0 0 22 16" fill="none"><path d="M1 8h19M8 1 1 8l7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Все проекты
+    </a>
+    <span class="category-hero__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 4h9l7 7v9H4V4Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M13 4v7h7" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
+    <h1>Бэкстейдж</h1>
+    <p>Закулисье съёмок — то, что остаётся за кадром.</p>
+  </section>
+
+  <div class="category-grid">
+    <article class="project-card reveal" style="--card-a:#241d16;--card-b:#6b5238" tabindex="0" role="button" aria-label="Смотреть видео: Backstage для видеографа" data-video="https://rutube.ru/shorts/98ea03f007ed97270d6d12aeefebcc72/">
+          <picture><source srcset="assets/images/projects/backstage-videographer-screen.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/backstage-videographer-screen.jpg" alt="" loading="lazy"></picture>
+          <span class="project-card__scrim" aria-hidden="true"></span>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>Backstage для видеографа</h3>
+        </article>
+    <article class="project-card reveal" style="--card-a:#1c1a16;--card-b:#7a5a2e" tabindex="0" role="button" aria-label="Смотреть видео: Backstage с фотосессии, для блогера-предпринимателя" data-video="https://rutube.ru/shorts/a69242e1466aa15734899060cad9ad72/">
+          <picture><source srcset="assets/images/projects/backstage-blogger-entrepreneur.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/backstage-blogger-entrepreneur.jpg" alt="" loading="lazy"></picture>
+          <span class="project-card__scrim" aria-hidden="true"></span>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>Backstage с фотосессии</h3>
+          <p>Для блогера-предпринимателя</p>
+        </article>
+    <article class="project-card reveal" style="--card-a:#26211d;--card-b:#5a4a38" tabindex="0" role="button" aria-label="Смотреть видео: Хирургическая операция, в клинике Iceberg" data-video="https://rutube.ru/shorts/aac55fcc6d422fa80bb7d5eb22d3fa6d/">
+          <picture><source srcset="assets/images/projects/backstage-iceberg-operation.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/backstage-iceberg-operation.jpg" alt="" loading="lazy"></picture>
+          <span class="project-card__scrim" aria-hidden="true"></span>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>Хирургическая операция</h3>
+          <p>В клинике Iceberg</p>
+        </article>
+    <article class="project-card reveal" style="--card-a:#26211d;--card-b:#5a4a38" tabindex="0" role="button" aria-label="Смотреть видео: Первый приём у стоматолога" data-video="https://rutube.ru/shorts/75fe6abd59faf803e5601b58f8ae7b87/">
+          <picture><source srcset="assets/images/projects/backstage-first-visit-kid.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/backstage-first-visit-kid.jpg" alt="" loading="lazy"></picture>
+          <span class="project-card__scrim" aria-hidden="true"></span>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>Первый приём у стоматолога</h3>
+        </article>
+    <article class="project-card reveal" style="--card-a:#26211d;--card-b:#5a4a38" tabindex="0" role="button" aria-label="Смотреть видео: Приём хирурга" data-video="https://rutube.ru/shorts/6a321b8b1d5b65ff7228e81a390e9392/">
+          <picture><source srcset="assets/images/projects/backstage-implant-dentist.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/backstage-implant-dentist.jpg" alt="" loading="lazy"></picture>
+          <span class="project-card__scrim" aria-hidden="true"></span>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>Приём хирурга</h3>
+        </article>
+    <article class="project-card reveal" style="--card-a:#26211d;--card-b:#5a4a38" tabindex="0" role="button" aria-label="Смотреть видео: Stories для клиники" data-video="https://rutube.ru/shorts/d2693fd980e2749284016c950da85f7a/">
+          <picture><source srcset="assets/images/projects/backstage-storis-closeup.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/backstage-storis-closeup.jpg" alt="" loading="lazy"></picture>
+          <span class="project-card__scrim" aria-hidden="true"></span>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>Stories для клиники</h3>
+        </article>
+    <article class="project-card reveal" style="--card-a:#26211d;--card-b:#5a4a38" tabindex="0" role="button" aria-label="Смотреть видео: Reels для стоматологии, под трендовый звук" data-video="https://rutube.ru/shorts/573ddc52a4f40d0c8299969c91ae7643/">
+          <picture><source srcset="assets/images/projects/backstage-reels-trend.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/backstage-reels-trend.jpg" alt="" loading="lazy"></picture>
+          <span class="project-card__scrim" aria-hidden="true"></span>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>Reels для стоматологии</h3>
+          <p>Под трендовый звук</p>
+        </article>
+    <article class="project-card reveal" style="--card-a:#26211d;--card-b:#5a4a38" tabindex="0" role="button" aria-label="Смотреть видео: Детский приём, приёмы с детьми в стоматологии" data-video="https://rutube.ru/shorts/5bcccc0bd6b23f4cb494d7fe393ae28e/">
+          <picture><source srcset="assets/images/projects/backstage-first-meeting-kids.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/backstage-first-meeting-kids.jpg" alt="" loading="lazy"></picture>
+          <span class="project-card__scrim" aria-hidden="true"></span>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>Детский приём</h3>
+          <p>Приёмы с детьми в стоматологии</p>
+        </article>
+    <article class="project-card reveal" style="--card-a:#26211d;--card-b:#5a4a38" tabindex="0" role="button" aria-label="Смотреть видео: Обучение врачей" data-video="https://rutube.ru/shorts/f2c3e101db1b17fd090f4f7ee237d6be/">
+          <picture><source srcset="assets/images/projects/backstage-training-doctors.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/backstage-training-doctors.jpg" alt="" loading="lazy"></picture>
+          <span class="project-card__scrim" aria-hidden="true"></span>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>Обучение врачей</h3>
+        </article>
+    <article class="project-card reveal" style="--card-a:#26211d;--card-b:#5a4a38" tabindex="0" role="button" aria-label="Смотреть видео: Диагностика сустава" data-video="https://rutube.ru/shorts/85091746b7d712745f4b8b122f293750/">
+          <picture><source srcset="assets/images/projects/backstage-condylography-device.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/backstage-condylography-device.jpg" alt="" loading="lazy"></picture>
+          <span class="project-card__scrim" aria-hidden="true"></span>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>Диагностика сустава</h3>
+        </article>
+    <article class="project-card reveal" style="--card-a:#26211d;--card-b:#5a4a38" tabindex="0" role="button" aria-label="Смотреть видео: Осмотр стоматолога" data-video="https://rutube.ru/shorts/5b2a9d0bb73141eff81a4f4eb85c2d8f/">
+          <picture><source srcset="assets/images/projects/backstage-dentist-exam-2.webp" type="image/webp"><img class="project-card__art" src="assets/images/projects/backstage-dentist-exam-2.jpg" alt="" loading="lazy"></picture>
+          <span class="project-card__scrim" aria-hidden="true"></span>
+          <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+          <h3>Осмотр стоматолога</h3>
+        </article>
+  </div>
+</main>
+
+<div class="video-modal" id="videoModal" aria-hidden="true">
+  <div class="video-modal__scrim" data-video-close></div>
+  <div class="video-modal__box">
+    <button class="video-modal__close" data-video-close aria-label="Закрыть">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 4 20 20M20 4 4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <video class="video-modal__player" id="videoModalPlayer" controls playsinline></video>
+    <iframe class="video-modal__frame" id="videoModalFrame" allow="autoplay" allowfullscreen></iframe>
+    <p class="video-modal__empty" id="videoModalEmpty">Видео скоро появится здесь</p>
+  </div>
+</div>
+
+<div class="custom-cursor" id="customCursor" aria-hidden="true"><span>Смотреть</span></div>
+
+<script src="script.js?v=5"></script>
+</body>
+</html>
