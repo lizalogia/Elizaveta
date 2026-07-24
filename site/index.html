@@ -15,7 +15,7 @@
 
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 
-<link rel="stylesheet" href="styles.css?v=53">
+<link rel="stylesheet" href="styles.css?v=54">
 </head>
 <body>
 <div class="page-fade" id="pageFade" aria-hidden="true"></div>
@@ -28,9 +28,9 @@
 </header>
 
 <nav class="nav-drawer" id="navDrawer">
-  <a href="#clients" data-close>01. Площадки • Медиа • Бренды</a>
+  <a href="#showcase" data-close>01. Площадки • Медиа • Бренды</a>
   <a href="#showreel" data-close>02. Showreel</a>
-  <a href="#projects" data-close>03. Проекты</a>
+  <a href="#portfolio" data-close>03. Портфолио</a>
   <a href="#process" data-close>04. Как проходит съёмка</a>
   <a href="#contacts" data-close>05. Контакты</a>
 </nav>
@@ -78,11 +78,11 @@
     </div>
   </section>
 
-  <!-- 01. Проекты и партнёры -->
-  <section class="clients section" id="clients" data-theme="light">
+  <!-- Площадки • Медиа • Бренды -->
+  <section class="clients section" id="showcase" data-theme="light">
     <div class="section__head reveal">
       <span class="section__num">01.</span>
-      <h2>Проекты и партнёры</h2>
+      <h2>Площадки • Медиа • Бренды</h2>
     </div>
     <div class="clients__wall">
       <div class="marquee marquee--light marquee--clients" aria-hidden="true">
@@ -130,7 +130,7 @@
         </div>
       </div>
     </div>
-    <p class="clients__trust reveal">Более&nbsp;30 артистов, федеральные проекты и мероприятия с&nbsp;аудиторией до&nbsp;50&nbsp;000&nbsp;человек.</p>
+    <p class="clients__trust reveal"><span>30+&nbsp;артистов</span><i aria-hidden="true">•</i><span>Федеральные&nbsp;проекты</span><i aria-hidden="true">•</i><span>Аудитория мероприятий до&nbsp;50&nbsp;000&nbsp;человек</span></p>
   </section>
 
   <!-- Showreel — самостоятельный кинематографичный экран -->
@@ -165,10 +165,10 @@
   </section>
 
   <!-- 03. Проекты — категории -->
-  <section class="formats section" id="projects" data-theme="dark">
+  <section class="formats section" id="portfolio" data-theme="dark">
     <div class="section__head reveal">
       <span class="section__num">03.</span>
-      <h2>Проекты</h2>
+      <h2>Портфолио</h2>
     </div>
     <div class="formats__grid">
       <a href="format-concerts.html" class="format-card reveal">
@@ -230,17 +230,17 @@
       <h2>Как проходит<br>съёмка</h2>
     </div>
     <div class="flow" id="flow">
-      <div class="flow__chain">
-        <p class="flow__line reveal">Обсуждаем задачи, формат и ваши пожелания.</p>
-        <span class="flow__arrow reveal" aria-hidden="true">
-          <svg viewBox="0 0 24 44" fill="none"><path d="M12 1v34M4 29l8 9 8-9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <p class="flow__line reveal">Сопровождаю вас на съёмке — от вас только хорошее настроение.</p>
-        <span class="flow__arrow reveal" aria-hidden="true">
-          <svg viewBox="0 0 24 44" fill="none"><path d="M12 1v34M4 29l8 9 8-9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <div class="flow__stage reveal">
-          <h3 class="flow__stage-title">После съёмки</h3>
+      <ol class="flow__chain">
+        <li class="flow__step reveal">
+          <span class="flow__eyebrow">Первый контакт</span>
+          <p class="flow__line">Обсуждаем задачи, формат и ваши пожелания.</p>
+        </li>
+        <li class="flow__step reveal">
+          <span class="flow__eyebrow">Съёмочный день</span>
+          <p class="flow__line">Сопровождаю вас на съёмке — от вас только хорошее настроение.</p>
+        </li>
+        <li class="flow__step flow__step--final reveal">
+          <span class="flow__eyebrow">После съёмки</span>
           <ul class="flow__after-list">
             <li>Срок сдачи готового материала — до&nbsp;48&nbsp;часов.</li>
             <li>Исходные материалы отправляю в&nbsp;течение 24&nbsp;часов.</li>
@@ -248,8 +248,8 @@
             <li>До&nbsp;5&nbsp;правок включено.</li>
           </ul>
           <p class="flow__note">*Дополнительные правки обсуждаются отдельно.</p>
-        </div>
-      </div>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -305,8 +305,12 @@
   </section>
 
   <footer class="site-footer">
+    <div class="site-footer__brand reveal">
+      <span class="site-footer__wordmark">lizalogia</span>
+      <span class="site-footer__tagline">feel the vibe.</span>
+      <span class="site-footer__copy">© 2026</span>
+    </div>
     <p class="site-footer__disclaimer">Все упомянутые на сайте названия, логотипы и товарные знаки принадлежат соответствующим правообладателям и используются исключительно в целях демонстрации выполненных работ (портфолио).</p>
-    <span class="site-footer__copy">© lizalogia 2026</span>
   </footer>
 
 </main>
