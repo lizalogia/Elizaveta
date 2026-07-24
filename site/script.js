@@ -412,4 +412,48 @@
       stats.forEach(runCount);
     }
   }
+
+  // Active-section highlight in the nav drawer (scroll spy).
+  if (drawer && 'IntersectionObserver' in window) {
+    const navLinks = [...drawer.querySelectorAll('a[href^="#"]')];
+    const idToLink = new Map(
+      navLinks.map((a) => [a.getAttribute('href').slice(1), a]).filter(([id]) => id)
+    );
+    if (idToLink.size) {
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const link = idToLink.get(entry.target.id);
+          if (!link) return;
+          navLinks.forEach((a) => a.classList.remove('is-active'));
+          link.classList.add('is-active');
+        });
+      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+      idToLink.forEach((_link, id) => {
+        const section = document.getElementById(id);
+        if (section) spy.observe(section);
+      });
+    }
+  }
+
+  // Cinematic cross-page transition: veil out before navigating to another
+  // page in the site, so category pages never flash the browser's raw load.
+  const pageFade = document.getElementById('pageFade');
+  if (pageFade && !reduceMotion) {
+    document.querySelectorAll('a[href$=".html"]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const url = link.getAttribute('href');
+        if (!url || link.target === '_blank' || link.hasAttribute('download')) return;
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        pageFade.classList.add('is-leaving');
+        window.setTimeout(() => { window.location.href = url; }, 420);
+      });
+    });
+    // Restore the veil to its idle state if the page is shown from bfcache
+    // (back/forward), so it doesn't stay covered.
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) pageFade.classList.remove('is-leaving');
+    });
+  }
 })();
