@@ -6,7 +6,7 @@
      drop the files into assets/fonts + declare @font-face and they take
      over automatically; until then these fall back to the current faces. */
   --font-logo: "Rosyitha", "Good Vibes Pro", var(--font-display);
-  --font-slogan: "Lato", var(--font-display);
+  --font-slogan: "Brielle", "Lato", var(--font-display);
 
   --cream: #f3eee6;
   --cream-soft: #f7f2ea;
@@ -313,17 +313,17 @@ img { max-width: 100%; display: block; }
 
 .hero__script {
   font-family: var(--font-slogan);
-  font-weight: 300;
-  font-size: clamp(21px, 3.3vw, 40px);
-  line-height: 1.2;
-  letter-spacing: 0.07em;
+  font-weight: 400;
+  font-size: clamp(26px, 4.1vw, 50px);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
   white-space: nowrap;
   color: rgba(239, 231, 217, 0.78);
   margin: 0;
 }
 
 @media (max-width: 720px) {
-  .hero__script { font-size: clamp(17px, 5vw, 22px); }}
+  .hero__script { font-size: clamp(21px, 6.2vw, 28px); }}
 
 .hero__desc {
   max-width: 540px;
@@ -1913,9 +1913,9 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
      room so it never clips at the viewport or grid edge. */
   padding: 0.1em 0.05em 0.22em 0.55em;
   font-family: var(--font-slogan);
-  font-weight: 300;
-  letter-spacing: 0.06em;
-  font-size: clamp(16px, 2.4vw, 24px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  font-size: clamp(19px, 2.9vw, 30px);
   line-height: 1.1;
   color: var(--brown-mid);
 }
