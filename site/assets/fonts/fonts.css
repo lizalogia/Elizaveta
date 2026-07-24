@@ -617,3 +617,19 @@
   src: url('Arsenica-Thin.ttf') format('truetype');
 }
 
+
+@font-face {
+  font-family: 'Good Vibes Pro';
+  src: url('GoodVibesPro.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Atziluth Script';
+  src: url('AtziluthScript.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

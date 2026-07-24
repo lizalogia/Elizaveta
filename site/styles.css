@@ -2,6 +2,11 @@
   --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
   --font-script: "Hello January", var(--font-display);
   --font-body: "Golca", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  /* Brand faces. "Good Vibes Pro" / "Atziluth Script" are licensed fonts —
+     drop the files into assets/fonts + declare @font-face and they take
+     over automatically; until then these fall back to the current faces. */
+  --font-logo: "Good Vibes Pro", "Hello January", var(--font-display);
+  --font-slogan: "Atziluth Script", "Ballet", var(--font-display);
 
   --cream: #f3eee6;
   --cream-soft: #f7f2ea;
@@ -25,7 +30,14 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* Decorative bleed (marquee tracks, the off-canvas drawer, the hidden
+     video dialog) must never produce a horizontal scrollbar. `clip` is used
+     rather than `hidden` so it doesn't turn the root into a scroll
+     container and break position: sticky / fixed. */
+  overflow-x: clip;
+}
 
 body {
   margin: 0;
@@ -65,15 +77,20 @@ img { max-width: 100%; display: block; }
 .site-header > * { pointer-events: auto; }
 
 .logo {
-  font-family: var(--font-script);
+  font-family: var(--font-logo);
   font-weight: 400;
-  font-size: clamp(48px, 6.4vw, 64px);
+  font-size: clamp(42px, 5.4vw, 56px);
+  line-height: 1;
   color: var(--cream-soft);
   text-decoration: none;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.012em;
   mix-blend-mode: difference;
-  margin-top: 7px;
-  transition: color 0.3s ease;
+  margin-top: 4px;
+  padding-right: 0.14em;
+  transition: color 0.3s ease, opacity 0.4s var(--ease-out-expo);
+}
+@media (hover: hover) {
+  .logo:hover { opacity: 0.78; }
 }
 
 /* Past the hero, mix-blend-mode against scrolled content isn't reliable
@@ -191,7 +208,7 @@ img { max-width: 100%; display: block; }
   max-width: none;
   object-fit: cover;
   object-position: 50% 50%;
-  filter: contrast(1.08) saturate(1.06) brightness(1.01);
+  filter: contrast(1.14) saturate(1.08) brightness(1.05);
 }
 @media (max-width: 720px) {
   .hero__photo { object-position: 60% 42%; }}
@@ -208,9 +225,9 @@ img { max-width: 100%; display: block; }
   /* Edge-only vignette: top (header), bottom (hand-off), a touch on the
      sides — the centre of the photo stays untouched and crisp. */
   background:
-    linear-gradient(180deg, rgba(15, 11, 9, 0.42) 0%, rgba(15, 11, 9, 0) 18%),
-    linear-gradient(0deg, rgba(15, 11, 9, 0.6) 0%, rgba(15, 11, 9, 0.18) 14%, rgba(15, 11, 9, 0) 30%),
-    linear-gradient(90deg, rgba(15, 11, 9, 0.26) 0%, rgba(15, 11, 9, 0) 14%, rgba(15, 11, 9, 0) 86%, rgba(15, 11, 9, 0.2) 100%);
+    linear-gradient(180deg, rgba(15, 11, 9, 0.34) 0%, rgba(15, 11, 9, 0) 16%),
+    linear-gradient(0deg, rgba(15, 11, 9, 0.54) 0%, rgba(15, 11, 9, 0.12) 13%, rgba(15, 11, 9, 0) 27%),
+    linear-gradient(90deg, rgba(15, 11, 9, 0.2) 0%, rgba(15, 11, 9, 0) 13%, rgba(15, 11, 9, 0) 87%, rgba(15, 11, 9, 0.15) 100%);
   pointer-events: none;
 }
 
@@ -220,7 +237,7 @@ img { max-width: 100%; display: block; }
   height: 22%;
   z-index: 0;
   pointer-events: none;
-  background: radial-gradient(120% 100% at 50% 100%, rgba(214, 191, 158, 0.12), transparent 58%);
+  background: radial-gradient(120% 100% at 50% 100%, rgba(214, 191, 158, 0.08), transparent 55%);
 }
 
 .hero__watermark {
@@ -249,7 +266,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(42px, 12vw, 224px);
-  color: rgba(243, 238, 230, 0.088);
+  color: rgba(243, 238, 230, 0.105);
   letter-spacing: 0.05em;
   white-space: nowrap;
 }
@@ -276,10 +293,11 @@ img { max-width: 100%; display: block; }
   font-size: clamp(24px, 4.2vw, 48px);
   line-height: 1.03;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.012em;
   text-align: left;
   margin: 0;
-  color: var(--cream-soft);
+  color: #fbf8f2;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.42);
 }
 
 .hero__script-wrap {
@@ -292,7 +310,7 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__script {
-  font-family: 'Ballet', var(--font-script);
+  font-family: var(--font-slogan);
   font-weight: 400;
   font-size: clamp(70px, 11.5vw, 145px);
   line-height: 1.15;
@@ -336,13 +354,13 @@ img { max-width: 100%; display: block; }
   gap: 9px;
   font-family: 'Golca', var(--font-display);
   font-weight: 500;
-  font-size: 11.5px;
-  letter-spacing: 0.08em;
+  font-size: 11px;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: rgba(243, 238, 230, 0.92);
+  color: rgba(243, 238, 230, 0.88);
   text-decoration: none;
-  padding: 10px 22px;
-  border: 1px solid rgba(243, 238, 230, 0.26);
+  padding: 9px 20px;
+  border: 1px solid rgba(243, 238, 230, 0.2);
   border-radius: 999px;
   overflow: hidden;
   transition: color 0.45s var(--ease-out-expo), border-color 0.45s ease, transform 0.45s var(--ease-out-expo);
@@ -395,15 +413,15 @@ img { max-width: 100%; display: block; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  color: rgba(243, 238, 230, 0.62);
+  gap: 18px;
+  color: rgba(243, 238, 230, 0.5);
   font-family: 'Jost', var(--font-display);
   font-weight: 300;
-  font-size: 10px;
-  letter-spacing: 0.26em;
+  font-size: 9px;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
 }
-.hero__scroll svg { width: 8px; height: auto; opacity: 0.7; animation: scroll-bounce 2.6s var(--ease-out-expo) infinite; }
+.hero__scroll svg { width: 7px; height: auto; opacity: 0.55; animation: scroll-bounce 2.6s var(--ease-out-expo) infinite; }
 @keyframes scroll-bounce {
   0%, 100% { transform: translateY(0); opacity: 0.35; }
   45% { transform: translateY(7px); opacity: 0.85; }
@@ -492,10 +510,23 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 /* ---------- Clients ---------- */
 
 .clients { background: var(--warm-gradient); padding-bottom: clamp(96px, 14vw, 180px); padding-top: clamp(104px, 15vw, 188px); }
+/* A quiet lead-in line, not a section title — it hands the eye straight
+   over to the marquee instead of competing with the logos. */
+.clients__lead {
+  margin: 0 0 clamp(30px, 4.5vw, 52px);
+  padding: 0 var(--pad-x);
+  font-family: 'Neutral Face', var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: clamp(10.5px, 1.15vw, 12.5px);
+  line-height: 1.4;
+  color: rgba(60, 47, 40, 0.5);
+}
 .clients__wall {
   display: flex;
   flex-direction: column;
-  gap: clamp(30px, 4vw, 56px);
+  gap: clamp(36px, 5vw, 64px);
 }
 .clients__trust {
   max-width: 760px;
@@ -1024,7 +1055,9 @@ html.js .format-card.reveal:focus-visible::before {
 .video-modal__scrim { position: absolute; inset: 0; background: #000; }
 .video-modal__box {
   position: relative;
-  width: 100vw;
+  /* 100vw counts the scrollbar and pushed the page 7px wide even while the
+     dialog was hidden — 100% matches the fixed parent instead. */
+  width: 100%;
   height: 100svh;
   display: flex;
   align-items: center;
@@ -1661,7 +1694,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 }
 @keyframes hero-photo-in {
   from { transform: scale(1.08); filter: brightness(0.88) contrast(1.0) saturate(1.0); }
-  to   { transform: scale(1); filter: contrast(1.08) saturate(1.06) brightness(1.01); }
+  to   { transform: scale(1); filter: contrast(1.14) saturate(1.08) brightness(1.05); }
 }
 
 /* ---- Hero CTA: richer hover (glow + micro-scale) ---- */
@@ -1862,7 +1895,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   grid-area: brand;
   justify-self: end;
   text-align: right;
-  font-family: var(--font-script);
+  font-family: var(--font-logo);
   font-size: clamp(40px, 7vw, 72px);
   line-height: 0.9;
   color: var(--ink);
@@ -1876,7 +1909,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   /* Ballet's leading f-swash extends far beyond the glyph box — give it
      room so it never clips at the viewport or grid edge. */
   padding: 0.1em 0.05em 0.22em 0.55em;
-  font-family: 'Ballet', var(--font-script);
+  font-family: var(--font-slogan);
   font-size: clamp(28px, 4.8vw, 44px);
   line-height: 1.1;
   color: var(--brown-mid);
@@ -1915,3 +1948,28 @@ button:focus-visible {
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+/* ============================================================
+   Final polish layer (v61)
+   ============================================================ */
+
+/* ---- Portfolio: richer, calmer card hover ---- */
+@media (hover: hover) {
+  .project-card { transition: transform 0.6s var(--ease-out-expo), box-shadow 0.6s var(--ease-out-expo); }
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 40px 70px -40px rgba(0, 0, 0, 0.75);
+  }
+  .project-card__art { transition: transform 0.9s var(--ease-out-expo), filter 0.6s ease; }
+  .project-card:hover .project-card__art { transform: scale(1.06); filter: brightness(0.88); }
+}
+
+/* ---- Showreel: a touch more air around the video ---- */
+.showreel-section { gap: clamp(46px, 6.8vw, 84px); }
+
+/* ---- Process: lighter weight, calmer connective line ---- */
+.flow__chain::before {
+  background: linear-gradient(180deg, rgba(60, 47, 40, 0.24) 0%, rgba(60, 47, 40, 0.1) 68%, rgba(60, 47, 40, 0) 100%);
+}
+.flow__step::before { border-color: rgba(143, 118, 89, 0.75); }
+.flow__line, .flow__after-list li { color: var(--brown); }
