@@ -5,8 +5,8 @@
   /* Brand faces. "Good Vibes Pro" / "Atziluth Script" are licensed fonts —
      drop the files into assets/fonts + declare @font-face and they take
      over automatically; until then these fall back to the current faces. */
-  --font-logo: "Good Vibes Pro", "Hello January", var(--font-display);
-  --font-slogan: "Atziluth Script", "Ballet", var(--font-display);
+  --font-logo: "Rosyitha", "Good Vibes Pro", var(--font-display);
+  --font-slogan: "Evafiya", "Atziluth Script", var(--font-display);
 
   --cream: #f3eee6;
   --cream-soft: #f7f2ea;
@@ -288,8 +288,8 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__headline {
-  font-family: 'Futura Light', var(--font-display);
-  font-weight: 300;
+  font-family: 'Jun', 'Futura Light', var(--font-display);
+  font-weight: 400;
   font-size: clamp(24px, 4.2vw, 48px);
   line-height: 1.03;
   text-transform: uppercase;
@@ -312,15 +312,16 @@ img { max-width: 100%; display: block; }
 .hero__script {
   font-family: var(--font-slogan);
   font-weight: 400;
-  font-size: clamp(70px, 11.5vw, 145px);
-  line-height: 1.15;
+  font-size: clamp(46px, 7.2vw, 94px);
+  line-height: 1.1;
+  letter-spacing: 0.005em;
   white-space: nowrap;
   color: rgba(239, 231, 217, 0.78);
   margin: 0;
 }
 
 @media (max-width: 720px) {
-  .hero__script { font-size: clamp(38px, 12.5vw, 50px); }}
+  .hero__script { font-size: clamp(30px, 9.5vw, 40px); }}
 
 .hero__desc {
   max-width: 540px;
@@ -1910,7 +1911,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
      room so it never clips at the viewport or grid edge. */
   padding: 0.1em 0.05em 0.22em 0.55em;
   font-family: var(--font-slogan);
-  font-size: clamp(28px, 4.8vw, 44px);
+  font-size: clamp(20px, 3.2vw, 30px);
   line-height: 1.1;
   color: var(--brown-mid);
 }

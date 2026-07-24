@@ -633,3 +633,27 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Rosyitha';
+  src: url('Rosyitha.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Jun';
+  src: url('Jun.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Evafiya';
+  src: url('Evafiya.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
