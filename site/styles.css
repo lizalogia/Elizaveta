@@ -81,12 +81,14 @@ img { max-width: 100%; display: block; }
   font-weight: 400;
   font-size: clamp(42px, 5.4vw, 56px);
   line-height: 1;
-  color: var(--cream-soft);
+  color: #fffdf9;
   text-decoration: none;
   letter-spacing: 0.012em;
-  mix-blend-mode: difference;
   margin-top: 4px;
   padding-right: 0.14em;
+  -webkit-text-stroke: 0.35px currentColor;
+  paint-order: stroke fill;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55), 0 0 30px rgba(0, 0, 0, 0.35);
   transition: color 0.3s ease, opacity 0.4s var(--ease-out-expo);
 }
 @media (hover: hover) {
@@ -96,11 +98,11 @@ img { max-width: 100%; display: block; }
 /* Past the hero, mix-blend-mode against scrolled content isn't reliable
    across browsers, so the header switches to an explicit color per
    section instead (see script.js theme-watcher). */
-.site-header--light .logo { color: var(--ink); mix-blend-mode: normal; }
+.site-header--light .logo { color: var(--ink); text-shadow: none; -webkit-text-stroke-width: 0.3px; }
 .site-header--light .menu-toggle { mix-blend-mode: normal; }
 .site-header--light .menu-toggle span { background: var(--ink); }
 
-.site-header--dark .logo { color: var(--cream-soft); mix-blend-mode: normal; }
+.site-header--dark .logo { color: var(--cream-soft); text-shadow: none; }
 .site-header--dark .menu-toggle { mix-blend-mode: normal; }
 .site-header--dark .menu-toggle span { background: var(--cream-soft); }
 
@@ -288,7 +290,7 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__headline {
-  font-family: 'Jun', 'Futura Light', var(--font-display);
+  font-family: 'Cellga', 'Jun', var(--font-display);
   font-weight: 400;
   font-size: clamp(24px, 4.2vw, 48px);
   line-height: 1.03;
