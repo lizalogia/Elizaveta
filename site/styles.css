@@ -6,7 +6,7 @@
      drop the files into assets/fonts + declare @font-face and they take
      over automatically; until then these fall back to the current faces. */
   --font-logo: "Rosyitha", "Good Vibes Pro", var(--font-display);
-  --font-slogan: "Ganeta", "Brielle", var(--font-display);
+  --font-slogan: "Brielle", "Ganeta", var(--font-display);
 
   --cream: #f3eee6;
   --cream-soft: #f7f2ea;
@@ -314,16 +314,16 @@ img { max-width: 100%; display: block; }
 .hero__script {
   font-family: var(--font-slogan);
   font-weight: 400;
-  font-size: clamp(26px, 4.1vw, 50px);
-  line-height: 1.15;
-  letter-spacing: 0.01em;
+  font-size: clamp(28px, 5vw, 58px);
+  line-height: 1.2;
+  letter-spacing: 0.035em;
   white-space: nowrap;
   color: rgba(239, 231, 217, 0.78);
   margin: 0;
 }
 
 @media (max-width: 720px) {
-  .hero__script { font-size: clamp(21px, 6.2vw, 28px); }}
+  .hero__script { font-size: clamp(23px, 7vw, 32px); }}
 
 .hero__desc {
   max-width: 540px;
@@ -1914,8 +1914,8 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   padding: 0.1em 0.05em 0.22em 0.55em;
   font-family: var(--font-slogan);
   font-weight: 400;
-  letter-spacing: 0.01em;
-  font-size: clamp(19px, 2.9vw, 30px);
+  letter-spacing: 0.035em;
+  font-size: clamp(21px, 3.2vw, 34px);
   line-height: 1.1;
   color: var(--brown-mid);
 }
