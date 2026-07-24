@@ -6,7 +6,7 @@
      drop the files into assets/fonts + declare @font-face and they take
      over automatically; until then these fall back to the current faces. */
   --font-logo: "Rosyitha", "Good Vibes Pro", var(--font-display);
-  --font-slogan: "Brielle", "Lato", var(--font-display);
+  --font-slogan: "Ganeta", "Brielle", var(--font-display);
 
   --cream: #f3eee6;
   --cream-soft: #f7f2ea;
