@@ -1940,16 +1940,20 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 .nav-drawer.is-open a:nth-child(4) { transition-delay: 0.31s; }
 .nav-drawer.is-open a:nth-child(5) { transition-delay: 0.38s; }
 .nav-drawer a:hover { opacity: 1; transform: translateX(8px); }
-.nav-drawer a.is-active { opacity: 1; padding-left: 20px; }
+/* Active section: a soft warm glow behind the line instead of a dash. */
+.nav-drawer a.is-active {
+  opacity: 1;
+  color: #fff;
+  text-shadow: 0 0 22px rgba(246, 241, 230, 0.45);
+}
 .nav-drawer a.is-active::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 50%;
-  width: 12px;
-  height: 1.5px;
-  background: var(--taupe-soft);
-  transform: translateY(-50%);
+  inset: -12px -16px;
+  z-index: -1;
+  border-radius: 12px;
+  background: radial-gradient(70% 100% at 30% 50%, rgba(239, 231, 217, 0.08), rgba(239, 231, 217, 0));
+  pointer-events: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .nav-drawer a { opacity: 0.85; transform: none; transition-delay: 0s !important; }
@@ -2097,18 +2101,25 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 .contacts__inner { max-width: 600px; }
 .contacts__grid { margin-top: clamp(10px, 2vw, 22px); }
 
-/* ---- Editorial footer: composition anchored bottom-left ---- */
+/* ---- Editorial footer: brand bottom-right, legal bottom-left ---- */
 .site-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "copy  brand"
+    "copy  vibe"
+    "legal legal";
+  align-items: end;
+  column-gap: clamp(24px, 5vw, 80px);
+  row-gap: clamp(6px, 1vw, 12px);
   min-height: clamp(320px, 40vw, 500px);
   padding: clamp(80px, 12vw, 148px) var(--pad-x) clamp(40px, 5vw, 58px);
   background: var(--warm-gradient);
-  text-align: left;
 }
 .site-footer__wordmark {
+  grid-area: brand;
+  justify-self: end;
+  text-align: right;
   font-family: var(--font-script);
   font-size: clamp(40px, 7vw, 72px);
   line-height: 0.9;
@@ -2116,6 +2127,9 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   letter-spacing: 0.01em;
 }
 .site-footer__tagline {
+  grid-area: vibe;
+  justify-self: end;
+  text-align: right;
   margin-top: clamp(2px, 0.6vw, 8px);
   font-family: 'Ballet', var(--font-script);
   font-size: clamp(28px, 4.8vw, 44px);
@@ -2123,13 +2137,16 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   color: var(--taupe);
 }
 .site-footer__copy {
-  margin-top: clamp(18px, 2.4vw, 30px);
+  grid-area: copy;
+  justify-self: start;
+  align-self: end;
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(60, 47, 40, 0.46);
 }
 .site-footer__disclaimer {
+  grid-area: legal;
   margin: clamp(28px, 4vw, 48px) 0 0;
   max-width: 64ch;
   text-align: left;
@@ -2137,4 +2154,13 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   font-size: 9.5px;
   line-height: 1.6;
   color: rgba(60, 47, 40, 0.38);
+}
+@media (max-width: 560px) {
+  .site-footer {
+    grid-template-columns: 1fr;
+    grid-template-areas: "brand" "vibe" "copy" "legal";
+    row-gap: clamp(6px, 2vw, 12px);
+  }
+  .site-footer__wordmark, .site-footer__tagline { justify-self: end; }
+  .site-footer__copy { margin-top: clamp(18px, 4vw, 26px); }
 }
