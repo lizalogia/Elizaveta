@@ -296,11 +296,11 @@ img { max-width: 100%; display: block; }
 }
 .hero__desc-lead {
   margin: 0 0 clamp(18px, 2.6vw, 28px);
-  font-family: 'Futura Light', 'Jost', var(--font-display);
+  font-family: 'Lato', var(--font-display);
   font-weight: 300;
   font-size: clamp(27px, 4.5vw, 46.5px);
-  line-height: 1.1;
-  letter-spacing: 0.01em;
+  line-height: 1.15;
+  letter-spacing: 0.005em;
   color: var(--cream-soft);
 }
 .hero__desc-body {
@@ -1149,11 +1149,11 @@ html.js .format-card.reveal:focus-visible::before {
   padding: clamp(120px, 16vw, 184px) var(--pad-x) clamp(88px, 12vw, 132px);
 }
 .contacts__headline {
-  font-family: 'Futura Light', 'Jost', var(--font-display);
+  font-family: 'Lato', var(--font-display);
   font-weight: 300;
   font-size: clamp(27px, 4.5vw, 46.5px);
-  line-height: 1.1;
-  letter-spacing: 0.01em;
+  line-height: 1.15;
+  letter-spacing: 0.005em;
   margin: 0 0 20px;
   color: var(--cream-soft);
 }
