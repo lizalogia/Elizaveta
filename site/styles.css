@@ -2,10 +2,8 @@
   --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
   --font-script: "Hello January", var(--font-display);
   --font-body: "Golca", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  /* Brand faces: the signature wordmark, and the script used for the
-     «feel the vibe» line — which now appears only in the footer. */
+  /* Signature wordmark face. */
   --font-logo: "Rosyitha", "Good Vibes Pro", var(--font-display);
-  --font-slogan: "Ballet", var(--font-display);
 
   --cream: #f3eee6;
   --cream-soft: #f7f2ea;
@@ -297,12 +295,12 @@ img { max-width: 100%; display: block; }
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.62), 0 0 26px rgba(0, 0, 0, 0.4);
 }
 .hero__desc-lead {
-  margin: 0 0 clamp(16px, 2.4vw, 26px);
-  font-family: 'Neutral Face', var(--font-display);
-  font-size: clamp(15px, 2vw, 25px);
-  line-height: 1.18;
-  font-weight: 400;
-  letter-spacing: 0.005em;
+  margin: 0 0 clamp(18px, 2.6vw, 28px);
+  font-family: 'Futura Light', 'Jost', var(--font-display);
+  font-weight: 300;
+  font-size: clamp(27px, 4.5vw, 46.5px);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
   color: var(--cream-soft);
 }
 .hero__desc-body {
@@ -1151,7 +1149,7 @@ html.js .format-card.reveal:focus-visible::before {
   padding: clamp(120px, 16vw, 184px) var(--pad-x) clamp(88px, 12vw, 132px);
 }
 .contacts__headline {
-  font-family: 'Futura Light', var(--font-display);
+  font-family: 'Futura Light', 'Jost', var(--font-display);
   font-weight: 300;
   font-size: clamp(27px, 4.5vw, 46.5px);
   line-height: 1.1;
@@ -1841,7 +1839,6 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   grid-template-columns: 1fr auto;
   grid-template-areas:
     "copy  brand"
-    "copy  vibe"
     "legal legal";
   align-items: end;
   column-gap: clamp(24px, 5vw, 80px);
@@ -1859,21 +1856,6 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   line-height: 0.9;
   color: var(--ink);
   letter-spacing: 0.01em;
-}
-.site-footer__tagline {
-  grid-area: vibe;
-  justify-self: end;
-  text-align: right;
-  margin-top: clamp(2px, 0.6vw, 8px);
-  /* Ballet's leading f-swash extends far beyond the glyph box — give it
-     room so it never clips at the viewport or grid edge. */
-  padding: 0.1em 0.05em 0.22em 0.55em;
-  font-family: var(--font-slogan);
-  font-weight: 400;
-  letter-spacing: 0.035em;
-  font-size: clamp(21px, 3.2vw, 34px);
-  line-height: 1.1;
-  color: var(--brown-mid);
 }
 .site-footer__copy {
   grid-area: copy;
@@ -1897,11 +1879,10 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 @media (max-width: 560px) {
   .site-footer {
     grid-template-columns: 1fr;
-    grid-template-areas: "brand" "vibe" "copy" "legal";
+    grid-template-areas: "brand" "copy" "legal";
     row-gap: clamp(6px, 2vw, 12px);
   }
-  .site-footer__wordmark, .site-footer__tagline { justify-self: end; }
-  .site-footer__copy { margin-top: clamp(18px, 4vw, 26px); }}
+  .site-footer__wordmark,   .site-footer__copy { margin-top: clamp(18px, 4vw, 26px); }}
 /* ---- Global keyboard focus (a11y) ---- */
 a:focus-visible,
 button:focus-visible {
