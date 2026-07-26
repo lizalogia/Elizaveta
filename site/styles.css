@@ -1864,7 +1864,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 }
 .site-footer__disclaimer {
   grid-area: legal;
-  margin: clamp(28px, 4vw, 48px) 0 0;
+  margin: clamp(16px, 2.4vw, 32px) 0 0;
   max-width: 64ch;
   text-align: left;
   font-style: italic;
@@ -1874,11 +1874,11 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 }
 @media (max-width: 560px) {
   .site-footer {
-    grid-template-columns: 1fr;
-    grid-template-areas: "brand" "copy" "legal";
-    row-gap: clamp(6px, 2vw, 12px);
+    min-height: auto;
+    padding-bottom: clamp(28px, 7vw, 40px);
+    row-gap: clamp(10px, 3vw, 16px);
   }
-  .site-footer__wordmark,   .site-footer__copy { margin-top: clamp(18px, 4vw, 26px); }}
+}
 /* ---- Global keyboard focus (a11y) ---- */
 a:focus-visible,
 button:focus-visible {
