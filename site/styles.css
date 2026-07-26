@@ -1445,10 +1445,19 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 .project-card--case {
   flex: 0 0 clamp(200px, 20vw, 264px);
 }
+/* Cards fly in with a scale, not just a rise — a livelier entrance for a
+   strip that's otherwise in constant, gentle motion. */
+html.js .project-card--case.reveal {
+  transform: scale(0.88) translateY(14px);
+}
+html.js .project-card--case.reveal.is-visible {
+  transform: scale(1) translateY(0);
+}
 
 .cases__all {
   display: inline-flex;
   align-items: center;
+  align-self: flex-start;
   gap: 10px;
   padding: clamp(13px, 1.6vw, 16px) clamp(26px, 3vw, 34px);
   border: 1px solid var(--line-on-dark);
@@ -1462,15 +1471,28 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   transition: transform 0.5s var(--ease-out-expo), border-color 0.4s ease,
               background 0.4s ease, box-shadow 0.5s ease;
 }
-.cases__all span { transition: transform 0.4s var(--ease-out-expo); }
+.cases__all span {
+  display: inline-block;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cases__all span { animation: cases-all-nudge 2.6s ease-in-out 1.5s infinite; }
+}
+@keyframes cases-all-nudge {
+  0%, 70%, 100% { transform: translate(0, 0); }
+  85% { transform: translate(3px, -3px); }
+}
 @media (hover: hover) {
   .cases__all:hover {
     border-color: rgba(239, 231, 217, 0.4);
     background: rgba(239, 231, 217, 0.06);
     box-shadow: 0 22px 50px -30px rgba(0, 0, 0, 0.9);
-    transform: translateY(-3px);
+    transform: translateY(-3px) scale(1.03);
   }
-  .cases__all:hover span { transform: translate(3px, -3px); }
+  .cases__all:hover span {
+    animation: none;
+    transform: translate(4px, -4px) rotate(8deg);
+  }
 }
 
 /* ---------- Process lead ---------- */
