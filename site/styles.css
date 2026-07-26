@@ -76,11 +76,11 @@ img { max-width: 100%; display: block; }
 .logo {
   font-family: var(--font-logo);
   font-weight: 400;
-  font-size: clamp(21px, 2.7vw, 28px);
+  font-size: clamp(26px, 3.3vw, 34px);
   line-height: 1;
   color: #fffdf9;
   text-decoration: none;
-  letter-spacing: 0.012em;
+  letter-spacing: 0.09em;
   margin-top: 4px;
   padding-right: 0.14em;
   -webkit-text-stroke: 0.6px currentColor;
