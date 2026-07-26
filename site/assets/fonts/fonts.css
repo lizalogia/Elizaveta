@@ -634,9 +634,10 @@
   font-display: swap;
 }
 
+/* Signature wordmark face — the header/footer logotype. */
 @font-face {
-  font-family: 'Rosyitha';
-  src: url('Rosyitha.woff2') format('woff2');
+  font-family: 'WindSong';
+  src: url('WindSong-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;

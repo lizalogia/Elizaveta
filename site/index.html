@@ -7,7 +7,7 @@
 <meta name="description" content="lizalogia — видеограф. Больше, чем просто съёмка. Создаю видео, которые помогают Вам стать ближе к своей аудитории.">
 <script>document.documentElement.classList.add('js');</script>
 
-<link rel="preload" href="assets/fonts/Rosyitha.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/WindSong-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/NeutralFaceBold.otf" as="font" type="font/otf" crossorigin>
 <link rel="preload" href="assets/fonts/Golca.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="assets/fonts/BlackerSansDisplay-300.woff2" as="font" type="font/woff2" crossorigin>
@@ -41,7 +41,7 @@
 
 <nav class="nav-drawer" id="navDrawer" aria-label="Навигация по сайту">
   <a href="#showcase" data-close>01. Мне доверяют</a>
-  <a href="#showreel" data-close>02. Showreel</a>
+  <a href="#cases" data-close>02. Кейсы</a>
   <a href="#portfolio" data-close>03. Портфолио</a>
   <a href="#process" data-close>04. Как проходит съёмка</a>
   <a href="#contacts" data-close>05. Контакты</a>
@@ -138,23 +138,93 @@
     <p class="clients__trust reveal"><span>30+&nbsp;артистов</span><i aria-hidden="true">•</i><span>Федеральные&nbsp;проекты</span><i aria-hidden="true">•</i><span>Аудитория мероприятий до&nbsp;50&nbsp;000&nbsp;человек</span></p>
   </section>
 
-  <!-- Showreel — самостоятельный кинематографичный экран -->
-  <section class="showreel-section" id="showreel" data-theme="dark">
+  <!-- Кейсы — бесконечная лента избранных работ -->
+  <section class="cases-section" id="cases" data-theme="dark" aria-labelledby="cases-heading">
     <div class="showreel__intro">
-      <p class="showreel__lead reveal">Личный бренд начинается с&nbsp;контента.</p>
+      <h2 class="showreel__lead reveal" id="cases-heading">Личный бренд начинается с&nbsp;контента.</h2>
       <span class="showreel__arrow reveal" aria-hidden="true"><svg viewBox="0 0 24 40" fill="none"><path d="M12 1v30M5 25l7 7 7-7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <p class="showreel__caption reveal">Именно так формируется то, как&nbsp;вас видят и&nbsp;воспринимают.</p>
-      <p class="showreel__label reveal">Showreel</p>
+      <p class="showreel__label reveal">Избранные кейсы</p>
     </div>
-    <div class="showreel reveal">
-      <div class="showreel__window" role="button" tabindex="0" data-video="" aria-label="Смотреть шоурил">
-        <span class="showreel__scrim" aria-hidden="true"></span>
-        <span class="showreel__play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+
+    <div class="marquee marquee--cases reveal" aria-label="Избранные видео-кейсы">
+      <div class="marquee__track">
+        <div class="cases-row">
+          <article class="project-card project-card--case" style="--card-a:#1c1a16;--card-b:#7a5a2e" tabindex="0" role="button" aria-label="Смотреть видео: Хор Турецкого, Кремлёвский дворец" data-video="https://rutube.ru/shorts/3b58f51bad79c0fddb9a276b93cda5ba/">
+            <picture><source srcset="assets/images/projects/turetsky-concert.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/turetsky-concert.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>Хор Турецкого</h3>
+            <p>Кремлёвский дворец</p>
+          </article>
+          <article class="project-card project-card--case" style="--card-a:#1c1c1c;--card-b:#4a4a2e" tabindex="0" role="button" aria-label="Смотреть видео: INSTADIUM, Хедлайнер Филипп Киркоров" data-video="https://drive.google.com/file/d/1lVv4DFrnWjOixTem_rGixQGbZ-VMxC5b/view">
+            <picture><source srcset="assets/images/projects/kirkorov-instadium.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/kirkorov-instadium.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>INSTADIUM</h3>
+            <p>Хедлайнер Филипп Киркоров</p>
+          </article>
+          <article class="project-card project-card--case" style="--card-a:#1c2740;--card-b:#5a4a6b" tabindex="0" role="button" aria-label="Смотреть видео: Равиоли, Оли, Премьера фильма" data-video="https://drive.google.com/file/d/17CnepweCgog2FB7CLORoFFe8_ocDXQdm/view">
+            <picture><source srcset="assets/images/projects/ravioli.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/ravioli.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>Равиоли, Оли</h3>
+            <p>Премьера фильма</p>
+          </article>
+          <article class="project-card project-card--case" style="--card-a:#141824;--card-b:#2e4a6b" tabindex="0" role="button" aria-label="Смотреть видео: INSTADIUM, Хедлайнер Ольга Бузова" data-video="https://drive.google.com/file/d/1WV58rKJhiQj6qnrOmzkR3log1MI_we8U/view">
+            <picture><source srcset="assets/images/projects/olga-buzova.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/olga-buzova.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>INSTADIUM</h3>
+            <p>Хедлайнер Ольга Бузова</p>
+          </article>
+          <article class="project-card project-card--case" style="--card-a:#14141c;--card-b:#3a3a5c" tabindex="0" role="button" aria-label="Смотреть видео: Стас Пьеха, Концерт в Мурманске" data-video="https://drive.google.com/file/d/1sRK_NoG2IOkK27jPAtUyZmHG_zEOQ2U7/view">
+            <picture><source srcset="assets/images/projects/stas-pekha.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/stas-pekha.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>Стас Пьеха</h3>
+            <p>Концерт, Мурманск</p>
+          </article>
+        </div>
+        <div class="cases-row" aria-hidden="true">
+          <article class="project-card project-card--case">
+            <picture><source srcset="assets/images/projects/turetsky-concert.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/turetsky-concert.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>Хор Турецкого</h3>
+            <p>Кремлёвский дворец</p>
+          </article>
+          <article class="project-card project-card--case">
+            <picture><source srcset="assets/images/projects/kirkorov-instadium.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/kirkorov-instadium.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>INSTADIUM</h3>
+            <p>Хедлайнер Филипп Киркоров</p>
+          </article>
+          <article class="project-card project-card--case">
+            <picture><source srcset="assets/images/projects/ravioli.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/ravioli.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>Равиоли, Оли</h3>
+            <p>Премьера фильма</p>
+          </article>
+          <article class="project-card project-card--case">
+            <picture><source srcset="assets/images/projects/olga-buzova.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/olga-buzova.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>INSTADIUM</h3>
+            <p>Хедлайнер Ольга Бузова</p>
+          </article>
+          <article class="project-card project-card--case">
+            <picture><source srcset="assets/images/projects/stas-pekha.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/stas-pekha.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>Стас Пьеха</h3>
+            <p>Концерт, Мурманск</p>
+          </article>
+        </div>
       </div>
     </div>
+
+    <a href="#portfolio" class="cases__all reveal">Все кейсы <span aria-hidden="true">↗</span></a>
   </section>
 
-  <!-- 02. Статистика (после шоурила) -->
+  <!-- 02. Статистика (после ленты кейсов) -->
   <section class="stats section" id="stats" data-theme="light">
     <div class="section__head reveal">
       <span class="section__num">02.</span>

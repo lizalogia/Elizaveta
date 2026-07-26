@@ -3,7 +3,7 @@
   --font-script: "Hello January", var(--font-display);
   --font-body: "Golca", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   /* Signature wordmark face. */
-  --font-logo: "Rosyitha", "Good Vibes Pro", var(--font-display);
+  --font-logo: "WindSong", "Good Vibes Pro", var(--font-display);
 
   --cream: #f3eee6;
   --cream-soft: #f7f2ea;
@@ -521,7 +521,6 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 .marquee--clients .marquee__track { animation-duration: 46s; }
-.marquee--clients.is-touched .marquee__track { animation-play-state: paused; }
 
 .brandmark-row {
   display: inline-flex;
@@ -599,7 +598,8 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 }
 .marquee--light .marquee__track { color: var(--brown-mid); }
 .marquee--reverse .marquee__track { animation-direction: reverse; }
-.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee:hover .marquee__track,
+.marquee.is-touched .marquee__track { animation-play-state: paused; }
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -693,6 +693,7 @@ html.js.has-fine-pointer .project-card:hover {
   background: rgba(20, 15, 12, 0.55);
 }
 .has-fine-pointer .project-card:hover .project-card__play { opacity: 0; }
+.project-card h2,
 .project-card h3 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
@@ -1331,9 +1332,8 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   max-width: 42ch;
 }
 
-/* ---------- Showreel window ---------- */
-/* Standalone cinematic showreel screen */
-.showreel-section {
+/* ---------- Cases: infinite marquee of selected work ---------- */
+.cases-section {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1341,10 +1341,11 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   justify-content: center;
   gap: clamp(40px, 6vw, 74px);
   min-height: 92svh;
-  padding: clamp(96px, 14vw, 184px) var(--pad-x);
+  padding: clamp(96px, 14vw, 184px) 0;
   background: radial-gradient(120% 80% at 50% 40%, #2a1d12 0%, #17110b 70%, #120c07 100%);
 }
-.showreel { width: 100%; max-width: 1200px; }
+.cases-section > .showreel__intro,
+.cases-section > .cases__all { padding-left: var(--pad-x); padding-right: var(--pad-x); }
 .showreel__intro {
   display: flex;
   flex-direction: column;
@@ -1381,42 +1382,6 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   color: rgba(243, 238, 230, 0.9);
   padding-left: 0.28em;
 }
-.showreel__window {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: var(--radius);
-  overflow: hidden;
-  cursor: pointer;
-  background: linear-gradient(135deg, #241a14, #4a3526 60%, #6b4b3a);
-  border: 1px solid var(--line-on-dark);
-  box-shadow: 0 60px 120px -50px rgba(0, 0, 0, 0.85);
-  transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s ease;
-}
-@media (hover: hover) {
-  .showreel__window:hover { transform: translateY(-4px); box-shadow: 0 70px 130px -50px rgba(0, 0, 0, 0.9); }}
-.showreel__scrim {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(60% 60% at 50% 45%, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.5));
-}
-.showreel__play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: clamp(64px, 9vw, 84px);
-  height: clamp(64px, 9vw, 84px);
-  border-radius: 50%;
-  background: rgba(241, 236, 228, 0.92);
-  color: var(--brown-deep);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.35s var(--ease-out-expo), background 0.3s ease;
-}
-.showreel__play svg { width: 30%; height: 30%; margin-left: 6%; }
-.showreel__window:hover .showreel__play { transform: translate(-50%, -50%) scale(1.08); background: var(--cream-soft); }
 .showreel__caption {
   margin: 0;
   max-width: 40ch;
@@ -1427,6 +1392,55 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   line-height: 1.7;
   letter-spacing: 0.01em;
   color: rgba(243, 238, 230, 0.72);
+}
+
+/* Case marquee: an infinite horizontal reel of the project-card component
+   used across the format-* pages, so a case click opens the same video
+   player everywhere on the site. */
+.marquee--cases {
+  width: 100%;
+  padding: 4px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee--cases .marquee__track {
+  align-items: stretch;
+  animation-duration: 52s;
+}
+.cases-row {
+  display: flex;
+  gap: clamp(16px, 2vw, 24px);
+  padding-right: clamp(16px, 2vw, 24px);
+}
+.project-card--case {
+  flex: 0 0 clamp(200px, 20vw, 264px);
+}
+
+.cases__all {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: clamp(13px, 1.6vw, 16px) clamp(26px, 3vw, 34px);
+  border: 1px solid var(--line-on-dark);
+  border-radius: 999px;
+  color: var(--cream-soft);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(12.5px, 1.4vw, 14px);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: transform 0.5s var(--ease-out-expo), border-color 0.4s ease,
+              background 0.4s ease, box-shadow 0.5s ease;
+}
+.cases__all span { transition: transform 0.4s var(--ease-out-expo); }
+@media (hover: hover) {
+  .cases__all:hover {
+    border-color: rgba(239, 231, 217, 0.4);
+    background: rgba(239, 231, 217, 0.06);
+    box-shadow: 0 22px 50px -30px rgba(0, 0, 0, 0.9);
+    transform: translateY(-3px);
+  }
+  .cases__all:hover span { transform: translate(3px, -3px); }
 }
 
 /* ---------- Process lead ---------- */
@@ -1626,32 +1640,12 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 @media (hover: hover) {
   .format-card:hover { transform: translateY(-6px); }}
 
-/* ---------- Showreel play pulse ---------- */
-.showreel__play::before {
-  content: '';
-  position: absolute;
-  inset: -10px;
-  border-radius: 50%;
-  border: 1px solid rgba(241, 236, 228, 0.5);
-  opacity: 0;
-  animation: showreel-pulse 2.6s ease-out infinite;
-}
-@keyframes showreel-pulse {
-  0% { transform: scale(0.85); opacity: 0.7; }
-  70% { opacity: 0; }
-  100% { transform: scale(1.3); opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .showreel__play::before { animation: none; }}
-
 /* ============================================================
    Award-level polish layer (v53)
    ============================================================ */
 
 /* ---- Hero: cinematic glow + film grain ---- */
 
-}
 /* Photo entrance: gentle scale + contrast settle */
 @media (prefers-reduced-motion: no-preference) {
   .hero__photo { animation: hero-photo-in 1.6s var(--ease-out-expo) both, hero-kenburns 22s ease-in-out 1.6s infinite alternate; }
@@ -1745,11 +1739,6 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
     box-shadow: 0 22px 50px -30px rgba(0, 0, 0, 0.9);
   }
   .contacts__grid a:hover::after { opacity: 1; transform: translate(0, 0); }}
-
-/* ---- Showreel window: refined entrance + hover depth ---- */
-.showreel__window { transform: translateY(0) scale(1); }
-@media (hover: hover) {
-  .showreel__window:hover { transform: translateY(-6px) scale(1.012); box-shadow: 0 80px 150px -55px rgba(0, 0, 0, 0.92); }}
 
 /* ---- Cross-page transition veil ---- */
 .page-fade {
@@ -1913,8 +1902,8 @@ button:focus-visible {
   .project-card:hover .project-card__art { transform: scale(1.06); filter: brightness(0.88); }
 }
 
-/* ---- Showreel: a touch more air around the video ---- */
-.showreel-section { gap: clamp(46px, 6.8vw, 84px); }
+/* ---- Cases: a touch more air around the reel ---- */
+.cases-section { gap: clamp(46px, 6.8vw, 84px); }
 
 /* ---- Process: lighter weight, calmer connective line ---- */
 .flow__chain::before {

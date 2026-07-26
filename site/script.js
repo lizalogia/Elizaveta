@@ -200,8 +200,8 @@
     });
   }
 
-  // Client-logo marquee: pause the auto-scroll while the user is touching it.
-  document.querySelectorAll('.marquee--clients').forEach((marquee) => {
+  // Any marquee (client logos, case reel): pause the auto-scroll while the user is touching it.
+  document.querySelectorAll('.marquee').forEach((marquee) => {
     marquee.addEventListener('touchstart', () => marquee.classList.add('is-touched'), { passive: true });
     marquee.addEventListener('touchend', () => marquee.classList.remove('is-touched'));
     marquee.addEventListener('touchcancel', () => marquee.classList.remove('is-touched'));
