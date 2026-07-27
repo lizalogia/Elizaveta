@@ -229,7 +229,7 @@
 
     const tick = () => {
       if (autoPlay && !isDragging) {
-        casesTrack.scrollLeft += 0.55;
+        casesTrack.scrollLeft += 0.3;
         normalizeLoop();
       }
       requestAnimationFrame(tick);
