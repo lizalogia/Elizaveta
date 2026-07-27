@@ -1,0 +1,783 @@
+<title>lizalogia — аудит сайта и ТЗ</title>
+<style>
+:root{
+  --cream:#f3eee6;
+  --cream-soft:#f7f2ea;
+  --paper:#faf6ef;
+  --brown-deep:#2f231e;
+  --brown:#3c2f28;
+  --brown-mid:#6b5442;
+  --taupe:#8f7659;
+  --taupe-soft:#b6a488;
+  --ink:#241b16;
+  --ink-soft:rgba(36,27,22,0.68);
+  --line:rgba(60,47,40,0.14);
+  --line-strong:rgba(60,47,40,0.24);
+  --crit:#8c2f2f;
+  --crit-bg:rgba(140,47,47,0.09);
+  --want:#9c6a1f;
+  --want-bg:rgba(156,106,31,0.10);
+  --ideal:#4f6650;
+  --ideal-bg:rgba(79,102,80,0.10);
+  --font-display:Georgia,'Iowan Old Style','Palatino Linotype',serif;
+  --font-body:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --font-mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --paper:#1c1610;
+  --cream:#221a14;
+  --cream-soft:#2a2018;
+  --ink:#f0e8db;
+  --ink-soft:rgba(240,232,219,0.72);
+  --line:rgba(240,232,219,0.14);
+  --line-strong:rgba(240,232,219,0.26);
+  --brown-deep:#f0e8db;
+  --crit-bg:rgba(200,110,110,0.14);
+  --want-bg:rgba(210,160,90,0.14);
+  --ideal-bg:rgba(120,160,120,0.13);
+  --crit:#d98888;
+  --want:#d9ab5c;
+  --ideal:#8fb08f;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#1c1610;
+    --cream:#221a14;
+    --cream-soft:#2a2018;
+    --ink:#f0e8db;
+    --ink-soft:rgba(240,232,219,0.72);
+    --line:rgba(240,232,219,0.14);
+    --line-strong:rgba(240,232,219,0.26);
+    --brown-deep:#f0e8db;
+    --crit-bg:rgba(200,110,110,0.14);
+    --want-bg:rgba(210,160,90,0.14);
+    --ideal-bg:rgba(120,160,120,0.13);
+    --crit:#d98888;
+    --want:#d9ab5c;
+    --ideal:#8fb08f;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box;}
+html{overflow-x:clip;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(18px,4vw,48px);}
+.masthead{
+  background:var(--brown-deep);
+  color:var(--cream-soft);
+  padding:clamp(56px,9vw,96px) 0 clamp(40px,6vw,64px);
+  position:relative;
+  overflow:hidden;
+}
+:root[data-theme="dark"] .masthead, :root:not([data-theme="light"]) .masthead{color:var(--brown-deep);}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .masthead{background:#12100c;color:#f0e8db;}}
+:root[data-theme="dark"] .masthead{background:#12100c;color:#f0e8db;}
+.masthead__eyebrow{
+  font-family:var(--font-mono);
+  font-size:12px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  opacity:0.62;
+  margin:0 0 18px;
+}
+.masthead h1{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(34px,5.4vw,58px);
+  line-height:1.08;
+  margin:0 0 16px;
+  max-width:14ch;
+  text-wrap:balance;
+}
+.masthead p{
+  max-width:56ch;
+  font-size:clamp(15px,1.6vw,17px);
+  opacity:0.82;
+  margin:0;
+}
+.masthead__meta{
+  display:flex;
+  gap:28px;
+  flex-wrap:wrap;
+  margin-top:32px;
+  font-size:13px;
+  opacity:0.72;
+}
+.masthead__meta b{font-weight:600;opacity:1;}
+
+.verdict{
+  background:var(--cream-soft);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:clamp(20px,3vw,32px) clamp(22px,3.4vw,36px);
+  margin:clamp(-34px,-4vw,-46px) 0 clamp(48px,6vw,72px);
+  position:relative;
+  box-shadow:0 18px 40px -28px rgba(0,0,0,0.35);
+}
+.verdict h2{
+  font-family:var(--font-display);
+  font-size:20px;
+  font-weight:400;
+  margin:0 0 10px;
+  color:var(--taupe);
+}
+.verdict p{margin:0;font-size:15.5px;color:var(--ink-soft);max-width:74ch;}
+
+nav.toc{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:14px 0;
+  margin-bottom:clamp(48px,6vw,72px);
+  font-size:13px;
+}
+nav.toc a{
+  color:var(--ink-soft);
+  text-decoration:none;
+  padding:6px 14px;
+  border-right:1px solid var(--line);
+  white-space:nowrap;
+}
+nav.toc a:last-child{border-right:none;}
+nav.toc a:hover{color:var(--taupe);}
+nav.toc a:focus-visible{outline:2px solid var(--taupe);outline-offset:2px;}
+
+section{margin-bottom:clamp(56px,8vw,96px);scroll-margin-top:20px;}
+.section-head{
+  display:flex;
+  align-items:baseline;
+  gap:16px;
+  margin-bottom:28px;
+  border-bottom:1px solid var(--line-strong);
+  padding-bottom:14px;
+}
+.section-head__num{
+  font-family:var(--font-mono);
+  font-size:13px;
+  color:var(--taupe);
+  letter-spacing:0.06em;
+}
+.section-head h2{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(24px,3.2vw,32px);
+  margin:0;
+  text-wrap:balance;
+}
+h3{font-family:var(--font-display);font-weight:400;font-size:19px;margin:0 0 8px;}
+.prose{max-width:74ch;}
+.prose p{font-size:15.5px;margin:0 0 14px;}
+.prose p:last-child{margin-bottom:0;}
+.prose strong{color:var(--brown-mid);}
+:root[data-theme="dark"] .prose strong, :root:not([data-theme="light"]) .prose strong{color:var(--taupe-soft);}
+
+.callout{
+  border-left:3px solid var(--taupe);
+  background:var(--cream-soft);
+  padding:16px 20px;
+  margin:18px 0;
+  font-size:14.5px;
+  border-radius:0 4px 4px 0;
+}
+.callout code, .prose code, td code{
+  font-family:var(--font-mono);
+  font-size:0.88em;
+  background:var(--cream);
+  border:1px solid var(--line);
+  padding:1px 5px;
+  border-radius:3px;
+}
+
+.persona-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;}
+.persona{background:var(--cream-soft);border:1px solid var(--line);border-radius:4px;padding:22px 24px;}
+.persona h3{font-size:16px;color:var(--taupe);margin-bottom:12px;}
+.persona ul{margin:0;padding-left:18px;font-size:14.5px;}
+.persona li{margin-bottom:8px;}
+.persona li:last-child{margin-bottom:0;}
+
+table.findings{width:100%;border-collapse:collapse;font-size:14px;}
+table.findings th{
+  text-align:left;
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  padding:0 12px 10px;
+  border-bottom:1px solid var(--line-strong);
+}
+table.findings td{
+  padding:16px 12px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+table.findings tr:last-child td{border-bottom:none;}
+.sev{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:11.5px;
+  font-weight:600;
+  letter-spacing:0.02em;
+  padding:3px 9px 3px 7px;
+  border-radius:20px;
+  white-space:nowrap;
+}
+.sev::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+.sev--crit{background:var(--crit-bg);color:var(--crit);}
+.sev--want{background:var(--want-bg);color:var(--want);}
+.sev--ideal{background:var(--ideal-bg);color:var(--ideal);}
+.finding-file{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);display:block;margin-top:6px;}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;}
+.tbl-wrap table.findings{min-width:760px;}
+.tbl-wrap table.findings th, .tbl-wrap table.findings td{padding-left:16px;}
+
+.score-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.score-card{background:var(--paper);padding:20px 20px 18px;}
+.score-card__top{display:flex;align-items:baseline;gap:10px;margin-bottom:8px;}
+.score-card__num{font-family:var(--font-display);font-size:32px;line-height:1;}
+.score-card__max{font-size:13px;color:var(--ink-soft);}
+.score-card__label{font-size:13px;font-weight:600;margin-bottom:6px;}
+.score-card__why{font-size:12.5px;color:var(--ink-soft);line-height:1.5;}
+.score-card--high .score-card__num{color:var(--ideal);}
+.score-card--mid .score-card__num{color:var(--want);}
+.score-card--low .score-card__num{color:var(--crit);}
+
+.priority-board{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media (max-width:820px){.priority-board{grid-template-columns:1fr;}}
+.priority-col{border-radius:6px;border:1px solid var(--line);overflow:hidden;}
+.priority-col__head{padding:14px 18px;font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;}
+.priority-col--crit .priority-col__head{background:var(--crit-bg);color:var(--crit);}
+.priority-col--want .priority-col__head{background:var(--want-bg);color:var(--want);}
+.priority-col--ideal .priority-col__head{background:var(--ideal-bg);color:var(--ideal);}
+.priority-col ol{margin:0;padding:16px 18px 18px 34px;font-size:13.5px;background:var(--cream-soft);}
+.priority-col li{margin-bottom:12px;}
+.priority-col li:last-child{margin-bottom:0;}
+
+.tz-item{border:1px solid var(--line);border-radius:6px;margin-bottom:18px;overflow:hidden;}
+.tz-item__head{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:14px 20px;background:var(--cream-soft);border-bottom:1px solid var(--line);
+}
+.tz-item__id{font-family:var(--font-mono);font-size:12px;color:var(--taupe);}
+.tz-item__title{font-family:var(--font-display);font-size:17px;flex:1;min-width:200px;}
+.tz-item__body{padding:18px 20px;font-size:14px;}
+.tz-item__body dt{font-family:var(--font-mono);font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-soft);margin:14px 0 4px;}
+.tz-item__body dt:first-child{margin-top:0;}
+.tz-item__body dd{margin:0 0 4px;}
+.tz-item__body ul{margin:4px 0 0;padding-left:20px;}
+
+.prompt-block{
+  position:relative;
+  background:var(--brown-deep);
+  color:var(--cream-soft);
+  border-radius:8px;
+  overflow:hidden;
+}
+:root[data-theme="dark"] .prompt-block, :root:not([data-theme="light"]) .prompt-block{background:#100d09;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .prompt-block{background:#100d09;}}
+.prompt-block__bar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 18px;border-bottom:1px solid rgba(243,238,230,0.14);
+  font-family:var(--font-mono);font-size:12px;letter-spacing:0.04em;opacity:0.75;
+}
+.copy-btn{
+  font-family:var(--font-mono);
+  font-size:12px;
+  background:rgba(243,238,230,0.1);
+  color:var(--cream-soft);
+  border:1px solid rgba(243,238,230,0.24);
+  border-radius:20px;
+  padding:5px 14px;
+  cursor:pointer;
+}
+.copy-btn:hover{background:rgba(243,238,230,0.2);}
+.copy-btn:focus-visible{outline:2px solid var(--taupe-soft);outline-offset:2px;}
+pre.prompt{
+  margin:0;padding:22px 24px 26px;
+  font-family:var(--font-mono);
+  font-size:13px;
+  line-height:1.7;
+  white-space:pre-wrap;
+  max-height:560px;
+  overflow-y:auto;
+}
+
+footer.report-foot{
+  border-top:1px solid var(--line);
+  padding:28px 0 60px;
+  font-size:12.5px;
+  color:var(--ink-soft);
+  text-align:center;
+}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease,ease),transform .6s var(--ease,ease);}
+.reveal.is-visible{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+</style>
+
+<div class="masthead">
+  <div class="wrap">
+    <p class="masthead__eyebrow">Аудит &amp; ТЗ на доработку — lizalogia.github.io/Elizaveta</p>
+    <h1>Больше, чем просто съёмка — но сайт пока продаёт меньше, чем снимает.</h1>
+    <p>Полный аудит сайта-портфолио видеографа lizalogia с трёх точек зрения — Creative Director, CRO/маркетолог и потенциальный клиент — с разбором по исходному коду всех 8 страниц, плюс детальное техническое задание для доработки.</p>
+    <div class="masthead__meta">
+      <span><b>Дата:</b> 27 июля 2026</span>
+      <span><b>Страниц изучено:</b> 8 (главная + 7 категорий портфолио)</span>
+      <span><b>Метод:</b> разбор HTML/CSS/JS исходников + визуальная проверка фото и вёрстки</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="verdict reveal">
+    <h2>Короткий вердикт</h2>
+    <p>Фотография и цветовая палитра — уровень, к которому не придраться: тёплый премиальный кремово-коричневый мир, сильное фото на первом экране. Но за этим фасадом — реальные дыры в воронке: <strong>5 «кейсов» с видео, которое физически не открывается</strong>, <strong>7 из 8 страниц портфолио обрываются без единой кнопки связи</strong>, и <strong>60% витрины работ — однотипный стоматологический контент</strong> под вывеской «съёмки для звёзд». Это не про вкус — это про то, что заинтересованный клиент долистывает до самого важного момента и упирается в стену.</p>
+  </div>
+
+  <nav class="toc reveal" aria-label="Оглавление">
+    <a href="#design">Дизайн</a>
+    <a href="#marketing">Маркетинг</a>
+    <a href="#client">Взгляд клиента</a>
+    <a href="#findings">Недостатки</a>
+    <a href="#scores">Оценки</a>
+    <a href="#priority">Приоритеты</a>
+    <a href="#tz">Техзадание</a>
+    <a href="#prompt">Промпт для Claude Code</a>
+  </nav>
+
+  <section id="design">
+    <div class="section-head"><span class="section-head__num">01</span><h2>Взгляд Creative Director</h2></div>
+    <div class="prose">
+      <p><strong>Первое впечатление (0–5 секунд).</strong> Работает. Фото героя — рука со смартфоном на фоне золотого бликующего стадиона — ровно то самое «личное присутствие внутри события», которое должен продавать видеограф. Тёплая палитра (кремовый/тёмно-коричневый/тауп, <code>#f3eee6 / #2f231e / #8f7659</code>) выбрана осознанно и держится по всему сайту — редкий случай, когда цвет реально работает как часть бренда, а не как дефолт.</p>
+      <p><strong>Но заголовок хиро визуально проигрывает фотографии.</strong> «Больше, чем просто съёмка.» набрано шрифтом Neutral Face размером <code>clamp(20px, 3.1vw, 33px)</code> — на полноэкранном кинематографичном кадре это позиция подписи, а не манифеста. Огромная фоновая надпись-водяной знак «LIZALOGIA» (до 224px) забирает визуальный вес, который должен был достаться смысловому заголовку.</p>
+      <p><strong>Композиция и ритм секций</strong> выстроены аккуратно: нумерация разделов (01–05), устойчивый вертикальный ритм, honest использование <code>clamp()</code> для адаптива, светлые/тёмные секции чередуются осмысленно. Marquee-лента клиентских логотипов и бесконечная лента кейсов — уместный, современный приём.</p>
+      <p><strong>Анимации сделаны профессионально</strong> на уровне кода: scroll-reveal через <code>IntersectionObserver</code>, count-up статистики, курсор-«Смотреть» на десктопе, полное уважение <code>prefers-reduced-motion</code> и аккуратный focus-management в модалке видео. Это заметно выше среднего для сайта-портфолио — но сами эффекты стандартные (reveal-на-скролле + parallax), никакого фирменного «момента», который запомнился бы.</p>
+      <p><strong>Худшее место дизайна — несогласованность обложек кейсов.</strong> На одной ленте вперемешку: профессиональный сценический кадр (Бузова, Киркоров), кривое фото постера фильма на стене (Равиоли), скриншот BTS-монитора оператора (Music Box) и — что хуже всего — скриншоты уже готовых Reels с вшитым текстом «TIMATI KARTING» и «Стас Пьеха, Мурманск, 03.06.26» прямо поверх кадра. Для портфолио, где обложка — это единственная приманка кликнуть «Смотреть», такой разнобой читается как «на обложки не было времени».</p>
+      <p><strong>Вывод:</strong> это не дешёвый сайт — фотография и палитра тянут на luxury. Но исполнение неровное: местами кинематографично, местами — «на скорую руку». Впечатление скачет от карточки к карточке, а не держится ровно.</p>
+    </div>
+  </section>
+
+  <section id="marketing">
+    <div class="section-head"><span class="section-head__num">02</span><h2>Взгляд маркетолога / CRO</h2></div>
+    <div class="prose">
+      <p><strong>Позиционирование раздваивается.</strong> Хиро и первый блок «Мне доверяют» продают историю «съёмка для звёзд и федеральных проектов» — Киркоров, Бузова, Хор Турецкого, VK Fest, 50 000 зрителей. Это сильный, понятный крючок. Но когда посетитель идёт в «Портфолио», он попадает в категории, где <strong>из ~99 карточек работ 43 — это «Экспертный контент» (в основном стоматология/косметология) и 16 — «Трендовые ролики»</strong>, то есть почти 60% реального объёма портфолио — это совсем другая ниша и другая аудитория. Сайт не объясняет это противоречие: кто вы на самом деле — видеограф для звёзд или для экспертов/клиник? Сейчас читается как «и то, и то», а значит — ни то, ни другое отчётливо.</p>
+      <p><strong>Обещание видео не выполняется — в пяти случаях буквально.</strong> На карточках стоит <code>role="button"</code> и подпись «Смотреть видео: …», но у пяти кейсов (Music Box на главной и в format-media, «Голоса мира», INSTADIUM/Татьяна Тур, день рождения Волочковой) поле видео пустое — по клику всплывает «Видео скоро появится здесь». Для сайта, чей единственный товар — видео, это прямой удар по доверию в момент максимального интереса.</p>
+      <p><strong>Самая дорогая дыра в воронке — тупиковые страницы категорий.</strong> Все 7 подстраниц портфолио (<code>format-concerts.html</code> … <code>format-trends.html</code>) не содержат ни футера, ни блока контактов, ни единой кнопки «Обсудить проект» — только маленькая ссылка «← Портфолио» вверху. Это как раз те страницы, где посетитель провёл больше всего времени, разглядывая конкретные работы, то есть максимально «разогрет» — и именно там нет ни одного пути к действию.</p>
+      <p><strong>Соц. доказательства однобокие.</strong> Логотипы и цифры (30+ артистов, 100+ клиентов, 50 000+ зрителей) впечатляют, но это единственный вид доказательства. Ни одной цитаты клиента, ни одного мини-кейса «задача → решение → результат», ни слова о том, для кого именно эти услуги (кто идеальный клиент). Цифры без историй легко звучат абстрактно.</p>
+      <p><strong>Аналитики нет вообще</strong> — ни Яндекс.Метрики, ни GA4, ни Clarity. Значит, невозможно узнать, доходят ли люди до контактов, на каком кейсе теряется внимание, работает ли воронка — все решения по сайту принимаются вслепую.</p>
+    </div>
+  </section>
+
+  <section id="client">
+    <div class="section-head"><span class="section-head__num">03</span><h2>Взгляд клиента (руководитель компании ищет видеографа)</h2></div>
+    <div class="persona-grid">
+      <div class="persona reveal">
+        <h3>Написал бы?</h3>
+        <ul>
+          <li>Да — после хиро и ленты логотипов первое впечатление располагает, масштаб клиентов реален и считывается быстро.</li>
+          <li>Но интерес начинает остывать, как только я открываю «Портфолио» и вижу 27 карточек подряд с одинаковым названием «Экспертный ролик для стоматолога» — это ощущается как шаблонный конвейер, а не индивидуальная работа.</li>
+        </ul>
+      </div>
+      <div class="persona reveal">
+        <h3>Доверил бы дорогой проект?</h3>
+        <ul>
+          <li>Логотипы федеральных брендов — да, это работает как якорь доверия.</li>
+          <li>Но как только я кликаю «Смотреть» на паре карточек и вижу «Видео скоро появится здесь» — доверие к остальным заявленным цифрам тоже падает: если это не проверено, что ещё не проверено?</li>
+        </ul>
+      </div>
+      <div class="persona reveal">
+        <h3>Что остановило бы?</h3>
+        <ul>
+          <li>Непонятно, где мне писать после того, как я посмотрел конкретную категорию — на странице кейсов нет кнопки, приходится вспоминать, как вернуться на главную.</li>
+          <li>Нет ни одного отзыва реального клиента — только логотипы. Хочется прочитать, что говорят люди, а не только увидеть, с кем работали.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="findings">
+    <div class="section-head"><span class="section-head__num">04</span><h2>Полный список недостатков</h2></div>
+    <div class="tbl-wrap">
+    <table class="findings">
+      <thead><tr><th style="width:90px">Серьёзность</th><th>Проблема</th><th>Почему это плохо / как влияет</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="sev sev--crit">Критично</span></td>
+          <td>5 карточек с пустым <code>data-video=""</code></td>
+          <td>Клик по «Смотреть» открывает заглушку «Видео скоро появится здесь». Это буквально нерабочая кнопка на решающем действии сайта.<span class="finding-file">index.html · format-concerts.html · format-events.html · format-media.html (×2)</span></td>
+        </tr>
+        <tr>
+          <td><span class="sev sev--crit">Критично</span></td>
+          <td>7 из 8 страниц без футера/контактов/CTA</td>
+          <td>Все <code>format-*.html</code> заканчиваются сеткой карточек — ни адреса, ни телеграма, ни кнопки «Обсудить проект». Самые «горячие» страницы обрывают воронку.<span class="finding-file">format-concerts.html, format-events.html, format-media.html, format-expert.html, format-cinema.html, format-backstage.html, format-trends.html</span></td>
+        </tr>
+        <tr>
+          <td><span class="sev sev--crit">Критично</span></td>
+          <td>Конфликт позиционирования: звёзды vs. стоматология</td>
+          <td>Hero и логотипы продают «съёмки для звёзд/федеральных проектов», а 59 из ~99 карточек портфолио — экспертный/медицинский контент. Не ясно, для кого сайт на самом деле.<span class="finding-file">index.html (hero, showcase) vs. format-expert.html + format-trends.html</span></td>
+        </tr>
+        <tr>
+          <td><span class="sev sev--crit">Критично</span></td>
+          <td>27× «Экспертный ролик для стоматолога» и 16× «Трендовый ролик» без разметки</td>
+          <td>Одинаковые заголовки подряд без подписи-контекста — портфолио читается как нерассортированная папка с материалами, а не как курируемая витрина.<span class="finding-file">format-expert.html · format-trends.html</span></td>
+        </tr>
+        <tr>
+          <td><span class="sev sev--crit">Критично</span></td>
+          <td>Несогласованные обложки флагманских кейсов</td>
+          <td>«Хор Турецкого, Кремлёвский дворец» показывает клавиатуру backstage; «Равиоли, Оли» — кривое фото постера на стене; «Music Box» — фото BTS-монитора; «Timati Karting» и «Стас Пьеха» — скриншоты готовых Reels со вшитым текстом.<span class="finding-file">assets/images/projects/turetsky-concert.jpg, ravioli.jpg, musicbox-event.jpg, timati-karting.jpg, stas-pekha.jpg</span></td>
+        </tr>
+        <tr>
+          <td><span class="sev sev--want">Желательно</span></td>
+          <td>Просмотр видео идёт через чужой UI (Google Drive / RuTube)</td>
+          <td>Модалка на весь экран открывает iframe с фирменным плеером и элементами управления Google Drive или RuTube вместо собственного плеера — в решающий момент бренд «одалживает» чужой интерфейс.<span class="finding-file">script.js — getDriveEmbedUrl / getRutubeEmbedUrl</span></td>
+        </tr>
+        <tr>
+          <td><span class="sev sev--want">Желательно</span></td>
+          <td>Нет веб-аналитики</td>
+          <td>Ни GA4, ни Яндекс.Метрики, ни Clarity нет ни на одной странице — невозможно узнать, где реально отваливаются посетители.</td>
+        </tr>
+        <tr>
+          <td><span class="sev sev--want">Желательно</span></td>
+          <td>Заголовок hero визуально слабее фотографии</td>
+          <td>«Больше, чем просто съёмка.» — <code>clamp(20px,3.1vw,33px)</code> на полноэкранном кадре; фоновый водяной знак «LIZALOGIA» крупнее (до 224px) и перетягивает внимание с смыслового посыла.<span class="finding-file">styles.css — .hero__desc-lead, .hero__watermark-item</span></td>
+        </tr>
+        <tr>
+          <td><span class="sev sev--want">Желательно</span></td>
+          <td>Пустой <code>alt</code> у всех предметных фото</td>
+          <td>Фото кейсов и логотипы клиентов имеют <code>alt=""</code> — приемлемо для декоративных изображений, но это содержательные фото конкретных проектов: теряется SEO по картинкам и контекст для скринридеров.<span class="finding-file">index.html, format-*.html — все &lt;img class="project-card__art"&gt;</span></td>
+        </tr>
+        <tr>
+          <td><span class="sev sev--want">Желательно</span></td>
+          <td>Один и тот же og:image на всех страницах</td>
+          <td>При шаринге ссылки на «Экспертный контент» или «Кино» в превью всё равно показывается общее фото концерта — нерелевантно контексту.<span class="finding-file">format-*.html — meta property="og:image"</span></td>
+        </tr>
+        <tr>
+          <td><span class="sev sev--want">Желательно</span></td>
+          <td>Нет ни одного клиентского отзыва/цитаты</td>
+          <td>Доказательства ограничены логотипами и цифрами; нет ни одной прямой цитаты человека, который заказывал съёмку — не хватает «человеческого» доверия.</td>
+        </tr>
+        <tr>
+          <td><span class="sev sev--ideal">Идеально</span></td>
+          <td>97 объявленных шрифтов, используется 8</td>
+          <td>В <code>assets/fonts/fonts.css</code> объявлено 97 <code>@font-face</code>-блоков; реально в вёрстке применяются семейства только 8 из них (17 файлов). Остальные 80 файлов (~10+ МБ) — мёртвый груз в репозитории и код-базе.<span class="finding-file">assets/fonts/fonts.css</span></td>
+        </tr>
+        <tr>
+          <td><span class="sev sev--ideal">Идеально</span></td>
+          <td>Комментарий в коде не совпадает с реальностью</td>
+          <td>Шапка <code>fonts.css</code> гласит «body: Montserrat», но фактический шрифт текста — Golca (<code>--font-body: "Golca", …</code>). Montserrat нигде не применяется.<span class="finding-file">assets/fonts/fonts.css:1</span></td>
+        </tr>
+        <tr>
+          <td><span class="sev sev--ideal">Идеально</span></td>
+          <td>Нет robots.txt и кастомной 404-страницы</td>
+          <td><code>sitemap.xml</code> корректный и полный, но <code>robots.txt</code> отдаёт 404, а несуществующий URL показывает стандартную страницу GitHub Pages вместо брендированной.</td>
+        </tr>
+        <tr>
+          <td><span class="sev sev--ideal">Идеально</span></td>
+          <td>Нет автоплей-превью при наведении</td>
+          <td>Индустриальный стандарт для портфолио видеографов — беззвучный зацикленный превью-ролик при hover/попадании в зону видимости карточки. Сейчас — только статичное фото с иконкой play.</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section id="scores">
+    <div class="section-head"><span class="section-head__num">05</span><h2>Оценки по 10-балльной шкале</h2></div>
+    <div class="score-grid">
+      <div class="score-card score-card--high"><div class="score-card__top"><span class="score-card__num">7</span><span class="score-card__max">/10</span></div><div class="score-card__label">Дизайн</div><div class="score-card__why">Сильная фотография и палитра, но неровное исполнение обложек кейсов.</div></div>
+      <div class="score-card score-card--mid"><div class="score-card__top"><span class="score-card__num">5</span><span class="score-card__max">/10</span></div><div class="score-card__label">UX</div><div class="score-card__why">Сильный вход, но тупиковые подстраницы и нерабочие видео-ссылки.</div></div>
+      <div class="score-card score-card--high"><div class="score-card__top"><span class="score-card__num">7</span><span class="score-card__max">/10</span></div><div class="score-card__label">UI</div><div class="score-card__why">Аккуратные компоненты, продуманные focus-состояния и курсор-подсказка.</div></div>
+      <div class="score-card score-card--high"><div class="score-card__top"><span class="score-card__num">7</span><span class="score-card__max">/10</span></div><div class="score-card__label">Визуальная эстетика</div><div class="score-card__why">Тёплая, последовательная палитра держит весь сайт.</div></div>
+      <div class="score-card score-card--high"><div class="score-card__top"><span class="score-card__num">7</span><span class="score-card__max">/10</span></div><div class="score-card__label">Современность</div><div class="score-card__why">Marquee-ленты, reveal-анимации, честный respect prefers-reduced-motion.</div></div>
+      <div class="score-card score-card--mid"><div class="score-card__top"><span class="score-card__num">6</span><span class="score-card__max">/10</span></div><div class="score-card__label">Luxury-ощущение</div><div class="score-card__why">Портится плейсхолдер-обложками и чужим плеером Google Drive при просмотре.</div></div>
+      <div class="score-card score-card--mid"><div class="score-card__top"><span class="score-card__num">6</span><span class="score-card__max">/10</span></div><div class="score-card__label">Типографика</div><div class="score-card__why">Красивый шрифтовой стек, но заголовок hero занижен по весу; система из 97 шрифтов не дисциплинирована.</div></div>
+      <div class="score-card score-card--high"><div class="score-card__top"><span class="score-card__num">8</span><span class="score-card__max">/10</span></div><div class="score-card__label">Цветовая палитра</div><div class="score-card__why">Самая сильная сторона сайта — тёплая, узнаваемая, последовательная.</div></div>
+      <div class="score-card score-card--high"><div class="score-card__top"><span class="score-card__num">7</span><span class="score-card__max">/10</span></div><div class="score-card__label">Анимации</div><div class="score-card__why">Технически безупречны (rAF, IntersectionObserver), но без «фирменного» момента.</div></div>
+      <div class="score-card score-card--mid"><div class="score-card__top"><span class="score-card__num">5</span><span class="score-card__max">/10</span></div><div class="score-card__label">Кейсы</div><div class="score-card__why">60% портфолио — однотипный контент без заголовков и контекста.</div></div>
+      <div class="score-card score-card--mid"><div class="score-card__top"><span class="score-card__num">5</span><span class="score-card__max">/10</span></div><div class="score-card__label">Видео</div><div class="score-card__why">5 нерабочих ссылок; воспроизведение через чужой UI Drive/RuTube.</div></div>
+      <div class="score-card score-card--mid"><div class="score-card__top"><span class="score-card__num">6</span><span class="score-card__max">/10</span></div><div class="score-card__label">Производительность</div><div class="score-card__why">Изображения оптимизированы (webp+lazy), но 80 мёртвых файлов шрифтов и нет аналитики.</div></div>
+      <div class="score-card score-card--mid"><div class="score-card__top"><span class="score-card__num">5</span><span class="score-card__max">/10</span></div><div class="score-card__label">Удобство</div><div class="score-card__why">Тупиковые подстраницы портфолио без пути назад к действию.</div></div>
+      <div class="score-card score-card--low"><div class="score-card__top"><span class="score-card__num">4</span><span class="score-card__max">/10</span></div><div class="score-card__label">Маркетинг</div><div class="score-card__why">Конфликт позиционирования звёзды/стоматология не объяснён и не разведён.</div></div>
+      <div class="score-card score-card--low"><div class="score-card__top"><span class="score-card__num">4</span><span class="score-card__max">/10</span></div><div class="score-card__label">Конверсия</div><div class="score-card__why">Самые вовлечённые страницы не имеют пути к контакту.</div></div>
+      <div class="score-card score-card--mid"><div class="score-card__top"><span class="score-card__num">6</span><span class="score-card__max">/10</span></div><div class="score-card__label">Брендинг</div><div class="score-card__why">Визуальный язык последовательный, но нет чёткого УТП и позиционирования ниши.</div></div>
+      <div class="score-card score-card--mid"><div class="score-card__top"><span class="score-card__num">6</span><span class="score-card__max">/10</span></div><div class="score-card__label">Доверие</div><div class="score-card__why">Логотипы и цифры сильные, но сломанные видео и generic-карточки подрывают их.</div></div>
+      <div class="score-card score-card--mid"><div class="score-card__top"><span class="score-card__num">6</span><span class="score-card__max">/10</span></div><div class="score-card__label">Готовность к публикации</div><div class="score-card__why">Уже опубликован и в целом работает, но не готов принимать серьёзный трафик из-за дыр в конверсии.</div></div>
+    </div>
+  </section>
+
+  <section id="priority">
+    <div class="section-head"><span class="section-head__num">06</span><h2>Приоритизация</h2></div>
+    <div class="priority-board">
+      <div class="priority-col priority-col--crit">
+        <div class="priority-col__head">Критично</div>
+        <ol>
+          <li>Почини или убери 5 карточек с пустым видео</li>
+          <li>Добавь футер + CTA на все 7 страниц портфолио</li>
+          <li>Разведи позиционирование «звёзды» и «экспертный контент»</li>
+          <li>Дай уникальные заголовки/подписи всем «Экспертный ролик» и «Трендовый ролик»</li>
+          <li>Замени несогласованные обложки флагманских кейсов</li>
+        </ol>
+      </div>
+      <div class="priority-col priority-col--want">
+        <div class="priority-col__head">Желательно</div>
+        <ol>
+          <li>Усиль визуальный вес заголовка hero</li>
+          <li>Замаскируй/оформи чужой UI видео-плеера, добавь превью до клика</li>
+          <li>Подключи Яндекс.Метрику или GA4</li>
+          <li>Добавь осмысленные alt-тексты кейсам и логотипам</li>
+          <li>Сделай уникальный og:image под каждую категорию</li>
+          <li>Добавь 2–3 цитаты реальных клиентов</li>
+          <li>Продублируй ключевые цифры доверия рядом с финальным CTA</li>
+        </ol>
+      </div>
+      <div class="priority-col priority-col--ideal">
+        <div class="priority-col__head">Идеально</div>
+        <ol>
+          <li>Удали 80 неиспользуемых файлов шрифтов из репозитория</li>
+          <li>Исправь неверный комментарий про Montserrat в fonts.css</li>
+          <li>Добавь robots.txt и кастомную 404-страницу</li>
+          <li>Автоплей беззвучных превью-роликов на карточках при наведении</li>
+          <li>Рассмотри переход с Google Drive/RuTube на выделенный видеохостинг</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="tz">
+    <div class="section-head"><span class="section-head__num">07</span><h2>Техническое задание</h2></div>
+    <p class="prose" style="margin-bottom:24px;">Каждый пункт — самостоятельная задача, которую можно выполнить без дополнительных уточнений. Пути к файлам указаны так, как они называются в корне опубликованного сайта.</p>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-01</span><span class="tz-item__title">Убрать или заполнить 5 карточек с пустым data-video</span><span class="sev sev--crit">Критично</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>В <code>index.html</code> («Music Box»), <code>format-concerts.html</code> («Голоса мира»), <code>format-events.html</code> (INSTADIUM / Татьяна Тур), <code>format-media.html</code> («Music Box», «День рождения Волочковой») — заполнить <code>data-video</code> реальной ссылкой на видео, либо, если материала нет, убрать карточку из вёрстки до появления видео.</dd>
+        <dt>Почему</dt><dd>Кнопка «Смотреть видео» сейчас ведёт в тупик с текстом-заглушкой — это единственное действие, которое посетитель совершает на карточке, и оно не работает.</dd>
+        <dt>Как реализовать</dt><dd>Если видео уже отснято, но не выложено — залить его на RuTube/Google Drive по тому же паттерну, что и остальные карточки, и вставить ссылку в атрибут. Если видео пока нет — временно скрыть карточку (не удалять контент из репозитория, просто не рендерить в HTML) до готовности материала.</dd>
+        <dt>Ожидаемый результат</dt><dd>0 карточек с пустым data-video на сайте; каждый клик «Смотреть» действительно открывает видео.</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-02</span><span class="tz-item__title">Добавить футер и CTA на все страницы категорий портфолио</span><span class="sev sev--crit">Критично</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>В <code>format-concerts.html</code>, <code>format-events.html</code>, <code>format-media.html</code>, <code>format-expert.html</code>, <code>format-cinema.html</code>, <code>format-backstage.html</code>, <code>format-trends.html</code> — добавить после <code>.category-grid</code> компактный блок с призывом к действию и повтором контактов (Telegram, телефон), либо переиспользовать секцию <code>.contacts</code> и <code>.site-footer</code> из <code>index.html</code>.</dd>
+        <dt>Почему</dt><dd>Это страницы с самым долгим временем на сайте и самым высоким намерением — сейчас они обрываются без единого пути к действию, и посетитель вынужден вспоминать, как вернуться на главную.</dd>
+        <dt>Как реализовать</dt><dd>Скопировать разметку <code>&lt;section class="contacts"&gt;</code> и <code>&lt;footer class="site-footer"&gt;</code> из <code>index.html</code> в конец каждой категории (перед закрывающим <code>&lt;/main&gt;</code> либо сразу после него), сохранив существующие стили <code>.contacts</code>/<code>.site-footer</code> из <code>styles.css</code> — новых стилей не требуется.</dd>
+        <dt>Ожидаемый результат</dt><dd>С любой страницы портфолио посетитель может написать в Telegram или позвонить, не возвращаясь на главную.</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-03</span><span class="tz-item__title">Разрешить конфликт позиционирования «звёзды vs. эксперты»</span><span class="sev sev--crit">Критично</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>В секции «Портфолио» на <code>index.html</code> (<code>#portfolio</code>) добавить одно поясняющее предложение над сеткой форматов, которое явно называет обе аудитории («снимаю для артистов и федеральных брендов — и отдельно веду направление экспертного контента для клиник и предпринимателей»). Рассмотреть переупорядочивание карточек форматов так, чтобы «Концерты» и «ТВ и медиапроекты» шли первыми, а «Экспертный контент» — отдельным явно подписанным блоком.</dd>
+        <dt>Почему</dt><dd>59 из ~99 карточек портфолио — экспертный/медицинский контент, но hero целиком построен на образе съёмок для звёзд. Без явного объяснения это читается как несостыковка, а не как широта услуг.</dd>
+        <dt>Как реализовать</dt><dd>Добавить один абзац текста (без новых компонентов) в существующую разметку <code>.formats</code>, стилизовать как <code>.section__head p</code> уже имеющимся классом.</dd>
+        <dt>Ожидаемый результат</dt><dd>Посетитель понимает в течение 5 секунд после блока «Портфолио», что сайт объединяет два направления, и не считает это ошибкой навигации.</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-04</span><span class="tz-item__title">Дать уникальные заголовки и подписи повторяющимся карточкам</span><span class="sev sev--crit">Критично</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>27 карточек «Экспертный ролик для стоматолога» в <code>format-expert.html</code> и 16 карточек «Трендовый ролик» в <code>format-trends.html</code> — заменить общий заголовок на конкретику (имя клиники/специалиста, тему ролика, формат тренда), как уже сделано для остальных карточек сайта.</dd>
+        <dt>Почему</dt><dd>Одинаковые подписи подряд не дают посетителю причины кликнуть именно на эту карточку и создают впечатление нерассортированного архива, а не курируемого портфолио.</dd>
+        <dt>Как реализовать</dt><dd>Использовать существующий паттерн <code>&lt;h2&gt;Название&lt;/h2&gt;&lt;p&gt;Подзаголовок&lt;/p&gt;</code>. Если часть роликов действительно похожи по формату — рассмотреть объединение нескольких карточек в одну с каруселью/подписью «3 ролика для стоматологической клиники», вместо 27 одинаковых плиток подряд.</dd>
+        <dt>Ожидаемый результат</dt><dd>Каждая карточка в «Экспертном контенте» и «Трендах» визуально и текстово отличается от соседних; количество карточек в этих категориях может сократиться за счёт объединения, но качество восприятия вырастет.</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-05</span><span class="tz-item__title">Заменить несогласованные обложки флагманских кейсов</span><span class="sev sev--crit">Критично</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>Обложки <code>turetsky-concert.jpg</code> (сейчас — кадр клавиатуры backstage вместо Кремлёвского дворца), <code>ravioli.jpg</code> (кривое фото постера фильма на стене), <code>musicbox-event.jpg</code> (фото BTS-монитора), <code>timati-karting.jpg</code> и <code>stas-pekha.jpg</code> (скриншоты готовых Reels со вшитым текстом) — заменить чистыми кадрами из отснятого материала без текстовых оверлеев.</dd>
+        <dt>Почему</dt><dd>Это самые заметные карточки на главной странице (первый экран после hero) — визуальный разнобой в них сильнее всего бьёт по восприятию профессионализма, поскольку это первое, что видит посетитель после hero-фото.</dd>
+        <dt>Как реализовать</dt><dd>Взять кадр-стоп-кадр напрямую из отснятого видео (без графики/субтитров поверх), обработать в той же цветокоррекции, что и остальные превью, экспортировать в jpg+webp по существующему пайплайну (<code>&lt;picture&gt;</code> с webp-source, как у остальных карточек).</dd>
+        <dt>Ожидаемый результат</dt><dd>Первая лента кейсов выглядит как единая, курируемая подборка одного уровня, а не смесь разных источников.</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-06</span><span class="tz-item__title">Усилить визуальный вес заголовка hero</span><span class="sev sev--want">Желательно</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>В <code>styles.css</code> увеличить <code>.hero__desc-lead</code> с текущего <code>clamp(20px, 3.1vw, 33px)</code> минимум до <code>clamp(32px, 4.5vw, 56px)</code>, при необходимости уменьшить непрозрачность/размер фонового водяного знака <code>.hero__watermark-item</code>, чтобы он не конкурировал за внимание.</dd>
+        <dt>Почему</dt><dd>Заголовок несёт основной смысл предложения («Больше, чем просто съёмка») и должен быть первым, что читается на экране — сейчас он визуально слабее декоративного водяного знака.</dd>
+        <dt>Как реализовать</dt><dd>Изменить значения в существующем CSS-правиле, проверить перенос строк на брейкпоинтах 375px/768px/1440px, чтобы текст не переполнял доступную ширину <code>.hero__text</code>.</dd>
+        <dt>Ожидаемый результат</dt><dd>Заголовок читается как главный смысловой элемент экрана, а не как подпись под фото.</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-07</span><span class="tz-item__title">Оформить окно просмотра видео и добавить превью до клика</span><span class="sev sev--want">Желательно</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>В <code>script.js</code> (функции <code>getDriveEmbedUrl</code>/<code>getRutubeEmbedUrl</code>) и модалке <code>#videoModal</code> — либо добавить лёгкий брендированный "лоадер"/рамку вокруг iframe перед его загрузкой, либо (в идеале, см. TZ-15) перейти на видеохостинг, который отдаёт чистый плеер без стороннего брендинга.</dd>
+        <dt>Почему</dt><dd>Сейчас пользователь после клика «Смотреть» видит фирменный интерфейс Google Drive или RuTube на весь экран — это разрушает ощущение цельного личного бренда именно в момент максимального внимания.</dd>
+        <dt>Как реализовать</dt><dd>Минимально — добавить в <code>.video-modal__box</code> декоративную рамку/подпись с логотипом lizalogia поверх/вокруг iframe, чтобы бренд оставался виден даже во время чужого плеера.</dd>
+        <dt>Ожидаемый результат</dt><dd>Просмотр видео ощущается как часть сайта lizalogia, а не переход на сторонний сервис.</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-08</span><span class="tz-item__title">Подключить веб-аналитику</span><span class="sev sev--want">Желательно</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>Добавить счётчик Яндекс.Метрики (или GA4) в <code>&lt;head&gt;</code> всех 8 HTML-страниц, с отслеживанием кликов по «Смотреть видео», «Обсудить проект» и переходам между категориями портфолио как отдельных целей.</dd>
+        <dt>Почему</dt><dd>Без данных невозможно понять, какие кейсы реально смотрят, где отваливаются посетители на подстраницах, и работают ли изменения из этого ТЗ.</dd>
+        <dt>Как реализовать</dt><dd>Стандартный код счётчика перед закрывающим <code>&lt;/head&gt;</code>; цели — через <code>data-goal</code> атрибуты на кнопках и небольшой обработчик в <code>script.js</code>, отправляющий событие в счётчик по клику.</dd>
+        <dt>Ожидаемый результат</dt><dd>Появляются реальные данные о поведении посетителей: воронка от hero до контакта видна и измерима.</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-09</span><span class="tz-item__title">Добавить осмысленные alt-тексты</span><span class="sev sev--want">Желательно</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>Все <code>&lt;img class="project-card__art" ... alt=""&gt;</code> на всех 8 страницах — заполнить содержательным alt в формате «[Клиент] — [тип события], [место]» (например, «Хор Турецкого — концерт в Кремлёвском дворце»); логотипы клиентов в маркиз-ленте уже имеют alt (у одной из двух копий — намеренно пустой для скринридеров, это верно и менять не нужно).</dd>
+        <dt>Почему</dt><dd>Пустой alt у содержательных фото — упущенная возможность для SEO по картинкам и барьер для пользователей скринридеров, которые не получают вообще никакой информации о фото кейса.</dd>
+        <dt>Как реализовать</dt><dd>Точечное редактирование атрибута <code>alt</code> в HTML для каждой карточки — заголовок <code>&lt;h2&gt;/&lt;h3&gt;</code> карточки уже содержит нужный текст, его можно использовать как основу формулировки.</dd>
+        <dt>Ожидаемый результат</dt><dd>Каждое предметное фото описано текстом; изображения индексируются в поиске картинок и доступны для скринридеров.</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-10</span><span class="tz-item__title">Уникальный og:image для каждой категории портфолио</span><span class="sev sev--want">Желательно</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>В каждом <code>format-*.html</code> заменить <code>meta property="og:image"</code> (сейчас везде <code>hero-concert-2.jpg</code>) на характерное фото именно этой категории — например, для <code>format-expert.html</code> взять кадр экспертного ролика, для <code>format-cinema.html</code> — кадр кинопремьеры.</dd>
+        <dt>Почему</dt><dd>При отправке ссылки на конкретную категорию (например, стоматологу — на «Экспертный контент») превью в мессенджере сейчас всё равно показывает фото концерта, что не релевантно и не помогает получателю понять контекст до перехода.</dd>
+        <dt>Как реализовать</dt><dd>Выбрать по одному репрезентативному изображению на категорию (уже есть в <code>assets/images/projects/</code>), обновить значение <code>og:image</code> и соответствующий <code>og:description</code> под тематику категории.</dd>
+        <dt>Ожидаемый результат</dt><dd>Превью ссылки в мессенджерах и соцсетях соответствует содержимому конкретной страницы.</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-11</span><span class="tz-item__title">Добавить цитаты реальных клиентов</span><span class="sev sev--want">Желательно</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>Добавить на <code>index.html</code> новую секцию между «В цифрах» (<code>#stats</code>) и «Портфолио» (<code>#portfolio</code>) с 2–3 короткими цитатами клиентов (имя, компания/роль, 1–2 предложения об опыте работы).</dd>
+        <dt>Почему</dt><dd>Сейчас единственное доказательство — логотипы и абстрактные цифры; личная цитата отвечает на вопрос «каково с ним работать», который логотип не закрывает.</dd>
+        <dt>Как реализовать</dt><dd>Новая секция по образцу существующих (<code>.section</code>, чередование <code>data-theme</code>), простая сетка из 2–3 карточек с текстом и подписью — без необходимости в новых библиотеках.</dd>
+        <dt>Ожидаемый результат</dt><dd>Появляется человеческое, а не только числовое доказательство надёжности.</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-12</span><span class="tz-item__title">Удалить неиспользуемые файлы шрифтов</span><span class="sev sev--ideal">Идеально</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>Из <code>assets/fonts/</code> удалить 80 файлов шрифтов, которые не относятся к 8 семействам, реально используемым в <code>styles.css</code> (используются: Playfair Display, Hello January, Golca, WindSong, Blacker Sans Display, Jost, Neutral Face, Unbounded — 17 файлов). Соответствующие <code>@font-face</code>-блоки удалить из <code>assets/fonts/fonts.css</code>.</dd>
+        <dt>Почему</dt><dd>97 объявленных шрифтов при 8 используемых — сигнал неаккуратной код-базы, раздувает репозиторий на 10+ МБ и усложняет любую будущую правку типографики (непонятно, какие шрифты «живые», а какие — эксперименты, оставленные по ошибке).</dd>
+        <dt>Как реализовать</dt><dd>Сверить список семейств, используемых как значения <code>font-family</code> в <code>styles.css</code>, с блоками в <code>fonts.css</code>; удалить файлы и блоки, которых нет в этом списке; оставить <code>&lt;link rel="preload"&gt;</code> в HTML только для реально используемых начертаний.</dd>
+        <dt>Ожидаемый результат</dt><dd>Репозиторий и <code>fonts.css</code> содержат только реально используемые шрифты; будущим правкам не приходится разбираться в 90 лишних объявлениях.</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-13</span><span class="tz-item__title">Исправить неверный комментарий в fonts.css</span><span class="sev sev--ideal">Идеально</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>Комментарий в первой строке <code>assets/fonts/fonts.css</code> («Site-wide type system: Playfair Display (headings), Montserrat (body), Hello January…») заменить на актуальное описание: тело текста набрано Golca, а не Montserrat.</dd>
+        <dt>Почему</dt><dd>Устаревший комментарий вводит в заблуждение любого, кто в будущем будет разбираться в типографской системе сайта — реальность (<code>--font-body: "Golca"</code> в <code>styles.css</code>) не совпадает с описанием.</dd>
+        <dt>Как реализовать</dt><dd>Точечная правка комментария, без изменения кода.</dd>
+        <dt>Ожидаемый результат</dt><dd>Комментарий отражает реальную систему шрифтов.</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-14</span><span class="tz-item__title">Добавить robots.txt и кастомную 404-страницу</span><span class="sev sev--ideal">Идеально</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>Создать <code>robots.txt</code> в корне сайта со ссылкой на уже существующий <code>sitemap.xml</code>; создать <code>404.html</code> в фирменном стиле сайта (использовать существующие <code>.site-header</code>, палитру и шрифты) с кнопкой возврата на главную.</dd>
+        <dt>Почему</dt><dd>Сейчас несуществующий URL показывает стандартную белую страницу GitHub Pages — единственное место на сайте, выпадающее из общего визуального языка.</dd>
+        <dt>Как реализовать</dt><dd><code>robots.txt</code>: 3 строки (<code>User-agent: *</code>, <code>Allow: /</code>, <code>Sitemap: .../sitemap.xml</code>). <code>404.html</code>: минимальная копия структуры <code>index.html</code> с сообщением «Страница не найдена» и ссылкой на главную — GitHub Pages подхватывает файл автоматически.</dd>
+        <dt>Ожидаемый результат</dt><dd>Ошибочный переход выглядит как часть сайта, а не как обрыв в стороннюю системную страницу.</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-15</span><span class="tz-item__title">Добавить автоплей беззвучных превью на карточках</span><span class="sev sev--ideal">Идеально</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>Для карточек <code>.project-card</code> с доступным видео — при наведении (десктоп) или попадании в зону видимости (мобильные) проигрывать короткий беззвучный зацикленный фрагмent видео вместо статичного фото, аналогично паттерну на сайтах-портфолио видеографов.</dd>
+        <dt>Почему</dt><dd>Статичное фото с иконкой play — стандарт для фотопортфолио; для видеографа ожидаемый и более убедительный паттерн — живое превью, которое само демонстрирует качество монтажа и цветокоррекции ещё до клика.</dd>
+        <dt>Как реализовать</dt><dd>Подготовить короткие (3–6 сек) muted/loop-версии видео в webm/mp4 малого веса, добавить <code>&lt;video muted loop playsinline&gt;</code> поверх текущего <code>&lt;picture&gt;</code>, запускать через <code>IntersectionObserver</code> (уже используется в <code>script.js</code> для reveal-анимаций — переиспользовать паттерн) и по <code>mouseenter</code> на десктопе.</dd>
+        <dt>Ожидаемый результат</dt><dd>Портфолио демонстрирует качество съёмки уже на этапе просмотра сетки, до клика «Смотреть».</dd>
+      </div>
+    </div>
+
+    <div class="tz-item">
+      <div class="tz-item__head"><span class="tz-item__id">TZ-16</span><span class="tz-item__title">Рассмотреть переход на выделенный видеохостинг</span><span class="sev sev--ideal">Идеально</span></div>
+      <div class="tz-item__body">
+        <dt>Что изменить</dt><dd>Оценить перенос видео с Google Drive/RuTube на специализированный видеохостинг (например, Vimeo Pro с отключённым брендингом плеера, либо Cloudflare Stream) с сохранением текущего паттерна модалки в <code>script.js</code>.</dd>
+        <dt>Почему</dt><dd>Текущая схема зависит от того, что файл в Google Drive останется публичным и доступным неограниченно долго (право доступа может быть случайно отозвано), не даёт данных о досмотрах, и показывает стороннее брендирование плеера.</dd>
+        <dt>Как реализовать</dt><dd>Это решение с операционными последствиями (стоимость хостинга, миграция уже отснятых видео) — приоритетнее обсудить с владельцем сайта, прежде чем переносить; техническая часть — замена функций <code>getDriveEmbedUrl</code>/<code>getRutubeEmbedUrl</code> в <code>script.js</code> на аналогичную для нового хостинга.</dd>
+        <dt>Ожидаемый результат</dt><dd>Видео воспроизводится в едином, контролируемом плеере без риска "битой" ссылки и без стороннего брендинга.</dd>
+      </div>
+    </div>
+  </section>
+
+  <section id="prompt">
+    <div class="section-head"><span class="section-head__num">08</span><h2>Мастер-промпt для Claude Code</h2></div>
+    <p class="prose" style="margin-bottom:20px;">Скопируйте и передайте Claude Code, работающему непосредственно в репозитории сайта (не в этом репозитории со скиллами). Промпт покрывает пункты «Критично» и «Желательно» из ТЗ выше — пункты категории «Идеально» стоит обсудить с владельцем сайта отдельно (особенно TZ-16 — смена видеохостинга — это решение с операционными последствиями).</p>
+    <div class="prompt-block">
+      <div class="prompt-block__bar"><span>master-prompt.txt</span><button class="copy-btn" id="copyBtn" type="button">Скопировать</button></div>
+      <pre class="prompt" id="promptText">Ты дорабатываешь сайт-портфолио видеографа lizalogia (index.html, format-concerts.html, format-events.html, format-media.html, format-expert.html, format-cinema.html, format-backstage.html, format-trends.html, styles.css, script.js, assets/fonts/fonts.css). Ниже — список независимых задач по итогам аудита. Выполняй по порядку, каждую задачу — отдельным осмысленным изменением, сохраняя существующую систему классов, цветовую палитру (--cream/--brown-deep/--taupe и т.д. из :root в styles.css) и паттерны анимаций (IntersectionObserver reveal, respect prefers-reduced-motion). Не переписывай то, что не упомянуто ниже.
+
+1. Найди все карточки .project-card с пустым data-video="" (сейчас минимум 5: "Music Box" на главной и в format-media.html, "Голоса мира" в format-concerts.html, INSTADIUM/Татьяна Тур в format-events.html, "День рождения Волочковой" в format-media.html). Для каждой: если реальная ссылка на видео известна — впиши её в data-video по тому же паттерну, что у остальных карточек (Google Drive /file/d/ID/view или RuTube /shorts/ID/ или /video/ID/). Если ссылки нет — временно убери карточку из HTML (не из репозитория), чтобы на сайте не было ни одной кнопки "Смотреть", которая не работает.
+
+2. Скопируй секцию <section class="contacts" id="contacts"> и <footer class="site-footer"> из index.html в конец каждой из 7 страниц format-*.html (после закрытия .category-grid, перед </main> или сразу после него, сохраняя структуру и классы 1:1 — новых стилей не потребуется, они уже есть в styles.css). На подстраницах замени ссылки вида href="#contacts" на index.html#contacts, если это соответствует остальной навигации сайта.
+
+3. В index.html в секции #portfolio (класс .formats, перед .formats__grid) добавь один короткий абзац текста, который явно называет обе аудитории сайта: съёмки для артистов/федеральных проектов и отдельное направление экспертного контента для клиник/предпринимателей. Стилизуй как обычный текст внутри .section__head (используй существующий класс, например добавь <p> после <h2>).
+
+4. В format-expert.html замени заголовки 27 карточек "Экспертный ролик для стоматолога" на конкретные, различающие подписи (клиника/специалист/тема ролика — используй контекст соседних уникальных карточек как образец). В format-trends.html сделай то же самое для 16 карточек "Трендовый ролик" (укажи формат тренда или нишу). Если после разметки видно, что несколько роликов почти идентичны по смыслу — можно объединить их в меньшее число карточек вместо сохранения количества.
+
+5. Замени изображения-обложки assets/images/projects/turetsky-concert.jpg, ravioli.jpg, musicbox-event.jpg, timati-karting.jpg, stas-pekha.jpg на чистые кадры без текстовых оверлеев и постороннего контекста (сейчас там: клавиатура backstage вместо Кремлёвского дворца; кривое фото постера на стене; фото BTS-монитора; скриншоты Reels со вшитым текстом). Сохрани существующий пайплайн jpg+webp через <picture>. Если новых фото пока нет — как минимум задокументируй эту задачу как открытую в комментарии к PR, не блокируй остальные пункты.
+
+6. В styles.css увеличь .hero__desc-lead с clamp(20px, 3.1vw, 33px) до clamp(32px, 4.5vw, 56px). Проверь, что текст "Больше, чем просто съёмка." не переполняет .hero__text на 375px, 768px и 1440px. При необходимости уменьши непрозрачность .hero__watermark-item, чтобы заголовок читался как главный элемент экрана.
+
+7. Добавь во всех 8 HTML-файлах перед </head> счётчик Яндекс.Метрики или GA4 (используй плейсхолдер ID и оставь явный TODO-комментарий с инструкцией вставить реальный ID счётчика — не выдумывай существующий аккаунт). В script.js добавь простую отправку событий по клику на .hero__cta, .contacts__cta и [data-video] через уже существующие обработчики кликов.
+
+8. Замени alt="" на content-описание для всех <img class="project-card__art"> на всех 8 страницах, в формате "[Клиент] — [тип события/работы], [место]" — бери формулировку из соседних <h2>/<h3>/<p> той же карточки.
+
+9. В каждом format-*.html замени meta property="og:image" (сейчас везде hero-concert-2.jpg) на характерное фото именно этой категории из assets/images/projects/, и обнови og:description под тематику страницы.
+
+10. В assets/fonts/fonts.css удали все @font-face блоки для семейств, которые не используются как font-family нигде в styles.css. Используемые сейчас семейства: Playfair Display, Hello January, Golca, WindSong, Blacker Sans Display, Jost, Neutral Face, Unbounded. Удали соответствующие файлы шрифтов из assets/fonts/, если они не используются ни одним оставшимся @font-face блоком. Исправь первый комментарий в файле — он ошибочно называет Montserrat шрифтом тела текста, хотя реально используется Golca (--font-body в styles.css).
+
+11. Добавь в корень сайта robots.txt (User-agent: *, Allow: /, Sitemap: <URL текущего sitemap.xml>) и 404.html, оформленный в стиле сайта (переиспользуй .site-header, палитру styles.css, короткий текст "Страница не найдена" и ссылку на главную).
+
+После каждого пункта проверяй, что сайт не сломан (визуально пролистай итоговый HTML), а измененные страницы остаются консистентны по стилю с неизменёнными. Не трогай ничего, что не перечислено в этом списке.</pre>
+    </div>
+  </section>
+
+  <footer class="report-foot">Аудит подготовлен на основе разбора исходного кода сайта (HTML/CSS/JS) и прямого просмотра изображений кейсов. Не является дизайн-макетом — все рекомендации сформулированы как задачи для разработчика.</footer>
+</div>
+
+<script>
+document.querySelectorAll('.reveal').forEach((el,i)=>{
+  el.style.transitionDelay = (i%4*0.05)+'s';
+});
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+const copyBtn = document.getElementById('copyBtn');
+if (copyBtn) {
+  copyBtn.addEventListener('click', async ()=>{
+    const text = document.getElementById('promptText').textContent;
+    try {
+      await navigator.clipboard.writeText(text);
+      const original = copyBtn.textContent;
+      copyBtn.textContent = 'Скопировано';
+      setTimeout(()=>{ copyBtn.textContent = original; }, 1800);
+    } catch(e) {
+      copyBtn.textContent = 'Не удалось скопировать';
+    }
+  });
+}
+</script>
