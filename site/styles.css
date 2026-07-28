@@ -606,7 +606,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .brandmark-logo--wink { --logo-h: 18px; }
 .brandmark-logo--ivi { --logo-h: 18px; }
 .brandmark-logo--komandy { --logo-h: 22px; }
-.brandmark-logo--vkfest { --logo-h: 20px; }
+.brandmark-logo--vkfest { --logo-h: 32px; }
 .brandmark-logo--golosa { --logo-h: 21px; }
 .brandmark-logo--musicbox { --logo-h: 20px; }
 
@@ -1330,6 +1330,28 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   background: var(--warm-gradient);
 }
 .category-grid .project-card { width: 100%; }
+.category-grid .project-card--horizontal {
+  aspect-ratio: 16 / 9;
+  grid-column: span 2;
+}
+@media (max-width: 520px) {
+  .category-grid .project-card--horizontal { grid-column: span 1; }
+}
+/* Small badge for first-project notes */
+.project-card__badge {
+  position: relative;
+  display: inline-block;
+  margin-top: 5px;
+  padding: 2px 7px;
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid rgba(239, 231, 217, 0.35);
+  border-radius: 4px;
+  color: rgba(239, 231, 217, 0.65);
+  white-space: normal;
+  line-height: 1.4;
+}
 .category-empty {
   grid-column: 1 / -1;
   text-align: center;
@@ -1902,8 +1924,8 @@ html.js .project-card--case.reveal.is-visible {
   align-items: end;
   column-gap: clamp(24px, 5vw, 80px);
   row-gap: clamp(6px, 1vw, 12px);
-  min-height: clamp(320px, 40vw, 500px);
-  padding: clamp(80px, 12vw, 148px) var(--pad-x) clamp(40px, 5vw, 58px);
+  min-height: clamp(220px, 28vw, 380px);
+  padding: clamp(64px, 9vw, 112px) var(--pad-x) clamp(32px, 4vw, 48px);
   background: var(--warm-gradient);
 }
 .site-footer__wordmark {
@@ -1923,23 +1945,23 @@ html.js .project-card--case.reveal.is-visible {
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(60, 47, 40, 0.46);
+  color: rgba(60, 47, 40, 0.62);
 }
 .site-footer__disclaimer {
   grid-area: legal;
-  margin: clamp(16px, 2.4vw, 32px) 0 0;
+  margin: clamp(12px, 1.8vw, 24px) 0 0;
   max-width: 64ch;
   text-align: left;
   font-style: italic;
-  font-size: 9.5px;
-  line-height: 1.6;
-  color: rgba(60, 47, 40, 0.38);
+  font-size: 10.5px;
+  line-height: 1.65;
+  color: rgba(60, 47, 40, 0.52);
 }
 @media (max-width: 560px) {
   .site-footer {
     min-height: auto;
-    padding-bottom: clamp(28px, 7vw, 40px);
-    row-gap: clamp(10px, 3vw, 16px);
+    padding-bottom: clamp(24px, 6vw, 36px);
+    row-gap: clamp(8px, 2.5vw, 14px);
   }
 }
 /* ---- Global keyboard focus (a11y) ---- */
