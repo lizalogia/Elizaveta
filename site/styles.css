@@ -606,6 +606,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .brandmark-logo--wink { --logo-h: 18px; }
 .brandmark-logo--ivi { --logo-h: 18px; }
 .brandmark-logo--komandy { --logo-h: 22px; }
+.brandmark-logo--vkfest { --logo-h: 20px; }
 .brandmark-logo--golosa { --logo-h: 21px; }
 .brandmark-logo--musicbox { --logo-h: 20px; }
 
