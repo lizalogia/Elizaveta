@@ -566,8 +566,8 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .brandmark-founders {
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 18px;
-  letter-spacing: 0.055em;
+  font-size: 13px;
+  letter-spacing: 0.045em;
   color: rgba(60, 47, 40, 0.62);
   transition: color 0.35s ease, transform 0.35s var(--ease-out-expo);
 }
@@ -737,6 +737,11 @@ html.js.has-fine-pointer .project-card:hover {
   margin: 0;
   color: rgba(243, 238, 230, 0.78);
   position: relative;
+  /* Cards inside .marquee__track inherit white-space: nowrap from the
+     infinite-scroll track; without this override, a subtitle longer than
+     the card (e.g. "Хедлайнер Игорь Рыбаков") silently clips instead of
+     wrapping to a second line. */
+  white-space: normal;
 }
 .project-card__credit {
   font-size: 11px;
