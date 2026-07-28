@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lizalogia — видеограф</title>
+<meta name="description" content="lizalogia — видеограф. Больше, чем просто съёмка. Создаю видео, которые помогают вам стать ближе к своей аудитории.">
+<script>document.documentElement.classList.add('js');</script>
+
+<link rel="preconnect" href="https://drive.google.com" crossorigin>
+<link rel="preconnect" href="https://rutube.ru" crossorigin>
+
+<link rel="preload" href="assets/fonts/WindSong-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/NeutralFaceBold.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="assets/fonts/Golca.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="assets/fonts/BlackerSansDisplay-300.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/images/hero/hero-concert-2.avif" as="image" type="image/avif" fetchpriority="high">
+<link rel="preload" href="assets/images/hero/hero-concert-2.webp" as="image" type="image/webp" fetchpriority="high">
+
+<meta name="theme-color" content="#17110b">
+<link rel="canonical" href="https://lizalogia.github.io/Elizaveta/">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="lizalogia">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="lizalogia — видеограф">
+<meta property="og:description" content="lizalogia — видеограф. Больше, чем просто съёмка. Создаю видео, которые помогают вам стать ближе к своей аудитории.">
+<meta property="og:url" content="https://lizalogia.github.io/Elizaveta/">
+<meta property="og:image" content="https://lizalogia.github.io/Elizaveta/assets/images/hero/hero-concert-2.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+
+<link rel="stylesheet" href="styles.css?v=84">
+</head>
+<body>
+<div class="page-fade" id="pageFade" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a href="#hero" class="logo">lizalogia</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="navDrawer">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="nav-drawer" id="navDrawer" aria-label="Навигация по сайту">
+  <a href="#showcase" data-close>01. Мне доверяют</a>
+  <a href="#portfolio" data-close>02. Портфолио</a>
+  <a href="#process" data-close>03. Как проходит съёмка</a>
+  <a href="#contacts" data-close>04. Контакты</a>
+</nav>
+<div class="nav-scrim" id="navScrim"></div>
+
+<main>
+
+  <!-- 01. Hero -->
+  <section class="hero" id="hero">
+    <div class="hero__photo-wrap" aria-hidden="true">
+      <div class="hero__photo-parallax">
+        <picture>
+          <source srcset="assets/images/hero/hero-concert-2.avif" type="image/avif">
+          <source srcset="assets/images/hero/hero-concert-2.webp" type="image/webp">
+          <img class="hero__photo" src="assets/images/hero/hero-concert-2.jpg" alt="" width="2048" height="3072" fetchpriority="high" decoding="async">
+        </picture>
+      </div>
+      <div class="hero__fog"></div>
+    </div>
+    <div class="hero__watermark" aria-hidden="true">
+      <div class="hero__watermark-track">
+        <span class="hero__watermark-item">LIZALOGIA</span>
+        <span class="hero__watermark-item">LIZALOGIA</span>
+        <span class="hero__watermark-item">LIZALOGIA</span>
+        <span class="hero__watermark-item">LIZALOGIA</span>
+      </div>
+    </div>
+
+    <div class="hero__grid">
+      <div class="hero__text">
+        <div class="hero__desc">
+          <h1 class="hero__desc-lead">Больше,&nbsp;чем просто&nbsp;съёмка.</h1>
+          <p class="hero__desc-body">Создаю видео, которые помогают<br>вам стать ближе к&nbsp;своей аудитории.</p>
+        </div>
+        <a href="#contacts" class="hero__cta">Обсудить проект <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <span>Листай</span>
+      <svg width="10" height="34" viewBox="0 0 10 34" fill="none"><path d="M5 0v32M5 33 .5 28.5M5 33l4.5-4.5" stroke="currentColor"/></svg>
+    </div>
+  </section>
+
+  <!-- Мне доверяют -->
+  <section class="clients section" id="showcase" data-theme="light">
+    <h2 class="clients__lead reveal">Мне доверяют</h2>
+    <div class="clients__wall reveal">
+      <div class="marquee marquee--light marquee--clients" aria-hidden="true">
+        <div class="marquee__track">
+          <span class="brandmark-row">
+            <span class="brandmark brandmark-logo brandmark-logo--muz"><img src="assets/images/logos/muz.png" alt="МУЗ ТВ" loading="lazy" width="314" height="77"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--voice"><img src="assets/images/logos/voice.png" alt="VOICE" loading="lazy" width="317" height="102"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--instadium"><img src="assets/images/logos/instadium.png" alt="instadium" loading="lazy" width="575" height="224"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--nf"><img src="assets/images/logos/nf.png" alt="Нескучные финансы" loading="lazy" width="259" height="120"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--curaprox"><img src="assets/images/logos/curaprox.png" alt="Curaprox" loading="lazy" width="396" height="126"></span>
+            <span class="brandmark brandmark-founders">ОСНОВАТЕЛИ</span>
+            <span class="brandmark brandmark-logo brandmark-logo--neforbsy"><img src="assets/images/logos/neforbsy2.png" alt="Нефорбсы CONF" loading="lazy" width="926" height="107"></span>
+          </span>
+          <span class="brandmark-row" aria-hidden="true">
+            <span class="brandmark brandmark-logo brandmark-logo--muz"><img src="assets/images/logos/muz.png" alt="" loading="lazy" width="314" height="77"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--voice"><img src="assets/images/logos/voice.png" alt="" loading="lazy" width="317" height="102"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--instadium"><img src="assets/images/logos/instadium.png" alt="" loading="lazy" width="575" height="224"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--nf"><img src="assets/images/logos/nf.png" alt="" loading="lazy" width="259" height="120"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--curaprox"><img src="assets/images/logos/curaprox.png" alt="" loading="lazy" width="396" height="126"></span>
+            <span class="brandmark brandmark-founders">ОСНОВАТЕЛИ</span>
+            <span class="brandmark brandmark-logo brandmark-logo--neforbsy"><img src="assets/images/logos/neforbsy2.png" alt="" loading="lazy" width="926" height="107"></span>
+          </span>
+        </div>
+      </div>
+      <div class="marquee marquee--light marquee--clients marquee--reverse" aria-hidden="true">
+        <div class="marquee__track">
+          <span class="brandmark-row">
+            <span class="brandmark brandmark-logo brandmark-logo--kion"><img src="assets/images/logos/kion.png" alt="KION" loading="lazy" width="199" height="49"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--wink"><img src="assets/images/logos/wink.png" alt="WINK" loading="lazy" width="194" height="75"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--ivi"><img src="assets/images/logos/ivi.png" alt="ivi" loading="lazy" width="525" height="250"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--vkfest"><img src="assets/images/logos/vkfest.png" alt="VK Fest Москва" loading="lazy" width="307" height="216"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--komandy"><img src="assets/images/logos/komandy.png" alt="Команды будущего" loading="lazy" width="899" height="377"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--golosa"><img src="assets/images/logos/golosa.png" alt="Голоса мира" loading="lazy" width="343" height="96"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--musicbox"><img src="assets/images/logos/musicbox.png" alt="Russian MusicBox" loading="lazy" width="157" height="52"></span>
+          </span>
+          <span class="brandmark-row" aria-hidden="true">
+            <span class="brandmark brandmark-logo brandmark-logo--kion"><img src="assets/images/logos/kion.png" alt="" loading="lazy" width="199" height="49"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--wink"><img src="assets/images/logos/wink.png" alt="" loading="lazy" width="194" height="75"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--ivi"><img src="assets/images/logos/ivi.png" alt="" loading="lazy" width="525" height="250"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--vkfest"><img src="assets/images/logos/vkfest.png" alt="" loading="lazy" width="307" height="216"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--komandy"><img src="assets/images/logos/komandy.png" alt="" loading="lazy" width="899" height="377"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--golosa"><img src="assets/images/logos/golosa.png" alt="" loading="lazy" width="343" height="96"></span>
+            <span class="brandmark brandmark-logo brandmark-logo--musicbox"><img src="assets/images/logos/musicbox.png" alt="" loading="lazy" width="157" height="52"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <p class="clients__trust reveal"><span>30+&nbsp;артистов</span><i aria-hidden="true">•</i><span>Федеральные&nbsp;проекты</span><i aria-hidden="true">•</i><span>Аудитория мероприятий до&nbsp;50&nbsp;000&nbsp;человек</span></p>
+  </section>
+
+  <!-- Кейсы — бесконечная лента избранных работ -->
+  <section class="cases-section" id="cases" data-theme="dark" aria-labelledby="cases-heading">
+    <div class="showreel__intro">
+      <h2 class="showreel__lead reveal" id="cases-heading">Личный бренд начинается с&nbsp;контента.</h2>
+      <span class="showreel__arrow reveal" aria-hidden="true"><svg viewBox="0 0 24 40" fill="none"><path d="M12 1v30M5 25l7 7 7-7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <p class="showreel__caption reveal">Именно так формируется то, как&nbsp;вас видят и&nbsp;воспринимают.</p>
+    </div>
+
+    <div class="marquee marquee--cases reveal" aria-label="Избранные видео-кейсы">
+      <div class="marquee__track">
+        <div class="cases-row">
+          <article class="project-card project-card--case reveal" style="--card-a:#1c1a16;--card-b:#7a5a2e" tabindex="0" role="button" aria-label="Смотреть видео: Хор Турецкого, Кремлёвский дворец" data-video="https://rutube.ru/shorts/3b58f51bad79c0fddb9a276b93cda5ba/">
+            <picture><source srcset="assets/images/projects/turetsky-concert.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/turetsky-concert.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>Хор Турецкого</h3>
+            <p>Кремлёвский дворец</p>
+          </article>
+          <article class="project-card project-card--case reveal" style="--card-a:#1c1c1c;--card-b:#4a4a2e" tabindex="0" role="button" aria-label="Смотреть видео: INSTADIUM, Хедлайнер Филипп Киркоров" data-video="https://drive.google.com/file/d/1lVv4DFrnWjOixTem_rGixQGbZ-VMxC5b/view">
+            <picture><source srcset="assets/images/projects/kirkorov-instadium.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/kirkorov-instadium.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>INSTADIUM</h3>
+            <p>Хедлайнер Филипп Киркоров</p>
+          </article>
+          <article class="project-card project-card--case reveal" style="--card-a:#1c2740;--card-b:#5a4a6b" tabindex="0" role="button" aria-label="Смотреть видео: Равиоли Оли, Премьера фильма" data-video="https://drive.google.com/file/d/17CnepweCgog2FB7CLORoFFe8_ocDXQdm/view">
+            <picture><source srcset="assets/images/projects/ravioli.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/ravioli.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>Равиоли Оли</h3>
+            <p>Премьера фильма</p>
+          </article>
+          <article class="project-card project-card--case reveal" style="--card-a:#3a2e28;--card-b:#6b4b3a" tabindex="0" role="button" aria-label="Смотреть видео: VOICE, Митя Фомин" data-video="https://drive.google.com/file/d/11xbmIZVcaXdanKMqRTVI1OGIi7Lp-B9Y/view">
+            <picture><source srcset="assets/images/projects/voice-prezentatsiya.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/voice-prezentatsiya.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>VOICE</h3>
+            <p>Митя Фомин</p>
+          </article>
+          <article class="project-card project-card--case reveal" style="--card-a:#141420;--card-b:#2e3a7a" tabindex="0" role="button" aria-label="Смотреть видео: TIMATI KARTING, День рождения" data-video="https://drive.google.com/file/d/1dWWCgUDnKw6zAqaM59xjMI2xvp5r_HW8/view">
+            <picture><source srcset="assets/images/projects/timati-karting.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/timati-karting.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>TIMATI KARTING</h3>
+            <p>День рождения</p>
+          </article>
+          <article class="project-card project-card--case reveal" style="--card-a:#1c1c22;--card-b:#454554" tabindex="0" role="button" aria-label="Смотреть видео: INSTADIUM, Хедлайнер Татьяна Тур" data-video="https://drive.google.com/file/d/1yopJ8fFUc5zo45vFfSwGMRoZboEYrkNQ/view">
+            <picture><source srcset="assets/images/projects/instadium-headliner.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/instadium-headliner.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>INSTADIUM</h3>
+            <p>Хедлайнер Татьяна Тур</p>
+          </article>
+          <article class="project-card project-card--case reveal" style="--card-a:#241418;--card-b:#7a1f3a" tabindex="0" role="button" aria-label="Смотреть видео: Петли поцелуи, Премьера песни" data-video="https://drive.google.com/file/d/1cnmyTjuKlhtJuI6QY9tbGMUnDxPqJHIi/view">
+            <picture><source srcset="assets/images/projects/belye-potselui.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/belye-potselui.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>«Петли поцелуи»</h3>
+            <p>Наталья Королева и Екатерина Гусева</p>
+          </article>
+          <article class="project-card project-card--case reveal" style="--card-a:#241830;--card-b:#5a3a73" tabindex="0" role="button" aria-label="Смотреть видео: Music Box, Премия" data-video="https://drive.google.com/file/d/1s9DuqqSjwK31rBCLkiELsfrdEtjTf8BW/view">
+            <picture><source srcset="assets/images/projects/musicbox-event.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/musicbox-event.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>Music Box</h3>
+            <p>Премия</p>
+          </article>
+          <article class="project-card project-card--case reveal" style="--card-a:#131b2e;--card-b:#3452a8" tabindex="0" role="button" aria-label="Смотреть видео: Команды будущего, Хедлайнер Игорь Рыбаков" data-video="https://drive.google.com/file/d/1zRtJCD4GqfqhHQbWTkgg8BK1y6m97nFy/view">
+            <picture><source srcset="assets/images/projects/komandy-event.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/komandy-event.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>Команды будущего</h3>
+            <p>Хедлайнер Игорь Рыбаков</p>
+          </article>
+          <article class="project-card project-card--case reveal" style="--card-a:#141824;--card-b:#2e4a6b" tabindex="0" role="button" aria-label="Смотреть видео: INSTADIUM, Хедлайнер Ольга Бузова" data-video="https://drive.google.com/file/d/1WV58rKJhiQj6qnrOmzkR3log1MI_we8U/view">
+            <picture><source srcset="assets/images/projects/olga-buzova.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/olga-buzova.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>INSTADIUM</h3>
+            <p>Хедлайнер Ольга Бузова</p>
+          </article>
+          <article class="project-card project-card--case reveal" style="--card-a:#14141c;--card-b:#3a3a5c" tabindex="0" role="button" aria-label="Смотреть видео: Стас Пьеха, Концерт в Мурманске" data-video="https://drive.google.com/file/d/1sRK_NoG2IOkK27jPAtUyZmHG_zEOQ2U7/view">
+            <picture><source srcset="assets/images/projects/stas-pekha.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/stas-pekha.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
+            <h3>Стас Пьеха</h3>
+            <p>Концерт, Мурманск</p>
+          </article>
+        </div>
+        <div class="cases-row" aria-hidden="true">
+          <article class="project-card project-card--case" data-video="https://rutube.ru/shorts/3b58f51bad79c0fddb9a276b93cda5ba/">
+            <picture><source srcset="assets/images/projects/turetsky-concert.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/turetsky-concert.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>Хор Турецкого</h3>
+            <p>Кремлёвский дворец</p>
+          </article>
+          <article class="project-card project-card--case" data-video="https://drive.google.com/file/d/1lVv4DFrnWjOixTem_rGixQGbZ-VMxC5b/view">
+            <picture><source srcset="assets/images/projects/kirkorov-instadium.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/kirkorov-instadium.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>INSTADIUM</h3>
+            <p>Хедлайнер Филипп Киркоров</p>
+          </article>
+          <article class="project-card project-card--case" data-video="https://drive.google.com/file/d/17CnepweCgog2FB7CLORoFFe8_ocDXQdm/view">
+            <picture><source srcset="assets/images/projects/ravioli.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/ravioli.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>Равиоли Оли</h3>
+            <p>Премьера фильма</p>
+          </article>
+          <article class="project-card project-card--case" data-video="https://drive.google.com/file/d/11xbmIZVcaXdanKMqRTVI1OGIi7Lp-B9Y/view">
+            <picture><source srcset="assets/images/projects/voice-prezentatsiya.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/voice-prezentatsiya.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>VOICE</h3>
+            <p>Митя Фомин</p>
+          </article>
+          <article class="project-card project-card--case" data-video="https://drive.google.com/file/d/1dWWCgUDnKw6zAqaM59xjMI2xvp5r_HW8/view">
+            <picture><source srcset="assets/images/projects/timati-karting.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/timati-karting.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>TIMATI KARTING</h3>
+            <p>День рождения</p>
+          </article>
+          <article class="project-card project-card--case" data-video="https://drive.google.com/file/d/1yopJ8fFUc5zo45vFfSwGMRoZboEYrkNQ/view">
+            <picture><source srcset="assets/images/projects/instadium-headliner.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/instadium-headliner.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>INSTADIUM</h3>
+            <p>Хедлайнер Татьяна Тур</p>
+          </article>
+          <article class="project-card project-card--case" data-video="https://drive.google.com/file/d/1cnmyTjuKlhtJuI6QY9tbGMUnDxPqJHIi/view">
+            <picture><source srcset="assets/images/projects/belye-potselui.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/belye-potselui.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>«Петли поцелуи»</h3>
+            <p>Наталья Королева и Екатерина Гусева</p>
+          </article>
+          <article class="project-card project-card--case" data-video="https://drive.google.com/file/d/1s9DuqqSjwK31rBCLkiELsfrdEtjTf8BW/view">
+            <picture><source srcset="assets/images/projects/musicbox-event.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/musicbox-event.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>Music Box</h3>
+            <p>Премия</p>
+          </article>
+          <article class="project-card project-card--case" data-video="https://drive.google.com/file/d/1zRtJCD4GqfqhHQbWTkgg8BK1y6m97nFy/view">
+            <picture><source srcset="assets/images/projects/komandy-event.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/komandy-event.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>Команды будущего</h3>
+            <p>Хедлайнер Игорь Рыбаков</p>
+          </article>
+          <article class="project-card project-card--case" data-video="https://drive.google.com/file/d/1WV58rKJhiQj6qnrOmzkR3log1MI_we8U/view">
+            <picture><source srcset="assets/images/projects/olga-buzova.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/olga-buzova.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>INSTADIUM</h3>
+            <p>Хедлайнер Ольга Бузова</p>
+          </article>
+          <article class="project-card project-card--case" data-video="https://drive.google.com/file/d/1sRK_NoG2IOkK27jPAtUyZmHG_zEOQ2U7/view">
+            <picture><source srcset="assets/images/projects/stas-pekha.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/stas-pekha.jpg" alt="" loading="lazy"></picture>
+            <span class="project-card__scrim" aria-hidden="true"></span>
+            <h3>Стас Пьеха</h3>
+            <p>Концерт, Мурманск</p>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <a href="#portfolio" class="cases__all reveal">Все кейсы <span aria-hidden="true">↗</span></a>
+  </section>
+
+  <!-- 02. Статистика (после ленты кейсов) -->
+  <section class="stats section" id="stats" data-theme="light">
+    <div class="section__head reveal">
+      <span class="section__num">02.</span>
+      <h2>В цифрах</h2>
+    </div>
+    <ul class="stats__grid">
+      <li class="stat reveal"><span class="stat__num" data-count="3" data-suffix="+">3+</span><span class="stat__label">года создаю контент</span></li>
+      <li class="stat reveal"><span class="stat__num" data-count="100" data-suffix="+">100+</span><span class="stat__label">клиентов</span></li>
+      <li class="stat reveal"><span class="stat__num" data-count="50" data-suffix="+">50+</span><span class="stat__label">проектов</span></li>
+      <li class="stat reveal"><span class="stat__num" data-count="15" data-suffix="+">15+</span><span class="stat__label">брендов и мероприятий</span></li>
+      <li class="stat reveal stat--wide"><span class="stat__num" data-count="50000" data-suffix="+">50&nbsp;000+</span><span class="stat__label">зрителей крупнейшего события</span></li>
+    </ul>
+  </section>
+
+  <!-- 03. Проекты — категории -->
+  <section class="formats section" id="portfolio" data-theme="dark">
+    <div class="section__head reveal">
+      <span class="section__num">03.</span>
+      <h2>Портфолио</h2>
+    </div>
+    <div class="formats__grid">
+      <a href="format-concerts.html" class="format-card reveal">
+        <span class="format-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2 14.7 9h7.3l-5.9 4.3 2.2 7.2L12 16l-6.3 4.5 2.2-7.2L2 9h7.3L12 2Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        </span>
+        <h3>Концерты</h3>
+        <p>Репортажная съёмка концертов, фестивалей и музыкальных событий.</p>
+      </a>
+      <a href="format-events.html" class="format-card reveal">
+        <span class="format-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 15V9M8 18V6M13 21V3M18 15V9M23 12v0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </span>
+        <h3>Мероприятия</h3>
+        <p>Премии, форумы, закрытые мероприятия, презентации.</p>
+      </a>
+      <a href="format-media.html" class="format-card reveal">
+        <span class="format-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 8h11l2.5-3H21a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><circle cx="12" cy="14" r="4" stroke="currentColor" stroke-width="1.2"/></svg>
+        </span>
+        <h3>ТВ и медиапроекты</h3>
+        <p>Премьеры, телепроекты, интервью.</p>
+      </a>
+      <a href="format-expert.html" class="format-card reveal">
+        <span class="format-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="9" y="2" width="6" height="12" rx="3" stroke="currentColor" stroke-width="1.2"/><path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </span>
+        <h3>Экспертный контент</h3>
+        <p>Экспертные ролики для предпринимателей и бизнеса.</p>
+      </a>
+      <a href="format-cinema.html" class="format-card reveal">
+        <span class="format-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M3 10h18M7 6l-1.5 4M12 6l-1.5 4M17 6l-1.5 4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        </span>
+        <h3>Кино</h3>
+        <p>Премьеры фильмов и художественные проекты.</p>
+      </a>
+      <a href="format-backstage.html" class="format-card reveal">
+        <span class="format-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 3h8l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M14 3v4h4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        </span>
+        <h3>Бэкстейдж</h3>
+        <p>Закулисье съёмок — то, что остаётся за кадром.</p>
+      </a>
+      <a href="format-trends.html" class="format-card reveal">
+        <span class="format-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 17 10 10l4 4 7-7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 6h5v5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <h3>Трендовые ролики</h3>
+        <p>Форматы и тренды, адаптированные под нишу.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- 04. Как проходит съёмка -->
+  <section class="process section" id="process" data-theme="light">
+    <div class="section__head reveal">
+      <span class="section__num">04.</span>
+      <h2>Как проходит<br>съёмка</h2>
+    </div>
+    <div class="flow" id="flow">
+      <ol class="flow__chain">
+        <li class="flow__step reveal">
+          <span class="flow__eyebrow">Первый контакт</span>
+          <p class="flow__line">Обсуждаем задачи, формат и ваши пожелания.</p>
+        </li>
+        <li class="flow__step reveal">
+          <span class="flow__eyebrow">Съёмочный день</span>
+          <p class="flow__line">Сопровождаю вас на съёмке — от вас только хорошее настроение.</p>
+        </li>
+        <li class="flow__step flow__step--final reveal">
+          <span class="flow__eyebrow">После съёмки</span>
+          <ul class="flow__after-list">
+            <li>Срок сдачи готового материала — до&nbsp;48&nbsp;часов.</li>
+            <li>Исходные материалы отправляю в&nbsp;течение 24&nbsp;часов.</li>
+            <li>Хранение исходников — 14&nbsp;дней.</li>
+            <li>До&nbsp;5&nbsp;правок включено.</li>
+          </ul>
+        </li>
+      </ol>
+      <p class="flow__note">*Дополнительные правки обсуждаются отдельно.</p>
+    </div>
+  </section>
+
+  <!-- 07. Что получает клиент -->
+  <section class="benefits section" id="benefits" data-theme="light">
+    <div class="section__head reveal">
+      <span class="section__num">05.</span>
+      <h2>Почему выбирают меня</h2>
+    </div>
+    <ul class="benefits__grid">
+      <li class="benefit reveal">
+        <h3>Быстрые сроки сдачи материала</h3>
+        <p>От съёмки до публикации ролика проходит минимум времени.</p>
+      </li>
+      <li class="benefit reveal">
+        <h3>Постоянное развитие</h3>
+        <p>Регулярно обучаюсь, изучаю новые тренды и внедряю современные подходы в работу.</p>
+      </li>
+      <li class="benefit reveal">
+        <h3>Оборудование и знания</h3>
+        <p>Постоянно совершенствую технику и навыки, чтобы клиент получал максимально качественный результат.</p>
+      </li>
+      <li class="benefit reveal">
+        <h3>Поддержка на всех этапах</h3>
+        <p>Помогу чувствовать себя уверенно в кадре: подскажу, как лучше встать, двигаться, позировать и сформулировать мысль.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Финал: Контакты -->
+  <section class="contacts" id="contacts" data-theme="dark">
+    <div class="contacts__inner">
+      <p class="contacts__headline reveal">LET'S CREATE<br>TOGETHER.</p>
+      <p class="contacts__eyebrow reveal">Так появляется доверие, которое становится основой сотрудничества.</p>
+
+      <div class="contacts__grid">
+        <a href="https://t.me/lizalogia" target="_blank" rel="noopener" class="reveal">
+          <span class="contacts__label">Telegram</span>
+          <span class="contacts__value contacts__value--handle">@lizalogia</span>
+        </a>
+        <a href="https://instagram.com/lizalogia" target="_blank" rel="noopener" class="reveal">
+          <span class="contacts__label">Instagram</span>
+          <span class="contacts__value contacts__value--handle">@lizalogia</span>
+        </a>
+        <a href="tel:+79096731953" class="reveal">
+          <span class="contacts__label">Телефон</span>
+          <span class="contacts__value">+7 909 673-19-53</span>
+        </a>
+      </div>
+
+      <a href="https://t.me/lizalogia" target="_blank" rel="noopener" class="contacts__cta reveal">Обсудить проект</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <span class="site-footer__wordmark reveal">lizalogia</span>
+    <span class="site-footer__copy">© 2026</span>
+    <p class="site-footer__disclaimer">Все упомянутые на сайте названия, логотипы и товарные знаки принадлежат соответствующим правообладателям и используются исключительно в целях демонстрации выполненных работ (портфолио).</p>
+  </footer>
+
+</main>
+
+<div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Просмотр видео" aria-hidden="true">
+  <div class="video-modal__scrim" data-video-close></div>
+  <div class="video-modal__box">
+    <button class="video-modal__close" data-video-close aria-label="Закрыть">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 4 20 20M20 4 4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <video class="video-modal__player" id="videoModalPlayer" controls playsinline></video>
+    <iframe class="video-modal__frame" id="videoModalFrame" allow="autoplay" allowfullscreen></iframe>
+    <p class="video-modal__empty" id="videoModalEmpty">Видео скоро появится здесь</p>
+  </div>
+</div>
+
+<div class="custom-cursor" id="customCursor" aria-hidden="true"><span>Смотреть</span></div>
+
+<script src="script.js?v=9"></script>
+</body>
+</html>

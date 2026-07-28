@@ -1,0 +1,143 @@
+/* Site-wide type system: Playfair Display (headings), Golca (body),
+   Hello January (logo/script accent). */
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url('nuFiD-vYSZviVYUb_rj3ij__anPXDTzYgA.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url('nuFiD-vYSZviVYUb_rj3ij__anPXDTjYgFE_.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 500 600;
+  font-display: swap;
+  src: url('nuFkD-vYSZviVYUb_rj3ij__anPXDTnogkk7.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 500 600;
+  font-display: swap;
+  src: url('nuFkD-vYSZviVYUb_rj3ij__anPXDTnohkk72xU.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Hello January';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('HelloJanuary.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('92zPtBhPNqw79Ij1E865zBUv7myjJTVFNIg8mg.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('92zPtBhPNqw79Ij1E865zBUv7myjJTVBNIg.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Nav drawer + main-page section headings (Среди клиентов, Все проекты, etc.) */
+@font-face {
+  font-family: 'Neutral Face';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('NeutralFace.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Neutral Face';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('NeutralFaceBold.otf') format('opentype');
+}
+
+/* Section number labels (01, 02, 03...) */
+@font-face {
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('Yq6F-LOTXCb04q32xlpat-6uR42XTqtG6yrx44rNgQ.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('Yq6F-LOTXCb04q32xlpat-6uR42XTqtG6yrx447Ngc6L.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('Yq6F-LOTXCb04q32xlpat-6uR42XTqtG60bx44rNgQ.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('Yq6F-LOTXCb04q32xlpat-6uR42XTqtG60bx447Ngc6L.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Golca';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Golca.ttf') format('truetype');
+}
+
+/* Signature wordmark face — the header/footer logotype. */
+@font-face {
+  font-family: 'WindSong';
+  src: url('WindSong-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Blacker Sans Display';
+  src: url('BlackerSansDisplay-300.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Blacker Sans Display';
+  src: url('BlackerSansDisplay-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
