@@ -606,7 +606,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .brandmark-logo--wink { --logo-h: 18px; }
 .brandmark-logo--ivi { --logo-h: 18px; }
 .brandmark-logo--komandy { --logo-h: 22px; }
-.brandmark-logo--vkfest { --logo-h: 20px; }
+.brandmark-logo--vkfest { --logo-h: 27px; }
 .brandmark-logo--golosa { --logo-h: 21px; }
 .brandmark-logo--musicbox { --logo-h: 20px; }
 
@@ -627,6 +627,9 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .marquee--reverse .marquee__track { animation-direction: reverse; }
 .marquee:hover .marquee__track,
 .marquee.is-touched .marquee__track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { animation: none; }
+}
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -749,6 +752,30 @@ html.js.has-fine-pointer .project-card:hover {
   margin: 4px 0 0;
   color: rgba(239, 231, 217, 0.55);
   position: relative;
+}
+.project-card__badge {
+  display: inline-block;
+  margin: 6px 0 0;
+  padding: 3px 8px;
+  border: 1px solid rgba(239, 231, 217, 0.4);
+  border-radius: 20px;
+  font-family: var(--font-body);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: rgba(239, 231, 217, 0.72);
+  position: relative;
+}
+
+/* Horizontal-video cards keep their native landscape frame instead of
+   being force-cropped into the grid's default 3:4 portrait card. */
+.category-grid { grid-auto-flow: dense; }
+.project-card--wide {
+  aspect-ratio: 16 / 9;
+  grid-column: span 2;
+}
+@media (max-width: 560px) {
+  .project-card--wide { grid-column: span 1; }
 }
 
 .projects__nav {
@@ -1902,8 +1929,8 @@ html.js .project-card--case.reveal.is-visible {
   align-items: end;
   column-gap: clamp(24px, 5vw, 80px);
   row-gap: clamp(6px, 1vw, 12px);
-  min-height: clamp(320px, 40vw, 500px);
-  padding: clamp(80px, 12vw, 148px) var(--pad-x) clamp(40px, 5vw, 58px);
+  min-height: clamp(220px, 26vw, 360px);
+  padding: clamp(56px, 8vw, 108px) var(--pad-x) clamp(28px, 3.6vw, 42px);
   background: var(--warm-gradient);
 }
 .site-footer__wordmark {
@@ -1923,22 +1950,22 @@ html.js .project-card--case.reveal.is-visible {
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(60, 47, 40, 0.46);
+  color: rgba(60, 47, 40, 0.62);
 }
 .site-footer__disclaimer {
   grid-area: legal;
-  margin: clamp(16px, 2.4vw, 32px) 0 0;
+  margin: clamp(14px, 2vw, 26px) 0 0;
   max-width: 64ch;
   text-align: left;
   font-style: italic;
   font-size: 9.5px;
   line-height: 1.6;
-  color: rgba(60, 47, 40, 0.38);
+  color: rgba(60, 47, 40, 0.56);
 }
 @media (max-width: 560px) {
   .site-footer {
     min-height: auto;
-    padding-bottom: clamp(28px, 7vw, 40px);
+    padding-bottom: clamp(22px, 6vw, 32px);
     row-gap: clamp(10px, 3vw, 16px);
   }
 }
