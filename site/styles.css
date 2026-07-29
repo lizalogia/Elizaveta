@@ -733,7 +733,7 @@ html.js.has-fine-pointer .project-card:hover {
 }
 .project-card p {
   font-family: 'Neutral Face', var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
   font-size: 12px;
   margin: 0;
   color: rgba(243, 238, 230, 0.78);
