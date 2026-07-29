@@ -201,16 +201,16 @@ img { max-width: 100%; display: block; }
 }
 .hero__photo {
   position: absolute;
-  inset: -3%;
-  width: 106%;
-  height: 106%;
+  inset: -2%;
+  width: 104%;
+  height: 104%;
   max-width: none;
   object-fit: cover;
   object-position: 50% 50%;
   filter: contrast(1.14) saturate(1.08) brightness(1.05);
 }
 @media (max-width: 720px) {
-  .hero__photo { object-position: 60% 42%; }}
+  .hero__photo { object-position: 50% 50%; }}
 @media (prefers-reduced-motion: no-preference) {
   .hero__photo { animation: hero-kenburns 22s ease-in-out infinite alternate; }}
 @keyframes hero-kenburns {
