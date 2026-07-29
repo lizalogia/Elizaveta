@@ -606,7 +606,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .brandmark-logo--wink { --logo-h: 18px; }
 .brandmark-logo--ivi { --logo-h: 18px; }
 .brandmark-logo--komandy { --logo-h: 22px; }
-.brandmark-logo--vkfest { --logo-h: 32px; }
+.brandmark-logo--vkfest { --logo-h: 20px; }
 .brandmark-logo--golosa { --logo-h: 21px; }
 .brandmark-logo--musicbox { --logo-h: 20px; }
 
@@ -1945,7 +1945,7 @@ html.js .project-card--case.reveal.is-visible {
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(60, 47, 40, 0.62);
+  color: rgba(60, 47, 40, 0.80);
 }
 .site-footer__disclaimer {
   grid-area: legal;
@@ -1955,7 +1955,7 @@ html.js .project-card--case.reveal.is-visible {
   font-style: italic;
   font-size: 10.5px;
   line-height: 1.65;
-  color: rgba(60, 47, 40, 0.52);
+  color: rgba(60, 47, 40, 0.70);
 }
 @media (max-width: 560px) {
   .site-footer {
