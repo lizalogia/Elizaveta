@@ -731,6 +731,10 @@ html.js.has-fine-pointer .project-card:hover {
   margin: 0 0 4px;
   position: relative;
 }
+.project-card--split-head h2 {
+  white-space: normal;
+  text-overflow: clip;
+}
 .project-card p {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
