@@ -206,11 +206,15 @@ img { max-width: 100%; display: block; }
   height: 102%;
   max-width: none;
   object-fit: cover;
-  object-position: 65% 50%;
-  filter: contrast(1.14) saturate(1.08) brightness(1.05);
+  object-position: 58% 46%;
+  filter: contrast(1.06) saturate(1.04) brightness(1.03);
 }
+/* Desktop/laptop: the frame is cropped vertically, so pull the window a
+   little above centre — the phone, hands and stage stay in view while the
+   heading sits over the dark left half. Mobile is served a dedicated crop of
+   the same photograph, framed on the phone. */
 @media (max-width: 720px) {
-  .hero__photo { object-position: 65% 50%; }}
+  .hero__photo { object-position: 50% 0%; }}
 @media (prefers-reduced-motion: no-preference) {
   .hero__photo { animation: hero-kenburns 22s ease-in-out infinite alternate; }}
 @keyframes hero-kenburns {
@@ -287,6 +291,11 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 720px) {
+  .hero { justify-content: flex-end; }
+  .hero__grid {
+    padding-top: 0;
+    padding-bottom: clamp(76px, 17vw, 104px);
+  }
 }
 
 .hero__desc {
@@ -307,7 +316,7 @@ img { max-width: 100%; display: block; }
 /* On narrow screens the phone occupies the right half — keep the heading
    wrapping on the left so the two never overlap. Sized in em, not ch:
    Blacker Sans has an unusually wide zero, which made ch useless here. */
-@media (max-width: 720px) {
+@media (max-width: 1024px) {
   .hero__desc-lead { max-width: 9.5em; }
 }
 .hero__desc-body {
@@ -587,28 +596,41 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   filter: blur(9px);
   z-index: -1;
 }
+/* Every source PNG is trimmed to its ink bounding box, so --logo-h is now a
+   real optical height rather than "graphic + whatever transparent margin the
+   file happened to carry". Heights are derived from each mark's aspect ratio
+   (h = 29 / aspect^0.42) so wide wordmarks and stacked lockups end up with a
+   comparable visual mass instead of a comparable raw height, then nudged by
+   eye for weight. The fixed-height flex box keeps every logo on one baseline. */
+.brandmark-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+}
 .brandmark-logo img {
   display: block;
   height: var(--logo-h, 17px);
   width: auto;
-  margin-top: -3px;
+  max-width: none;
+  object-fit: contain;
   opacity: 0.94;
   transition: transform 0.4s var(--ease-out-expo), opacity 0.4s ease, filter 0.4s ease;
 }
 .brandmark-logo:hover img { transform: scale(1.06) translateY(-1px); opacity: 1; filter: contrast(1.12) brightness(1.03); }
-.brandmark-logo--muz { --logo-h: 16px; }
-.brandmark-logo--voice { --logo-h: 21px; }
-.brandmark-logo--instadium { --logo-h: 22px; }
-.brandmark-logo--nf { --logo-h: 15px; }
-.brandmark-logo--curaprox { --logo-h: 19px; }
-.brandmark-logo--neforbsy { --logo-h: 13px; }
-.brandmark-logo--kion { --logo-h: 18px; }
-.brandmark-logo--wink { --logo-h: 18px; }
-.brandmark-logo--ivi { --logo-h: 18px; }
-.brandmark-logo--komandy { --logo-h: 22px; }
-.brandmark-logo--vkfest { --logo-h: 20px; }
-.brandmark-logo--golosa { --logo-h: 21px; }
-.brandmark-logo--musicbox { --logo-h: 20px; }
+.brandmark-logo--muz { --logo-h: 15.5px; }
+.brandmark-logo--voice { --logo-h: 17.5px; }
+.brandmark-logo--instadium { --logo-h: 19px; }
+.brandmark-logo--nf { --logo-h: 17.5px; }
+.brandmark-logo--curaprox { --logo-h: 17.2px; }
+.brandmark-logo--neforbsy { --logo-h: 12px; }
+.brandmark-logo--kion { --logo-h: 15.5px; }
+.brandmark-logo--wink { --logo-h: 17.9px; }
+.brandmark-logo--ivi { --logo-h: 21px; }
+.brandmark-logo--komandy { --logo-h: 21.5px; }
+.brandmark-logo--vkfest { --logo-h: 23px; }
+.brandmark-logo--golosa { --logo-h: 17px; }
+.brandmark-logo--musicbox { --logo-h: 17.5px; }
 
 /* ---------- Marquee ---------- */
 
@@ -733,7 +755,34 @@ html.js.has-fine-pointer .project-card:hover {
 }
 .project-card--split-head h2 {
   white-space: normal;
+  overflow: visible;
   text-overflow: clip;
+}
+/* Category pages have a real grid (not the nowrap marquee track), so a long
+   sentence-case title should wrap onto a second line instead of being cut off
+   with an ellipsis. */
+.category-grid .project-card h2 {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+/* Titles that must read as one uninterrupted line. --head-chars is the title's
+   character count; the card is a size container, so the type scales down only
+   as far as the column actually demands and never past 9.5px. No transform,
+   no separate <p> — the whole string keeps one font, weight and colour. */
+.project-card { container-type: inline-size; }
+.category-grid .project-card--fit-head h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  letter-spacing: -0.015em;
+  font-size: clamp(10px, calc((100cqi - var(--head-inset, 40px)) / var(--head-em, 20)), 12px);
+}
+/* A one-line title with no subtitle under it can borrow a few pixels of the
+   card's padding without breaking the left edge shared with a caption. */
+.category-grid .project-card--fit-head:not(:has(p)) h2 {
+  --head-inset: 28px;
+  margin-inline: -6px;
 }
 .project-card p {
   font-family: 'Neutral Face', var(--font-display);
@@ -1069,14 +1118,14 @@ html.js .format-card.reveal:focus-visible::before {
 }
 .video-modal.is-open .video-modal__box { transform: scale(1); }
 .video-modal__player {
-  display: block;
+  display: none;
   width: 100%;
   height: 100%;
   object-fit: contain;
   background: #000;
 }
 .video-modal__frame {
-  display: block;
+  display: none;
   width: 100%;
   height: 100%;
   border: 0;
@@ -1318,6 +1367,11 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   margin: 0 0 12px;
   line-height: 1.1;
 }
+/* "медиапроекты" is a single unbreakable word wider than a 320px column at
+   32px, so it ran past the page padding on the narrowest phones. */
+@media (max-width: 400px) {
+  .category-hero h1 { font-size: 28px; }
+}
 .category-hero p {
   font-size: 12px;
   line-height: 1.6;
@@ -1328,7 +1382,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
   gap: clamp(16px, 2vw, 24px);
   padding: clamp(40px, 6vw, 56px) var(--pad-x) clamp(90px, 11vw, 130px);
   background: var(--warm-gradient);
@@ -1928,8 +1982,8 @@ html.js .project-card--case.reveal.is-visible {
   align-items: end;
   column-gap: clamp(24px, 5vw, 80px);
   row-gap: clamp(6px, 1vw, 12px);
-  min-height: clamp(220px, 28vw, 380px);
-  padding: clamp(64px, 9vw, 112px) var(--pad-x) clamp(32px, 4vw, 48px);
+  min-height: clamp(180px, 18vw, 240px);
+  padding: clamp(48px, 6vw, 72px) var(--pad-x) clamp(28px, 3.2vw, 40px);
   background: var(--warm-gradient);
 }
 .site-footer__wordmark {
@@ -1953,13 +2007,13 @@ html.js .project-card--case.reveal.is-visible {
 }
 .site-footer__disclaimer {
   grid-area: legal;
-  margin: clamp(12px, 1.8vw, 24px) 0 0;
-  max-width: 64ch;
+  margin: clamp(12px, 1.8vw, 20px) 0 0;
+  max-width: 72ch;
   text-align: left;
-  font-style: italic;
-  font-size: 10.5px;
-  line-height: 1.65;
-  color: rgba(60, 47, 40, 0.70);
+  font-style: normal;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: rgba(60, 47, 40, 0.92);
 }
 @media (max-width: 560px) {
   .site-footer {

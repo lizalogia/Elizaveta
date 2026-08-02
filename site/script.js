@@ -116,9 +116,14 @@
   };
 
   // RuTube links (including /shorts/) embed the same way via its own player.
+  // Unlisted videos live under /video/private/<id>/?p=<access token>; the token
+  // has to travel with the embed URL or the player answers with a black frame,
+  // and "private" must not be mistaken for the id itself.
   const getRutubeEmbedUrl = (src) => {
-    const match = src.match(/rutube\.ru\/(?:video|shorts)\/([a-zA-Z0-9]+)/);
-    return match ? `https://rutube.ru/play/embed/${match[1]}` : null;
+    const match = src.match(/rutube\.ru\/(?:video\/private|video|shorts)\/([a-zA-Z0-9]+)/);
+    if (!match) return null;
+    const token = src.match(/[?&]p=([a-zA-Z0-9_-]+)/);
+    return `https://rutube.ru/play/embed/${match[1]}${token ? `?p=${token[1]}` : ''}`;
   };
 
   const openVideoModal = (src) => {
@@ -128,10 +133,10 @@
     videoEmpty.style.display = 'none';
     if (embedUrl) {
       videoFrame.src = embedUrl;
-      videoFrame.style.display = '';
+      videoFrame.style.display = 'block';
     } else if (src) {
       videoPlayer.src = src;
-      videoPlayer.style.display = '';
+      videoPlayer.style.display = 'block';
       videoPlayer.play().catch(() => {});
     } else {
       videoEmpty.style.display = 'block';
