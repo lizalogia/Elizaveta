@@ -1788,9 +1788,11 @@ html.js .project-card--case.reveal.is-visible {
 @media (prefers-reduced-motion: no-preference) {
   .hero__photo { animation: hero-photo-in 1.6s var(--ease-out-expo) both, hero-kenburns 22s ease-in-out 1.6s infinite alternate; }
 }
+/* The end state has to mirror .hero__photo's own filter — animation-fill-mode
+   is `both`, so whatever sits here wins over the base rule for good. */
 @keyframes hero-photo-in {
-  from { transform: scale(1.08); filter: brightness(0.88) contrast(1.0) saturate(1.0); }
-  to   { transform: scale(1); filter: contrast(1.14) saturate(1.08) brightness(1.05); }
+  from { transform: scale(1.08); filter: brightness(0.9) contrast(1.0) saturate(1.0); }
+  to   { transform: scale(1); filter: contrast(1.06) saturate(1.04) brightness(1.03); }
 }
 
 /* ---- Hero CTA: richer hover (glow + micro-scale) ---- */
