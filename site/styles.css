@@ -1333,9 +1333,27 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 
 /* ---------- Format category pages ---------- */
 
+/* Each category page gets its own quiet accent tint (drawn from that
+   category's own card palette) so the hero band and grid area read as a
+   soft, layered gradient instead of a flat fill — never a bright color,
+   just enough hue to feel considered. One shared formula, seven accents:
+   that's the "system" — home page and its warm-gradient/brown-deep flats
+   are untouched since these variables only exist under .category-page. */
+.page-concerts  { --cat-tint: 168, 138, 96;  --cat-deep: 43, 34, 24; }
+.page-events    { --cat-tint: 70, 96, 150;   --cat-deep: 22, 27, 38; }
+.page-media     { --cat-tint: 96, 96, 116;   --cat-deep: 26, 26, 33; }
+.page-expert    { --cat-tint: 74, 104, 158;  --cat-deep: 21, 25, 35; }
+.page-cinema    { --cat-tint: 150, 68, 68;   --cat-deep: 36, 22, 20; }
+.page-backstage { --cat-tint: 168, 128, 72;  --cat-deep: 38, 30, 21; }
+.page-trends    { --cat-tint: 150, 78, 112;  --cat-deep: 36, 22, 30; }
+
 .category-hero {
+  position: relative;
   padding: clamp(130px, 17vw, 170px) var(--pad-x) clamp(32px, 5vw, 48px);
-  background: var(--brown-deep);
+  background:
+    radial-gradient(115% 85% at 88% -15%, rgba(var(--cat-tint, 143, 118, 89), 0.20), transparent 62%),
+    radial-gradient(85% 65% at 6% 115%, rgba(var(--cat-tint, 143, 118, 89), 0.12), transparent 68%),
+    linear-gradient(160deg, rgb(var(--cat-deep, 47, 35, 30)) 0%, var(--brown-deep) 58%, #1a130e 100%);
   color: var(--cream-soft);
 }
 .category-hero__back {
@@ -1385,7 +1403,10 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
   gap: clamp(16px, 2vw, 24px);
   padding: clamp(40px, 6vw, 56px) var(--pad-x) clamp(90px, 11vw, 130px);
-  background: var(--warm-gradient);
+  background:
+    radial-gradient(110% 80% at 10% 0%, rgba(var(--cat-tint, 143, 118, 89), 0.12), transparent 58%),
+    radial-gradient(90% 70% at 100% 100%, rgba(var(--cat-tint, 143, 118, 89), 0.07), transparent 62%),
+    var(--warm-gradient);
 }
 .category-grid .project-card { width: 100%; }
 .category-grid .project-card--horizontal {
@@ -1409,6 +1430,32 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   color: rgba(239, 231, 217, 0.65);
   white-space: normal;
   line-height: 1.4;
+}
+/* Small corner index for the lecture-series cards (01-09). Sits in the
+   opposite corner from the centered play icon so it never competes with
+   the topic title already burned into the cover art. */
+.project-card__index {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgba(15, 11, 9, 0.32);
+  border: 1px solid rgba(239, 231, 217, 0.22);
+  font-family: 'Neutral Face', var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(243, 238, 230, 0.85);
+  pointer-events: none;
+}
+@media (max-width: 400px) {
+  .project-card__index { width: 22px; height: 22px; font-size: 9px; top: 11px; left: 11px; }
 }
 .category-empty {
   grid-column: 1 / -1;
