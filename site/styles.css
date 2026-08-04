@@ -184,7 +184,7 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 720px) {
-  .hero { min-height: 106svh; }}
+  .hero { min-height: 92svh; }}
 
 .hero__photo-wrap {
   position: absolute;
@@ -328,24 +328,6 @@ img { max-width: 100%; display: block; }
   color: rgba(247, 242, 234, 0.95);
 }
 
-/* Turnaround-time proof point, surfaced in the hero itself rather than
-   left to surface only after scrolling to the process section. */
-.hero__badge {
-  display: inline-flex;
-  align-items: center;
-  margin: 0 0 clamp(22px, 3.2vw, 32px);
-  padding: 8px 18px;
-  border: 1px solid rgba(243, 238, 230, 0.28);
-  border-radius: 999px;
-  font-family: 'Golca', var(--font-display);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(243, 238, 230, 0.9);
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
-}
-
 .hero__cta {
   --btn-fill: var(--cream-soft);
   position: relative;
@@ -391,11 +373,9 @@ img { max-width: 100%; display: block; }
   .hero__fog { opacity: 0; animation: hero-fade-in 1.2s ease 0.3s forwards; }
   .logo { opacity: 0; animation: hero-fade-in 0.7s ease 0.5s forwards; }
   .hero__desc,
-  .hero__badge,
   .hero__cta { opacity: 0; animation: hero-fade-up 0.7s var(--ease-out-expo) forwards; }
   .hero__desc { animation-delay: 0.75s; }
-  .hero__badge { animation-delay: 0.88s; }
-  .hero__cta { animation-delay: 1.05s; }
+  .hero__cta { animation-delay: 0.98s; }
 }
 
 .hero__scroll {
@@ -1715,6 +1695,37 @@ html.js .project-card--case.reveal.is-visible {
   margin: 0;
   max-width: 62ch;
 }
+.benefit__lead { margin-bottom: 10px; }
+/* A benefit that lists more than one named credential reads as a
+   scannable 1/2 list instead of one run-on sentence. */
+.benefit__list {
+  list-style: none;
+  counter-reset: benefit-item;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: clamp(12px, 1.4vw, 14px);
+  line-height: 1.6;
+  color: var(--brown-mid);
+  max-width: 62ch;
+}
+.benefit__list li {
+  position: relative;
+  padding-left: 20px;
+}
+.benefit__list li::before {
+  counter-increment: benefit-item;
+  content: counter(benefit-item) '.';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 600;
+  color: var(--taupe);
+}
+.benefit__list-name { color: var(--ink); font-weight: 500; }
 @media (min-width: 760px) {
   .benefit {
     grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.35fr);
