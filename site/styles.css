@@ -1695,37 +1695,6 @@ html.js .project-card--case.reveal.is-visible {
   margin: 0;
   max-width: 62ch;
 }
-.benefit__lead { margin-bottom: 10px; }
-/* A benefit that lists more than one named credential reads as a
-   scannable 1/2 list instead of one run-on sentence. */
-.benefit__list {
-  list-style: none;
-  counter-reset: benefit-item;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-family: var(--font-body);
-  font-size: clamp(12px, 1.4vw, 14px);
-  line-height: 1.6;
-  color: var(--brown-mid);
-  max-width: 62ch;
-}
-.benefit__list li {
-  position: relative;
-  padding-left: 20px;
-}
-.benefit__list li::before {
-  counter-increment: benefit-item;
-  content: counter(benefit-item) '.';
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-weight: 600;
-  color: var(--taupe);
-}
-.benefit__list-name { color: var(--ink); font-weight: 500; }
 @media (min-width: 760px) {
   .benefit {
     grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.35fr);
