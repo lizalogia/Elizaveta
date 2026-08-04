@@ -1351,9 +1351,9 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   position: relative;
   padding: clamp(130px, 17vw, 170px) var(--pad-x) clamp(32px, 5vw, 48px);
   background:
-    radial-gradient(115% 85% at 88% -15%, rgba(var(--cat-tint, 143, 118, 89), 0.20), transparent 62%),
-    radial-gradient(85% 65% at 6% 115%, rgba(var(--cat-tint, 143, 118, 89), 0.12), transparent 68%),
-    linear-gradient(160deg, rgb(var(--cat-deep, 47, 35, 30)) 0%, var(--brown-deep) 58%, #1a130e 100%);
+    radial-gradient(130% 90% at 90% -20%, rgba(var(--cat-tint, 143, 118, 89), 0.32), transparent 60%),
+    radial-gradient(100% 75% at 2% 120%, rgba(var(--cat-tint, 143, 118, 89), 0.20), transparent 65%),
+    linear-gradient(150deg, rgb(var(--cat-deep, 47, 35, 30)) 0%, var(--brown-deep) 45%, #150f0a 100%);
   color: var(--cream-soft);
 }
 .category-hero__back {
@@ -1404,9 +1404,9 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   gap: clamp(16px, 2vw, 24px);
   padding: clamp(40px, 6vw, 56px) var(--pad-x) clamp(90px, 11vw, 130px);
   background:
-    radial-gradient(110% 80% at 10% 0%, rgba(var(--cat-tint, 143, 118, 89), 0.12), transparent 58%),
-    radial-gradient(90% 70% at 100% 100%, rgba(var(--cat-tint, 143, 118, 89), 0.07), transparent 62%),
-    var(--warm-gradient);
+    radial-gradient(120% 85% at 6% -8%, rgba(var(--cat-tint, 143, 118, 89), 0.24), transparent 55%),
+    radial-gradient(110% 85% at 100% 108%, rgba(var(--cat-deep, 47, 35, 30), 0.16), transparent 62%),
+    linear-gradient(155deg, #faf6ef 0%, #f3eddf 42%, #ecdfca 78%, #e6d5b9 100%);
 }
 .category-grid .project-card { width: 100%; }
 .category-grid .project-card--horizontal {
