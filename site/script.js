@@ -296,18 +296,21 @@
   }
 
   // Statistics count-up animation.
-  const stats = document.querySelectorAll('.stat__num[data-count]');
+  const stats = document.querySelectorAll('[data-count]');
   if (stats.length) {
     const runCount = (el) => {
       const target = parseInt(el.dataset.count, 10);
       const suffix = el.dataset.suffix || '';
-      if (reduceMotion) { el.textContent = target.toLocaleString('ru-RU') + suffix; return; }
+      // A year (e.g. 2023) must never pick up a thousands separator the way
+      // a real count (50 000) does — 'noGroup' opts a tile out of grouping.
+      const format = (n) => (el.dataset.noGroup !== undefined ? String(n) : n.toLocaleString('ru-RU'));
+      if (reduceMotion) { el.textContent = format(target) + suffix; return; }
       const dur = 1400;
       const start = performance.now();
       const tick = (now) => {
         const t = Math.min((now - start) / dur, 1);
         const eased = 1 - Math.pow(1 - t, 3);
-        el.textContent = Math.round(target * eased).toLocaleString('ru-RU') + suffix;
+        el.textContent = format(Math.round(target * eased)) + suffix;
         if (t < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
