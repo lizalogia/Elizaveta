@@ -1457,6 +1457,30 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 @media (max-width: 400px) {
   .project-card__index { width: 22px; height: 22px; font-size: 9px; top: 11px; left: 11px; }
 }
+/* Small corner tag for the two paired Instadium/Mastermind case studies
+   ("Кейс 01" / "Кейс 02"). Same corner and visual language as the numeric
+   index above, just a pill instead of a circle to fit the extra text. */
+.project-card__case-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 11, 9, 0.32);
+  border: 1px solid rgba(239, 231, 217, 0.22);
+  font-family: 'Neutral Face', var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(243, 238, 230, 0.85);
+  white-space: nowrap;
+  pointer-events: none;
+}
+@media (max-width: 400px) {
+  .project-card__case-tag { font-size: 9px; padding: 3px 8px; top: 11px; left: 11px; }
+}
 .category-empty {
   grid-column: 1 / -1;
   text-align: center;
