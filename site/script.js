@@ -126,11 +126,25 @@
     return `https://rutube.ru/play/embed/${match[1]}${token ? `?p=${token[1]}` : ''}`;
   };
 
-  const openVideoModal = (src) => {
+  // Countdown leader — a brief film-leader beat before the clip plays.
+  // The video's src is only set once the leader hands off (revealVideo),
+  // so nothing loads or plays silently underneath the black countdown.
+  const leader = document.getElementById('videoModalLeader');
+  const leaderNum = document.getElementById('videoModalLeaderNum');
+  const leaderArc = leader ? leader.querySelector('.arc') : null;
+  const leaderReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let leaderTimer = null;
+
+  const resetLeaderArc = () => {
+    if (!leaderArc) return;
+    leaderArc.style.transition = 'none';
+    leaderArc.style.strokeDashoffset = '276';
+    void leaderArc.getBoundingClientRect();
+    leaderArc.style.transition = '';
+  };
+
+  const revealVideo = (src) => {
     const embedUrl = src ? (getDriveEmbedUrl(src) || getRutubeEmbedUrl(src)) : null;
-    videoPlayer.style.display = 'none';
-    videoFrame.style.display = 'none';
-    videoEmpty.style.display = 'none';
     if (embedUrl) {
       videoFrame.src = embedUrl;
       videoFrame.style.display = 'block';
@@ -141,10 +155,51 @@
     } else {
       videoEmpty.style.display = 'block';
     }
+    videoModal.classList.add('is-revealing');
+  };
+
+  const playLeader = (src) => {
+    if (!leader || !leaderNum || !leaderArc || leaderReducedMotion) {
+      revealVideo(src);
+      return;
+    }
+    leader.classList.add('is-active');
+    leader.onclick = () => {
+      clearInterval(leaderTimer);
+      leaderTimer = null;
+      leader.classList.remove('is-active');
+      revealVideo(src);
+    };
+    let n = 3;
+    const stepMs = 420;
+    leaderNum.textContent = String(n);
+    resetLeaderArc();
+    requestAnimationFrame(() => { leaderArc.style.strokeDashoffset = '0'; });
+    leaderTimer = setInterval(() => {
+      n -= 1;
+      if (n <= 0) {
+        clearInterval(leaderTimer);
+        leaderTimer = null;
+        leader.classList.remove('is-active');
+        revealVideo(src);
+        return;
+      }
+      leaderNum.textContent = String(n);
+      resetLeaderArc();
+      requestAnimationFrame(() => { leaderArc.style.strokeDashoffset = '0'; });
+    }, stepMs);
+  };
+
+  const openVideoModal = (src) => {
+    videoPlayer.style.display = 'none';
+    videoFrame.style.display = 'none';
+    videoEmpty.style.display = 'none';
     videoModal.classList.add('is-open');
+    videoModal.classList.remove('is-revealing');
     videoModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     lastVideoTrigger = document.activeElement;
+    playLeader(src);
     // The dialog fades in via a visibility transition; the close button only
     // becomes focusable once the transition has ticked, so defer past it.
     setTimeout(() => {
@@ -156,6 +211,9 @@
   let lastVideoTrigger = null;
   const closeVideoModal = () => {
     videoModal.classList.remove('is-open');
+    videoModal.classList.remove('is-revealing');
+    if (leaderTimer) { clearInterval(leaderTimer); leaderTimer = null; }
+    if (leader) leader.classList.remove('is-active');
     videoModal.setAttribute('aria-hidden', 'true');
     videoPlayer.pause();
     videoPlayer.removeAttribute('src');
