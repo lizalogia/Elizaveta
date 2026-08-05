@@ -686,12 +686,24 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   background: linear-gradient(150deg, var(--card-a), var(--card-b));
   cursor: pointer;
   scroll-snap-align: start;
-  transition: opacity 0.6s var(--ease-out-expo), transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease;
+  transition: opacity 0.6s var(--ease-out-expo), transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease, filter 0.4s var(--ease-out-expo);
   box-shadow: 0 0 0 rgba(20, 15, 12, 0);
 }
 html.js.has-fine-pointer .project-card:hover {
-  transform: scale(1.03);
+  transform:
+    perspective(900px)
+    rotateX(calc((0.5 - var(--my, 0.5)) * 7deg))
+    rotateY(calc((var(--mx, 0.5) - 0.5) * 9deg))
+    scale(1.03);
   box-shadow: 0 16px 32px -12px rgba(20, 15, 12, 0.35);
+}
+/* Rack focus — hovering one case card in a row softens the others, like
+   pulling focus with the lens instead of just pointing at the target. */
+.marquee--cases:has(.project-card:hover) .project-card:not(:hover),
+.marquee--cases:has(.project-card:focus-visible) .project-card:not(:focus-visible),
+.category-grid:has(.project-card:hover) .project-card:not(:hover),
+.category-grid:has(.project-card:focus-visible) .project-card:not(:focus-visible) {
+  filter: blur(2.5px) saturate(0.7) brightness(0.86);
 }
 .has-fine-pointer .project-card { cursor: none; }
 .project-card:focus-visible { outline: 2px solid var(--cream-soft); outline-offset: 3px; }
@@ -1113,10 +1125,31 @@ html.js .format-card.reveal:focus-visible::before {
   align-items: center;
   justify-content: center;
   background: #000;
+  overflow: hidden;
   transform: scale(0.98);
   transition: transform 0.35s var(--ease-out-expo);
 }
 .video-modal.is-open .video-modal__box { transform: scale(1); }
+/* Warm light-leak sweep on open — a one-shot analog flourish over the
+   opening dialog, purely decorative so it never blocks the close button. */
+.video-modal__box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(100deg, transparent 25%, rgba(255, 214, 160, 0.75) 46%, rgba(255, 244, 228, 0.92) 50%, rgba(255, 214, 160, 0.75) 54%, transparent 75%);
+  transform: translateX(-120%) rotate(4deg) scale(1.4);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .video-modal.is-open .video-modal__box::before { animation: modal-leak 0.9s var(--ease-sym) both; }
+}
+@keyframes modal-leak {
+  0% { opacity: 0; transform: translateX(-120%) rotate(4deg) scale(1.4); }
+  45% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(120%) rotate(4deg) scale(1.4); }
+}
 .video-modal__player {
   display: none;
   width: 100%;
