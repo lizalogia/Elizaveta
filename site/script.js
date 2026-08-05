@@ -202,13 +202,6 @@
     document.querySelectorAll('.project-card').forEach((card) => {
       card.addEventListener('mouseenter', () => cursor.classList.add('is-active'));
       card.addEventListener('mouseleave', () => cursor.classList.remove('is-active'));
-      // Tilt follows the pointer within the card — drives the rotateX/rotateY
-      // in the CSS hover transform via --mx/--my (0..1, card-relative).
-      card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width).toFixed(3));
-        card.style.setProperty('--my', ((e.clientY - r.top) / r.height).toFixed(3));
-      });
     });
   }
 
