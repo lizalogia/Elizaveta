@@ -370,4 +370,36 @@
       if (e.persisted) pageFade.classList.remove('is-leaving');
     });
   }
+
+  // Persistent HUD bar: ambient waveform + a running timecode. Purely
+  // atmospheric — ties every page together as one continuous reel.
+  const hudBars = document.getElementById('hudBars');
+  const hudTime = document.getElementById('hudTime');
+  if (hudBars && hudTime) {
+    const barCount = 30;
+    for (let i = 0; i < barCount; i += 1) {
+      const bar = document.createElement('span');
+      const peak = 26 + Math.random() * 64;
+      bar.style.setProperty('--peak', `${peak.toFixed(0)}%`);
+      bar.style.animationDuration = `${(1.6 + Math.random() * 1.3).toFixed(2)}s`;
+      bar.style.animationDelay = `${(Math.random() * -2.4).toFixed(2)}s`;
+      hudBars.appendChild(bar);
+    }
+    const two = (n) => String(n).padStart(2, '0');
+    if (!reduceMotion) {
+      let frame = 0;
+      window.setInterval(() => {
+        frame += 1;
+        const fps = 25;
+        const ff = frame % fps;
+        const totalSec = Math.floor(frame / fps);
+        const ss = totalSec % 60;
+        const mm = Math.floor(totalSec / 60) % 60;
+        const hh = Math.floor(totalSec / 3600);
+        hudTime.textContent = `${two(hh)}:${two(mm)}:${two(ss)}:${two(ff)}`;
+      }, 40);
+    } else {
+      hudTime.textContent = '00:00:00:00';
+    }
+  }
 })();
