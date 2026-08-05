@@ -184,7 +184,7 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 720px) {
-  .hero { min-height: 75svh; }}
+  .hero { min-height: 87svh; }}
 
 .hero__photo-wrap {
   position: absolute;
@@ -214,7 +214,7 @@ img { max-width: 100%; display: block; }
    heading sits over the dark left half. Mobile is served a dedicated crop of
    the same photograph, framed on the phone. */
 @media (max-width: 720px) {
-  .hero__photo { object-position: 50% 20%; }}
+  .hero__photo { object-position: 50% 0%; }}
 @media (prefers-reduced-motion: no-preference) {
   .hero__photo { animation: hero-kenburns 22s ease-in-out infinite alternate; }}
 @keyframes hero-kenburns {
@@ -294,7 +294,7 @@ img { max-width: 100%; display: block; }
   .hero { justify-content: flex-end; }
   .hero__grid {
     padding-top: 0;
-    padding-bottom: clamp(12px, 3vw, 20px);
+    padding-bottom: clamp(58px, 13vw, 80px);
   }
 }
 
