@@ -279,27 +279,36 @@ img { max-width: 100%; display: block; }
 }
 .hero__photo-parallax {
   position: absolute;
-  inset: -8% 0 0 0;
+  inset: 0;
   will-change: transform;
 }
 .hero__photo {
   position: absolute;
-  inset: -1%;
-  width: 102%;
-  height: 102%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   max-width: none;
-  object-fit: cover;
-  object-position: 58% 46%;
+  /* Full photo, uncropped — the source is a tall portrait shot inside a
+     wide hero band, so `cover` was slicing away most of its height. */
+  object-fit: contain;
+  object-position: 50% 50%;
   filter: contrast(1.06) saturate(1.04) brightness(1.03);
 }
-/* Desktop/laptop: the frame is cropped vertically, so pull the window a
-   little above centre — the phone, hands and stage stay in view while the
-   heading sits over the dark left half. Mobile is served a dedicated crop of
-   the same photograph, framed on the phone. */
+/* Mobile gets a dedicated tighter crop of the same photo (framed on the
+   phone), shown full-bleed as before — only the desktop/laptop band shows
+   the complete, uncropped image. */
 @media (max-width: 720px) {
-  .hero__photo { object-position: 50% 0%; }}
-@media (prefers-reduced-motion: no-preference) {
-  .hero__photo { animation: hero-kenburns 22s ease-in-out infinite alternate; }}
+  .hero__photo-parallax { inset: -8% 0 0 0; }
+  .hero__photo {
+    inset: -1%;
+    width: 102%;
+    height: 102%;
+    object-fit: cover;
+    object-position: 50% 0%;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__photo { animation: hero-kenburns 22s ease-in-out infinite alternate; }}
+}
 @keyframes hero-kenburns {
   0% { transform: scale(1) translate(0, 0); }
   100% { transform: scale(1.03) translate(-0.5%, 0.5%); }
@@ -1930,8 +1939,10 @@ html.js .project-card--case.reveal.is-visible {
 
 /* ---- Hero: cinematic glow + film grain ---- */
 
-/* Photo entrance: gentle scale + contrast settle */
-@media (prefers-reduced-motion: no-preference) {
+/* Photo entrance: gentle scale + contrast settle. Mobile only — desktop
+   shows the full photo via object-fit:contain and any extra scale would
+   crop it again. */
+@media (max-width: 720px) and (prefers-reduced-motion: no-preference) {
   .hero__photo { animation: hero-photo-in 1.6s var(--ease-out-expo) both, hero-kenburns 22s ease-in-out 1.6s infinite alternate; }
 }
 /* The end state has to mirror .hero__photo's own filter — animation-fill-mode
