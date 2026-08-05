@@ -184,7 +184,7 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 720px) {
-  .hero { min-height: 87svh; }}
+  .hero { min-height: 75svh; }}
 
 .hero__photo-wrap {
   position: absolute;
@@ -214,7 +214,7 @@ img { max-width: 100%; display: block; }
    heading sits over the dark left half. Mobile is served a dedicated crop of
    the same photograph, framed on the phone. */
 @media (max-width: 720px) {
-  .hero__photo { object-position: 50% 0%; }}
+  .hero__photo { object-position: 50% 20%; }}
 @media (prefers-reduced-motion: no-preference) {
   .hero__photo { animation: hero-kenburns 22s ease-in-out infinite alternate; }}
 @keyframes hero-kenburns {
@@ -294,7 +294,7 @@ img { max-width: 100%; display: block; }
   .hero { justify-content: flex-end; }
   .hero__grid {
     padding-top: 0;
-    padding-bottom: clamp(58px, 13vw, 80px);
+    padding-bottom: clamp(12px, 3vw, 20px);
   }
 }
 
@@ -596,12 +596,9 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   filter: blur(9px);
   z-index: -1;
 }
-/* Every source PNG is trimmed to its ink bounding box, so --logo-h is now a
-   real optical height rather than "graphic + whatever transparent margin the
-   file happened to carry". Heights are derived from each mark's aspect ratio
-   (h = 29 / aspect^0.42) so wide wordmarks and stacked lockups end up with a
-   comparable visual mass instead of a comparable raw height, then nudged by
-   eye for weight. The fixed-height flex box keeps every logo on one baseline. */
+/* Every logo mark rendered at one flat height, regardless of its own file's
+   proportions — a wordmark and a stacked lockup end up the same size rather
+   than a "comparable visual mass" someone has to keep eyeballing. */
 .brandmark-logo {
   display: inline-flex;
   align-items: center;
@@ -610,7 +607,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 }
 .brandmark-logo img {
   display: block;
-  height: var(--logo-h, 17px);
+  height: 18px;
   width: auto;
   max-width: none;
   object-fit: contain;
@@ -618,19 +615,6 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   transition: transform 0.4s var(--ease-out-expo), opacity 0.4s ease, filter 0.4s ease;
 }
 .brandmark-logo:hover img { transform: scale(1.06) translateY(-1px); opacity: 1; filter: contrast(1.12) brightness(1.03); }
-.brandmark-logo--muz { --logo-h: 15.5px; }
-.brandmark-logo--voice { --logo-h: 17.5px; }
-.brandmark-logo--instadium { --logo-h: 19px; }
-.brandmark-logo--nf { --logo-h: 17.5px; }
-.brandmark-logo--curaprox { --logo-h: 17.2px; }
-.brandmark-logo--neforbsy { --logo-h: 12px; }
-.brandmark-logo--kion { --logo-h: 15.5px; }
-.brandmark-logo--wink { --logo-h: 17.9px; }
-.brandmark-logo--ivi { --logo-h: 21px; }
-.brandmark-logo--komandy { --logo-h: 21.5px; }
-.brandmark-logo--vkfest { --logo-h: 23px; }
-.brandmark-logo--golosa { --logo-h: 17px; }
-.brandmark-logo--musicbox { --logo-h: 17.5px; }
 
 /* ---------- Marquee ---------- */
 
