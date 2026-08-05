@@ -13,9 +13,6 @@
   --taupe: #8f7659;
   --taupe-soft: #b6a488;
   --ink: #241b16;
-  --ember: #8a4636;
-  --rail-w: 10px;
-  --hud-h: 34px;
   --radius: 14px;
   --radius-sm: 6px;
   /* Hairline dividers — deliberately light (§10) */
@@ -46,89 +43,9 @@ body {
   background: var(--warm-gradient);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
-  /* Room for the fixed HUD bar at the bottom of every page, so the last
-     line of the footer is never covered by it. */
-  padding-bottom: var(--hud-h);
-}
-@media (min-width: 720px) {
-  body { --hud-h: 42px; }
 }
 
 img { max-width: 100%; display: block; }
-
-/* ---------- Film rails + HUD bar (persistent site chrome) ---------- */
-.filmrail {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: var(--rail-w);
-  z-index: 35;
-  pointer-events: none;
-  background-image: repeating-linear-gradient(to bottom, var(--taupe) 0 6px, transparent 6px 18px);
-  opacity: 0.3;
-}
-.filmrail--l { left: 0; }
-.filmrail--r { right: 0; }
-@media (max-width: 560px) {
-  .filmrail { width: 6px; background-image: repeating-linear-gradient(to bottom, var(--taupe) 0 4px, transparent 4px 13px); }
-}
-.hud-fixed {
-  position: fixed;
-  left: var(--rail-w);
-  right: var(--rail-w);
-  bottom: 0;
-  z-index: 40;
-  height: var(--hud-h);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 clamp(14px, 3vw, 24px);
-  background: var(--ink);
-  border-top: 1px solid rgba(243, 238, 230, 0.08);
-}
-.hud-rec {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--ember);
-  flex: 0 0 auto;
-  animation: hud-rec-pulse 1.8s ease-in-out infinite;
-}
-@keyframes hud-rec-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
-.hud-bars { display: flex; align-items: flex-end; gap: 2.5px; height: 16px; flex: 1; min-width: 0; }
-.hud-bars span {
-  flex: 1;
-  max-width: 4px;
-  border-radius: 2px;
-  height: 14%;
-  background: linear-gradient(180deg, var(--taupe-soft), var(--taupe));
-  animation-name: hud-wave;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-@keyframes hud-wave { 0%, 100% { height: 14%; } 50% { height: var(--peak, 70%); } }
-.hud-label {
-  font-family: 'Neutral Face', var(--font-display);
-  font-weight: 400;
-  font-size: 9.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(243, 238, 230, 0.5);
-  white-space: nowrap;
-  display: none;
-}
-@media (min-width: 620px) { .hud-label { display: block; } }
-.hud-time {
-  font-family: var(--font-display);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.05em;
-  color: var(--cream-soft);
-  font-size: 12px;
-  white-space: nowrap;
-}
-@media (prefers-reduced-motion: reduce) {
-  .hud-rec, .hud-bars span { animation: none; opacity: 0.7; }
-}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
