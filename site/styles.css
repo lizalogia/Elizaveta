@@ -184,7 +184,7 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 720px) {
-  .hero { min-height: 92svh; }}
+  .hero { min-height: 87svh; }}
 
 .hero__photo-wrap {
   position: absolute;
@@ -294,7 +294,7 @@ img { max-width: 100%; display: block; }
   .hero { justify-content: flex-end; }
   .hero__grid {
     padding-top: 0;
-    padding-bottom: clamp(76px, 17vw, 104px);
+    padding-bottom: clamp(58px, 13vw, 80px);
   }
 }
 
@@ -1240,6 +1240,11 @@ html.js .format-card.reveal:focus-visible::before {
   z-index: 2;
   max-width: 560px;
   padding: clamp(120px, 16vw, 184px) var(--pad-x) clamp(88px, 12vw, 132px);
+}
+@media (max-width: 720px) {
+  .contacts { min-height: auto; }
+  .contacts__inner { padding-bottom: clamp(48px, 10vw, 72px); }
+  .contacts::after { height: clamp(64px, 12vw, 110px); }
 }
 .contacts__headline {
   font-family: 'Blacker Sans Display', 'Lato', var(--font-display);
