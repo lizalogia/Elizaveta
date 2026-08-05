@@ -294,9 +294,11 @@ img { max-width: 100%; display: block; }
   object-position: 50% 50%;
   filter: contrast(1.06) saturate(1.04) brightness(1.03);
 }
-/* Mobile gets a dedicated tighter crop of the same photo (framed on the
-   phone), shown full-bleed as before — only the desktop/laptop band shows
-   the complete, uncropped image. */
+/* Mobile: same full photo as desktop, shown full-bleed via cover — its
+   portrait aspect is close enough to a phone viewport that almost nothing
+   is lost vertically, just a sliver off each side. Position keeps the
+   phone-in-hand subject in frame with room to breathe above it, matching
+   the photo's own off-centre composition rather than centring on it. */
 @media (max-width: 720px) {
   .hero__photo-parallax { inset: -8% 0 0 0; }
   .hero__photo {
@@ -304,7 +306,7 @@ img { max-width: 100%; display: block; }
     width: 102%;
     height: 102%;
     object-fit: cover;
-    object-position: 50% 0%;
+    object-position: 62% 35%;
   }
   @media (prefers-reduced-motion: no-preference) {
     .hero__photo { animation: hero-kenburns 22s ease-in-out infinite alternate; }}
