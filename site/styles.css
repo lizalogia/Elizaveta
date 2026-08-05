@@ -1130,9 +1130,8 @@ html.js .format-card.reveal:focus-visible::before {
   transition: transform 0.35s var(--ease-out-expo);
 }
 .video-modal.is-open .video-modal__box { transform: scale(1); }
-/* Warm light-leak sweep — plays once the countdown leader below hands off
-   to the actual video (.is-revealing), purely decorative so it never
-   blocks the close button. */
+/* Warm light-leak sweep on open — a one-shot analog flourish over the
+   opening dialog, purely decorative so it never blocks the close button. */
 .video-modal__box::before {
   content: '';
   position: absolute;
@@ -1144,48 +1143,12 @@ html.js .format-card.reveal:focus-visible::before {
   transform: translateX(-120%) rotate(4deg) scale(1.4);
 }
 @media (prefers-reduced-motion: no-preference) {
-  .video-modal.is-revealing .video-modal__box::before { animation: modal-leak 0.9s var(--ease-sym) both; }
+  .video-modal.is-open .video-modal__box::before { animation: modal-leak 0.9s var(--ease-sym) both; }
 }
 @keyframes modal-leak {
   0% { opacity: 0; transform: translateX(-120%) rotate(4deg) scale(1.4); }
   45% { opacity: 1; }
   100% { opacity: 0; transform: translateX(120%) rotate(4deg) scale(1.4); }
-}
-/* Countdown leader — a brief film-leader beat before the clip itself,
-   like the numbered countdown at the head of a reel. Sits below the
-   close button (z-index) so closing/cancelling always stays possible;
-   tap anywhere on it to skip straight to the video. */
-.video-modal__leader {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-.video-modal__leader.is-active { opacity: 1; pointer-events: auto; cursor: pointer; }
-.video-modal__leader-ring { position: absolute; width: 84px; height: 84px; transform: rotate(-90deg); }
-.video-modal__leader-ring circle { fill: none; stroke-width: 2.2; }
-.video-modal__leader-ring .track { stroke: rgba(239, 231, 217, 0.22); }
-.video-modal__leader-ring .arc {
-  stroke: rgba(239, 231, 217, 0.92);
-  stroke-dasharray: 276;
-  stroke-dashoffset: 276;
-  transition: stroke-dashoffset 0.4s linear;
-}
-.video-modal__leader-num {
-  position: relative;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 32px;
-  color: rgba(239, 231, 217, 0.92);
-}
-@media (prefers-reduced-motion: reduce) {
-  .video-modal__leader { display: none; }
 }
 .video-modal__player {
   display: none;
