@@ -1708,6 +1708,7 @@ html.js .project-card--case.reveal.is-visible {
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
+  margin-left: clamp(24px, 6vw, 80px);
   gap: 10px;
   padding: clamp(13px, 1.6vw, 16px) clamp(26px, 3vw, 34px);
   border: 1px solid var(--line-on-dark);
