@@ -288,17 +288,19 @@ img { max-width: 100%; display: block; }
   width: 100%;
   height: 100%;
   max-width: none;
-  /* Full photo, uncropped — the source is a tall portrait shot inside a
-     wide hero band, so `cover` was slicing away most of its height. */
-  object-fit: contain;
-  object-position: 50% 50%;
+  /* Full-bleed on desktop too — the source is a tall portrait shot inside a
+     wide landscape hero band, so `contain` left empty gradient bars down
+     both sides on wide screens. `cover` fills edge to edge; since the photo
+     is always narrower than the viewport here, only the vertical position
+     matters and it's tuned to keep the phone-in-hand subject in frame. */
+  object-fit: cover;
+  object-position: 50% 35%;
   filter: contrast(1.06) saturate(1.04) brightness(1.03);
 }
-/* Mobile: same full photo as desktop, shown full-bleed via cover — its
-   portrait aspect is close enough to a phone viewport that almost nothing
-   is lost vertically, just a sliver off each side. Position keeps the
-   phone-in-hand subject in frame with room to breathe above it, matching
-   the photo's own off-centre composition rather than centring on it. */
+/* Mobile: same photo, own crop — its portrait aspect is close enough to a
+   phone viewport that cover loses only a sliver off each side. Position
+   keeps the phone-in-hand subject in frame with room to breathe above it,
+   matching the photo's own off-centre composition rather than centring on it. */
 @media (max-width: 720px) {
   .hero__photo-parallax { inset: -8% 0 0 0; }
   .hero__photo {
