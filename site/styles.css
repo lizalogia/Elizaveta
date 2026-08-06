@@ -15,7 +15,7 @@
   --ink: #241b16;
   --ember: #8a4636;
   --rail-w: 10px;
-  --hud-h: 34px;
+  --hud-h: 40px;
   --radius: 14px;
   --radius-sm: 6px;
   /* Hairline dividers — deliberately light (§10) */
@@ -51,7 +51,7 @@ body {
   padding-bottom: var(--hud-h);
 }
 @media (min-width: 720px) {
-  body { --hud-h: 42px; }
+  body { --hud-h: 48px; }
 }
 
 img { max-width: 100%; display: block; }
@@ -95,13 +95,13 @@ img { max-width: 100%; display: block; }
   animation: hud-rec-pulse 1.8s ease-in-out infinite;
 }
 @keyframes hud-rec-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
-.hud-bars { display: flex; align-items: flex-end; gap: 2.5px; height: 16px; flex: 1; min-width: 0; }
+.hud-bars { display: flex; align-items: flex-end; gap: 2.5px; height: 22px; flex: 1; min-width: 0; }
 .hud-bars span {
   flex: 1;
   max-width: 4px;
   border-radius: 2px;
   height: 14%;
-  background: linear-gradient(180deg, var(--taupe-soft), var(--taupe));
+  background: linear-gradient(180deg, var(--cream-soft), var(--taupe-soft));
   animation-name: hud-wave;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
@@ -381,14 +381,14 @@ img { max-width: 100%; display: block; }
   width: 100%;
   max-width: 1360px;
   margin: 0 auto;
-  padding: clamp(120px, 16vw, 168px) var(--pad-x) clamp(48px, 7vw, 72px);
+  padding: clamp(96px, 13vw, 144px) var(--pad-x) clamp(56px, 8vw, 80px);
 }
 
 @media (max-width: 720px) {
   .hero { justify-content: flex-end; }
   .hero__grid {
     padding-top: 0;
-    padding-bottom: clamp(58px, 13vw, 80px);
+    padding-bottom: clamp(76px, 15vw, 100px);
   }
 }
 
@@ -690,20 +690,25 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   filter: blur(9px);
   z-index: -1;
 }
-/* Every logo mark rendered at one flat height, regardless of its own file's
-   proportions — a wordmark and a stacked lockup end up the same size rather
-   than a "comparable visual mass" someone has to keep eyeballing. */
+/* Every logo mark rendered inside one identical box, regardless of its own
+   file's proportions. A flat height alone isn't enough — a two- or
+   three-line stacked lockup (Instadium, VK Fest) shrinks its per-line text
+   to stay under that height, so it reads smaller than a one-line wordmark
+   even at the same total height. Fixing width AND height and letting the
+   image contain-fit inside gives every logo the same footprint instead. */
 .brandmark-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
+  width: clamp(70px, 8vw, 100px);
+  height: 32px;
 }
 .brandmark-logo img {
   display: block;
-  height: 18px;
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
-  max-width: none;
+  height: auto;
   object-fit: contain;
   opacity: 0.94;
   transition: transform 0.4s var(--ease-out-expo), opacity 0.4s ease, filter 0.4s ease;
