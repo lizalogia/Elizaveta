@@ -16,6 +16,7 @@
   --ember: #8a4636;
   --rail-w: 10px;
   --hud-h: 40px;
+  --hud-gap: 10px;
   --radius: 14px;
   --radius-sm: 6px;
   /* Hairline dividers — deliberately light (§10) */
@@ -47,8 +48,9 @@ body {
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   /* Room for the fixed HUD bar at the bottom of every page, so the last
-     line of the footer is never covered by it. */
-  padding-bottom: var(--hud-h);
+     line of the footer is never covered by it (bar height + the gap it
+     floats above the edge). */
+  padding-bottom: calc(var(--hud-h) + var(--hud-gap));
 }
 @media (min-width: 720px) {
   body { --hud-h: 48px; }
@@ -76,7 +78,7 @@ img { max-width: 100%; display: block; }
   position: fixed;
   left: var(--rail-w);
   right: var(--rail-w);
-  bottom: 0;
+  bottom: var(--hud-gap);
   z-index: 40;
   height: var(--hud-h);
   display: flex;
@@ -85,6 +87,7 @@ img { max-width: 100%; display: block; }
   padding: 0 clamp(14px, 3vw, 24px);
   background: var(--ink);
   border-top: 1px solid rgba(243, 238, 230, 0.08);
+  border-radius: var(--radius-sm);
 }
 .hud-rec {
   width: 6px;
