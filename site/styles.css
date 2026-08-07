@@ -362,7 +362,9 @@ img { max-width: 100%; display: block; }
     width: 102%;
     height: 102%;
     object-fit: cover;
-    object-position: 62% 35%;
+    /* Сдвиг по горизонтали: видна более правая часть кадра, телефон
+       уходит к середине экрана. */
+    object-position: 88% 35%;
   }
   @media (prefers-reduced-motion: no-preference) {
     .hero__photo { animation: hero-kenburns 22s ease-in-out infinite alternate; }}
@@ -444,7 +446,7 @@ img { max-width: 100%; display: block; }
   .hero { justify-content: flex-end; }
   .hero__grid {
     padding-top: 0;
-    padding-bottom: clamp(76px, 15vw, 100px);
+    padding-bottom: clamp(112px, 30vw, 148px);
   }
 }
 
@@ -457,7 +459,7 @@ img { max-width: 100%; display: block; }
   margin: 0 0 clamp(18px, 2.6vw, 28px);
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
-  font-size: clamp(17px, 2.6vw, 28px);
+  font-size: clamp(15px, 2.6vw, 28px);
   line-height: 1.25;
   letter-spacing: 0.05em;
   text-transform: uppercase;
