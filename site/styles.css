@@ -300,10 +300,10 @@ img { max-width: 100%; display: block; }
   object-position: 50% 35%;
   filter: contrast(1.06) saturate(1.04) brightness(1.03);
 }
-/* Mobile: same photo, own crop — its portrait aspect is close enough to a
-   phone viewport that cover loses only a sliver off each side. Position
-   keeps the phone-in-hand subject in frame with room to breathe above it,
-   matching the photo's own off-centre composition rather than centring on it. */
+/* Mobile: a dedicated pre-cropped file (hero-stage-phone-mobile), not the
+   desktop photo stretched via CSS — its own portrait aspect already centres
+   the phone-in-hand subject, so cover only needs a light vertical bias to
+   leave room to breathe above it. */
 @media (max-width: 720px) {
   .hero__photo-parallax { inset: -8% 0 0 0; }
   .hero__photo {
@@ -311,7 +311,7 @@ img { max-width: 100%; display: block; }
     width: 102%;
     height: 102%;
     object-fit: cover;
-    object-position: 62% 35%;
+    object-position: 50% 38%;
   }
   @media (prefers-reduced-motion: no-preference) {
     .hero__photo { animation: hero-kenburns 22s ease-in-out infinite alternate; }}
