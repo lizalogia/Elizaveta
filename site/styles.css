@@ -278,7 +278,9 @@ img { max-width: 100%; display: block; }
   z-index: 1;
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: clamp(16px, 2.9vw, 21px);
+  font-size: clamp(13.5px, 3.4vw, 19px);
+  line-height: 1.3;
+  white-space: nowrap;
   color: var(--cream-soft);
   text-decoration: none;
   opacity: 0.85;
@@ -673,7 +675,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   justify-content: center;
   gap: clamp(8px, 1.4vw, 16px);
   text-align: center;
-  font-size: clamp(10.5px, 1vw, 11.5px);
+  font-size: clamp(9.5px, 0.9vw, 10.5px);
   line-height: 1.6;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -1154,7 +1156,9 @@ html.js.has-fine-pointer .project-card:hover {
   font-weight: 700;
   /* Один размер с остальными заголовками */
   font-size: clamp(16px, 2.8vw, 20px);
-  line-height: 1.34;
+  /* Двухстрочные названия («ТВ и медиапроекты», «Экспертный контент»)
+     при 1.34 расходились и читались иначе, чем однострочные. */
+  line-height: 1.16;
   letter-spacing: 0.08em;
   /* мобильный лок — тот же, что у заголовков секций */
   text-transform: uppercase;
