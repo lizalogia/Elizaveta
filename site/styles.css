@@ -450,7 +450,7 @@ img { max-width: 100%; display: block; }
   margin: 0 0 clamp(18px, 2.6vw, 28px);
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
-  font-size: clamp(20px, 3.1vw, 33px);
+  font-size: clamp(17px, 2.6vw, 28px);
   line-height: 1.25;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -465,7 +465,7 @@ img { max-width: 100%; display: block; }
 .hero__desc-body {
   margin: 0;
   max-width: 480px;
-  font-size: clamp(12.5px, 1.4vw, 15px);
+  font-size: clamp(12px, 1.3vw, 14px);
   line-height: 1.7;
   letter-spacing: 0.01em;
   color: rgba(247, 242, 234, 0.95);
@@ -1498,8 +1498,10 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   transition: opacity 0.25s ease, transform 0.25s var(--ease-out-expo);
 }
 .category-hero__back:hover { opacity: 0.7; transform: translateX(-3px); }
+/* Иконка и ссылка «Портфолио» — оба инлайновые и стояли в одну строку.
+   При уменьшенном заголовке кружок оказался вплотную к тексту ссылки. */
 .category-hero__icon {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 46px;
@@ -1512,14 +1514,15 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 .category-hero h1 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: clamp(32px, 5vw, 52px);
+  /* Один размер с заголовками секций на главной («Почему выбирают меня») */
+  font-size: clamp(14px, 2.5vw, 18px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   margin: 0 0 12px;
-  line-height: 1.1;
+  line-height: 1.34;
 }
-/* "медиапроекты" is a single unbreakable word wider than a 320px column at
-   32px, so it ran past the page padding on the narrowest phones. */
-@media (max-width: 400px) {
-  .category-hero h1 { font-size: 28px; }
+@media (max-width: 720px) {
+  .category-hero h1 { font-size: 14.5px; }
 }
 .category-hero p {
   font-size: 12px;
