@@ -13,6 +13,9 @@
   --taupe: #8f7659;
   --taupe-soft: #b6a488;
   --ink: #241b16;
+  --ember: #8a4636;
+  --rail-w: 10px;
+  --hud-h: 40px;
   --radius: 14px;
   --radius-sm: 6px;
   /* Hairline dividers — deliberately light (§10) */
@@ -43,9 +46,89 @@ body {
   background: var(--warm-gradient);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
+  /* Room for the fixed HUD bar at the bottom of every page, so the last
+     line of the footer is never covered by it. */
+  padding-bottom: var(--hud-h);
+}
+@media (min-width: 720px) {
+  body { --hud-h: 48px; }
 }
 
 img { max-width: 100%; display: block; }
+
+/* ---------- Film rails + HUD bar (persistent site chrome) ---------- */
+.filmrail {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: var(--rail-w);
+  z-index: 35;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(to bottom, var(--taupe) 0 6px, transparent 6px 18px);
+  opacity: 0.3;
+}
+.filmrail--l { left: 0; }
+.filmrail--r { right: 0; }
+@media (max-width: 560px) {
+  .filmrail { width: 6px; background-image: repeating-linear-gradient(to bottom, var(--taupe) 0 4px, transparent 4px 13px); }
+}
+.hud-fixed {
+  position: fixed;
+  left: var(--rail-w);
+  right: var(--rail-w);
+  bottom: 0;
+  z-index: 40;
+  height: var(--hud-h);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 clamp(14px, 3vw, 24px);
+  background: var(--ink);
+  border-top: 1px solid rgba(243, 238, 230, 0.08);
+}
+.hud-rec {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ember);
+  flex: 0 0 auto;
+  animation: hud-rec-pulse 1.8s ease-in-out infinite;
+}
+@keyframes hud-rec-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+.hud-bars { display: flex; align-items: flex-end; gap: 2.5px; height: 22px; flex: 1; min-width: 0; }
+.hud-bars span {
+  flex: 1;
+  max-width: 4px;
+  border-radius: 2px;
+  height: 14%;
+  background: linear-gradient(180deg, var(--cream-soft), var(--taupe-soft));
+  animation-name: hud-wave;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes hud-wave { 0%, 100% { height: 14%; } 50% { height: var(--peak, 70%); } }
+.hud-label {
+  font-family: 'Neutral Face', var(--font-display);
+  font-weight: 400;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(243, 238, 230, 0.5);
+  white-space: nowrap;
+  display: none;
+}
+@media (min-width: 620px) { .hud-label { display: block; } }
+.hud-time {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+  color: var(--cream-soft);
+  font-size: 12px;
+  white-space: nowrap;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hud-rec, .hud-bars span { animation: none; opacity: 0.7; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -184,7 +267,7 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 720px) {
-  .hero { min-height: 106svh; }}
+  .hero { min-height: 87svh; }}
 
 .hero__photo-wrap {
   position: absolute;
@@ -196,23 +279,40 @@ img { max-width: 100%; display: block; }
 }
 .hero__photo-parallax {
   position: absolute;
-  inset: -8% 0 0 0;
+  inset: 0;
   will-change: transform;
 }
 .hero__photo {
   position: absolute;
-  inset: -3%;
-  width: 106%;
-  height: 106%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   max-width: none;
+  /* Full-bleed on desktop too — the source is a tall portrait shot inside a
+     wide landscape hero band, so `contain` left empty gradient bars down
+     both sides on wide screens. `cover` fills edge to edge; since the photo
+     is always narrower than the viewport here, only the vertical position
+     matters and it's tuned to keep the phone-in-hand subject in frame. */
   object-fit: cover;
-  object-position: 50% 50%;
-  filter: contrast(1.14) saturate(1.08) brightness(1.05);
+  object-position: 50% 35%;
+  filter: contrast(1.06) saturate(1.04) brightness(1.03);
 }
+/* Mobile: same photo, own crop — its portrait aspect is close enough to a
+   phone viewport that cover loses only a sliver off each side. Position
+   keeps the phone-in-hand subject in frame with room to breathe above it,
+   matching the photo's own off-centre composition rather than centring on it. */
 @media (max-width: 720px) {
-  .hero__photo { object-position: 60% 42%; }}
-@media (prefers-reduced-motion: no-preference) {
-  .hero__photo { animation: hero-kenburns 22s ease-in-out infinite alternate; }}
+  .hero__photo-parallax { inset: -8% 0 0 0; }
+  .hero__photo {
+    inset: -1%;
+    width: 102%;
+    height: 102%;
+    object-fit: cover;
+    object-position: 62% 35%;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__photo { animation: hero-kenburns 22s ease-in-out infinite alternate; }}
+}
 @keyframes hero-kenburns {
   0% { transform: scale(1) translate(0, 0); }
   100% { transform: scale(1.03) translate(-0.5%, 0.5%); }
@@ -283,15 +383,20 @@ img { max-width: 100%; display: block; }
   width: 100%;
   max-width: 1360px;
   margin: 0 auto;
-  padding: clamp(120px, 16vw, 168px) var(--pad-x) clamp(48px, 7vw, 72px);
+  padding: clamp(96px, 13vw, 144px) var(--pad-x) clamp(56px, 8vw, 80px);
 }
 
 @media (max-width: 720px) {
+  .hero { justify-content: flex-end; }
+  .hero__grid {
+    padding-top: 0;
+    padding-bottom: clamp(76px, 15vw, 100px);
+  }
 }
 
 .hero__desc {
   max-width: 540px;
-  margin: clamp(18px, 2.6vw, 30px) 0 clamp(40px, 5vw, 56px);
+  margin: clamp(18px, 2.6vw, 30px) 0 clamp(26px, 3.6vw, 36px);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.62), 0 0 26px rgba(0, 0, 0, 0.4);
 }
 .hero__desc-lead {
@@ -307,7 +412,7 @@ img { max-width: 100%; display: block; }
 /* On narrow screens the phone occupies the right half — keep the heading
    wrapping on the left so the two never overlap. Sized in em, not ch:
    Blacker Sans has an unusually wide zero, which made ch useless here. */
-@media (max-width: 720px) {
+@media (max-width: 1024px) {
   .hero__desc-lead { max-width: 9.5em; }
 }
 .hero__desc-body {
@@ -587,28 +692,30 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   filter: blur(9px);
   z-index: -1;
 }
+/* Every logo mark rendered inside one identical box, regardless of its own
+   file's proportions. A flat height alone isn't enough — a two- or
+   three-line stacked lockup (Instadium, VK Fest) shrinks its per-line text
+   to stay under that height, so it reads smaller than a one-line wordmark
+   even at the same total height. Fixing width AND height and letting the
+   image contain-fit inside gives every logo the same footprint instead. */
+.brandmark-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(70px, 8vw, 100px);
+  height: 32px;
+}
 .brandmark-logo img {
   display: block;
-  height: var(--logo-h, 17px);
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
-  margin-top: -3px;
+  height: auto;
+  object-fit: contain;
   opacity: 0.94;
   transition: transform 0.4s var(--ease-out-expo), opacity 0.4s ease, filter 0.4s ease;
 }
 .brandmark-logo:hover img { transform: scale(1.06) translateY(-1px); opacity: 1; filter: contrast(1.12) brightness(1.03); }
-.brandmark-logo--muz { --logo-h: 16px; }
-.brandmark-logo--voice { --logo-h: 21px; }
-.brandmark-logo--instadium { --logo-h: 22px; }
-.brandmark-logo--nf { --logo-h: 15px; }
-.brandmark-logo--curaprox { --logo-h: 19px; }
-.brandmark-logo--neforbsy { --logo-h: 13px; }
-.brandmark-logo--kion { --logo-h: 18px; }
-.brandmark-logo--wink { --logo-h: 18px; }
-.brandmark-logo--ivi { --logo-h: 18px; }
-.brandmark-logo--komandy { --logo-h: 22px; }
-.brandmark-logo--vkfest { --logo-h: 32px; }
-.brandmark-logo--golosa { --logo-h: 21px; }
-.brandmark-logo--musicbox { --logo-h: 20px; }
 
 /* ---------- Marquee ---------- */
 
@@ -730,6 +837,37 @@ html.js.has-fine-pointer .project-card:hover {
   text-overflow: ellipsis;
   margin: 0 0 4px;
   position: relative;
+}
+.project-card--split-head h2 {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+/* Category pages have a real grid (not the nowrap marquee track), so a long
+   sentence-case title should wrap onto a second line instead of being cut off
+   with an ellipsis. */
+.category-grid .project-card h2 {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+/* Titles that must read as one uninterrupted line. --head-chars is the title's
+   character count; the card is a size container, so the type scales down only
+   as far as the column actually demands and never past 9.5px. No transform,
+   no separate <p> — the whole string keeps one font, weight and colour. */
+.project-card { container-type: inline-size; }
+.category-grid .project-card--fit-head h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  letter-spacing: -0.015em;
+  font-size: clamp(10px, calc((100cqi - var(--head-inset, 40px)) / var(--head-em, 20)), 12px);
+}
+/* A one-line title with no subtitle under it can borrow a few pixels of the
+   card's padding without breaking the left edge shared with a caption. */
+.category-grid .project-card--fit-head:not(:has(p)) h2 {
+  --head-inset: 28px;
+  margin-inline: -6px;
 }
 .project-card p {
   font-family: 'Neutral Face', var(--font-display);
@@ -1065,14 +1203,14 @@ html.js .format-card.reveal:focus-visible::before {
 }
 .video-modal.is-open .video-modal__box { transform: scale(1); }
 .video-modal__player {
-  display: block;
+  display: none;
   width: 100%;
   height: 100%;
   object-fit: contain;
   background: #000;
 }
 .video-modal__frame {
-  display: block;
+  display: none;
   width: 100%;
   height: 100%;
   border: 0;
@@ -1188,6 +1326,11 @@ html.js .format-card.reveal:focus-visible::before {
   max-width: 560px;
   padding: clamp(120px, 16vw, 184px) var(--pad-x) clamp(88px, 12vw, 132px);
 }
+@media (max-width: 720px) {
+  .contacts { min-height: auto; }
+  .contacts__inner { padding-bottom: clamp(48px, 10vw, 72px); }
+  .contacts::after { height: clamp(64px, 12vw, 110px); }
+}
 .contacts__headline {
   font-family: 'Blacker Sans Display', 'Lato', var(--font-display);
   font-weight: 300;
@@ -1280,9 +1423,27 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 
 /* ---------- Format category pages ---------- */
 
+/* Each category page gets its own quiet accent tint (drawn from that
+   category's own card palette) so the hero band and grid area read as a
+   soft, layered gradient instead of a flat fill — never a bright color,
+   just enough hue to feel considered. One shared formula, seven accents:
+   that's the "system" — home page and its warm-gradient/brown-deep flats
+   are untouched since these variables only exist under .category-page. */
+.page-concerts  { --cat-tint: 168, 138, 96;  --cat-deep: 43, 34, 24; }
+.page-events    { --cat-tint: 70, 96, 150;   --cat-deep: 22, 27, 38; }
+.page-media     { --cat-tint: 96, 96, 116;   --cat-deep: 26, 26, 33; }
+.page-expert    { --cat-tint: 74, 104, 158;  --cat-deep: 21, 25, 35; }
+.page-cinema    { --cat-tint: 150, 68, 68;   --cat-deep: 36, 22, 20; }
+.page-backstage { --cat-tint: 168, 128, 72;  --cat-deep: 38, 30, 21; }
+.page-trends    { --cat-tint: 150, 78, 112;  --cat-deep: 36, 22, 30; }
+
 .category-hero {
+  position: relative;
   padding: clamp(130px, 17vw, 170px) var(--pad-x) clamp(32px, 5vw, 48px);
-  background: var(--brown-deep);
+  background:
+    radial-gradient(130% 90% at 90% -20%, rgba(var(--cat-tint, 143, 118, 89), 0.32), transparent 60%),
+    radial-gradient(100% 75% at 2% 120%, rgba(var(--cat-tint, 143, 118, 89), 0.20), transparent 65%),
+    linear-gradient(150deg, rgb(var(--cat-deep, 47, 35, 30)) 0%, var(--brown-deep) 45%, #150f0a 100%);
   color: var(--cream-soft);
 }
 .category-hero__back {
@@ -1314,6 +1475,11 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   margin: 0 0 12px;
   line-height: 1.1;
 }
+/* "медиапроекты" is a single unbreakable word wider than a 320px column at
+   32px, so it ran past the page padding on the narrowest phones. */
+@media (max-width: 400px) {
+  .category-hero h1 { font-size: 28px; }
+}
 .category-hero p {
   font-size: 12px;
   line-height: 1.6;
@@ -1324,10 +1490,13 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
   gap: clamp(16px, 2vw, 24px);
   padding: clamp(40px, 6vw, 56px) var(--pad-x) clamp(90px, 11vw, 130px);
-  background: var(--warm-gradient);
+  background:
+    radial-gradient(120% 85% at 6% -8%, rgba(var(--cat-tint, 143, 118, 89), 0.24), transparent 55%),
+    radial-gradient(110% 85% at 100% 108%, rgba(var(--cat-deep, 47, 35, 30), 0.16), transparent 62%),
+    linear-gradient(155deg, #faf6ef 0%, #f3eddf 42%, #ecdfca 78%, #e6d5b9 100%);
 }
 .category-grid .project-card { width: 100%; }
 .category-grid .project-card--horizontal {
@@ -1351,6 +1520,56 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   color: rgba(239, 231, 217, 0.65);
   white-space: normal;
   line-height: 1.4;
+}
+/* Small corner index for the lecture-series cards (01-09). Sits in the
+   opposite corner from the centered play icon so it never competes with
+   the topic title already burned into the cover art. */
+.project-card__index {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgba(15, 11, 9, 0.32);
+  border: 1px solid rgba(239, 231, 217, 0.22);
+  font-family: 'Neutral Face', var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(243, 238, 230, 0.85);
+  pointer-events: none;
+}
+@media (max-width: 400px) {
+  .project-card__index { width: 22px; height: 22px; font-size: 9px; top: 11px; left: 11px; }
+}
+/* Small corner tag for the two paired Instadium/Mastermind case studies
+   ("Кейс 01" / "Кейс 02"). Same corner and visual language as the numeric
+   index above, just a pill instead of a circle to fit the extra text. */
+.project-card__case-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 11, 9, 0.32);
+  border: 1px solid rgba(239, 231, 217, 0.22);
+  font-family: 'Neutral Face', var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(243, 238, 230, 0.85);
+  white-space: nowrap;
+  pointer-events: none;
+}
+@media (max-width: 400px) {
+  .project-card__case-tag { font-size: 9px; padding: 3px 8px; top: 11px; left: 11px; }
 }
 .category-empty {
   grid-column: 1 / -1;
@@ -1585,10 +1804,15 @@ html.js .project-card--case.reveal.is-visible {
   grid-template-columns: repeat(2, 1fr);
   gap: clamp(48px, 6.5vw, 88px) clamp(28px, 4vw, 52px);
 }
-@media (min-width: 720px) { .stats__grid { grid-template-columns: repeat(3, 1fr); }}
-@media (min-width: 1000px) {
-  .stats__grid { grid-template-columns: repeat(5, 1fr); }
-  .stats__grid .stat--wide { grid-column: auto; }}
+@media (min-width: 720px) { .stats__grid { grid-template-columns: repeat(4, 1fr); }}
+/* Numbers now live inside the "Мне доверяют" block, right under the
+   trust line, so logos and figures read as one continuous proof point
+   instead of two sections split apart by the case reel. */
+.clients__stats {
+  margin-top: clamp(56px, 8vw, 96px);
+  padding-top: clamp(48px, 7vw, 80px);
+  border-top: 1px solid var(--line-soft);
+}
 .stat { display: flex; flex-direction: column; gap: clamp(14px, 1.8vw, 18px); }
 .stat__num {
   font-family: 'Neutral Face', var(--font-display);
@@ -1607,8 +1831,6 @@ html.js .project-card--case.reveal.is-visible {
   color: var(--taupe);
   max-width: 18ch;
 }
-.stat--wide { grid-column: 1 / -1; }
-
 /* ---------- Contacts eyebrow (meaning line) ---------- */
 .contacts__eyebrow {
   font-family: var(--font-body);
@@ -1726,13 +1948,17 @@ html.js .project-card--case.reveal.is-visible {
 
 /* ---- Hero: cinematic glow + film grain ---- */
 
-/* Photo entrance: gentle scale + contrast settle */
-@media (prefers-reduced-motion: no-preference) {
+/* Photo entrance: gentle scale + contrast settle. Mobile only — desktop
+   shows the full photo via object-fit:contain and any extra scale would
+   crop it again. */
+@media (max-width: 720px) and (prefers-reduced-motion: no-preference) {
   .hero__photo { animation: hero-photo-in 1.6s var(--ease-out-expo) both, hero-kenburns 22s ease-in-out 1.6s infinite alternate; }
 }
+/* The end state has to mirror .hero__photo's own filter — animation-fill-mode
+   is `both`, so whatever sits here wins over the base rule for good. */
 @keyframes hero-photo-in {
-  from { transform: scale(1.08); filter: brightness(0.88) contrast(1.0) saturate(1.0); }
-  to   { transform: scale(1); filter: contrast(1.14) saturate(1.08) brightness(1.05); }
+  from { transform: scale(1.08); filter: brightness(0.9) contrast(1.0) saturate(1.0); }
+  to   { transform: scale(1); filter: contrast(1.06) saturate(1.04) brightness(1.03); }
 }
 
 /* ---- Hero CTA: richer hover (glow + micro-scale) ---- */
@@ -1924,8 +2150,8 @@ html.js .project-card--case.reveal.is-visible {
   align-items: end;
   column-gap: clamp(24px, 5vw, 80px);
   row-gap: clamp(6px, 1vw, 12px);
-  min-height: clamp(220px, 28vw, 380px);
-  padding: clamp(64px, 9vw, 112px) var(--pad-x) clamp(32px, 4vw, 48px);
+  min-height: clamp(180px, 18vw, 240px);
+  padding: clamp(48px, 6vw, 72px) var(--pad-x) clamp(28px, 3.2vw, 40px);
   background: var(--warm-gradient);
 }
 .site-footer__wordmark {
@@ -1945,17 +2171,17 @@ html.js .project-card--case.reveal.is-visible {
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(60, 47, 40, 0.62);
+  color: rgba(60, 47, 40, 0.80);
 }
 .site-footer__disclaimer {
   grid-area: legal;
-  margin: clamp(12px, 1.8vw, 24px) 0 0;
-  max-width: 64ch;
+  margin: clamp(12px, 1.8vw, 20px) 0 0;
+  max-width: 72ch;
   text-align: left;
-  font-style: italic;
-  font-size: 10.5px;
-  line-height: 1.65;
-  color: rgba(60, 47, 40, 0.52);
+  font-style: normal;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: rgba(60, 47, 40, 0.92);
 }
 @media (max-width: 560px) {
   .site-footer {
