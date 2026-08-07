@@ -10,8 +10,10 @@
   --brown-deep: #2f231e;
   --brown: #3c2f28;
   --brown-mid: #6b5442;
-  --taupe: #8f7659;
-  --taupe-soft: #b6a488;
+  /* Затемнены против исходных #8f7659 / #b6a488 — те не добирали 4.5:1
+     на кремовом фоне. Размеры и гарнитуры не тронуты. */
+  --taupe: #7a6244;
+  --taupe-soft: #a8916f;
   --ink: #241b16;
   --ember: #8a4636;
   --rail-w: 10px;
@@ -150,6 +152,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: clamp(20px, 4vw, 56px);
   padding: 24px var(--pad-x);
   pointer-events: none;
   backdrop-filter: blur(10px);
@@ -188,6 +191,47 @@ img { max-width: 100%; display: block; }
 .site-header--dark .logo { color: var(--cream-soft); text-shadow: none; }
 .site-header--dark .menu-toggle { mix-blend-mode: normal; }
 .site-header--dark .menu-toggle span { background: var(--cream-soft); }
+
+/* Горизонтальное меню на десктопе: навигация на 1440px была спрятана
+   в бургер, и портфолио не читалось как раздел. */
+.nav-inline { display: none; }
+@media (min-width: 1024px) {
+  .nav-inline {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-left: auto;
+    margin-right: 4px;
+  }
+  .site-header .menu-toggle { display: none; }
+}
+.nav-inline a {
+  position: relative;
+  font-family: 'Golca', var(--font-display);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(243, 238, 230, 0.72);
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+.nav-inline a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.35s var(--ease-out-expo);
+}
+.nav-inline a:hover { color: #ffffff; }
+.nav-inline a:hover::after { width: 100%; }
+.site-header--light .nav-inline a { color: rgba(60, 47, 40, 0.72); }
+.site-header--light .nav-inline a:hover { color: var(--ink); }
+.site-header--dark .nav-inline a { color: rgba(243, 238, 230, 0.72); }
 
 .menu-toggle {
   width: 44px;
@@ -588,7 +632,9 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   position: relative;
   overflow: hidden;
   margin: 0 0 clamp(30px, 4.5vw, 52px);
-  padding: 0 var(--pad-x);
+  /* Секция уже даёт --pad-x: второй отступ сдвигал лейбл вправо
+     относительно логотипов и цифр под ним. */
+  padding: 0;
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
   text-transform: uppercase;
@@ -629,7 +675,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .clients__trust {
   max-width: 760px;
   margin: 0 auto;
-  padding: clamp(80px, 11vw, 132px) var(--pad-x) 0;
+  padding: clamp(80px, 11vw, 132px) 0 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -659,8 +705,8 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .brandmark-row {
   display: inline-flex;
   align-items: center;
-  gap: clamp(56px, 7vw, 108px);
-  padding-right: clamp(56px, 7vw, 108px);
+  gap: clamp(44px, 5.5vw, 84px);
+  padding-right: clamp(44px, 5.5vw, 84px);
 }
 
 .brandmark {
@@ -674,7 +720,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .brandmark-founders {
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 13px;
+  font-size: 11px;
   letter-spacing: 0.045em;
   color: rgba(60, 47, 40, 0.62);
   transition: color 0.35s ease, transform 0.35s var(--ease-out-expo);
@@ -687,14 +733,8 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   position: relative;
   isolation: isolate;
 }
-.brandmark-logo::before {
-  content: '';
-  position: absolute;
-  inset: -12px -18px;
-  background: radial-gradient(closest-side, var(--cream) 55%, rgba(239, 231, 217, 0));
-  filter: blur(9px);
-  z-index: -1;
-}
+/* Блюр-гало давало грязные ореолы на кремовом фоне; при монохромной
+   перекраске оно не нужно. */
 /* Every logo mark rendered inside one identical box, regardless of its own
    file's proportions. A flat height alone isn't enough — a two- or
    three-line stacked lockup (Instadium, VK Fest) shrinks its per-line text
@@ -705,8 +745,8 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: clamp(70px, 8vw, 100px);
-  height: 32px;
+  width: clamp(56px, 6.2vw, 78px);
+  height: 24px;
 }
 .brandmark-logo img {
   display: block;
@@ -715,10 +755,13 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   width: auto;
   height: auto;
   object-fit: contain;
-  opacity: 0.94;
-  transition: transform 0.4s var(--ease-out-expo), opacity 0.4s ease, filter 0.4s ease;
+  /* Логотипы были в родных цветах и разной оптической плотности —
+     полоса читалась пёстрой. */
+  filter: grayscale(1) brightness(0);
+  opacity: 0.55;
+  transition: opacity 0.4s ease;
 }
-.brandmark-logo:hover img { transform: scale(1.06) translateY(-1px); opacity: 1; filter: contrast(1.12) brightness(1.03); }
+.brandmark-logo:hover img { opacity: 0.9; }
 
 /* ---------- Marquee ---------- */
 
@@ -1058,63 +1101,62 @@ html.js.has-fine-pointer .project-card:hover {
   grid-template-columns: 1fr;
   gap: 40px;
 }
-@media (min-width: 720px) {
-  .formats__grid { grid-template-columns: repeat(3, 1fr); }}
+@media (min-width: 480px) {
+  .formats__grid { grid-template-columns: repeat(2, 1fr); }}
+@media (min-width: 1200px) {
+  .formats__grid { grid-template-columns: repeat(4, 1fr); }}
+.formats__grid { align-items: stretch; }
+/* Портфолио видеографа состояло из текстовых плашек с иконками —
+   теперь каждую категорию открывает кадр из соответствующей съёмки. */
 .format-card {
   display: block;
   position: relative;
-  padding-top: 28px;
-  border-top: 1px solid rgba(239, 231, 217, 0.08);
   text-decoration: none;
   color: inherit;
   transition: transform 0.4s var(--ease-out-expo);
 }
-.format-card::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: 0;
-  height: 1px;
-  width: 0;
-  background: linear-gradient(90deg, var(--taupe-soft), rgba(239, 231, 217, 0));
-  transition: width 0.55s var(--ease-out-expo);
+.format-card__cover {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  aspect-ratio: 4 / 5;
+  margin-bottom: 18px;
+  background: rgba(239, 231, 217, 0.05);
+}
+/* <picture> по умолчанию инлайновый — без этого высоту задавала бы
+   собственная пропорция каждого файла и ряды сетки съезжали. */
+.format-card__cover picture { display: block; width: 100%; height: 100%; }
+.format-card__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.25) brightness(0.85);
+  transition: transform 0.9s var(--ease-out-expo), filter 0.6s ease;
+}
+.format-card:hover .format-card__cover img,
+.format-card:focus-visible .format-card__cover img {
+  transform: scale(1.05);
+  filter: grayscale(0) brightness(1);
+}
+/* Восьмая ячейка-CTA: семь категорий оставляли в ряду пустое место */
+.format-card--cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  min-height: 260px;
+  padding: 28px;
+  border: 1px solid rgba(239, 231, 217, 0.18);
+  border-radius: var(--radius);
+  transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s var(--ease-out-expo);
+}
+.format-card--cta:hover {
+  background: rgba(239, 231, 217, 0.05);
+  border-color: rgba(239, 231, 217, 0.34);
 }
 html.js.has-fine-pointer .format-card.reveal:hover,
 html.js .format-card.reveal:focus-visible {
   transform: translateY(-5px);
-}
-html.js.has-fine-pointer .format-card.reveal:hover::before,
-html.js .format-card.reveal:focus-visible::before {
-  width: 100%;
-}
-.format-card__icon {
-  position: relative;
-  color: var(--taupe-soft);
-  display: inline-flex;
-  margin-bottom: 26px;
-  transition: color 0.3s ease, transform 0.45s var(--ease-out-expo);
-}
-.format-card__icon::after {
-  content: '';
-  position: absolute;
-  inset: -16px;
-  z-index: -1;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(180, 140, 96, 0.35), transparent 72%);
-  opacity: 0;
-  transform: scale(0.6);
-  transition: opacity 0.4s ease, transform 0.45s var(--ease-out-expo);
-}
-.format-card__icon svg { width: 32px; height: 32px; }
-.format-card:hover .format-card__icon,
-.format-card:focus-visible .format-card__icon {
-  color: var(--cream-soft);
-  transform: scale(1.12) rotate(-8deg);
-}
-.format-card:hover .format-card__icon::after,
-.format-card:focus-visible .format-card__icon::after {
-  opacity: 1;
-  transform: scale(1);
 }
 .format-card h3 {
   font-family: 'Neutral Face', var(--font-display);
@@ -1620,8 +1662,11 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   padding: clamp(96px, 14vw, 184px) 0;
   background: radial-gradient(120% 80% at 50% 40%, #2a1d12 0%, #17110b 70%, #120c07 100%);
 }
-.cases-section > .showreel__intro,
-.cases-section > .cases__all { padding-left: var(--pad-x); padding-right: var(--pad-x); }
+.cases-section > .showreel__intro { padding-left: var(--pad-x); padding-right: var(--pad-x); }
+/* БАГ: правило переопределяло собственный padding кнопки, из-за чего
+   «Все кейсы» вставала в x=0 и обрезалась левым краем экрана.
+   Отступ до края задаётся полем, паддинг (то есть размер) сохранён. */
+.cases-section > .cases__all { margin-left: var(--pad-x); margin-right: var(--pad-x); }
 .showreel__intro {
   display: flex;
   flex-direction: column;
@@ -1708,7 +1753,6 @@ html.js .project-card--case.reveal.is-visible {
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
-  margin-left: clamp(24px, 6vw, 80px);
   gap: 10px;
   padding: clamp(13px, 1.6vw, 16px) clamp(26px, 3vw, 34px);
   border: 1px solid var(--line-on-dark);
@@ -1847,7 +1891,26 @@ html.js .project-card--case.reveal.is-visible {
 }
 
 /* ---------- Process: vertical arrow-flow ---------- */
+/* Таймлайн занимал 660px из 1440 — справа оставалось полэкрана пустоты.
+   Заголовок уходит в левую колонку и залипает, шаги — в правую.
+   Кегли, начертания и внутренние отступы шагов не меняются. */
+@media (min-width: 1024px) {
+  .process {
+    display: grid;
+    grid-template-columns: 0.38fr 0.62fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .process .section__head {
+    margin-bottom: 0;
+    position: sticky;
+    top: 132px;
+  }
+}
 .flow { position: relative; max-width: 660px; }
+@media (min-width: 1024px) {
+  .flow { max-width: 100%; }
+}
 
 /* Downward logical chain (no step headings) */
 .flow__chain { display: flex; flex-direction: column; align-items: flex-start; }
@@ -2026,12 +2089,14 @@ html.js .project-card--case.reveal.is-visible {
 @keyframes logo-fade-in { from { opacity: 0; } to { opacity: 1; } }
 
 /* ---- Contacts: premium interactive cards ---- */
+/* Лейбл над значением внутри рамки со скруглением читался как
+   задизейбленное поле формы, а не как ссылка. Кегли не тронуты. */
 .contacts__grid a {
-  padding: clamp(11px, 1.5vw, 14px) clamp(16px, 2vw, 20px);
-  border: 1px solid var(--line-on-dark);
-  border-radius: var(--radius);
-  transition: transform 0.5s var(--ease-out-expo), border-color 0.4s ease,
-              background 0.4s ease, box-shadow 0.5s ease;
+  padding: clamp(11px, 1.5vw, 14px) 0;
+  border: none;
+  border-bottom: 1px solid var(--line-on-dark);
+  border-radius: 0;
+  transition: border-color 0.4s ease;
 }
 .contacts__grid a::after {
   content: '\2197';
@@ -2048,10 +2113,7 @@ html.js .project-card--case.reveal.is-visible {
 @media (hover: hover) {
   .contacts__grid a:hover {
     opacity: 1;
-    transform: translateY(-4px);
-    border-color: rgba(239, 231, 217, 0.34);
-    background: rgba(239, 231, 217, 0.035);
-    box-shadow: 0 22px 50px -30px rgba(0, 0, 0, 0.9);
+    border-bottom-color: var(--cream);
   }
   .contacts__grid a:hover::after { opacity: 1; transform: translate(0, 0); }}
 
