@@ -1504,13 +1504,16 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: 1px solid rgba(239, 231, 217, 0.28);
   color: var(--cream-soft);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
+/* Знак в разметке задан атрибутами 22x22 — в кружке 30px это оставляло
+   по 4px поля, поэтому размер задаётся стилем. */
+.category-hero__icon svg { width: 16px; height: 16px; }
 .category-hero h1 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
