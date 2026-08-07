@@ -489,12 +489,12 @@ img { max-width: 100%; display: block; }
   gap: 9px;
   font-family: 'Golca', var(--font-display);
   font-weight: 500;
-  font-size: 11px;
+  font-size: 9.5px;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: rgba(243, 238, 230, 0.88);
   text-decoration: none;
-  padding: 9px 20px;
+  padding: 8px 17px;
   border: 1px solid rgba(243, 238, 230, 0.2);
   border-radius: 999px;
   overflow: hidden;
@@ -639,12 +639,17 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
      относительно логотипов и цифр под ним. */
   padding: 0;
   font-family: 'Neutral Face', var(--font-display);
-  font-weight: 400;
+  /* Это <h2> секции: был набран как мелкий лейбл — 12.5px и вес 400,
+     тогда как остальные заголовки секций 18px и вес 700. */
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: clamp(10.5px, 1.15vw, 12.5px);
-  line-height: 1.4;
-  color: rgba(60, 47, 40, 0.5);
+  letter-spacing: 0.08em;
+  font-size: clamp(14px, 2.5vw, 18px);
+  line-height: 1.34;
+  color: var(--ink);
+}
+@media (max-width: 720px) {
+  .clients__lead { font-size: 14.5px; }
 }
 /* A single soft light pass over the label as it reveals — a quiet
    motion-design accent rather than a repeating "loading" shimmer. */
@@ -1165,13 +1170,19 @@ html.js.has-fine-pointer .project-card:hover {
 .format-card h3 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: 14.5px;
-  letter-spacing: 0.05em;
+  /* Один размер с остальными заголовками */
+  font-size: clamp(14px, 2.5vw, 18px);
+  line-height: 1.34;
+  letter-spacing: 0.08em;
+  /* мобильный лок — тот же, что у заголовков секций */
   text-transform: uppercase;
   margin: 0 0 14px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+}
+@media (max-width: 720px) {
+  .format-card h3 { font-size: 14.5px; }
 }
 .format-card h3::after {
   content: '\2192';
