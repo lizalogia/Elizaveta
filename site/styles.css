@@ -1,35 +1,30 @@
 :root {
-  /* Три гарнитуры на весь сайт:
-     display  — Neutral Face (только заголовки/лейблы, всегда uppercase:
-                у гарнитуры нет строчных кириллических);
-     body     — Golca (все абзацы, значения, UI);
-     logo     — WindSong (только вордмарк в шапке и футере). */
-  --font-display: "Neutral Face", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-script: "Hello January", var(--font-display);
   --font-body: "Golca", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-logo: "WindSong", cursive;
+  /* Signature wordmark face. */
+  --font-logo: "WindSong", "Good Vibes Pro", var(--font-display);
 
   --cream: #f3eee6;
   --cream-soft: #f7f2ea;
   --brown-deep: #2f231e;
   --brown: #3c2f28;
   --brown-mid: #6b5442;
-  /* Затемнены против исходных #8f7659 / #b6a488 — те не добирали 4.5:1 */
+  /* Затемнены против исходных #8f7659 / #b6a488 — те не добирали 4.5:1
+     на кремовом фоне. Размеры и гарнитуры не тронуты. */
   --taupe: #7a6244;
   --taupe-soft: #a8916f;
   --ink: #241b16;
   --ember: #8a4636;
-  /* Единственный акцент на сайте — латунь, только для микро-элементов */
-  --accent: #c2a06b;
   --rail-w: 10px;
   --hud-h: 40px;
-  --radius: 4px;
-  --radius-sm: 4px;
+  --radius: 14px;
+  --radius-sm: 6px;
   /* Hairline dividers — deliberately light (§10) */
   --line: rgba(60, 47, 40, 0.16);
   --line-soft: rgba(60, 47, 40, 0.1);
   --line-on-dark: rgba(243, 238, 230, 0.16);
-  --pad-x: clamp(24px, 5vw, 80px);
-  --container: 1320px;
+  --pad-x: clamp(22px, 5vw, 64px);
   --warm-gradient: linear-gradient(180deg, #faf6ef 0%, #f4efe6 48%, #ece1d3 100%);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -115,7 +110,7 @@ img { max-width: 100%; display: block; }
 }
 @keyframes hud-wave { 0%, 100% { height: 14%; } 50% { height: var(--peak, 70%); } }
 .hud-label {
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
   font-size: 9.5px;
   letter-spacing: 0.12em;
@@ -155,7 +150,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: space-between;
   gap: clamp(20px, 4vw, 56px);
-  padding: 20px var(--pad-x);
+  padding: 24px var(--pad-x);
   pointer-events: none;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -167,12 +162,11 @@ img { max-width: 100%; display: block; }
 .logo {
   font-family: var(--font-logo);
   font-weight: 400;
-  font-size: clamp(22px, 2.6vw, 24px);
+  font-size: clamp(20px, 3.5vw, 36px);
   line-height: 1;
   color: #fffdf9;
   text-decoration: none;
-  /* Рукописная гарнитура: трекинг разрывал связки букв */
-  letter-spacing: 0;
+  letter-spacing: 0.09em;
   margin-top: 4px;
   padding-right: 0.14em;
   -webkit-text-stroke: 0.6px currentColor;
@@ -195,8 +189,8 @@ img { max-width: 100%; display: block; }
 .site-header--dark .menu-toggle { mix-blend-mode: normal; }
 .site-header--dark .menu-toggle span { background: var(--cream-soft); }
 
-/* Горизонтальное меню на десктопе: до этого навигация на 1440px была
-   спрятана в бургер и портфолио не читалось как раздел. */
+/* Горизонтальное меню на десктопе: навигация на 1440px была спрятана
+   в бургер, и портфолио не читалось как раздел. */
 .nav-inline { display: none; }
 @media (min-width: 1024px) {
   .nav-inline {
@@ -210,7 +204,7 @@ img { max-width: 100%; display: block; }
 }
 .nav-inline a {
   position: relative;
-  font-family: var(--font-body);
+  font-family: 'Golca', var(--font-display);
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.12em;
@@ -231,8 +225,7 @@ img { max-width: 100%; display: block; }
   transition: width 0.35s var(--ease-out-expo);
 }
 .nav-inline a:hover { color: #ffffff; }
-.nav-inline a:hover::after,
-.nav-inline a.is-active::after { width: 100%; }
+.nav-inline a:hover::after { width: 100%; }
 .site-header--light .nav-inline a { color: rgba(60, 47, 40, 0.72); }
 .site-header--light .nav-inline a:hover { color: var(--ink); }
 .site-header--dark .nav-inline a { color: rgba(243, 238, 230, 0.72); }
@@ -280,7 +273,7 @@ img { max-width: 100%; display: block; }
 .nav-drawer a {
   position: relative;
   z-index: 1;
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
   font-size: clamp(16px, 2.9vw, 21px);
   color: var(--cream-soft);
@@ -414,18 +407,18 @@ img { max-width: 100%; display: block; }
 }
 .hero__watermark-item {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(56px, 11vw, 180px);
-  color: rgba(243, 238, 230, 0.07);
-  letter-spacing: 0.16em;
+  font-weight: 600;
+  font-size: clamp(42px, 12vw, 224px);
+  color: rgba(243, 238, 230, 0.105);
+  letter-spacing: 0.05em;
   white-space: nowrap;
 }
 
 @media (max-width: 720px) {
-  .hero__watermark { top: 14%; }
+  .hero__watermark { top: 8%; }
   .hero__watermark-item {
-    font-size: 11vw;
-    letter-spacing: 0.12em;
+    font-size: 13vw;
+    letter-spacing: 0.02em;
   }}
 
 .hero__grid {
@@ -446,74 +439,70 @@ img { max-width: 100%; display: block; }
 }
 
 .hero__desc {
-  max-width: 640px;
-  margin: clamp(18px, 2.6vw, 30px) 0 clamp(30px, 4vw, 44px);
+  max-width: 540px;
+  margin: clamp(18px, 2.6vw, 30px) 0 clamp(26px, 3.6vw, 36px);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.62), 0 0 26px rgba(0, 0, 0, 0.4);
 }
 .hero__desc-lead {
-  margin: 0 0 clamp(20px, 2.6vw, 28px);
-  font-family: var(--font-display);
-  font-weight: 700;
-  /* Было clamp(20px, 3.1vw, 33px) — заголовок первого экрана читался
-     как подзаголовок и экран оставался без доминанты. */
-  font-size: clamp(32px, 8.4vw, 76px);
-  line-height: 1.02;
-  letter-spacing: -0.01em;
+  margin: 0 0 clamp(18px, 2.6vw, 28px);
+  font-family: 'Neutral Face', var(--font-display);
+  font-weight: 400;
+  font-size: clamp(20px, 3.1vw, 33px);
+  line-height: 1.25;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--cream-soft);
 }
-@media (max-width: 720px) {
-  .hero__desc-lead { line-height: 1.08; letter-spacing: 0; }
-}
 /* On narrow screens the phone occupies the right half — keep the heading
-   wrapping on the left so the two never overlap. */
+   wrapping on the left so the two never overlap. Sized in em, not ch:
+   Blacker Sans has an unusually wide zero, which made ch useless here. */
 @media (max-width: 1024px) {
-  .hero__desc-lead { max-width: 11ch; }
-}
-/* Правая половина кадра занята героем фотографии — заголовок держится
-   в левой колонке и не наезжает на него. */
-@media (min-width: 1025px) {
-  .hero__desc-lead { max-width: 12ch; }
+  .hero__desc-lead { max-width: 9.5em; }
 }
 .hero__desc-body {
   margin: 0;
-  max-width: 44ch;
-  font-size: clamp(15px, 1.4vw, 17px);
+  max-width: 480px;
+  font-size: clamp(12.5px, 1.4vw, 15px);
   line-height: 1.7;
   letter-spacing: 0.01em;
-  color: #ede6da;
+  color: rgba(247, 242, 234, 0.95);
 }
 
-/* Главная кнопка сайта: была 11px / padding 9-20 и читалась как чип */
 .hero__cta {
+  --btn-fill: var(--cream-soft);
   position: relative;
   isolation: isolate;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  min-height: 52px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: 0.06em;
+  gap: 9px;
+  font-family: 'Golca', var(--font-display);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: #17110b;
+  color: rgba(243, 238, 230, 0.88);
   text-decoration: none;
-  padding: 17px 38px;
-  background: var(--cream);
-  border: 1px solid var(--cream);
+  padding: 9px 20px;
+  border: 1px solid rgba(243, 238, 230, 0.2);
   border-radius: 999px;
   overflow: hidden;
-  transition: background 0.35s ease, border-color 0.35s ease, transform 0.45s var(--ease-out-expo);
+  transition: color 0.45s var(--ease-out-expo), border-color 0.45s ease, transform 0.45s var(--ease-out-expo);
+}
+.hero__cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--btn-fill);
+  transform: translateY(101%);
+  transition: transform 0.5s var(--ease-out-expo);
 }
 .hero__cta:hover {
-  background: #ffffff;
-  border-color: #ffffff;
+  color: var(--brown-deep);
+  border-color: var(--cream-soft);
   transform: translateY(-2px);
 }
-@media (max-width: 720px) {
-  .hero__cta { min-height: 48px; padding: 15px 30px; font-size: 14px; }
-}
+.hero__cta:hover::before { transform: translateY(0); }
 
 /* ---------- Hero entrance: photo -> fog -> logo -> desc -> button ---------- */
 
@@ -539,7 +528,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 18px;
   color: rgba(243, 238, 230, 0.5);
-  font-family: var(--font-body);
+  font-family: 'Jost', var(--font-display);
   font-weight: 300;
   font-size: 9px;
   letter-spacing: 0.32em;
@@ -556,17 +545,10 @@ img { max-width: 100%; display: block; }
 
 .section {
   position: relative;
-  padding: clamp(96px, 13vw, 160px) var(--pad-x);
+  padding: clamp(96px, 15vw, 184px) var(--pad-x);
   scroll-margin-top: 130px;
 }
 .section > * { position: relative; z-index: 1; }
-/* Контент секций держится в общей колонке, а не растягивается на 100%
-   ширины на больших экранах. */
-.section__head,
-.stats__grid,
-.formats__grid,
-.benefits__grid,
-.process__body { max-width: var(--container); margin-inline: auto; }
 
 /* One shared ambient light-bloom across every section — light or dark —
    so the whole page reads as one continuous scene rather than a stack of
@@ -589,21 +571,43 @@ img { max-width: 100%; display: block; }
   50% { opacity: 0.85; transform: scale(1.03); }
 }
 
-.section__head { display: flex; align-items: baseline; gap: 20px; margin-bottom: clamp(48px, 6.5vw, 88px); }
+.section__head { display: flex; align-items: baseline; gap: 20px; margin-bottom: clamp(44px, 6.5vw, 76px); }
 /* Section numbers now live only in the nav menu, not in on-page headings. */
 .section__num { display: none; }
-/* Заголовок секции был 18px — вровень с подписью под карточкой; страница
-   читалась как сплошной поток без ритма. */
 .section__head h2 {
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: clamp(34px, 4.4vw, 56px);
+  font-size: clamp(14px, 2.5vw, 18px);
   margin: 0;
-  line-height: 1.05;
-  letter-spacing: -0.005em;
+  line-height: 1.34;
+  letter-spacing: 0.08em;
 }
-/* Оптические подгонки под 18px больше не нужны: на 56px разница в длине
-   слова не читается как разница в весе. */
+/* Optical sizing — short single-word headings read smaller than longer
+   ones at identical font-size, so they get a touch more size/tracking
+   to land at the same visual weight; the two-line heading gets slightly
+   less since its extra line already carries more visual mass. */
+#portfolio .section__head h2 {
+  font-size: clamp(15px, 2.7vw, 19px);
+  letter-spacing: 0.06em;
+}
+#values .section__head h2 {
+  font-size: clamp(14px, 2.5vw, 18px);
+  letter-spacing: 0.06em;
+}
+#formats .section__head h2 {
+  letter-spacing: 0.02em;
+}
+/* On narrow screens each heading is seen alone (not side by side), so the
+   optical size compensation above is unnecessary and reads as inconsistent
+   instead — lock every section heading to one shared size on mobile. */
+@media (max-width: 720px) {
+  .section__head h2,
+  #portfolio .section__head h2,
+  #values .section__head h2,
+  #formats .section__head h2 {
+    font-size: 14.5px;
+  }
+}
 
 /* Reveal-on-scroll only hides content once JS confirms it can un-hide it
    (html.js, set by an inline script in <head>) — if JS fails to load or
@@ -618,18 +622,17 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 /* ---------- Clients ---------- */
 
-.clients { background: var(--warm-gradient); padding-bottom: clamp(88px, 11vw, 140px); padding-top: clamp(88px, 11vw, 140px); }
+.clients { background: var(--warm-gradient); padding-bottom: clamp(96px, 14vw, 180px); padding-top: clamp(104px, 15vw, 188px); }
 /* A quiet lead-in line, not a section title — it hands the eye straight
    over to the marquee instead of competing with the logos. */
 .clients__lead {
   position: relative;
   overflow: hidden;
-  margin: 0 auto clamp(30px, 4.5vw, 52px);
-  max-width: var(--container);
-  /* Секция уже даёт --pad-x, второй отступ сдвигал лейбл относительно
-     логотипов и цифр под ним. */
+  margin: 0 0 clamp(30px, 4.5vw, 52px);
+  /* Секция уже даёт --pad-x: второй отступ сдвигал лейбл вправо
+     относительно логотипов и цифр под ним. */
   padding: 0;
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -667,24 +670,25 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   gap: clamp(20px, 3.4vw, 48px);
 }
 .clients__trust {
-  max-width: 640px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: clamp(64px, 8vw, 96px) 0 0;
+  padding: clamp(80px, 11vw, 132px) 0 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 10px clamp(24px, 3vw, 40px);
+  gap: clamp(8px, 1.4vw, 16px);
   text-align: center;
   font-size: clamp(11.5px, 1.15vw, 13px);
   line-height: 1.6;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #5c4a3d;
+  color: rgba(60, 47, 40, 0.58);
 }
-/* Разделитель-точка как отдельный <i> при переносе повисал в конце
-   строки; пункты разнесены отступом, точки больше не нужны. */
-.clients__trust i { display: none; }
+.clients__trust i {
+  font-style: normal;
+  color: rgba(60, 47, 40, 0.3);
+}
 
 .marquee.marquee--clients {
   background: transparent;
@@ -715,10 +719,10 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   font-weight: 500;
   font-size: 13px;
   letter-spacing: 0.045em;
-  color: rgba(60, 47, 40, 0.55);
-  transition: color 0.35s ease;
+  color: rgba(60, 47, 40, 0.62);
+  transition: color 0.35s ease, transform 0.35s var(--ease-out-expo);
 }
-.brandmark:hover .brandmark-founders { color: rgba(60, 47, 40, 0.9); }
+.brandmark:hover .brandmark-founders { color: rgba(60, 47, 40, 0.85); transform: scale(1.05); }
 
 /* Client logo lockups — recolored to the site's brown-mid tone, on a soft
    blurred cream halo so screenshot edges melt into the marquee background. */
@@ -726,8 +730,8 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   position: relative;
   isolation: isolate;
 }
-/* Блюр-гало под логотипами давало грязные ореолы на кремовом фоне —
-   при монохромной перекраске оно больше не нужно. */
+/* Блюр-гало давало грязные ореолы на кремовом фоне; при монохромной
+   перекраске оно не нужно. */
 /* Every logo mark rendered inside one identical box, regardless of its own
    file's proportions. A flat height alone isn't enough — a two- or
    three-line stacked lockup (Instadium, VK Fest) shrinks its per-line text
@@ -748,8 +752,8 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   width: auto;
   height: auto;
   object-fit: contain;
-  /* Логотипы были в родных цветах и разной оптической плотности — полоса
-     читалась пёстрой. Единый монохром приводит их к одному тону. */
+  /* Логотипы были в родных цветах и разной оптической плотности —
+     полоса читалась пёстрой. Размеры боксов не меняются. */
   filter: grayscale(1) brightness(0);
   opacity: 0.55;
   transition: opacity 0.4s ease;
@@ -868,10 +872,9 @@ html.js.has-fine-pointer .project-card:hover {
 .has-fine-pointer .project-card:hover .project-card__play { opacity: 0; }
 .project-card h2,
 .project-card h3 {
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
   font-size: 12px;
-  letter-spacing: 0.02em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -910,14 +913,11 @@ html.js.has-fine-pointer .project-card:hover {
   margin-inline: -6px;
 }
 .project-card p {
-  /* Была Neutral Face — у неё нет строчных кириллических, и подпись
-     рендерилась капсом. */
-  font-family: var(--font-body);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
-  font-size: 13px;
-  line-height: 1.4;
+  font-size: 12px;
   margin: 0;
-  color: rgba(243, 238, 230, 0.72);
+  color: rgba(243, 238, 230, 0.78);
   position: relative;
   /* Cards inside .marquee__track inherit white-space: nowrap from the
      infinite-scroll track; without this override, a subtitle longer than
@@ -1016,7 +1016,7 @@ html.js.has-fine-pointer .project-card:hover {
   margin-bottom: 14px;
 }
 .process-step__title {
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
   font-size: clamp(18px, 2.4vw, 22px);
   margin: 0;
@@ -1025,7 +1025,7 @@ html.js.has-fine-pointer .project-card:hover {
   transition: transform 0.4s var(--ease-out-expo);
 }
 .process-step__desc {
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
   font-size: 13px;
   line-height: 1.65;
@@ -1063,21 +1063,19 @@ html.js.has-fine-pointer .project-card:hover {
 
 .formats {
   position: relative;
-  /* Было clamp(150px, 24vw, 300px) — сверху и снизу оставалось около
-     600px пустого коричневого поля. */
-  --fade: clamp(80px, 10vw, 140px);
-  --formats-deep: #2a1f17;
+  --fade: clamp(150px, 24vw, 300px);
+  --formats-deep: #3b2c21;
   background: linear-gradient(180deg,
     var(--cream) 0%,
-    #6d5540 calc(var(--fade) * 0.5),
+    #7a604a calc(var(--fade) * 0.5),
     var(--formats-deep) var(--fade),
     var(--formats-deep) calc(100% - var(--fade)),
-    #6d5540 calc(100% - var(--fade) * 0.5),
+    #7a604a calc(100% - var(--fade) * 0.5),
     var(--cream) 100%
   );
   color: var(--cream-soft);
-  padding-top: calc(var(--fade) + clamp(40px, 5vw, 72px));
-  padding-bottom: calc(var(--fade) + clamp(40px, 5vw, 72px));
+  padding-top: var(--fade);
+  padding-bottom: var(--fade);
 }
 .formats .section__head h2 { color: var(--cream-soft); }
 .formats .section__head, .formats__grid { position: relative; z-index: 1; }
@@ -1098,14 +1096,14 @@ html.js.has-fine-pointer .project-card:hover {
 .formats__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
+  gap: 40px;
 }
 @media (min-width: 480px) {
-  .formats__grid { grid-template-columns: repeat(2, 1fr); gap: 28px 24px; }}
+  .formats__grid { grid-template-columns: repeat(2, 1fr); }}
 @media (min-width: 1200px) {
   .formats__grid { grid-template-columns: repeat(4, 1fr); }}
 .formats__grid { align-items: stretch; }
-/* Раздел портфолио видеографа состоял из текстовых плашек с иконками —
+/* Портфолио видеографа состояло из текстовых плашек с иконками —
    теперь каждую категорию открывает кадр из соответствующей съёмки. */
 .format-card {
   display: block;
@@ -1122,7 +1120,7 @@ html.js.has-fine-pointer .project-card:hover {
   margin-bottom: 18px;
   background: rgba(239, 231, 217, 0.05);
 }
-/* <picture> по умолчанию инлайновый — без этого высоту задавала
+/* <picture> по умолчанию инлайновый — без этого высоту задавала бы
    собственная пропорция каждого файла и ряды сетки съезжали. */
 .format-card__cover picture { display: block; width: 100%; height: 100%; }
 .format-card__cover img {
@@ -1137,7 +1135,7 @@ html.js.has-fine-pointer .project-card:hover {
   transform: scale(1.05);
   filter: grayscale(0) brightness(1);
 }
-/* Восьмая ячейка-CTA: в сетке 4x2 семь категорий оставляли пустую строку */
+/* Восьмая ячейка-CTA: семь категорий оставляли в ряду пустое место */
 .format-card--cta {
   display: flex;
   flex-direction: column;
@@ -1153,18 +1151,17 @@ html.js.has-fine-pointer .project-card:hover {
   background: rgba(239, 231, 217, 0.05);
   border-color: rgba(239, 231, 217, 0.34);
 }
-
 html.js.has-fine-pointer .format-card.reveal:hover,
 html.js .format-card.reveal:focus-visible {
   transform: translateY(-5px);
 }
 .format-card h3 {
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: clamp(16px, 1.6vw, 18px);
-  letter-spacing: 0.03em;
+  font-size: 14.5px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  margin: 0 0 8px;
+  margin: 0 0 14px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1182,8 +1179,7 @@ html.js .format-card.reveal:focus-visible {
   opacity: 1;
   transform: translateX(0);
 }
-/* Была Neutral Face: без строчных кириллических описание рендерилось капсом */
-.format-card p { font-family: var(--font-body); font-weight: 400; font-size: 14px; line-height: 1.6; color: rgba(239, 231, 217, 0.72); margin: 0; max-width: 32ch; }
+.format-card p { font-family: 'Neutral Face', var(--font-display); font-weight: 400; font-size: 12px; line-height: 1.65; color: rgba(239, 231, 217, 0.78); margin: 0; max-width: 32ch; }
 
 .formats__origin {
   position: relative;
@@ -1200,7 +1196,7 @@ html.js .format-card.reveal:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-body);
+  font-family: 'Golca', var(--font-display);
   font-weight: 600;
   font-size: 16px;
   color: var(--cream-soft);
@@ -1353,33 +1349,6 @@ html.js .format-card.reveal:focus-visible {
   from { transform: translate3d(0, 0, 0) scale(1); opacity: 0.85; }
   to   { transform: translate3d(-5%, 5%, 0) scale(1.08); opacity: 1; }
 }
-/* Правая половина финального экрана была пустой размытой заливкой —
-   кадр со съёмки закрывает её, растворяясь в фоне слева и снизу. */
-.contacts__art {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 42%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%), linear-gradient(180deg, #000 60%, transparent 96%);
-  mask-image: linear-gradient(90deg, transparent, #000 45%), linear-gradient(180deg, #000 60%, transparent 96%);
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
-}
-.contacts__art img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 30%;
-  filter: grayscale(0.35) brightness(0.75);
-  opacity: 0.5;
-}
-@media (max-width: 900px) {
-  .contacts__art { display: none; }
-}
-
 /* Soft hand-off into the beige footer — no hard seam. */
 .contacts::after {
   content: '';
@@ -1405,22 +1374,19 @@ html.js .format-card.reveal:focus-visible {
   .contacts::after { height: clamp(64px, 12vw, 110px); }
 }
 .contacts__headline {
-  /* Blacker Sans 300 была четвёртой гарнитурой на сайте и самым лёгким
-     начертанием — на финальном экране, где нужен максимальный вес. */
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: clamp(44px, 6.6vw, 96px);
-  line-height: 0.98;
-  letter-spacing: -0.01em;
+  font-family: 'Blacker Sans Display', 'Lato', var(--font-display);
+  font-weight: 300;
+  font-size: clamp(27px, 4.5vw, 46.5px);
+  line-height: 1.15;
+  letter-spacing: 0.005em;
   margin: 0 0 20px;
   color: var(--cream-soft);
 }
 .contacts__grid {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  max-width: 520px;
+  gap: clamp(28px, 3.8vw, 42px);
+  max-width: 380px;
 }
 .contacts__grid a {
   display: flex;
@@ -1431,18 +1397,9 @@ html.js .format-card.reveal:focus-visible {
   transition: opacity 0.3s ease;
 }
 .contacts__grid a:hover { opacity: 0.6; }
-.contacts__label { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--taupe-soft); }
-/* Значение, хендл и телефон были набраны тремя разными гарнитурами
-   (Playfair старостильными цифрами и Unbounded) в одном блоке. */
-.contacts__value,
-.contacts__value--handle {
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: clamp(18px, 2vw, 24px);
-  letter-spacing: 0;
-  color: var(--cream-soft);
-  font-variant-numeric: tabular-nums;
-}
+.contacts__label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--taupe-soft); }
+.contacts__value { font-family: var(--font-display); font-weight: 400; font-size: 14.5px; color: rgba(239, 231, 217, 0.85); }
+.contacts__value--handle { font-family: 'Unbounded', var(--font-display); font-weight: 300; font-size: 15px; letter-spacing: 0.01em; color: var(--cream-soft); }
 
 .contacts__cta {
   position: relative;
@@ -1450,30 +1407,35 @@ html.js .format-card.reveal:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-top: clamp(48px, 6vw, 64px);
-  min-height: 52px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: 0.06em;
+  margin-top: clamp(56px, 7.5vw, 84px);
+  font-family: 'Golca', var(--font-display);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #17110b;
-  background: var(--cream);
+  color: var(--cream-soft);
   text-decoration: none;
-  padding: 20px 44px;
-  border: 1px solid var(--cream);
+  padding: 11px 24px;
+  border: 1px solid rgba(243, 238, 230, 0.32);
   border-radius: 999px;
   overflow: hidden;
   transition: color 0.45s var(--ease-out-expo), border-color 0.45s ease, transform 0.45s var(--ease-out-expo);
 }
+.contacts__cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--cream-soft);
+  transform: translateY(101%);
+  transition: transform 0.5s var(--ease-out-expo);
+}
 .contacts__cta:hover {
-  background: #ffffff;
-  border-color: #ffffff;
+  color: var(--brown-deep);
+  border-color: var(--cream-soft);
   transform: translateY(-2px);
 }
-@media (max-width: 720px) {
-  .contacts__cta { padding: 17px 34px; font-size: 14px; }
-}
+.contacts__cta:hover::before { transform: translateY(0); }
 
 /* Slower, softer entrance rhythm + stagger for this closing section only */
 html.js .contacts .reveal {
@@ -1549,7 +1511,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   margin-bottom: 20px;
 }
 .category-hero h1 {
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
   font-size: clamp(32px, 5vw, 52px);
   margin: 0 0 12px;
@@ -1617,7 +1579,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   border-radius: 50%;
   background: rgba(15, 11, 9, 0.32);
   border: 1px solid rgba(239, 231, 217, 0.22);
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -1639,7 +1601,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   border-radius: 999px;
   background: rgba(15, 11, 9, 0.32);
   border: 1px solid rgba(239, 231, 217, 0.22);
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -1666,7 +1628,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 /* Directions: cap at 3 columns */
 .formats__grid--three { max-width: 1100px; }
 .statement__text {
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
   font-size: clamp(17px, 3.9vw, 34px);
   line-height: 1.22;
@@ -1698,9 +1660,9 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   background: radial-gradient(120% 80% at 50% 40%, #2a1d12 0%, #17110b 70%, #120c07 100%);
 }
 .cases-section > .showreel__intro { padding-left: var(--pad-x); padding-right: var(--pad-x); }
-/* БАГ: это правило переопределяло собственный padding кнопки, из-за чего
+/* БАГ: правило переопределяло собственный padding кнопки, из-за чего
    «Все кейсы» вставала в x=0 и обрезалась левым краем экрана.
-   Отступ до края теперь задаётся полем, а не паддингом. */
+   Отступ до края задаётся полем, паддинг (то есть размер) сохранён. */
 .cases-section > .cases__all { margin-left: var(--pad-x); margin-right: var(--pad-x); }
 .showreel__intro {
   display: flex;
@@ -1718,14 +1680,14 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   .showreel__arrow.is-visible svg { animation: flow-arrow-bob 2.4s ease-in-out infinite; }}
 .showreel__lead {
   margin: 0;
-  max-width: 18ch;
+  max-width: 26ch;
   text-align: center;
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: -0.005em;
-  font-size: clamp(30px, 4.4vw, 56px);
-  line-height: 1.06;
+  letter-spacing: 0.08em;
+  font-size: clamp(14px, 2.5vw, 18px);
+  line-height: 1.34;
   color: var(--cream-soft);
 }
 .showreel__caption {
@@ -1734,7 +1696,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   text-align: center;
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: clamp(15px, 1.7vw, 17px);
+  font-size: clamp(13px, 1.7vw, 16px);
   line-height: 1.7;
   letter-spacing: 0.01em;
   color: rgba(243, 238, 230, 0.72);
@@ -1773,11 +1735,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   padding-right: clamp(16px, 2vw, 24px);
 }
 .project-card--case {
-  flex: 0 0 clamp(240px, 23vw, 320px);
-  aspect-ratio: 4 / 5;
-}
-@media (max-width: 720px) {
-  .project-card--case { aspect-ratio: 3 / 4; padding: 16px; }
+  flex: 0 0 clamp(200px, 20vw, 264px);
 }
 /* Cards fly in with a scale, not just a rise — a livelier entrance for a
    strip that's otherwise in constant, gentle motion. */
@@ -1793,14 +1751,13 @@ html.js .project-card--case.reveal.is-visible {
   align-items: center;
   align-self: flex-start;
   gap: 10px;
-  min-height: 52px;
-  padding: 16px 34px;
-  border: 1px solid rgba(243, 238, 230, 0.24);
+  padding: clamp(13px, 1.6vw, 16px) clamp(26px, 3vw, 34px);
+  border: 1px solid var(--line-on-dark);
   border-radius: 999px;
   color: var(--cream-soft);
   font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 15px;
+  font-weight: 500;
+  font-size: clamp(12.5px, 1.4vw, 14px);
   letter-spacing: 0.04em;
   text-decoration: none;
   transition: transform 0.5s var(--ease-out-expo), border-color 0.4s ease,
@@ -1819,11 +1776,10 @@ html.js .project-card--case.reveal.is-visible {
 }
 @media (hover: hover) {
   .cases__all:hover {
-    border-color: var(--cream);
-    background: var(--cream);
-    color: #17110b;
+    border-color: rgba(239, 231, 217, 0.4);
+    background: rgba(239, 231, 217, 0.06);
     box-shadow: 0 22px 50px -30px rgba(0, 0, 0, 0.9);
-    transform: translateY(-3px);
+    transform: translateY(-3px) scale(1.03);
   }
   .cases__all:hover span {
     animation: none;
@@ -1833,7 +1789,7 @@ html.js .project-card--case.reveal.is-visible {
 
 /* ---------- Process lead ---------- */
 .process__lead {
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
   font-size: clamp(18px, 2.6vw, 26px);
   color: var(--brown-mid);
@@ -1847,10 +1803,8 @@ html.js .project-card--case.reveal.is-visible {
   padding: 0;
   border-top: 1px solid var(--line);
 }
-.benefits__grid { counter-reset: benefit; }
 .benefit {
-  counter-increment: benefit;
-  padding: clamp(28px, 3.4vw, 44px) 0;
+  padding: clamp(26px, 3.4vw, 40px) 0;
   border-bottom: 1px solid var(--line);
   display: grid;
   grid-template-columns: 1fr;
@@ -1858,39 +1812,28 @@ html.js .project-card--case.reveal.is-visible {
   transition: padding-left 0.45s var(--ease-out-expo);
 }
 .benefit h3 {
-  font-family: var(--font-display);
-  /* Было 400 — легче, чем H3 в соседних блоках */
-  font-weight: 700;
+  font-family: 'Neutral Face', var(--font-display);
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: clamp(17px, 2.2vw, 22px);
-  line-height: 1.3;
+  letter-spacing: 0.06em;
+  font-size: clamp(13px, 1.9vw, 17px);
+  line-height: 1.35;
   color: var(--ink);
   margin: 0;
   transition: color 0.3s ease;
 }
-.benefit h3::before {
-  content: '0' counter(benefit);
-  display: block;
-  margin-bottom: 12px;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  color: var(--taupe);
-}
 .benefit p {
   font-family: var(--font-body);
-  font-size: clamp(14.5px, 1.4vw, 16px);
-  line-height: 1.7;
+  font-size: clamp(12px, 1.4vw, 14px);
+  line-height: 1.74;
   color: var(--brown-mid);
   margin: 0;
-  max-width: 46ch;
+  max-width: 62ch;
 }
 @media (min-width: 760px) {
   .benefit {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    gap: clamp(28px, 4.4vw, 64px);
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.35fr);
+    gap: clamp(28px, 5vw, 72px);
     align-items: baseline;
   }}
 @media (hover: hover) {
@@ -1917,17 +1860,16 @@ html.js .project-card--case.reveal.is-visible {
 }
 .stat { display: flex; flex-direction: column; gap: clamp(14px, 1.8vw, 18px); }
 .stat__num {
-  font-family: var(--font-display);
-  /* Было 400 при 700 у соседних заголовков — цифры читались вторичными */
-  font-weight: 700;
-  font-size: clamp(44px, 5vw, 72px);
-  line-height: 0.9;
-  letter-spacing: -0.01em;
-  color: var(--ink);
+  font-family: 'Neutral Face', var(--font-display);
+  font-weight: 400;
+  font-size: clamp(34px, 5.4vw, 56px);
+  line-height: 0.92;
+  letter-spacing: 0.005em;
+  color: var(--brown);
   font-variant-numeric: tabular-nums;
 }
 .stat__label {
-  font-size: clamp(11px, 1.2vw, 12px);
+  font-size: clamp(10.5px, 1.2vw, 12px);
   text-transform: uppercase;
   letter-spacing: 0.11em;
   line-height: 1.5;
@@ -1947,7 +1889,8 @@ html.js .project-card--case.reveal.is-visible {
 
 /* ---------- Process: vertical arrow-flow ---------- */
 /* Таймлайн занимал 660px из 1440 — справа оставалось полэкрана пустоты.
-   Заголовок уходит в левую колонку и залипает, шаги — в правую. */
+   Заголовок уходит в левую колонку и залипает, шаги — в правую.
+   Кегли, начертания и внутренние отступы шагов не меняются. */
 @media (min-width: 1024px) {
   .process {
     display: grid;
@@ -1960,7 +1903,6 @@ html.js .project-card--case.reveal.is-visible {
     position: sticky;
     top: 132px;
   }
-  .process > * { max-width: none; }
 }
 .flow { position: relative; max-width: 660px; }
 @media (min-width: 1024px) {
@@ -1971,7 +1913,7 @@ html.js .project-card--case.reveal.is-visible {
 .flow__chain { display: flex; flex-direction: column; align-items: flex-start; }
 .flow__line {
   font-family: var(--font-body);
-  font-size: clamp(16px, 1.9vw, 19px);
+  font-size: clamp(14.5px, 1.9vw, 18px);
   line-height: 1.7;
   color: var(--ink);
   margin: 0;
@@ -1988,7 +1930,7 @@ html.js .project-card--case.reveal.is-visible {
 }
 .flow__after-list li {
   font-family: var(--font-body);
-  font-size: clamp(16px, 1.9vw, 19px);
+  font-size: clamp(14.5px, 1.9vw, 18px);
   line-height: 1.7;
   color: var(--ink);
 }
@@ -1996,10 +1938,10 @@ html.js .project-card--case.reveal.is-visible {
   margin: clamp(36px, 5vw, 56px) 0 0;
   font-family: var(--font-body);
   font-style: italic;
-  font-size: 12px;
+  font-size: clamp(10px, 1.1vw, 11.5px);
   line-height: 1.6;
   letter-spacing: 0.01em;
-  color: var(--brown-mid);
+  color: rgba(60, 47, 40, 0.55);
   max-width: 48ch;
 }
 .flow__arrow {
@@ -2029,7 +1971,7 @@ html.js .project-card--case.reveal.is-visible {
 .flow__icon { width: 22px; height: 22px; color: var(--brown-mid); flex: none; }
 .flow__icon svg { width: 100%; height: 100%; }
 .flow__body h3 {
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -2083,12 +2025,13 @@ html.js .project-card--case.reveal.is-visible {
   to   { transform: scale(1); filter: contrast(1.06) saturate(1.04) brightness(1.03); }
 }
 
-/* ---- Hero CTA: мягкое свечение под залитой кнопкой ---- */
+/* ---- Hero CTA: richer hover (glow + micro-scale) ---- */
 .hero__cta {
-  transition: background 0.35s ease, border-color 0.35s ease,
+  transition: color 0.45s var(--ease-out-expo), border-color 0.45s ease,
               transform 0.45s var(--ease-out-expo), box-shadow 0.45s ease;
 }
 .hero__cta:hover {
+  transform: translateY(-2px) scale(1.02);
   box-shadow: 0 16px 46px -18px rgba(246, 241, 230, 0.5);
 }
 
@@ -2144,13 +2087,9 @@ html.js .project-card--case.reveal.is-visible {
 
 /* ---- Contacts: premium interactive cards ---- */
 /* Лейбл над значением внутри рамки со скруглением читался как
-   задизейбленное поле формы, а не как ссылка. */
+   задизейбленное поле формы, а не как ссылка. Кегли не тронуты. */
 .contacts__grid a {
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 20px 0;
+  padding: clamp(11px, 1.5vw, 14px) 0;
   border: none;
   border-bottom: 1px solid var(--line-on-dark);
   border-radius: 0;
@@ -2159,10 +2098,9 @@ html.js .project-card--case.reveal.is-visible {
 .contacts__grid a::after {
   content: '\2197';
   position: absolute;
-  top: 50%;
-  right: 2px;
-  margin-top: -10px;
-  font-size: 16px;
+  top: clamp(13px, 1.8vw, 17px);
+  right: clamp(15px, 2vw, 19px);
+  font-size: 14px;
   color: var(--taupe-soft);
   opacity: 0;
   transform: translate(-5px, 5px);
@@ -2239,32 +2177,30 @@ html.js .project-card--case.reveal.is-visible {
   position: absolute;
   left: calc(2px - clamp(28px, 3.4vw, 38px));
   top: 7px;
-  /* Было 9px с обводкой и белым ореолом — читалось как чекбокс формы */
-  width: 6px;
-  height: 6px;
-  margin-top: 2px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: var(--accent);
-  border: none;
-  box-shadow: none;
-  transition: transform 0.5s var(--ease-out-expo);
+  background: var(--cream);
+  border: 1.5px solid var(--taupe);
+  box-shadow: 0 0 0 5px #f3eee4;
+  transition: transform 0.5s var(--ease-out-expo), background 0.4s ease;
 }
 @media (hover: hover) {
-  .flow__step:hover::before { transform: scale(1.4); }}
+  .flow__step:hover::before { transform: scale(1.25); }}
 .flow__eyebrow {
   display: block;
-  font-family: var(--font-display);
+  font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  font-size: clamp(11px, 1.05vw, 12px);
+  font-size: clamp(9.5px, 1.05vw, 11px);
   color: var(--taupe);
-  margin: 0 0 clamp(12px, 1.4vw, 16px);
+  margin: 0 0 clamp(9px, 1.2vw, 13px);
 }
 .flow__step .flow__line { color: var(--brown); }
 
 /* ---- Contacts: a touch more air ---- */
-.contacts__inner { max-width: 640px; }
+.contacts__inner { max-width: 600px; }
 .contacts__grid { margin-top: clamp(10px, 2vw, 22px); }
 
 /* ---- Editorial footer: brand bottom-right, legal bottom-left ---- */
@@ -2286,10 +2222,10 @@ html.js .project-card--case.reveal.is-visible {
   justify-self: end;
   text-align: right;
   font-family: var(--font-logo);
-  font-size: clamp(22px, 3vw, 28px);
+  font-size: clamp(20px, 3.5vw, 36px);
   line-height: 0.9;
-  color: var(--brown);
-  letter-spacing: 0;
+  color: var(--ink);
+  letter-spacing: 0.01em;
 }
 .site-footer__copy {
   grid-area: copy;
@@ -2347,4 +2283,5 @@ button:focus-visible {
 .flow__chain::before {
   background: linear-gradient(180deg, rgba(60, 47, 40, 0.24) 0%, rgba(60, 47, 40, 0.1) 68%, rgba(60, 47, 40, 0) 100%);
 }
+.flow__step::before { border-color: rgba(143, 118, 89, 0.75); }
 .flow__line, .flow__after-list li { color: var(--brown); }
