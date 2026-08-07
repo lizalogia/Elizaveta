@@ -278,7 +278,7 @@ img { max-width: 100%; display: block; }
   z-index: 1;
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: clamp(16px, 2.9vw, 21px);
+  font-size: clamp(13.5px, 2.3vw, 17px);
   color: var(--cream-soft);
   text-decoration: none;
   opacity: 0.85;
@@ -450,7 +450,7 @@ img { max-width: 100%; display: block; }
   margin: 0 0 clamp(18px, 2.6vw, 28px);
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
-  font-size: clamp(20px, 3.1vw, 33px);
+  font-size: clamp(17px, 2.6vw, 28px);
   line-height: 1.25;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -580,7 +580,9 @@ img { max-width: 100%; display: block; }
 .section__head h2 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: clamp(14px, 2.5vw, 18px);
+  /* Единый кегль для всех заголовков секций: раньше #portfolio был на
+     1px крупнее остальных, а на мобиле все переключались на 14.5px. */
+  font-size: clamp(13px, 2.2vw, 16px);
   margin: 0;
   line-height: 1.34;
   letter-spacing: 0.08em;
@@ -589,28 +591,12 @@ img { max-width: 100%; display: block; }
    ones at identical font-size, so they get a touch more size/tracking
    to land at the same visual weight; the two-line heading gets slightly
    less since its extra line already carries more visual mass. */
-#portfolio .section__head h2 {
-  font-size: clamp(15px, 2.7vw, 19px);
-  letter-spacing: 0.06em;
-}
-#values .section__head h2 {
-  font-size: clamp(14px, 2.5vw, 18px);
-  letter-spacing: 0.06em;
-}
-#formats .section__head h2 {
-  letter-spacing: 0.02em;
-}
+/* Оптические подгонки по разделам сняты: заголовки должны читаться
+   одинаково, иначе кегль «гуляет» от секции к секции. */
 /* On narrow screens each heading is seen alone (not side by side), so the
    optical size compensation above is unnecessary and reads as inconsistent
    instead — lock every section heading to one shared size on mobile. */
-@media (max-width: 720px) {
-  .section__head h2,
-  #portfolio .section__head h2,
-  #values .section__head h2,
-  #formats .section__head h2 {
-    font-size: 14.5px;
-  }
-}
+
 
 /* Reveal-on-scroll only hides content once JS confirms it can un-hide it
    (html.js, set by an inline script in <head>) — if JS fails to load or
@@ -735,25 +721,25 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 }
 /* Блюр-гало давало грязные ореолы на кремовом фоне; при монохромной
    перекраске оно не нужно. */
-/* Every logo mark rendered inside one identical box, regardless of its own
-   file's proportions. A flat height alone isn't enough — a two- or
-   three-line stacked lockup (Instadium, VK Fest) shrinks its per-line text
-   to stay under that height, so it reads smaller than a one-line wordmark
-   even at the same total height. Fixing width AND height and letting the
-   image contain-fit inside gives every logo the same footprint instead. */
+/* Логотипы приведены к одному зрительному размеру по высоте знака, а не
+   по общему боксу: в общем боксе однострочный вордмарк упирался в ширину,
+   а двух- и трёхстрочный лок-ап — в высоту, и они читались по-разному.
+   Базовая высота одна на всех; у стековых лок-апов она пропорционально
+   больше ровно настолько, на сколько текст разбит на строки, чтобы
+   высота самой буквы совпадала с однострочными. */
 .brandmark-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: clamp(56px, 6.2vw, 78px);
-  height: 24px;
+  height: var(--logo-h, 14px);
 }
 .brandmark-logo img {
   display: block;
-  max-width: 100%;
-  max-height: 100%;
+  height: 100%;
   width: auto;
-  height: auto;
+  /* Потолок ширины: без него сверхширокие вордмарки (Нефорбсы 10.8:1)
+     занимали бы вдвое больше места, чем остальные. */
+  max-width: clamp(62px, 6.4vw, 82px);
   object-fit: contain;
   /* Логотипы были в родных цветах и разной оптической плотности —
      полоса читалась пёстрой. */
@@ -761,6 +747,27 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   opacity: 0.55;
   transition: opacity 0.4s ease;
 }
+/* Однострочные вордмарки — базовая высота */
+.brandmark-logo--voice,
+.brandmark-logo--kion,
+.brandmark-logo--wink,
+.brandmark-logo--golosa { --logo-h: 14px; }
+/* Знак заполняет файл целиком, без полей — базовой высоты хватает с запасом */
+.brandmark-logo--muz { --logo-h: 12px; }
+.brandmark-logo--nf { --logo-h: 13px; }
+.brandmark-logo--ivi { --logo-h: 15px; }
+/* Под вордмарком есть мелкий слоган, само слово занимает ~2/3 файла */
+.brandmark-logo--curaprox { --logo-h: 17px; }
+/* Две строки текста — двойная высота, чтобы строка совпала с базовой */
+.brandmark-logo--instadium,
+.brandmark-logo--komandy { --logo-h: 22px; }
+.brandmark-logo--musicbox { --logo-h: 20px; }
+/* Три строки */
+.brandmark-logo--vkfest { --logo-h: 27px; }
+/* Сверхширокие лок-апы упираются в общий потолок ширины раньше, чем
+   набирают высоту знака, — им потолок поднят индивидуально. */
+.brandmark-logo--neforbsy img { max-width: clamp(74px, 7.4vw, 98px); }
+.brandmark-logo--musicbox img { max-width: clamp(70px, 7.2vw, 94px); }
 .brandmark-logo:hover img { opacity: 0.9; }
 
 /* ---------- Marquee ---------- */
@@ -1137,26 +1144,6 @@ html.js.has-fine-pointer .project-card:hover {
 .format-card:focus-visible .format-card__cover img {
   transform: scale(1.05);
   filter: grayscale(0) brightness(1);
-}
-/* Восьмая ячейка-CTA: семь категорий оставляли в ряду пустое место */
-.format-card--cta {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  min-height: 260px;
-  padding: 28px;
-  border: 1px solid rgba(239, 231, 217, 0.18);
-  border-radius: var(--radius);
-  transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s var(--ease-out-expo);
-}
-.format-card--cta:hover {
-  background: rgba(239, 231, 217, 0.05);
-  border-color: rgba(239, 231, 217, 0.34);
-}
-html.js.has-fine-pointer .format-card.reveal:hover,
-html.js .format-card.reveal:focus-visible {
-  transform: translateY(-5px);
 }
 .format-card h3 {
   font-family: 'Neutral Face', var(--font-display);
@@ -1689,7 +1676,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-size: clamp(14px, 2.5vw, 18px);
+  font-size: clamp(13px, 2.2vw, 16px);
   line-height: 1.34;
   color: var(--cream-soft);
 }
