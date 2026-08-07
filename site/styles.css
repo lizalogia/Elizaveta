@@ -344,6 +344,13 @@ img { max-width: 100%; display: block; }
   object-position: 50% 35%;
   filter: contrast(1.06) saturate(1.04) brightness(1.03);
 }
+/* Кадр портретный и на широком экране режется по высоте, а не по ширине,
+   поэтому object-position по горизонтали на него не влияет. Чтобы сдвинуть
+   телефон к середине, само изображение уезжает влево на 5%, а ширина
+   добирается на те же 5%, чтобы правый край остался на месте. */
+@media (min-width: 721px) {
+  .hero__photo { inset: 0 auto 0 -5%; width: 105%; }
+}
 /* Mobile: same photo, own crop — its portrait aspect is close enough to a
    phone viewport that cover loses only a sliver off each side. Position
    keeps the phone-in-hand subject in frame with room to breathe above it,
