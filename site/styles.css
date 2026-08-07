@@ -893,12 +893,22 @@ html.js.has-fine-pointer .project-card:hover {
 .project-card h3 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: 12px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin: 0 0 4px;
+  /* Один размер с заголовками секций («Как проходит съёмка») */
+  font-size: clamp(14px, 2.5vw, 18px);
+  letter-spacing: 0.08em;
+  line-height: 1.34;
+  /* На 12px длинное название помещалось в строку и обрезалось многоточием;
+     на 18px оно переносится, поэтому обрезка снята. */
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  margin: 0 0 6px;
   position: relative;
+}
+/* Тот же мобильный лок, что и у заголовков секций */
+@media (max-width: 720px) {
+  .project-card h2,
+  .project-card h3 { font-size: 14.5px; }
 }
 .project-card--split-head h2 {
   white-space: normal;
@@ -918,19 +928,8 @@ html.js.has-fine-pointer .project-card:hover {
    as far as the column actually demands and never past 9.5px. No transform,
    no separate <p> — the whole string keeps one font, weight and colour. */
 .project-card { container-type: inline-size; }
-.category-grid .project-card--fit-head h2 {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: clip;
-  letter-spacing: -0.015em;
-  font-size: clamp(10px, calc((100cqi - var(--head-inset, 40px)) / var(--head-em, 20)), 12px);
-}
-/* A one-line title with no subtitle under it can borrow a few pixels of the
-   card's padding without breaking the left edge shared with a caption. */
-.category-grid .project-card--fit-head:not(:has(p)) h2 {
-  --head-inset: 28px;
-  margin-inline: -6px;
-}
+/* Подгонка кегля под длину названия снята: заголовки роликов должны
+   читаться одним размером, как заголовки секций. */
 .project-card p {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
