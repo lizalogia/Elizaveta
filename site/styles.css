@@ -892,7 +892,7 @@ html.js.has-fine-pointer .project-card:hover {
 .project-card h3 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: clamp(13px, 2.2vw, 16px);
+  font-size: clamp(11.5px, 1.9vw, 14px);
   letter-spacing: 0.08em;
   line-height: 1.34;
   /* На 12px длинное название помещалось в строку и обрезалось многоточием;
@@ -906,7 +906,7 @@ html.js.has-fine-pointer .project-card:hover {
 /* Тот же мобильный лок, что и у заголовков секций */
 @media (max-width: 720px) {
   .project-card h2,
-  .project-card h3 { font-size: 13.5px; }
+  .project-card h3 { font-size: 11.5px; }
 }
 .project-card--split-head h2 {
   white-space: normal;
@@ -931,7 +931,8 @@ html.js.has-fine-pointer .project-card:hover {
 .project-card p {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
-  font-size: 12px;
+  /* На ступень мельче названия над ней */
+  font-size: 10.5px;
   margin: 0;
   color: rgba(243, 238, 230, 0.78);
   position: relative;
