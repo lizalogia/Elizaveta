@@ -892,11 +892,10 @@ html.js.has-fine-pointer .project-card:hover {
 .project-card h3 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  /* Кегль привязан к ширине самой карточки (cqi — 1% ширины контейнера),
-     а не к ширине экрана: карточки на сайте бывают от 232 до 644px, и при
-     одном фиксированном кегле на широкой карточке текст читался мельче,
-     чем на узкой. Теперь отношение текста к карточке постоянное. */
-  font-size: clamp(10.5px, 5.2cqi, 18px);
+  /* Строго один кегль на всех карточках категорий — привязка к ширине
+     карточки убрана, она давала разные значения. Лента на главной
+     переопределяет его на ступень крупнее. */
+  font-size: 15px;
   letter-spacing: 0.08em;
   line-height: 1.34;
   /* На 12px длинное название помещалось в строку и обрезалось многоточием;
@@ -910,7 +909,7 @@ html.js.has-fine-pointer .project-card:hover {
 /* Тот же мобильный лок, что и у заголовков секций */
 @media (max-width: 720px) {
   .project-card h2,
-  .project-card h3 { font-size: clamp(10.5px, 3.2cqi, 13px); }
+  .project-card h3 { font-size: 12.5px; }
 }
 .project-card--split-head h2 {
   white-space: normal;
@@ -935,8 +934,8 @@ html.js.has-fine-pointer .project-card:hover {
 .project-card p {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
-  /* На ступень мельче названия над ней, с той же привязкой к карточке */
-  font-size: clamp(9px, 3.9cqi, 13.5px);
+  /* На ступень мельче названия над ней */
+  font-size: 11px;
   margin: 0;
   color: rgba(243, 238, 230, 0.78);
   position: relative;
@@ -947,9 +946,7 @@ html.js.has-fine-pointer .project-card:hover {
   white-space: normal;
 }
 @media (max-width: 720px) {
-  /* Свой предел для подписи: без него на широкой мобильной карточке
-     она обгоняла название над собой. */
-  .project-card p { font-size: clamp(8.5px, 2.7cqi, 10.5px); }
+  .project-card p { font-size: 9.5px; }
 }
 .project-card__credit {
   font-size: 11px;
@@ -1751,6 +1748,13 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   display: flex;
   gap: clamp(16px, 2vw, 24px);
   padding-right: clamp(16px, 2vw, 24px);
+}
+/* Лента на главной: кегль на ступень крупнее, чем в карточках категорий */
+.project-card--case h3 { font-size: 17px; }
+.project-card--case p { font-size: 12.5px; }
+@media (max-width: 720px) {
+  .project-card--case h3 { font-size: 13.5px; }
+  .project-card--case p { font-size: 10.5px; }
 }
 .project-card--case {
   flex: 0 0 clamp(200px, 20vw, 264px);
