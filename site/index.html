@@ -115,12 +115,54 @@
     var DESIGN_WIDTH = 1440;
     var MAX_K = 1.3333;   // 1920 / 1440 — потолок, чтобы не разрасталось на ultrawide
 
+    /* Кадр на компьютере показывается целиком (object-fit: contain), поэтому
+       по бокам от него остаётся однотонный фон. Где именно проходит стык,
+       зависит от пропорций экрана: на 1024x768 левый край кадра приходится
+       на 27% ширины, на 2560x1080 — уже на 44%. Прибитый к фиксированным
+       процентам градиент такой стык не догоняет, поэтому границы фото
+       считаются здесь и отдаются в CSS четырьмя точками растушёвки. */
+    var IN = 90;    // на сколько заходим внутрь кадра
+    var OUT = 130;  // и насколько растягиваем растворение по фону
+
+    function fade() {
+      var img = hero.querySelector('.hero__photo');
+      if (!img || !img.naturalWidth) return;
+
+      var box = img.getBoundingClientRect();
+      var heroBox = hero.getBoundingClientRect();
+      var css = getComputedStyle(img);
+      var a, b, c, d;
+
+      if (css.objectFit !== 'contain') {
+        // cover — кадр заполняет всё, стыка нет: растушёвка уезжает за экран
+        a = -240; b = -120; c = heroBox.width + 120; d = heroBox.width + 240;
+      } else {
+        var ratio = img.naturalWidth / img.naturalHeight;
+        var dh = box.height, dw = dh * ratio;
+        if (dw > box.width) { dw = box.width; dh = dw / ratio; }
+        var posX = parseFloat(css.objectPosition) / 100;
+        if (isNaN(posX)) posX = 0.5;
+        var left = box.left - heroBox.left + (box.width - dw) * posX;
+        a = left - OUT; b = left + IN;
+        c = left + dw - IN; d = left + dw + OUT;
+      }
+
+      hero.style.setProperty('--hero-fade-a', a.toFixed(1) + 'px');
+      hero.style.setProperty('--hero-fade-b', b.toFixed(1) + 'px');
+      hero.style.setProperty('--hero-fade-c', c.toFixed(1) + 'px');
+      hero.style.setProperty('--hero-fade-d', d.toFixed(1) + 'px');
+    }
+
     function apply() {
       var w = hero.clientWidth || document.documentElement.clientWidth;
       hero.style.setProperty('--hero-k', Math.min(MAX_K, w / DESIGN_WIDTH).toFixed(5));
+      fade();
     }
 
     apply();
+    var photo = hero.querySelector('.hero__photo');
+    if (photo && !photo.complete) photo.addEventListener('load', fade, { once: true });
+
     if (window.ResizeObserver) {
       new ResizeObserver(apply).observe(hero);
     } else {
@@ -364,7 +406,7 @@
         <p>Репортажная съёмка концертов, фестивалей и музыкальных событий.</p>
       </a>
       <a href="format-events.html" class="format-card reveal">
-        <span class="format-card__cover"><picture><source srcset="assets/images/projects/komandy-event.webp" type="image/webp"><img src="assets/images/projects/komandy-event.jpg" alt="Кадр с форума «Команды будущего»" loading="lazy" decoding="async"></picture></span>
+        <span class="format-card__cover"><picture><source srcset="assets/images/projects/instadium-headliner.webp" type="image/webp"><img src="assets/images/projects/instadium-headliner.jpg" alt="Кадр с INSTADIUM, хедлайнер Татьяна Тур" loading="lazy" decoding="async"></picture></span>
         <h3>Мероприятия</h3>
         <p>Премии, форумы, закрытые мероприятия, презентации.</p>
       </a>

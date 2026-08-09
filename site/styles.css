@@ -364,7 +364,18 @@ img { max-width: 100%; display: block; }
   }
   .hero__photo-wrap { background: #0e0a07; }
   /* Растворяет прямоугольник кадра со всех сторон, чтобы он не читался
-     как вставленная картинка на фоне. */
+     как вставленная картинка на фоне.
+
+     Боковые точки растворения (--hero-fade-a…d) считает JS в index.html по
+     фактическим краям кадра: при object-fit: contain стык фото и фона ездит
+     вместе с пропорциями экрана — 27% ширины на 1024x768, 44% на 2560x1080.
+     Проценты ниже — запасной вариант на случай, если JS не отработал. */
+  .hero {
+    --hero-fade-a: 30%;
+    --hero-fade-b: 42%;
+    --hero-fade-c: 74%;
+    --hero-fade-d: 86%;
+  }
   .hero__photo-wrap::before {
     content: '';
     position: absolute;
@@ -373,8 +384,12 @@ img { max-width: 100%; display: block; }
     pointer-events: none;
     background:
       linear-gradient(90deg,
-        #0e0a07 0%, rgba(14, 10, 7, 0.88) 16%, rgba(14, 10, 7, 0) 36%,
-        rgba(14, 10, 7, 0) 78%, rgba(14, 10, 7, 0.8) 90%, #0e0a07 99%),
+        #0e0a07 0,
+        #0e0a07 var(--hero-fade-a),
+        rgba(14, 10, 7, 0) var(--hero-fade-b),
+        rgba(14, 10, 7, 0) var(--hero-fade-c),
+        #0e0a07 var(--hero-fade-d),
+        #0e0a07 100%),
       linear-gradient(180deg,
         #0e0a07 0%, rgba(14, 10, 7, 0) 14%,
         rgba(14, 10, 7, 0) 86%, #0e0a07 100%);
