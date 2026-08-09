@@ -2341,3 +2341,61 @@ button:focus-visible {
 }
 .flow__step::before { border-color: rgba(143, 118, 89, 0.75); }
 .flow__line, .flow__after-list li { color: var(--brown); }
+
+/* ============================================================
+   Hero: пропорциональное масштабирование первого экрана (v129)
+   ============================================================
+
+   Композиция Hero свёрстана один раз под эталонную ширину 1440px и на
+   всех широких экранах масштабируется целиком через transform: scale(),
+   а не пересобирается медиазапросами. Коэффициент считает JS в index.html:
+   k = ширина вьюпорта / 1440, потолок 1.3333 (это 1920px).
+
+   Мобильная вёрстка (≤720px) не затронута вообще: там .hero__stage —
+   display: contents, обёртки как будто нет, работают прежние правила.
+   Фон и его кадрирование не трогаются ни на одной ширине — масштабируется
+   только передний план. */
+
+.hero__stage { display: contents; }
+
+@media (min-width: 721px) {
+  .hero {
+    --hero-dw: 1440px;   /* эталонная ширина дизайна */
+    --hero-k: 1;         /* ставит JS */
+    --hero-h: 100svh;    /* фактическая высота секции */
+    display: block;
+    min-height: var(--hero-h);
+  }
+
+  /* Высота задана в «дизайн-пикселях» (--hero-h / k), поэтому после
+     scale() блок занимает ровно высоту секции — пустот сверху/снизу нет. */
+  .hero__stage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;   /* текст прижат к низу, как в исходнике */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 2;
+    width: var(--hero-dw);
+    height: calc(var(--hero-h) / var(--hero-k));
+    margin-left: calc(var(--hero-dw) / -2);
+    transform: scale(var(--hero-k));
+    transform-origin: top center;
+  }
+
+  /* Внутри stage не должно остаться ни vw, ни clamp, ни медиазапросов:
+     они меняли бы размер второй раз и ломали пропорцию. Все значения —
+     фиксированные пиксели, замеренные на 1440px. */
+  .hero__watermark-track { gap: 100.8px; }          /* = 7vw @1440 */
+  .hero__watermark-item { font-size: 172.8px; }     /* = 12vw @1440 */
+  .hero__grid { padding: 0 64px 180px; }            /* --pad-x @1440 = 64px */
+  .hero__desc { margin: 30px 0 36px; }
+  .hero__desc-lead {
+    margin: 0 0 28px;
+    font-size: 32px;
+    max-width: none;   /* гасим правило ≤1024px: внутри stage ширина всегда 1440 */
+  }
+  .hero__desc-body { font-size: 14px; }
+  .hero__scroll { right: 56px; bottom: 84px; }
+}

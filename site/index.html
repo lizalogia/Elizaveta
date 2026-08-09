@@ -30,7 +30,7 @@
 
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 
-<link rel="stylesheet" href="styles.css?v=128">
+<link rel="stylesheet" href="styles.css?v=129">
 </head>
 <body>
 <div class="page-fade" id="pageFade" aria-hidden="true"></div>
@@ -72,30 +72,63 @@
       </div>
       <div class="hero__fog"></div>
     </div>
-    <div class="hero__watermark" aria-hidden="true">
-      <div class="hero__watermark-track">
-        <span class="hero__watermark-item">LIZALOGIA</span>
-        <span class="hero__watermark-item">LIZALOGIA</span>
-        <span class="hero__watermark-item">LIZALOGIA</span>
-        <span class="hero__watermark-item">LIZALOGIA</span>
-      </div>
-    </div>
-
-    <div class="hero__grid">
-      <div class="hero__text">
-        <div class="hero__desc">
-          <h1 class="hero__desc-lead">Больше,&nbsp;чем просто&nbsp;съёмка.</h1>
-          <p class="hero__desc-body">Создаю видео, которые помогают<br>вам стать ближе к&nbsp;своей аудитории.</p>
+    <!-- Передняя композиция Hero (вотермарка, текст, CTA, скролл).
+         На ширине от 721px она масштабируется целиком как одно изображение:
+         свёрстана под эталонные 1440px и ужимается transform: scale().
+         На телефонах (≤720px) обёртка — display: contents, то есть её как
+         будто нет, и мобильная вёрстка работает ровно как раньше. -->
+    <div class="hero__stage">
+      <div class="hero__watermark" aria-hidden="true">
+        <div class="hero__watermark-track">
+          <span class="hero__watermark-item">LIZALOGIA</span>
+          <span class="hero__watermark-item">LIZALOGIA</span>
+          <span class="hero__watermark-item">LIZALOGIA</span>
+          <span class="hero__watermark-item">LIZALOGIA</span>
         </div>
-        <a href="#contacts" class="hero__cta">Обсудить проект <span aria-hidden="true">↗</span></a>
       </div>
-    </div>
 
-    <div class="hero__scroll" aria-hidden="true">
-      <span>Листай</span>
-      <svg width="10" height="34" viewBox="0 0 10 34" fill="none"><path d="M5 0v32M5 33 .5 28.5M5 33l4.5-4.5" stroke="currentColor"/></svg>
+      <div class="hero__grid">
+        <div class="hero__text">
+          <div class="hero__desc">
+            <h1 class="hero__desc-lead">Больше,&nbsp;чем просто&nbsp;съёмка.</h1>
+            <p class="hero__desc-body">Создаю видео, которые помогают<br>вам стать ближе к&nbsp;своей аудитории.</p>
+          </div>
+          <a href="#contacts" class="hero__cta">Обсудить проект <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true">
+        <span>Листай</span>
+        <svg width="10" height="34" viewBox="0 0 10 34" fill="none"><path d="M5 0v32M5 33 .5 28.5M5 33l4.5-4.5" stroke="currentColor"/></svg>
+      </div>
     </div>
   </section>
+
+  <script>
+  /* Коэффициент масштабирования Hero: ширина вьюпорта / эталонные 1440px.
+     Скрипт стоит сразу за секцией, чтобы значение попало в CSS до первой
+     отрисовки. Ниже 721px значение не используется — там обычная вёрстка. */
+  (function () {
+    var hero = document.querySelector('.hero');
+    if (!hero) return;
+
+    var DESIGN_WIDTH = 1440;
+    var MAX_K = 1.3333;   // 1920 / 1440 — потолок, чтобы не разрасталось на ultrawide
+
+    function apply() {
+      var w = hero.clientWidth || document.documentElement.clientWidth;
+      hero.style.setProperty('--hero-k', Math.min(MAX_K, w / DESIGN_WIDTH).toFixed(5));
+    }
+
+    apply();
+    if (window.ResizeObserver) {
+      new ResizeObserver(apply).observe(hero);
+    } else {
+      window.addEventListener('resize', apply, { passive: true });
+      window.addEventListener('orientationchange', apply, { passive: true });
+    }
+  })();
+  </script>
 
   <!-- Мне доверяют -->
   <section class="clients section" id="showcase" data-theme="light">
