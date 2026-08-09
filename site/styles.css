@@ -376,6 +376,23 @@ img { max-width: 100%; display: block; }
     --hero-fade-c: 74%;
     --hero-fade-d: 86%;
   }
+  /* Сам край кадра — тёмная сцена, заметно темнее и «зернистее» ровного
+     фона: цветной оверлей поверх (::before ниже) один этот перепад не
+     прячет, глаз всё равно ловит границу фотографии. Поэтому кадр ещё и
+     маскируется по альфе теми же четырьмя точками — на подходе к краю
+     сама картинка плавно проявляется из прозрачности, а не обрывается
+     по геометрической рамке. Направление обратное оверлею: снаружи
+     (a) — прозрачно, внутри (b..c) — непрозрачно. */
+  .hero__photo {
+    -webkit-mask-image: linear-gradient(90deg,
+      transparent 0, transparent var(--hero-fade-a),
+      #000 var(--hero-fade-b), #000 var(--hero-fade-c),
+      transparent var(--hero-fade-d), transparent 100%);
+    mask-image: linear-gradient(90deg,
+      transparent 0, transparent var(--hero-fade-a),
+      #000 var(--hero-fade-b), #000 var(--hero-fade-c),
+      transparent var(--hero-fade-d), transparent 100%);
+  }
   .hero__photo-wrap::before {
     content: '';
     position: absolute;
