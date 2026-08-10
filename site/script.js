@@ -296,18 +296,21 @@
   }
 
   // Statistics count-up animation.
-  const stats = document.querySelectorAll('.stat__num[data-count]');
+  const stats = document.querySelectorAll('[data-count]');
   if (stats.length) {
     const runCount = (el) => {
       const target = parseInt(el.dataset.count, 10);
       const suffix = el.dataset.suffix || '';
-      if (reduceMotion) { el.textContent = target.toLocaleString('ru-RU') + suffix; return; }
+      // A year (e.g. 2023) must never pick up a thousands separator the way
+      // a real count (50 000) does — 'noGroup' opts a tile out of grouping.
+      const format = (n) => (el.dataset.noGroup !== undefined ? String(n) : n.toLocaleString('ru-RU'));
+      if (reduceMotion) { el.textContent = format(target) + suffix; return; }
       const dur = 1400;
       const start = performance.now();
       const tick = (now) => {
         const t = Math.min((now - start) / dur, 1);
         const eased = 1 - Math.pow(1 - t, 3);
-        el.textContent = Math.round(target * eased).toLocaleString('ru-RU') + suffix;
+        el.textContent = format(Math.round(target * eased)) + suffix;
         if (t < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
@@ -366,5 +369,37 @@
     window.addEventListener('pageshow', (e) => {
       if (e.persisted) pageFade.classList.remove('is-leaving');
     });
+  }
+
+  // Persistent HUD bar: ambient waveform + a running timecode. Purely
+  // atmospheric — ties every page together as one continuous reel.
+  const hudBars = document.getElementById('hudBars');
+  const hudTime = document.getElementById('hudTime');
+  if (hudBars && hudTime) {
+    const barCount = 30;
+    for (let i = 0; i < barCount; i += 1) {
+      const bar = document.createElement('span');
+      const peak = 26 + Math.random() * 64;
+      bar.style.setProperty('--peak', `${peak.toFixed(0)}%`);
+      bar.style.animationDuration = `${(1.6 + Math.random() * 1.3).toFixed(2)}s`;
+      bar.style.animationDelay = `${(Math.random() * -2.4).toFixed(2)}s`;
+      hudBars.appendChild(bar);
+    }
+    const two = (n) => String(n).padStart(2, '0');
+    if (!reduceMotion) {
+      let frame = 0;
+      window.setInterval(() => {
+        frame += 1;
+        const fps = 25;
+        const ff = frame % fps;
+        const totalSec = Math.floor(frame / fps);
+        const ss = totalSec % 60;
+        const mm = Math.floor(totalSec / 60) % 60;
+        const hh = Math.floor(totalSec / 3600);
+        hudTime.textContent = `${two(hh)}:${two(mm)}:${two(ss)}:${two(ff)}`;
+      }, 40);
+    } else {
+      hudTime.textContent = '00:00:00:00';
+    }
   }
 })();

@@ -10,9 +10,15 @@
   --brown-deep: #2f231e;
   --brown: #3c2f28;
   --brown-mid: #6b5442;
-  --taupe: #8f7659;
-  --taupe-soft: #b6a488;
+  /* Затемнены против исходных #8f7659 / #b6a488 — те не добирали 4.5:1
+     на кремовом фоне. Размеры и гарнитуры не тронуты. */
+  --taupe: #7a6244;
+  --taupe-soft: #a8916f;
   --ink: #241b16;
+  --ember: #8a4636;
+  --rail-w: 10px;
+  --hud-h: 40px;
+  --hud-gap: 10px;
   --radius: 14px;
   --radius-sm: 6px;
   /* Hairline dividers — deliberately light (§10) */
@@ -24,27 +30,6 @@
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-sym: cubic-bezier(0.65, 0, 0.35, 1);
-
-  /* Desktop (>=1024px) typography scale — applied only inside the
-     min-width: 1024px layer near the end of this file, never by
-     themselves. Mobile keeps its existing clamp()-based sizing. */
-  --fs-hero-title: 27px;
-  --fs-category-title: 18px;
-  --fs-section-title: 17px;
-  --fs-card-title: 15px;
-  --fs-body: 15px;
-  --fs-body-small: 13px;
-  --fs-secondary: 12px;
-  --fs-caption: 11px;
-  --fs-control: 12px;
-
-  --lh-title: 1.3;
-  --lh-body: 1.65;
-  --lh-secondary: 1.55;
-
-  --fw-regular: 400;
-  --fw-medium: 500;
-  --fw-bold: 700;
 }
 
 * { box-sizing: border-box; }
@@ -64,9 +49,91 @@ body {
   background: var(--warm-gradient);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
+  /* Room for the fixed HUD bar at the bottom of every page, so the last
+     line of the footer is never covered by it (bar height + the gap it
+     floats above the edge). */
+  padding-bottom: calc(var(--hud-h) + var(--hud-gap));
+}
+@media (min-width: 720px) {
+  body { --hud-h: 48px; }
 }
 
 img { max-width: 100%; display: block; }
+
+/* ---------- Film rails + HUD bar (persistent site chrome) ---------- */
+.filmrail {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: var(--rail-w);
+  z-index: 35;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(to bottom, var(--taupe) 0 6px, transparent 6px 18px);
+  opacity: 0.3;
+}
+.filmrail--l { left: 0; }
+.filmrail--r { right: 0; }
+@media (max-width: 560px) {
+  .filmrail { width: 6px; background-image: repeating-linear-gradient(to bottom, var(--taupe) 0 4px, transparent 4px 13px); }
+}
+.hud-fixed {
+  position: fixed;
+  left: var(--rail-w);
+  right: var(--rail-w);
+  bottom: var(--hud-gap);
+  z-index: 40;
+  height: var(--hud-h);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 clamp(14px, 3vw, 24px);
+  background: var(--ink);
+  border-top: 1px solid rgba(243, 238, 230, 0.08);
+  border-radius: var(--radius-sm);
+}
+.hud-rec {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ember);
+  flex: 0 0 auto;
+  animation: hud-rec-pulse 1.8s ease-in-out infinite;
+}
+@keyframes hud-rec-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+.hud-bars { display: flex; align-items: flex-end; gap: 2.5px; height: 22px; flex: 1; min-width: 0; }
+.hud-bars span {
+  flex: 1;
+  max-width: 4px;
+  border-radius: 2px;
+  height: 14%;
+  background: linear-gradient(180deg, var(--cream-soft), var(--taupe-soft));
+  animation-name: hud-wave;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes hud-wave { 0%, 100% { height: 14%; } 50% { height: var(--peak, 70%); } }
+.hud-label {
+  font-family: 'Neutral Face', var(--font-display);
+  font-weight: 400;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(243, 238, 230, 0.5);
+  white-space: nowrap;
+  display: none;
+}
+@media (min-width: 620px) { .hud-label { display: block; } }
+.hud-time {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+  color: var(--cream-soft);
+  font-size: 12px;
+  white-space: nowrap;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hud-rec, .hud-bars span { animation: none; opacity: 0.7; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -85,6 +152,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: clamp(20px, 4vw, 56px);
   padding: 24px var(--pad-x);
   pointer-events: none;
   backdrop-filter: blur(10px);
@@ -123,6 +191,47 @@ img { max-width: 100%; display: block; }
 .site-header--dark .logo { color: var(--cream-soft); text-shadow: none; }
 .site-header--dark .menu-toggle { mix-blend-mode: normal; }
 .site-header--dark .menu-toggle span { background: var(--cream-soft); }
+
+/* Горизонтальное меню на десктопе: навигация на 1440px была спрятана
+   в бургер, и портфолио не читалось как раздел. */
+.nav-inline { display: none; }
+@media (min-width: 1024px) {
+  .nav-inline {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-left: auto;
+    margin-right: 4px;
+  }
+  .site-header .menu-toggle { display: none; }
+}
+.nav-inline a {
+  position: relative;
+  font-family: 'Golca', var(--font-display);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(243, 238, 230, 0.72);
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+.nav-inline a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.35s var(--ease-out-expo);
+}
+.nav-inline a:hover { color: #ffffff; }
+.nav-inline a:hover::after { width: 100%; }
+.site-header--light .nav-inline a { color: rgba(60, 47, 40, 0.72); }
+.site-header--light .nav-inline a:hover { color: var(--ink); }
+.site-header--dark .nav-inline a { color: rgba(243, 238, 230, 0.72); }
 
 .menu-toggle {
   width: 44px;
@@ -169,7 +278,9 @@ img { max-width: 100%; display: block; }
   z-index: 1;
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: clamp(16px, 2.9vw, 21px);
+  font-size: clamp(13.5px, 3.4vw, 19px);
+  line-height: 1.3;
+  white-space: nowrap;
   color: var(--cream-soft);
   text-decoration: none;
   opacity: 0.85;
@@ -205,7 +316,7 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 720px) {
-  .hero { min-height: 106svh; }}
+  .hero { min-height: 87svh; }}
 
 .hero__photo-wrap {
   position: absolute;
@@ -217,27 +328,112 @@ img { max-width: 100%; display: block; }
 }
 .hero__photo-parallax {
   position: absolute;
-  inset: -8% 0 0 0;
+  inset: 0;
   will-change: transform;
 }
 .hero__photo {
   position: absolute;
-  inset: -1%;
-  width: 102%;
-  height: 102%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   max-width: none;
+  /* Full-bleed on desktop too — the source is a tall portrait shot inside a
+     wide landscape hero band, so `contain` left empty gradient bars down
+     both sides on wide screens. `cover` fills edge to edge; since the photo
+     is always narrower than the viewport here, only the vertical position
+     matters and it's tuned to keep the phone-in-hand subject in frame. */
   object-fit: cover;
-  object-position: 58% 46%;
+  object-position: 50% 35%;
   filter: contrast(1.06) saturate(1.04) brightness(1.03);
 }
-/* Desktop/laptop: the frame is cropped vertically, so pull the window a
-   little above centre — the phone, hands and stage stay in view while the
-   heading sits over the dark left half. Mobile is served a dedicated crop of
-   the same photograph, framed on the phone. */
+/* Композиция первого экрана приведена к мобильной.
+   Кадр вертикальный (1024x1536). На телефоне он виден почти целиком —
+   91% высоты, отсюда крупные телефон и певица. На широком экране кадр
+   растягивался по ширине и в него попадала лишь треть высоты: низ
+   телефона с кнопками записи уходил за край.
+   Решение: кадр показывается целиком по высоте и сдвинут вправо, а бока
+   заливаются фоном сцены и растворяются градиентом, так что видимая
+   композиция совпадает с мобильной. */
+@media (min-width: 721px) {
+  .hero__photo {
+    inset: -9% 0;
+    width: 100%;
+    height: 118%;
+    object-fit: contain;
+    object-position: 66% 50%;
+  }
+  .hero__photo-wrap { background: #0e0a07; }
+  /* Растворяет прямоугольник кадра со всех сторон, чтобы он не читался
+     как вставленная картинка на фоне.
+
+     Боковые точки растворения (--hero-fade-a…d) считает JS в index.html по
+     фактическим краям кадра: при object-fit: contain стык фото и фона ездит
+     вместе с пропорциями экрана — 27% ширины на 1024x768, 44% на 2560x1080.
+     Проценты ниже — запасной вариант на случай, если JS не отработал. */
+  .hero {
+    --hero-fade-a: 30%;
+    --hero-fade-b: 42%;
+    --hero-fade-c: 74%;
+    --hero-fade-d: 86%;
+  }
+  /* Сам край кадра — тёмная сцена, заметно темнее и «зернистее» ровного
+     фона: цветной оверлей поверх (::before ниже) один этот перепад не
+     прячет, глаз всё равно ловит границу фотографии. Поэтому кадр ещё и
+     маскируется по альфе теми же четырьмя точками — на подходе к краю
+     сама картинка плавно проявляется из прозрачности, а не обрывается
+     по геометрической рамке. Направление обратное оверлею: снаружи
+     (a) — прозрачно, внутри (b..c) — непрозрачно. */
+  .hero__photo {
+    -webkit-mask-image: linear-gradient(90deg,
+      transparent 0, transparent var(--hero-fade-a),
+      #000 var(--hero-fade-b), #000 var(--hero-fade-c),
+      transparent var(--hero-fade-d), transparent 100%);
+    mask-image: linear-gradient(90deg,
+      transparent 0, transparent var(--hero-fade-a),
+      #000 var(--hero-fade-b), #000 var(--hero-fade-c),
+      transparent var(--hero-fade-d), transparent 100%);
+  }
+  .hero__photo-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg,
+        #0e0a07 0,
+        #0e0a07 var(--hero-fade-a),
+        rgba(14, 10, 7, 0) var(--hero-fade-b),
+        rgba(14, 10, 7, 0) var(--hero-fade-c),
+        #0e0a07 var(--hero-fade-d),
+        #0e0a07 100%),
+      linear-gradient(180deg,
+        #0e0a07 0%, rgba(14, 10, 7, 0) 14%,
+        rgba(14, 10, 7, 0) 86%, #0e0a07 100%);
+  }
+  /* Текст прижат к низу, как на телефоне, а не по центру экрана */
+  .hero { justify-content: flex-end; }
+  .hero__grid { padding-top: 0; padding-bottom: clamp(120px, 13vw, 180px); }
+}
+}
+/* Mobile: same photo, own crop — its portrait aspect is close enough to a
+   phone viewport that cover loses only a sliver off each side. Position
+   keeps the phone-in-hand subject in frame with room to breathe above it,
+   matching the photo's own off-centre composition rather than centring on it. */
 @media (max-width: 720px) {
-  .hero__photo { object-position: 50% 0%; }}
-@media (prefers-reduced-motion: no-preference) {
-  .hero__photo { animation: hero-kenburns 22s ease-in-out infinite alternate; }}
+  .hero__photo-parallax { inset: -8% 0 0 0; }
+  .hero__photo {
+    inset: -1%;
+    width: 102%;
+    height: 102%;
+    object-fit: cover;
+    /* Сдвиг по горизонтали: видна более правая часть кадра, телефон
+       уходит к середине экрана. */
+    object-position: 88% 35%;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__photo { animation: hero-kenburns 22s ease-in-out infinite alternate; }}
+}
 @keyframes hero-kenburns {
   0% { transform: scale(1) translate(0, 0); }
   100% { transform: scale(1.03) translate(-0.5%, 0.5%); }
@@ -308,27 +504,27 @@ img { max-width: 100%; display: block; }
   width: 100%;
   max-width: 1360px;
   margin: 0 auto;
-  padding: clamp(120px, 16vw, 168px) var(--pad-x) clamp(48px, 7vw, 72px);
+  padding: clamp(96px, 13vw, 144px) var(--pad-x) clamp(56px, 8vw, 80px);
 }
 
 @media (max-width: 720px) {
   .hero { justify-content: flex-end; }
   .hero__grid {
     padding-top: 0;
-    padding-bottom: clamp(76px, 17vw, 104px);
+    padding-bottom: clamp(112px, 30vw, 148px);
   }
 }
 
 .hero__desc {
   max-width: 540px;
-  margin: clamp(18px, 2.6vw, 30px) 0 clamp(40px, 5vw, 56px);
+  margin: clamp(18px, 2.6vw, 30px) 0 clamp(26px, 3.6vw, 36px);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.62), 0 0 26px rgba(0, 0, 0, 0.4);
 }
 .hero__desc-lead {
   margin: 0 0 clamp(18px, 2.6vw, 28px);
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
-  font-size: clamp(20px, 3.1vw, 33px);
+  font-size: clamp(17px, 2.9vw, 27px);
   line-height: 1.25;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -343,7 +539,7 @@ img { max-width: 100%; display: block; }
 .hero__desc-body {
   margin: 0;
   max-width: 480px;
-  font-size: clamp(12.5px, 1.4vw, 15px);
+  font-size: clamp(12px, 1.3vw, 13.5px);
   line-height: 1.7;
   letter-spacing: 0.01em;
   color: rgba(247, 242, 234, 0.95);
@@ -358,12 +554,12 @@ img { max-width: 100%; display: block; }
   gap: 9px;
   font-family: 'Golca', var(--font-display);
   font-weight: 500;
-  font-size: 11px;
+  font-size: 9.5px;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: rgba(243, 238, 230, 0.88);
   text-decoration: none;
-  padding: 9px 20px;
+  padding: 8px 17px;
   border: 1px solid rgba(243, 238, 230, 0.2);
   border-radius: 999px;
   overflow: hidden;
@@ -402,7 +598,9 @@ img { max-width: 100%; display: block; }
 .hero__scroll {
   position: absolute;
   right: clamp(20px, 5vw, 56px);
-  bottom: clamp(14px, 3vw, 28px);
+  /* Подсказка стояла у самого низа, и стрелка уходила в светлую зону
+     перехода к следующей секции — её не было видно. */
+  bottom: clamp(56px, 9vw, 84px);
   z-index: 4;
   display: flex;
   flex-direction: column;
@@ -458,7 +656,7 @@ img { max-width: 100%; display: block; }
 .section__head h2 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: clamp(14px, 2.5vw, 18px);
+  font-size: clamp(16px, 2.8vw, 17px);
   margin: 0;
   line-height: 1.34;
   letter-spacing: 0.08em;
@@ -467,28 +665,22 @@ img { max-width: 100%; display: block; }
    ones at identical font-size, so they get a touch more size/tracking
    to land at the same visual weight; the two-line heading gets slightly
    less since its extra line already carries more visual mass. */
-#portfolio .section__head h2 {
-  font-size: clamp(15px, 2.7vw, 19px);
-  letter-spacing: 0.06em;
-}
-#values .section__head h2 {
-  font-size: clamp(14px, 2.5vw, 18px);
-  letter-spacing: 0.06em;
-}
-#formats .section__head h2 {
-  letter-spacing: 0.02em;
+/* Трекинг по разделам — как в исходнике. Кегль намеренно общий:
+   у #portfolio он был на 1px крупнее и заголовки не совпадали. */
+#portfolio .section__head h2 { letter-spacing: 0.06em; }
+#values .section__head h2 { letter-spacing: 0.06em; }
+#formats .section__head h2 { letter-spacing: 0.02em; }
+/* Мобильный лок из исходника. Заголовок ленты кейсов раньше в него не
+   входил и шёл по clamp — на узком экране он был на 0.5px мельче
+   остальных; теперь все заголовки секций совпадают. */
+@media (max-width: 720px) {
+  .section__head h2 { font-size: 16px; }
+  .cases-section .showreel__lead { font-size: 15px; }
 }
 /* On narrow screens each heading is seen alone (not side by side), so the
    optical size compensation above is unnecessary and reads as inconsistent
    instead — lock every section heading to one shared size on mobile. */
-@media (max-width: 720px) {
-  .section__head h2,
-  #portfolio .section__head h2,
-  #values .section__head h2,
-  #formats .section__head h2 {
-    font-size: 14.5px;
-  }
-}
+
 
 /* Reveal-on-scroll only hides content once JS confirms it can un-hide it
    (html.js, set by an inline script in <head>) — if JS fails to load or
@@ -510,33 +702,23 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   position: relative;
   overflow: hidden;
   margin: 0 0 clamp(30px, 4.5vw, 52px);
-  padding: 0 var(--pad-x);
+  /* Секция уже даёт --pad-x: второй отступ сдвигал лейбл вправо
+     относительно логотипов и цифр под ним. */
+  padding: 0;
   font-family: 'Neutral Face', var(--font-display);
-  font-weight: 400;
+  /* Это <h2> секции: был набран как мелкий лейбл — 12.5px и вес 400,
+     тогда как остальные заголовки секций 18px и вес 700. */
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: clamp(10.5px, 1.15vw, 12.5px);
-  line-height: 1.4;
+  letter-spacing: 0.08em;
+  font-size: clamp(16px, 2.8vw, 17px);
+  line-height: 1.34;
   color: var(--ink);
 }
-/* A single soft light pass over the label as it reveals — a quiet
-   motion-design accent rather than a repeating "loading" shimmer. */
-.clients__lead::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(100deg, transparent 35%, rgba(143, 118, 89, 0.4) 49%, rgba(143, 118, 89, 0.4) 53%, transparent 68%);
-  transform: translateX(-140%);
-  pointer-events: none;
+@media (max-width: 720px) {
+  .clients__lead { font-size: 16px; }
 }
-@media (prefers-reduced-motion: no-preference) {
-  html.js .clients__lead.is-visible::after {
-    animation: label-shimmer 1.3s var(--ease-out-expo) 0.35s both;
-  }
-}
-@keyframes label-shimmer {
-  to { transform: translateX(140%); }
-}
+/* Блик по заголовку убран. */
 
 /* Logo wall: fades up as a whole instead of appearing instantly, matching
    the reveal treatment every other section already has. */
@@ -551,14 +733,14 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .clients__trust {
   max-width: 760px;
   margin: 0 auto;
-  padding: clamp(80px, 11vw, 132px) var(--pad-x) 0;
+  padding: clamp(80px, 11vw, 132px) 0 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: clamp(8px, 1.4vw, 16px);
   text-align: center;
-  font-size: clamp(11.5px, 1.15vw, 13px);
+  font-size: clamp(9.5px, 0.9vw, 10.5px);
   line-height: 1.6;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -581,8 +763,8 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .brandmark-row {
   display: inline-flex;
   align-items: center;
-  gap: clamp(56px, 7vw, 108px);
-  padding-right: clamp(56px, 7vw, 108px);
+  gap: clamp(38px, 4.8vw, 72px);
+  padding-right: clamp(38px, 4.8vw, 72px);
 }
 
 .brandmark {
@@ -596,7 +778,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .brandmark-founders {
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 13px;
+  font-size: 10.5px;
   letter-spacing: 0.045em;
   color: rgba(60, 47, 40, 0.62);
   transition: color 0.35s ease, transform 0.35s var(--ease-out-expo);
@@ -609,49 +791,57 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   position: relative;
   isolation: isolate;
 }
-.brandmark-logo::before {
-  content: '';
-  position: absolute;
-  inset: -12px -18px;
-  background: radial-gradient(closest-side, var(--cream) 55%, rgba(239, 231, 217, 0));
-  filter: blur(9px);
-  z-index: -1;
-}
-/* Every source PNG is trimmed to its ink bounding box, so --logo-h is now a
-   real optical height rather than "graphic + whatever transparent margin the
-   file happened to carry". Heights are derived from each mark's aspect ratio
-   (h = 29 / aspect^0.42) so wide wordmarks and stacked lockups end up with a
-   comparable visual mass instead of a comparable raw height, then nudged by
-   eye for weight. The fixed-height flex box keeps every logo on one baseline. */
+/* Блюр-гало давало грязные ореолы на кремовом фоне; при монохромной
+   перекраске оно не нужно. */
+/* Логотипы приведены к одному зрительному размеру по высоте знака, а не
+   по общему боксу: в общем боксе однострочный вордмарк упирался в ширину,
+   а двух- и трёхстрочный лок-ап — в высоту, и они читались по-разному.
+   Базовая высота одна на всех; у стековых лок-апов она пропорционально
+   больше ровно настолько, на сколько текст разбит на строки, чтобы
+   высота самой буквы совпадала с однострочными. */
 .brandmark-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
+  height: var(--logo-h, 13px);
 }
 .brandmark-logo img {
   display: block;
-  height: var(--logo-h, 17px);
+  height: 100%;
   width: auto;
-  max-width: none;
+  /* Потолок ширины: без него сверхширокие вордмарки (Нефорбсы 10.8:1)
+     занимали бы вдвое больше места, чем остальные. */
+  max-width: clamp(57px, 5.9vw, 76px);
   object-fit: contain;
-  opacity: 0.94;
-  transition: transform 0.4s var(--ease-out-expo), opacity 0.4s ease, filter 0.4s ease;
+  /* Логотипы были в родных цветах и разной оптической плотности —
+     полоса читалась пёстрой. */
+  filter: grayscale(1) brightness(0);
+  opacity: 0.55;
+  transition: opacity 0.4s ease;
 }
-.brandmark-logo:hover img { transform: scale(1.06) translateY(-1px); opacity: 1; filter: contrast(1.12) brightness(1.03); }
-.brandmark-logo--muz { --logo-h: 15.5px; }
-.brandmark-logo--voice { --logo-h: 17.5px; }
-.brandmark-logo--instadium { --logo-h: 19px; }
-.brandmark-logo--nf { --logo-h: 17.5px; }
-.brandmark-logo--curaprox { --logo-h: 17.2px; }
-.brandmark-logo--neforbsy { --logo-h: 12px; }
-.brandmark-logo--kion { --logo-h: 15.5px; }
-.brandmark-logo--wink { --logo-h: 17.9px; }
-.brandmark-logo--ivi { --logo-h: 21px; }
-.brandmark-logo--komandy { --logo-h: 21.5px; }
-.brandmark-logo--vkfest { --logo-h: 23px; }
-.brandmark-logo--golosa { --logo-h: 17px; }
-.brandmark-logo--musicbox { --logo-h: 17.5px; }
+/* Однострочные вордмарки — базовая высота */
+.brandmark-logo--voice,
+.brandmark-logo--neforbsy,
+.brandmark-logo--kion,
+.brandmark-logo--wink,
+.brandmark-logo--golosa { --logo-h: 13px; }
+/* Знак заполняет файл целиком, без полей — базовой высоты хватает с запасом */
+.brandmark-logo--muz { --logo-h: 11px; }
+.brandmark-logo--nf { --logo-h: 11.5px; }
+.brandmark-logo--ivi { --logo-h: 14px; }
+/* Под вордмарком есть мелкий слоган, само слово занимает ~2/3 файла */
+.brandmark-logo--curaprox { --logo-h: 15.5px; }
+/* Две строки текста — двойная высота, чтобы строка совпала с базовой */
+.brandmark-logo--instadium,
+.brandmark-logo--komandy { --logo-h: 20px; }
+.brandmark-logo--musicbox { --logo-h: 18.5px; }
+/* Три строки */
+.brandmark-logo--vkfest { --logo-h: 25px; }
+/* Сверхширокие лок-апы упираются в общий потолок ширины раньше, чем
+   набирают высоту знака, — им потолок поднят индивидуально. */
+.brandmark-logo--neforbsy img { max-width: clamp(69px, 6.9vw, 90px); }
+.brandmark-logo--musicbox img { max-width: clamp(64px, 6.6vw, 87px); }
+.brandmark-logo:hover img { opacity: 0.9; }
 
 /* ---------- Marquee ---------- */
 
@@ -767,13 +957,26 @@ html.js.has-fine-pointer .project-card:hover {
 .project-card h3 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: 12px;
+  /* Строго один кегль на всех карточках категорий — привязка к ширине
+     карточки убрана, она давала разные значения. Лента на главной
+     переопределяет его на ступень крупнее. */
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  /* Плотнее заголовков секций (1.34) — иначе перенесённое название
+     ролика читалось разрежённее подписи под ним. */
   line-height: 1.25;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin: 0 0 4px;
+  /* На 12px длинное название помещалось в строку и обрезалось многоточием;
+     на 18px оно переносится, поэтому обрезка снята. */
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  margin: 0 0 6px;
   position: relative;
+}
+/* Тот же мобильный лок, что и у заголовков секций */
+@media (max-width: 720px) {
+  .project-card h2,
+  .project-card h3 { font-size: 12.5px; }
 }
 .project-card--split-head h2 {
   white-space: normal;
@@ -793,23 +996,15 @@ html.js.has-fine-pointer .project-card:hover {
    as far as the column actually demands and never past 9.5px. No transform,
    no separate <p> — the whole string keeps one font, weight and colour. */
 .project-card { container-type: inline-size; }
-.category-grid .project-card--fit-head h2 {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: clip;
-  letter-spacing: -0.015em;
-  font-size: clamp(10px, calc((100cqi - var(--head-inset, 40px)) / var(--head-em, 20)), 12px);
-}
-/* A one-line title with no subtitle under it can borrow a few pixels of the
-   card's padding without breaking the left edge shared with a caption. */
-.category-grid .project-card--fit-head:not(:has(p)) h2 {
-  --head-inset: 28px;
-  margin-inline: -6px;
-}
+/* Подгонка кегля под длину названия снята: заголовки роликов должны
+   читаться одним размером, как заголовки секций. */
 .project-card p {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
-  font-size: 12px;
+  /* На ступень мельче названия над ней */
+  font-size: 11px;
+  /* Раньше не был задан явно — на двух строках («Хедлайнер Филипп
+     Киркоров») строки слипались. */
   line-height: 1.3;
   margin: 0;
   color: rgba(243, 238, 230, 0.78);
@@ -820,9 +1015,15 @@ html.js.has-fine-pointer .project-card:hover {
      wrapping to a second line. */
   white-space: normal;
 }
+@media (max-width: 720px) {
+  .project-card p { font-size: 9.5px; }
+}
 .project-card__credit {
   font-size: 11px;
-  margin: 4px 0 0;
+  /* Без собственного отступа — вторая строка подписи продолжает первую
+     одним блоком, интервал заголовок→подпись остаётся тем же (6px),
+     сколько бы строк подписи ни было. */
+  margin: 0;
   color: rgba(239, 231, 217, 0.55);
   position: relative;
 }
@@ -993,74 +1194,62 @@ html.js.has-fine-pointer .project-card:hover {
   grid-template-columns: 1fr;
   gap: 40px;
 }
-@media (min-width: 720px) {
-  .formats__grid { grid-template-columns: repeat(3, 1fr); }}
+@media (min-width: 480px) {
+  .formats__grid { grid-template-columns: repeat(2, 1fr); }}
+@media (min-width: 1200px) {
+  .formats__grid { grid-template-columns: repeat(4, 1fr); }}
+.formats__grid { align-items: stretch; }
+/* Портфолио видеографа состояло из текстовых плашек с иконками —
+   теперь каждую категорию открывает кадр из соответствующей съёмки. */
 .format-card {
   display: block;
   position: relative;
-  padding-top: 28px;
-  border-top: 1px solid rgba(239, 231, 217, 0.08);
   text-decoration: none;
   color: inherit;
   transition: transform 0.4s var(--ease-out-expo);
 }
-.format-card::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: 0;
-  height: 1px;
-  width: 0;
-  background: linear-gradient(90deg, var(--taupe-soft), rgba(239, 231, 217, 0));
-  transition: width 0.55s var(--ease-out-expo);
+.format-card__cover {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  aspect-ratio: 4 / 5;
+  margin-bottom: 18px;
+  background: rgba(239, 231, 217, 0.05);
 }
-html.js.has-fine-pointer .format-card.reveal:hover,
-html.js .format-card.reveal:focus-visible {
-  transform: translateY(-5px);
-}
-html.js.has-fine-pointer .format-card.reveal:hover::before,
-html.js .format-card.reveal:focus-visible::before {
+/* <picture> по умолчанию инлайновый — без этого высоту задавала бы
+   собственная пропорция каждого файла и ряды сетки съезжали. */
+.format-card__cover picture { display: block; width: 100%; height: 100%; }
+.format-card__cover img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.25) brightness(0.85);
+  transition: transform 0.9s var(--ease-out-expo), filter 0.6s ease;
 }
-.format-card__icon {
-  position: relative;
-  color: var(--taupe-soft);
-  display: inline-flex;
-  margin-bottom: 26px;
-  transition: color 0.3s ease, transform 0.45s var(--ease-out-expo);
-}
-.format-card__icon::after {
-  content: '';
-  position: absolute;
-  inset: -16px;
-  z-index: -1;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(180, 140, 96, 0.35), transparent 72%);
-  opacity: 0;
-  transform: scale(0.6);
-  transition: opacity 0.4s ease, transform 0.45s var(--ease-out-expo);
-}
-.format-card__icon svg { width: 32px; height: 32px; }
-.format-card:hover .format-card__icon,
-.format-card:focus-visible .format-card__icon {
-  color: var(--cream-soft);
-  transform: scale(1.12) rotate(-8deg);
-}
-.format-card:hover .format-card__icon::after,
-.format-card:focus-visible .format-card__icon::after {
-  opacity: 1;
-  transform: scale(1);
+.format-card:hover .format-card__cover img,
+.format-card:focus-visible .format-card__cover img {
+  transform: scale(1.05);
+  filter: grayscale(0) brightness(1);
 }
 .format-card h3 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: 14.5px;
-  letter-spacing: 0.05em;
+  /* Тот же кегль, что у заголовка открытой категории (.category-hero h1) —
+     название категории должно читаться на ступень крупнее ролика (15px). */
+  font-size: clamp(14.5px, 2.4vw, 18px);
+  /* Двухстрочные названия («ТВ и медиапроекты», «Экспертный контент»)
+     при 1.34 расходились и читались иначе, чем однострочные. */
+  line-height: 1.16;
+  letter-spacing: 0.08em;
+  /* мобильный лок — тот же, что у заголовков секций */
   text-transform: uppercase;
   margin: 0 0 14px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+}
+@media (max-width: 720px) {
+  .format-card h3 { font-size: 14.5px; margin-bottom: 8px; }
 }
 .format-card h3::after {
   content: '\2192';
@@ -1264,10 +1453,15 @@ html.js .format-card.reveal:focus-visible::before {
   max-width: 560px;
   padding: clamp(120px, 16vw, 184px) var(--pad-x) clamp(88px, 12vw, 132px);
 }
+@media (max-width: 720px) {
+  .contacts { min-height: auto; }
+  .contacts__inner { padding-bottom: clamp(48px, 10vw, 72px); }
+  .contacts::after { height: clamp(64px, 12vw, 110px); }
+}
 .contacts__headline {
   font-family: 'Blacker Sans Display', 'Lato', var(--font-display);
   font-weight: 300;
-  font-size: clamp(27px, 4.5vw, 46.5px);
+  font-size: clamp(27px, 4.5vw, 39px);
   line-height: 1.15;
   letter-spacing: 0.005em;
   margin: 0 0 20px;
@@ -1390,31 +1584,38 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   transition: opacity 0.25s ease, transform 0.25s var(--ease-out-expo);
 }
 .category-hero__back:hover { opacity: 0.7; transform: translateX(-3px); }
+/* Иконка и ссылка «Портфолио» — оба инлайновые и стояли в одну строку.
+   При уменьшенном заголовке кружок оказался вплотную к тексту ссылки. */
 .category-hero__icon {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: 1px solid rgba(239, 231, 217, 0.28);
   color: var(--cream-soft);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
+/* Знак в разметке задан атрибутами 22x22 — в кружке 30px это оставляло
+   по 4px поля, поэтому размер задаётся стилем. */
+.category-hero__icon svg { width: 16px; height: 16px; }
 .category-hero h1 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: clamp(32px, 5vw, 52px);
+  /* Заметно крупнее заголовка ролика (15px), чтобы читалось как заголовок
+     категории, а не карточка того же уровня. */
+  font-size: clamp(14.5px, 2.4vw, 18px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   margin: 0 0 12px;
-  line-height: 1.1;
+  line-height: 1.34;
 }
-/* "медиапроекты" is a single unbreakable word wider than a 320px column at
-   32px, so it ran past the page padding on the narrowest phones. */
-@media (max-width: 400px) {
-  .category-hero h1 { font-size: 28px; }
+@media (max-width: 720px) {
+  .category-hero h1 { font-size: 14.5px; }
 }
 .category-hero p {
-  font-size: 12px;
+  font-size: 11.5px;
   line-height: 1.6;
   max-width: 520px;
   margin: 0;
@@ -1550,8 +1751,11 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   padding: clamp(96px, 14vw, 184px) 0;
   background: radial-gradient(120% 80% at 50% 40%, #2a1d12 0%, #17110b 70%, #120c07 100%);
 }
-.cases-section > .showreel__intro,
-.cases-section > .cases__all { padding-left: var(--pad-x); padding-right: var(--pad-x); }
+.cases-section > .showreel__intro { padding-left: var(--pad-x); padding-right: var(--pad-x); }
+/* БАГ: правило переопределяло собственный padding кнопки, из-за чего
+   «Все кейсы» вставала в x=0 и обрезалась левым краем экрана.
+   Отступ до края задаётся полем, паддинг (то есть размер) сохранён. */
+.cases-section > .cases__all { margin-left: var(--pad-x); margin-right: var(--pad-x); }
 .showreel__intro {
   display: flex;
   flex-direction: column;
@@ -1574,7 +1778,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-size: clamp(14px, 2.5vw, 18px);
+  font-size: clamp(16px, 2.8vw, 17px);
   line-height: 1.34;
   color: var(--cream-soft);
 }
@@ -1584,7 +1788,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   text-align: center;
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: clamp(13px, 1.7vw, 16px);
+  font-size: clamp(13px, 1.7vw, 15px);
   line-height: 1.7;
   letter-spacing: 0.01em;
   color: rgba(243, 238, 230, 0.72);
@@ -1621,6 +1825,14 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   display: flex;
   gap: clamp(16px, 2vw, 24px);
   padding-right: clamp(16px, 2vw, 24px);
+}
+/* Лента на главной: тот же кегль, что и в карточках категорий портфолио —
+   единый размер заголовков роликов по всему сайту. */
+.project-card--case h3 { font-size: 15px; }
+.project-card--case p { font-size: 11px; }
+@media (max-width: 720px) {
+  .project-card--case h3 { font-size: 12.5px; }
+  .project-card--case p { font-size: 9.5px; }
 }
 .project-card--case {
   flex: 0 0 clamp(200px, 20vw, 264px);
@@ -1700,6 +1912,9 @@ html.js .project-card--case.reveal.is-visible {
   transition: padding-left 0.45s var(--ease-out-expo);
 }
 .benefit h3 {
+  /* Типографика вынесена в общее правило .flow__eyebrow, .benefit h3
+     ниже — здесь остаётся только цвет, совпадающий с «Как проходит
+     съёмка», и сам layout. */
   color: var(--taupe);
   margin: 0;
   transition: color 0.3s ease;
@@ -1731,15 +1946,20 @@ html.js .project-card--case.reveal.is-visible {
   grid-template-columns: repeat(2, 1fr);
   gap: clamp(48px, 6.5vw, 88px) clamp(28px, 4vw, 52px);
 }
-@media (min-width: 720px) { .stats__grid { grid-template-columns: repeat(3, 1fr); }}
-@media (min-width: 1000px) {
-  .stats__grid { grid-template-columns: repeat(5, 1fr); }
-  .stats__grid .stat--wide { grid-column: auto; }}
+@media (min-width: 720px) { .stats__grid { grid-template-columns: repeat(4, 1fr); }}
+/* Numbers now live inside the "Мне доверяют" block, right under the
+   trust line, so logos and figures read as one continuous proof point
+   instead of two sections split apart by the case reel. */
+.clients__stats {
+  margin-top: clamp(56px, 8vw, 96px);
+  padding-top: clamp(48px, 7vw, 80px);
+  border-top: 1px solid var(--line-soft);
+}
 .stat { display: flex; flex-direction: column; gap: clamp(14px, 1.8vw, 18px); }
 .stat__num {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
-  font-size: clamp(34px, 5.4vw, 56px);
+  font-size: clamp(26px, 4.1vw, 42px);
   line-height: 0.92;
   letter-spacing: 0.005em;
   color: var(--brown);
@@ -1753,12 +1973,10 @@ html.js .project-card--case.reveal.is-visible {
   color: var(--taupe);
   max-width: 18ch;
 }
-.stat--wide { grid-column: 1 / -1; }
-
 /* ---------- Contacts eyebrow (meaning line) ---------- */
 .contacts__eyebrow {
   font-family: var(--font-body);
-  font-size: clamp(12.5px, 1.5vw, 15px);
+  font-size: clamp(12.5px, 1.5vw, 14px);
   line-height: 1.75;
   color: var(--cream-soft);
   opacity: 0.82;
@@ -1767,13 +1985,20 @@ html.js .project-card--case.reveal.is-visible {
 }
 
 /* ---------- Process: vertical arrow-flow ---------- */
+/* Заголовок и шаги идут одной колонкой, как во всех остальных секциях:
+   заголовок сверху, текст сразу под ним. */
 .flow { position: relative; max-width: 660px; }
+@media (min-width: 1024px) {
+  .flow { max-width: 100%; }
+}
 
 /* Downward logical chain (no step headings) */
 .flow__chain { display: flex; flex-direction: column; align-items: flex-start; }
 .flow__line {
   font-family: var(--font-body);
-  font-size: clamp(14.5px, 1.9vw, 18px);
+  /* Потолок снижен с 18px — на десктопе текст визуально конкурировал
+     с заголовками разделов (17px). */
+  font-size: clamp(14.5px, 1.9vw, 15px);
   line-height: 1.7;
   color: var(--ink);
   margin: 0;
@@ -1790,7 +2015,7 @@ html.js .project-card--case.reveal.is-visible {
 }
 .flow__after-list li {
   font-family: var(--font-body);
-  font-size: clamp(14.5px, 1.9vw, 18px);
+  font-size: clamp(14.5px, 1.9vw, 15px);
   line-height: 1.7;
   color: var(--ink);
 }
@@ -1872,8 +2097,10 @@ html.js .project-card--case.reveal.is-visible {
 
 /* ---- Hero: cinematic glow + film grain ---- */
 
-/* Photo entrance: gentle scale + contrast settle */
-@media (prefers-reduced-motion: no-preference) {
+/* Photo entrance: gentle scale + contrast settle. Mobile only — desktop
+   shows the full photo via object-fit:contain and any extra scale would
+   crop it again. */
+@media (max-width: 720px) and (prefers-reduced-motion: no-preference) {
   .hero__photo { animation: hero-photo-in 1.6s var(--ease-out-expo) both, hero-kenburns 22s ease-in-out 1.6s infinite alternate; }
 }
 /* The end state has to mirror .hero__photo's own filter — animation-fill-mode
@@ -1944,12 +2171,14 @@ html.js .project-card--case.reveal.is-visible {
 @keyframes logo-fade-in { from { opacity: 0; } to { opacity: 1; } }
 
 /* ---- Contacts: premium interactive cards ---- */
+/* Лейбл над значением внутри рамки со скруглением читался как
+   задизейбленное поле формы, а не как ссылка. Кегли не тронуты. */
 .contacts__grid a {
-  padding: clamp(11px, 1.5vw, 14px) clamp(16px, 2vw, 20px);
-  border: 1px solid var(--line-on-dark);
-  border-radius: var(--radius);
-  transition: transform 0.5s var(--ease-out-expo), border-color 0.4s ease,
-              background 0.4s ease, box-shadow 0.5s ease;
+  padding: clamp(11px, 1.5vw, 14px) 0;
+  border: none;
+  border-bottom: 1px solid var(--line-on-dark);
+  border-radius: 0;
+  transition: border-color 0.4s ease;
 }
 .contacts__grid a::after {
   content: '\2197';
@@ -1966,10 +2195,7 @@ html.js .project-card--case.reveal.is-visible {
 @media (hover: hover) {
   .contacts__grid a:hover {
     opacity: 1;
-    transform: translateY(-4px);
-    border-color: rgba(239, 231, 217, 0.34);
-    background: rgba(239, 231, 217, 0.035);
-    box-shadow: 0 22px 50px -30px rgba(0, 0, 0, 0.9);
+    border-bottom-color: var(--cream);
   }
   .contacts__grid a:hover::after { opacity: 1; transform: translate(0, 0); }}
 
@@ -2118,6 +2344,9 @@ html.js .project-card--case.reveal.is-visible {
     row-gap: clamp(8px, 2.5vw, 14px);
   }
 }
+@media (min-width: 1024px) {
+  .site-footer__disclaimer { text-align: center; max-width: none; }
+}
 /* ---- Global keyboard focus (a11y) ---- */
 a:focus-visible,
 button:focus-visible {
@@ -2151,133 +2380,69 @@ button:focus-visible {
 .flow__step::before { border-color: rgba(143, 118, 89, 0.75); }
 .flow__line, .flow__after-list li { color: var(--brown); }
 
-/* ============================================================
-   Desktop typography unification (>=1024px only)
-   Brings headings, card titles, body copy, captions and controls
-   onto the shared --fs, --lh and --fw scale defined in :root.
-   Mobile (below 1024px) keeps every rule above untouched.
-   ============================================================ */
+/* ---- Eyebrow labels (process steps + benefit headings): the shared
+   9.5px mobile-first size below only needs bumping up on desktop. ---- */
 @media (min-width: 1024px) {
-  /* 1. Hero */
-  .hero__desc-lead {
-    font-size: var(--fs-hero-title);
-    line-height: 1.25;
-    font-weight: var(--fw-regular);
-  }
-
-  /* 2. Portfolio category titles — grid card + the open category's own
-     h1 read as one size, a step above the video titles below them. */
-  .format-card h3,
-  .category-hero h1 {
-    font-size: var(--fs-category-title);
-    line-height: var(--lh-title);
-    font-weight: var(--fw-bold);
-  }
-
-  /* 3. Section headings — one shared size regardless of length */
-  .section__head h2,
-  #portfolio .section__head h2,
-  #values .section__head h2,
-  #formats .section__head h2,
-  .clients__lead,
-  .showreel__lead {
-    font-size: var(--fs-section-title);
-    line-height: var(--lh-title);
-    font-weight: var(--fw-bold);
-  }
-
-  /* 4. Video titles — a step below the category title above them */
-  .project-card h2,
-  .project-card h3,
-  .project-card--case h3 {
-    font-size: var(--fs-card-title);
-    line-height: 1.25;
-    font-weight: var(--fw-bold);
-  }
-
-  /* 5. Body text */
-  .showreel__caption,
-  .benefit p,
-  .flow__line,
-  .flow__after-list li {
-    font-size: var(--fs-body);
-    line-height: var(--lh-body);
-    font-weight: var(--fw-regular);
-  }
-
-  /* 6. Small body text */
-  .hero__desc-body,
-  .category-hero p {
-    font-size: var(--fs-body-small);
-    line-height: var(--lh-body);
-    font-weight: var(--fw-regular);
-  }
-
-  /* 7. Category card description (unchanged) */
-  .format-card p {
-    font-size: var(--fs-secondary);
-    line-height: var(--lh-secondary);
-    font-weight: var(--fw-regular);
-  }
-
-  /* 7b. Video caption under a video title — smaller and quieter still */
-  .project-card p,
-  .project-card--case p {
-    font-size: var(--fs-caption);
-    line-height: 1.3;
-    font-weight: var(--fw-regular);
-  }
-
-  /* 8. Captions / footnotes */
-  .project-card__credit,
-  .clients__trust,
-  .flow__note {
-    font-size: var(--fs-caption);
-    line-height: var(--lh-secondary);
-    font-weight: var(--fw-regular);
-  }
-  /* 8b. Eyebrow labels — process steps + benefit headings */
   .flow__eyebrow,
   .benefit h3 {
-    font-size: var(--fs-caption);
-  }
-
-  /* 9. Buttons and navigation */
-  .category-hero__back,
-  .hero__cta,
-  .cases__all {
-    font-size: var(--fs-control);
-    line-height: 1.2;
-    font-weight: var(--fw-medium);
-  }
-  .nav-drawer a {
-    font-size: 18px;
-    line-height: var(--lh-title);
-    font-weight: var(--fw-bold);
+    font-size: 11px;
   }
 }
 
 /* ============================================================
-   Portfolio hierarchy on mobile (max-width: 720px only)
-   Restores the category-title > video-title > video-caption
-   scale on small screens. Nothing else on mobile is touched.
-   ============================================================ */
-@media (max-width: 720px) {
-  .format-card h3,
-  .category-hero h1 {
-    font-size: 14.5px;
+   Hero: пропорциональное масштабирование первого экрана (v129)
+   ============================================================
+
+   Композиция Hero свёрстана один раз под эталонную ширину 1440px и на
+   всех широких экранах масштабируется целиком через transform: scale(),
+   а не пересобирается медиазапросами. Коэффициент считает JS в index.html:
+   k = ширина вьюпорта / 1440, потолок 1.3333 (это 1920px).
+
+   Мобильная вёрстка (≤720px) не затронута вообще: там .hero__stage —
+   display: contents, обёртки как будто нет, работают прежние правила.
+   Фон и его кадрирование не трогаются ни на одной ширине — масштабируется
+   только передний план. */
+
+.hero__stage { display: contents; }
+
+@media (min-width: 721px) {
+  .hero {
+    --hero-dw: 1440px;   /* эталонная ширина дизайна */
+    --hero-k: 1;         /* ставит JS */
+    --hero-h: 100svh;    /* фактическая высота секции */
+    display: block;
+    min-height: var(--hero-h);
   }
-  .project-card h2,
-  .project-card h3,
-  .project-card--case h3 {
-    font-size: 12.5px;
+
+  /* Высота задана в «дизайн-пикселях» (--hero-h / k), поэтому после
+     scale() блок занимает ровно высоту секции — пустот сверху/снизу нет. */
+  .hero__stage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;   /* текст прижат к низу, как в исходнике */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 2;
+    width: var(--hero-dw);
+    height: calc(var(--hero-h) / var(--hero-k));
+    margin-left: calc(var(--hero-dw) / -2);
+    transform: scale(var(--hero-k));
+    transform-origin: top center;
   }
-  .project-card p,
-  .project-card--case p {
-    font-size: 9.5px;
+
+  /* Внутри stage не должно остаться ни vw, ни clamp, ни медиазапросов:
+     они меняли бы размер второй раз и ломали пропорцию. Все значения —
+     фиксированные пиксели, замеренные на 1440px. */
+  .hero__watermark-track { gap: 100.8px; }          /* = 7vw @1440 */
+  .hero__watermark-item { font-size: 172.8px; }     /* = 12vw @1440 */
+  .hero__grid { padding: 0 64px 180px; }            /* --pad-x @1440 = 64px */
+  .hero__desc { margin: 30px 0 36px; }
+  .hero__desc-lead {
+    margin: 0 0 28px;
+    font-size: 27px;
+    max-width: none;   /* гасим правило ≤1024px: внутри stage ширина всегда 1440 */
   }
-  .flow__eyebrow,
-  .benefit h3 {
-    font-size: 9.5px;
-  }
+  .hero__desc-body { font-size: 13.5px; }
+  .hero__scroll { right: 56px; bottom: 84px; }
 }

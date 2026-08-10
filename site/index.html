@@ -14,8 +14,7 @@
 <link rel="preload" href="assets/fonts/NeutralFaceBold.otf" as="font" type="font/otf" crossorigin>
 <link rel="preload" href="assets/fonts/Golca.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="assets/fonts/BlackerSansDisplay-300.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/images/hero/hero-stage-phone.avif" as="image" type="image/avif" media="(min-width: 721px)" fetchpriority="high">
-<link rel="preload" href="assets/images/hero/hero-stage-phone-mobile.avif" as="image" type="image/avif" media="(max-width: 720px)" fetchpriority="high">
+<link rel="preload" href="assets/images/hero/hero-stage-phone.avif" as="image" type="image/avif" fetchpriority="high">
 
 <meta name="theme-color" content="#17110b">
 <link rel="canonical" href="https://lizalogia.github.io/Elizaveta/">
@@ -31,13 +30,21 @@
 
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 
-<link rel="stylesheet" href="styles.css?v=94">
+<link rel="stylesheet" href="styles.css?v=129">
 </head>
 <body>
 <div class="page-fade" id="pageFade" aria-hidden="true"></div>
+<div class="filmrail filmrail--l" aria-hidden="true"></div>
+<div class="filmrail filmrail--r" aria-hidden="true"></div>
 
 <header class="site-header">
   <a href="#hero" class="logo">lizalogia</a>
+  <nav class="nav-inline" aria-label="Основная навигация">
+    <a href="#showcase">Мне доверяют</a>
+    <a href="#portfolio">Портфолио</a>
+    <a href="#process">Как проходит съёмка</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
   <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="navDrawer">
     <span></span><span></span><span></span>
   </button>
@@ -58,9 +65,6 @@
     <div class="hero__photo-wrap" aria-hidden="true">
       <div class="hero__photo-parallax">
         <picture>
-          <source media="(max-width: 720px)" srcset="assets/images/hero/hero-stage-phone-mobile.avif" type="image/avif" width="706" height="1236">
-          <source media="(max-width: 720px)" srcset="assets/images/hero/hero-stage-phone-mobile.webp" type="image/webp" width="706" height="1236">
-          <source media="(max-width: 720px)" srcset="assets/images/hero/hero-stage-phone-mobile.jpg" type="image/jpeg" width="706" height="1236">
           <source srcset="assets/images/hero/hero-stage-phone.avif" type="image/avif">
           <source srcset="assets/images/hero/hero-stage-phone.webp" type="image/webp">
           <img class="hero__photo" src="assets/images/hero/hero-stage-phone.jpg" alt="" width="1024" height="1536" fetchpriority="high" decoding="async">
@@ -68,30 +72,113 @@
       </div>
       <div class="hero__fog"></div>
     </div>
-    <div class="hero__watermark" aria-hidden="true">
-      <div class="hero__watermark-track">
-        <span class="hero__watermark-item">LIZALOGIA</span>
-        <span class="hero__watermark-item">LIZALOGIA</span>
-        <span class="hero__watermark-item">LIZALOGIA</span>
-        <span class="hero__watermark-item">LIZALOGIA</span>
-      </div>
-    </div>
-
-    <div class="hero__grid">
-      <div class="hero__text">
-        <div class="hero__desc">
-          <h1 class="hero__desc-lead">Больше,&nbsp;чем просто&nbsp;съёмка.</h1>
-          <p class="hero__desc-body">Создаю видео, которые помогают<br>вам стать ближе к&nbsp;своей аудитории.</p>
+    <!-- Передняя композиция Hero (вотермарка, текст, CTA, скролл).
+         На ширине от 721px она масштабируется целиком как одно изображение:
+         свёрстана под эталонные 1440px и ужимается transform: scale().
+         На телефонах (≤720px) обёртка — display: contents, то есть её как
+         будто нет, и мобильная вёрстка работает ровно как раньше. -->
+    <div class="hero__stage">
+      <div class="hero__watermark" aria-hidden="true">
+        <div class="hero__watermark-track">
+          <span class="hero__watermark-item">LIZALOGIA</span>
+          <span class="hero__watermark-item">LIZALOGIA</span>
+          <span class="hero__watermark-item">LIZALOGIA</span>
+          <span class="hero__watermark-item">LIZALOGIA</span>
         </div>
-        <a href="#contacts" class="hero__cta">Обсудить проект <span aria-hidden="true">↗</span></a>
       </div>
-    </div>
 
-    <div class="hero__scroll" aria-hidden="true">
-      <span>Листай</span>
-      <svg width="10" height="34" viewBox="0 0 10 34" fill="none"><path d="M5 0v32M5 33 .5 28.5M5 33l4.5-4.5" stroke="currentColor"/></svg>
+      <div class="hero__grid">
+        <div class="hero__text">
+          <div class="hero__desc">
+            <h1 class="hero__desc-lead">Больше,&nbsp;чем просто&nbsp;съёмка.</h1>
+            <p class="hero__desc-body">Создаю видео, которые помогают<br>вам стать ближе к&nbsp;своей аудитории.</p>
+          </div>
+          <a href="#contacts" class="hero__cta">Обсудить проект <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true">
+        <span>Листай</span>
+        <svg width="10" height="34" viewBox="0 0 10 34" fill="none"><path d="M5 0v32M5 33 .5 28.5M5 33l4.5-4.5" stroke="currentColor"/></svg>
+      </div>
     </div>
   </section>
+
+  <script>
+  /* Коэффициент масштабирования Hero: ширина вьюпорта / эталонные 1440px.
+     Скрипт стоит сразу за секцией, чтобы значение попало в CSS до первой
+     отрисовки. Ниже 721px значение не используется — там обычная вёрстка. */
+  (function () {
+    var hero = document.querySelector('.hero');
+    if (!hero) return;
+
+    var DESIGN_WIDTH = 1440;
+    var MAX_K = 1.3333;   // 1920 / 1440 — потолок, чтобы не разрасталось на ultrawide
+
+    /* Кадр на компьютере показывается целиком (object-fit: contain), поэтому
+       по бокам от него остаётся однотонный фон. Где именно проходит стык,
+       зависит от пропорций экрана: на 1024x768 левый край кадра приходится
+       на 27% ширины, на 2560x1080 — уже на 44%. Прибитый к фиксированным
+       процентам градиент такой стык не догоняет, поэтому границы фото
+       считаются здесь и отдаются в CSS четырьмя точками растушёвки.
+
+       Ширина зоны растворения (IN/OUT) не фиксированный пиксель, а доля
+       ширины самого кадра (dw). Причина: у края кадра — тёмная концертная
+       сцена, она заметно темнее и «зернистее» ровного фона, поэтому узкая
+       растушёвка (было 90/130px) оставляла видимый шов. Взята доля от
+       ширины кадра, чтобы зона перехода одинаково перекрывала тёмный край
+       что на 1024px, что на 2560px. */
+    var IN_RATIO = 0.34;
+    var OUT_RATIO = 0.4;
+
+    function fade() {
+      var img = hero.querySelector('.hero__photo');
+      if (!img || !img.naturalWidth) return;
+
+      var box = img.getBoundingClientRect();
+      var heroBox = hero.getBoundingClientRect();
+      var css = getComputedStyle(img);
+      var a, b, c, d;
+
+      if (css.objectFit !== 'contain') {
+        // cover — кадр заполняет всё, стыка нет: растушёвка уезжает за экран
+        a = -240; b = -120; c = heroBox.width + 120; d = heroBox.width + 240;
+      } else {
+        var ratio = img.naturalWidth / img.naturalHeight;
+        var dh = box.height, dw = dh * ratio;
+        if (dw > box.width) { dw = box.width; dh = dw / ratio; }
+        var posX = parseFloat(css.objectPosition) / 100;
+        if (isNaN(posX)) posX = 0.5;
+        var left = box.left - heroBox.left + (box.width - dw) * posX;
+        var IN = dw * IN_RATIO, OUT = dw * OUT_RATIO;
+        a = left - OUT; b = left + IN;
+        c = left + dw - IN; d = left + dw + OUT;
+      }
+
+      hero.style.setProperty('--hero-fade-a', a.toFixed(1) + 'px');
+      hero.style.setProperty('--hero-fade-b', b.toFixed(1) + 'px');
+      hero.style.setProperty('--hero-fade-c', c.toFixed(1) + 'px');
+      hero.style.setProperty('--hero-fade-d', d.toFixed(1) + 'px');
+    }
+
+    function apply() {
+      var w = hero.clientWidth || document.documentElement.clientWidth;
+      hero.style.setProperty('--hero-k', Math.min(MAX_K, w / DESIGN_WIDTH).toFixed(5));
+      fade();
+    }
+
+    apply();
+    var photo = hero.querySelector('.hero__photo');
+    if (photo && !photo.complete) photo.addEventListener('load', fade, { once: true });
+
+    if (window.ResizeObserver) {
+      new ResizeObserver(apply).observe(hero);
+    } else {
+      window.addEventListener('resize', apply, { passive: true });
+      window.addEventListener('orientationchange', apply, { passive: true });
+    }
+  })();
+  </script>
 
   <!-- Мне доверяют -->
   <section class="clients section" id="showcase" data-theme="light">
@@ -143,6 +230,12 @@
       </div>
     </div>
     <p class="clients__trust reveal"><span>30+&nbsp;артистов</span><i aria-hidden="true">•</i><span>Федеральные&nbsp;проекты</span><i aria-hidden="true">•</i><span>Аудитория мероприятий до&nbsp;50&nbsp;000&nbsp;человек</span></p>
+    <ul class="stats__grid clients__stats">
+      <li class="stat reveal"><span class="stat__num" data-count="100" data-suffix="+">100+</span><span class="stat__label">клиентов</span></li>
+      <li class="stat reveal"><span class="stat__num" data-count="50" data-suffix="+">50+</span><span class="stat__label">проектов</span></li>
+      <li class="stat reveal"><span class="stat__num" data-count="15" data-suffix="+">15+</span><span class="stat__label">брендов и мероприятий</span></li>
+      <li class="stat reveal"><span class="stat__num" data-count="50000" data-suffix="+">50&nbsp;000+</span><span class="stat__label">зрителей крупнейшего события</span></li>
+    </ul>
   </section>
 
   <!-- Кейсы — бесконечная лента избранных работ -->
@@ -198,11 +291,11 @@
             <h3>INSTADIUM</h3>
             <p>Хедлайнер Татьяна Тур</p>
           </article>
-          <article class="project-card project-card--case reveal" style="--card-a:#241418;--card-b:#7a1f3a" tabindex="0" role="button" aria-label="Смотреть видео: Петли поцелуи, Премьера песни" data-video="https://drive.google.com/file/d/1cnmyTjuKlhtJuI6QY9tbGMUnDxPqJHIi/view">
+          <article class="project-card project-card--case reveal" style="--card-a:#241418;--card-b:#7a1f3a" tabindex="0" role="button" aria-label="Смотреть видео: Петли-поцелуи, Премьера песни" data-video="https://drive.google.com/file/d/1cnmyTjuKlhtJuI6QY9tbGMUnDxPqJHIi/view">
             <picture><source srcset="assets/images/projects/belye-potselui.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/belye-potselui.jpg" alt="" loading="lazy"></picture>
             <span class="project-card__scrim" aria-hidden="true"></span>
             <span class="project-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-            <h3>«Петли поцелуи»</h3>
+            <h3>«Петли-поцелуи»</h3>
             <p>Наталья Королева и Екатерина Гусева</p>
           </article>
           <article class="project-card project-card--case reveal" style="--card-a:#241830;--card-b:#5a3a73" tabindex="0" role="button" aria-label="Смотреть видео: Music Box, Премия" data-video="https://drive.google.com/file/d/1s9DuqqSjwK31rBCLkiELsfrdEtjTf8BW/view">
@@ -274,7 +367,7 @@
           <article class="project-card project-card--case" data-video="https://drive.google.com/file/d/1cnmyTjuKlhtJuI6QY9tbGMUnDxPqJHIi/view">
             <picture><source srcset="assets/images/projects/belye-potselui.webp" type="image/webp"><img class="project-card__art" decoding="async" src="assets/images/projects/belye-potselui.jpg" alt="" loading="lazy"></picture>
             <span class="project-card__scrim" aria-hidden="true"></span>
-            <h3>«Петли поцелуи»</h3>
+            <h3>«Петли-поцелуи»</h3>
             <p>Наталья Королева и Екатерина Гусева</p>
           </article>
           <article class="project-card project-card--case" data-video="https://drive.google.com/file/d/1s9DuqqSjwK31rBCLkiELsfrdEtjTf8BW/view">
@@ -308,21 +401,6 @@
     <a href="#portfolio" class="cases__all reveal">Все кейсы <span aria-hidden="true">↗</span></a>
   </section>
 
-  <!-- 02. Статистика (после ленты кейсов) -->
-  <section class="stats section" id="stats" data-theme="light">
-    <div class="section__head reveal">
-      <span class="section__num">02.</span>
-      <h2>В цифрах</h2>
-    </div>
-    <ul class="stats__grid">
-      <li class="stat reveal"><span class="stat__num" data-count="3" data-suffix="+">3+</span><span class="stat__label">года создаю контент</span></li>
-      <li class="stat reveal"><span class="stat__num" data-count="100" data-suffix="+">100+</span><span class="stat__label">клиентов</span></li>
-      <li class="stat reveal"><span class="stat__num" data-count="50" data-suffix="+">50+</span><span class="stat__label">проектов</span></li>
-      <li class="stat reveal"><span class="stat__num" data-count="15" data-suffix="+">15+</span><span class="stat__label">брендов и мероприятий</span></li>
-      <li class="stat reveal stat--wide"><span class="stat__num" data-count="50000" data-suffix="+">50&nbsp;000+</span><span class="stat__label">зрителей крупнейшего события</span></li>
-    </ul>
-  </section>
-
   <!-- 03. Проекты — категории -->
   <section class="formats section" id="portfolio" data-theme="dark">
     <div class="section__head reveal">
@@ -331,51 +409,37 @@
     </div>
     <div class="formats__grid">
       <a href="format-concerts.html" class="format-card reveal">
-        <span class="format-card__icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2 14.7 9h7.3l-5.9 4.3 2.2 7.2L12 16l-6.3 4.5 2.2-7.2L2 9h7.3L12 2Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
-        </span>
+        <span class="format-card__cover"><picture><source srcset="assets/images/projects/concerts-cover-flowers.webp" type="image/webp"><img src="assets/images/projects/concerts-cover-flowers.jpg" alt="Кадр с концертной съёмки" loading="lazy" decoding="async"></picture></span>
         <h3>Концерты</h3>
         <p>Репортажная съёмка концертов, фестивалей и музыкальных событий.</p>
       </a>
       <a href="format-events.html" class="format-card reveal">
-        <span class="format-card__icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 15V9M8 18V6M13 21V3M18 15V9M23 12v0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        </span>
+        <span class="format-card__cover"><picture><source srcset="assets/images/projects/instadium-headliner.webp" type="image/webp"><img src="assets/images/projects/instadium-headliner.jpg" alt="Кадр с INSTADIUM, хедлайнер Татьяна Тур" loading="lazy" decoding="async"></picture></span>
         <h3>Мероприятия</h3>
         <p>Премии, форумы, закрытые мероприятия, презентации.</p>
       </a>
       <a href="format-media.html" class="format-card reveal">
-        <span class="format-card__icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 8h11l2.5-3H21a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><circle cx="12" cy="14" r="4" stroke="currentColor" stroke-width="1.2"/></svg>
-        </span>
+        <span class="format-card__cover"><picture><source srcset="assets/images/projects/muztv-vypusknoy.webp" type="image/webp"><img src="assets/images/projects/muztv-vypusknoy.jpg" alt="Кадр со съёмки для МУЗ-ТВ" loading="lazy" decoding="async"></picture></span>
         <h3>ТВ и медиапроекты</h3>
         <p>Премьеры, телепроекты, интервью.</p>
       </a>
       <a href="format-expert.html" class="format-card reveal">
-        <span class="format-card__icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="9" y="2" width="6" height="12" rx="3" stroke="currentColor" stroke-width="1.2"/><path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-        </span>
+        <span class="format-card__cover"><picture><source srcset="assets/images/projects/bite-correction-consult.webp" type="image/webp"><img src="assets/images/projects/bite-correction-consult.jpg" alt="Кадр с ролика «Правильный прикус»" loading="lazy" decoding="async"></picture></span>
         <h3>Экспертный контент</h3>
         <p>Экспертные ролики для предпринимателей и бизнеса.</p>
       </a>
       <a href="format-cinema.html" class="format-card reveal">
-        <span class="format-card__icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M3 10h18M7 6l-1.5 4M12 6l-1.5 4M17 6l-1.5 4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
-        </span>
+        <span class="format-card__cover"><picture><source srcset="assets/images/projects/ravioli.webp" type="image/webp"><img src="assets/images/projects/ravioli.jpg" alt="Кадр с премьеры фильма" loading="lazy" decoding="async"></picture></span>
         <h3>Кино</h3>
         <p>Премьеры фильмов и художественные проекты.</p>
       </a>
       <a href="format-backstage.html" class="format-card reveal">
-        <span class="format-card__icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 3h8l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M14 3v4h4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
-        </span>
+        <span class="format-card__cover"><picture><source srcset="assets/images/projects/turetsky-backstage.webp" type="image/webp"><img src="assets/images/projects/turetsky-backstage.jpg" alt="Кадр из бэкстейджа съёмки" loading="lazy" decoding="async"></picture></span>
         <h3>Бэкстейдж</h3>
         <p>Закулисье съёмок — то, что остаётся за кадром.</p>
       </a>
       <a href="format-trends.html" class="format-card reveal">
-        <span class="format-card__icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 17 10 10l4 4 7-7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 6h5v5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
+        <span class="format-card__cover"><picture><source srcset="assets/images/projects/trend-assistant-cleanup.webp" type="image/webp"><img src="assets/images/projects/trend-assistant-cleanup.jpg" alt="Кадр трендового ролика: ассистент стоматолога" loading="lazy" decoding="async"></picture></span>
         <h3>Трендовые ролики</h3>
         <p>Форматы и тренды, адаптированные под нишу.</p>
       </a>
@@ -425,11 +489,11 @@
       </li>
       <li class="benefit reveal">
         <h3>Постоянное развитие</h3>
-        <p>Регулярно обучаюсь, изучаю новые тренды и внедряю современные подходы в работу.</p>
+        <p>Регулярно обучаюсь, изучаю новые тренды, использую нейросети и внедряю современные подходы в работу.</p>
       </li>
       <li class="benefit reveal">
-        <h3>Оборудование и знания</h3>
-        <p>Постоянно совершенствую технику и навыки, чтобы клиент получал максимально качественный результат.</p>
+        <h3>Оборудование</h3>
+        <p>Постоянно совершенствую технику, чтобы клиент получал максимально качественный результат.</p>
       </li>
       <li class="benefit reveal">
         <h3>Поддержка на всех этапах</h3>
@@ -485,6 +549,11 @@
 
 <div class="custom-cursor" id="customCursor" aria-hidden="true"><span>Смотреть</span></div>
 
-<script src="script.js?v=10"></script>
-</body>
-</html>
+<div class="hud-fixed" id="hudFixed" aria-hidden="true">
+  <span class="hud-rec"></span>
+  <div class="hud-bars" id="hudBars"></div>
+  <span class="hud-label">Lizalogia &middot; Reel 001</span>
+  <span class="hud-time" id="hudTime">00:00:00:00</span>
+</div>
+
+<script src="script.js?v=12"></script>
