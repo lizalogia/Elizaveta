@@ -362,7 +362,13 @@ img { max-width: 100%; display: block; }
     object-fit: contain;
     object-position: 66% 50%;
   }
-  .hero__photo-wrap { background: #0e0a07; }
+  .hero__photo-wrap {
+    background: #0e0a07;
+    /* Более плавный переход фото → фон снизу: растворение начинается
+       раньше и растянуто дольше, чем в мобильной версии (было 85%→100%). */
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 62%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 62%, transparent 100%);
+  }
   /* Растворяет прямоугольник кадра со всех сторон, чтобы он не читался
      как вставленная картинка на фоне.
 
@@ -375,6 +381,10 @@ img { max-width: 100%; display: block; }
     --hero-fade-b: 42%;
     --hero-fade-c: 74%;
     --hero-fade-d: 86%;
+    /* Тот же переход, что и мобильный (§ .hero background выше), но
+       растянут на более длинный отрезок, чтобы стык с секцией «Мне
+       доверяют» ниже не читался резкой границей. */
+    background: linear-gradient(180deg, var(--brown-deep) 0%, var(--brown-deep) 60%, var(--brown-mid) 84%, #f5f1ea 100%);
   }
   /* Сам край кадра — тёмная сцена, заметно темнее и «зернистее» ровного
      фона: цветной оверлей поверх (::before ниже) один этот перепад не
@@ -959,8 +969,9 @@ html.js.has-fine-pointer .project-card:hover {
   font-weight: 700;
   /* Строго один кегль на всех карточках категорий — привязка к ширине
      карточки убрана, она давала разные значения. Лента на главной
-     переопределяет его на ступень крупнее. */
-  font-size: 15px;
+     переопределяет его на ступень крупнее. Уменьшено с 15px — заметно
+     мельче заголовка категории (.category-hero h1 / .format-card h3). */
+  font-size: 13px;
   letter-spacing: 0.08em;
   /* Плотнее заголовков секций (1.34) — иначе перенесённое название
      ролика читалось разрежённее подписи под ним. */
@@ -976,7 +987,7 @@ html.js.has-fine-pointer .project-card:hover {
 /* Тот же мобильный лок, что и у заголовков секций */
 @media (max-width: 720px) {
   .project-card h2,
-  .project-card h3 { font-size: 12.5px; }
+  .project-card h3 { font-size: 11px; }
 }
 .project-card--split-head h2 {
   white-space: normal;
@@ -1235,8 +1246,9 @@ html.js.has-fine-pointer .project-card:hover {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
   /* Тот же кегль, что у заголовка открытой категории (.category-hero h1) —
-     название категории должно читаться на ступень крупнее ролика (15px). */
-  font-size: clamp(14.5px, 2.4vw, 18px);
+     название категории читается крупнее ролика (13px), но мельче
+     заголовка секции «Портфолио» (17px), который его венчает. */
+  font-size: clamp(13.5px, 2.1vw, 16px);
   /* Двухстрочные названия («ТВ и медиапроекты», «Экспертный контент»)
      при 1.34 расходились и читались иначе, чем однострочные. */
   line-height: 1.16;
@@ -1249,7 +1261,7 @@ html.js.has-fine-pointer .project-card:hover {
   gap: 8px;
 }
 @media (max-width: 720px) {
-  .format-card h3 { font-size: 14.5px; margin-bottom: 8px; }
+  .format-card h3 { font-size: 13.5px; margin-bottom: 8px; }
 }
 .format-card h3::after {
   content: '\2192';
@@ -1603,16 +1615,16 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 .category-hero h1 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  /* Заметно крупнее заголовка ролика (15px), чтобы читалось как заголовок
+  /* Заметно крупнее заголовка ролика (13px), чтобы читалось как заголовок
      категории, а не карточка того же уровня. */
-  font-size: clamp(14.5px, 2.4vw, 18px);
+  font-size: clamp(13.5px, 2.1vw, 16px);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin: 0 0 12px;
   line-height: 1.34;
 }
 @media (max-width: 720px) {
-  .category-hero h1 { font-size: 14.5px; }
+  .category-hero h1 { font-size: 13.5px; }
 }
 .category-hero p {
   font-size: 11.5px;
@@ -1828,10 +1840,10 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 }
 /* Лента на главной: тот же кегль, что и в карточках категорий портфолио —
    единый размер заголовков роликов по всему сайту. */
-.project-card--case h3 { font-size: 15px; }
+.project-card--case h3 { font-size: 13px; }
 .project-card--case p { font-size: 11px; }
 @media (max-width: 720px) {
-  .project-card--case h3 { font-size: 12.5px; }
+  .project-card--case h3 { font-size: 11px; }
   .project-card--case p { font-size: 9.5px; }
 }
 .project-card--case {
