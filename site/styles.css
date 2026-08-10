@@ -968,10 +968,9 @@ html.js.has-fine-pointer .project-card:hover {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
   /* Строго один кегль на всех карточках категорий — привязка к ширине
-     карточки убрана, она давала разные значения. Лента на главной
-     переопределяет его на ступень крупнее. Уменьшено с 15px — заметно
-     мельче заголовка категории (.category-hero h1 / .format-card h3). */
-  font-size: 13px;
+     карточки убрана, она давала разные значения. Одинаково на всех
+     страницах категорий, заметно мельче заголовка .category-hero h1. */
+  font-size: 12px;
   letter-spacing: 0.08em;
   /* Плотнее заголовков секций (1.34) — иначе перенесённое название
      ролика читалось разрежённее подписи под ним. */
@@ -987,7 +986,7 @@ html.js.has-fine-pointer .project-card:hover {
 /* Тот же мобильный лок, что и у заголовков секций */
 @media (max-width: 720px) {
   .project-card h2,
-  .project-card h3 { font-size: 11px; }
+  .project-card h3 { font-size: 10px; }
 }
 .project-card--split-head h2 {
   white-space: normal;
@@ -1245,10 +1244,8 @@ html.js.has-fine-pointer .project-card:hover {
 .format-card h3 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  /* Тот же кегль, что у заголовка открытой категории (.category-hero h1) —
-     название категории читается крупнее ролика (13px), но мельче
-     заголовка секции «Портфолио» (17px), который его венчает. */
-  font-size: clamp(13.5px, 2.1vw, 16px);
+  /* Мельче заголовка секции «Портфолио» (17px), который его венчает. */
+  font-size: clamp(12px, 1.8vw, 14px);
   /* Двухстрочные названия («ТВ и медиапроекты», «Экспертный контент»)
      при 1.34 расходились и читались иначе, чем однострочные. */
   line-height: 1.16;
@@ -1261,7 +1258,7 @@ html.js.has-fine-pointer .project-card:hover {
   gap: 8px;
 }
 @media (max-width: 720px) {
-  .format-card h3 { font-size: 13.5px; margin-bottom: 8px; }
+  .format-card h3 { font-size: 12px; margin-bottom: 8px; }
 }
 .format-card h3::after {
   content: '\2192';
@@ -1615,16 +1612,16 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 .category-hero h1 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  /* Заметно крупнее заголовка ролика (13px), чтобы читалось как заголовок
+  /* Заметно крупнее заголовка ролика (12px), чтобы читалось как заголовок
      категории, а не карточка того же уровня. */
-  font-size: clamp(13.5px, 2.1vw, 16px);
+  font-size: clamp(16px, 2.6vw, 19px);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin: 0 0 12px;
   line-height: 1.34;
 }
 @media (max-width: 720px) {
-  .category-hero h1 { font-size: 13.5px; }
+  .category-hero h1 { font-size: 15px; }
 }
 .category-hero p {
   font-size: 11.5px;
@@ -1840,10 +1837,10 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 }
 /* Лента на главной: тот же кегль, что и в карточках категорий портфолио —
    единый размер заголовков роликов по всему сайту. */
-.project-card--case h3 { font-size: 13px; }
+.project-card--case h3 { font-size: 12px; }
 .project-card--case p { font-size: 11px; }
 @media (max-width: 720px) {
-  .project-card--case h3 { font-size: 11px; }
+  .project-card--case h3 { font-size: 10px; }
   .project-card--case p { font-size: 9.5px; }
 }
 .project-card--case {
@@ -2452,7 +2449,7 @@ button:focus-visible {
   .hero__desc { margin: 30px 0 36px; }
   .hero__desc-lead {
     margin: 0 0 28px;
-    font-size: 27px;
+    font-size: 23px;
     max-width: none;   /* гасим правило ≤1024px: внутри stage ширина всегда 1440 */
   }
   .hero__desc-body { font-size: 13.5px; }
