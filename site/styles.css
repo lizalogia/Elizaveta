@@ -149,6 +149,7 @@ img { max-width: 100%; display: block; }
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
   font-size: clamp(16px, 2.9vw, 21px);
+  line-height: 1.2;
   color: var(--cream-soft);
   text-decoration: none;
   opacity: 0.85;
@@ -751,6 +752,10 @@ html.js.has-fine-pointer .project-card:hover {
   position: relative;
 }
 
+/* Home page cases reel: the descriptive line under a video title should
+   read as a caption, not compete with the title — two type steps down. */
+.cases-section .project-card p { font-size: 10px; }
+
 .projects__nav {
   display: flex;
   gap: 12px;
@@ -978,7 +983,7 @@ html.js .format-card.reveal:focus-visible::before {
 .format-card h3 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: 14.5px;
+  font-size: 15px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin: 0 0 14px;
@@ -999,7 +1004,7 @@ html.js .format-card.reveal:focus-visible::before {
   opacity: 1;
   transform: translateX(0);
 }
-.format-card p { font-family: 'Neutral Face', var(--font-display); font-weight: 400; font-size: 12px; line-height: 1.65; color: rgba(239, 231, 217, 0.78); margin: 0; max-width: 32ch; }
+.format-card p { font-family: 'Neutral Face', var(--font-display); font-weight: 400; font-size: 12.5px; line-height: 1.7; color: rgba(239, 231, 217, 0.78); margin: 0; max-width: 32ch; }
 
 .formats__origin {
   position: relative;
@@ -1310,13 +1315,13 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 .category-hero h1 {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
-  font-size: clamp(32px, 5vw, 52px);
+  font-size: clamp(36px, 5.6vw, 58px);
   margin: 0 0 12px;
   line-height: 1.1;
 }
 .category-hero p {
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: clamp(14px, 1.8vw, 15.5px);
+  line-height: 1.7;
   max-width: 520px;
   margin: 0;
   color: rgba(239, 231, 217, 0.75);
