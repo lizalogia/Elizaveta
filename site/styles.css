@@ -24,6 +24,27 @@
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-sym: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Desktop (>=1024px) typography scale — applied only inside the
+     min-width: 1024px layer near the end of this file, never by
+     themselves. Mobile keeps its existing clamp()-based sizing. */
+  --fs-hero-title: 27px;
+  --fs-category-title: 18px;
+  --fs-section-title: 17px;
+  --fs-card-title: 15px;
+  --fs-body: 15px;
+  --fs-body-small: 13px;
+  --fs-secondary: 12px;
+  --fs-caption: 11px;
+  --fs-control: 12px;
+
+  --lh-title: 1.3;
+  --lh-body: 1.65;
+  --lh-secondary: 1.55;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
 }
 
 * { box-sizing: border-box; }
@@ -496,7 +517,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
   letter-spacing: 0.2em;
   font-size: clamp(10.5px, 1.15vw, 12.5px);
   line-height: 1.4;
-  color: rgba(60, 47, 40, 0.5);
+  color: var(--ink);
 }
 /* A single soft light pass over the label as it reveals — a quiet
    motion-design accent rather than a repeating "loading" shimmer. */
@@ -747,6 +768,7 @@ html.js.has-fine-pointer .project-card:hover {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
   font-size: 12px;
+  line-height: 1.25;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -788,6 +810,7 @@ html.js.has-fine-pointer .project-card:hover {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
   font-size: 12px;
+  line-height: 1.3;
   margin: 0;
   color: rgba(243, 238, 230, 0.78);
   position: relative;
@@ -1677,13 +1700,7 @@ html.js .project-card--case.reveal.is-visible {
   transition: padding-left 0.45s var(--ease-out-expo);
 }
 .benefit h3 {
-  font-family: 'Neutral Face', var(--font-display);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: clamp(13px, 1.9vw, 17px);
-  line-height: 1.35;
-  color: var(--ink);
+  color: var(--taupe);
   margin: 0;
   transition: color 0.3s ease;
 }
@@ -2031,13 +2048,19 @@ html.js .project-card--case.reveal.is-visible {
   .flow__step:hover::before { transform: scale(1.25); }}
 .flow__eyebrow {
   display: block;
-  font-family: 'Neutral Face', var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: clamp(9.5px, 1.05vw, 11px);
   color: var(--taupe);
   margin: 0 0 clamp(9px, 1.2vw, 13px);
+}
+/* Shared eyebrow-label typography — process step labels + benefit
+   headings read as the same small bold marker, wherever they appear. */
+.flow__eyebrow,
+.benefit h3 {
+  font-family: 'Neutral Face', var(--font-display);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 9.5px;
 }
 .flow__step .flow__line { color: var(--brown); }
 
@@ -2127,3 +2150,134 @@ button:focus-visible {
 }
 .flow__step::before { border-color: rgba(143, 118, 89, 0.75); }
 .flow__line, .flow__after-list li { color: var(--brown); }
+
+/* ============================================================
+   Desktop typography unification (>=1024px only)
+   Brings headings, card titles, body copy, captions and controls
+   onto the shared --fs, --lh and --fw scale defined in :root.
+   Mobile (below 1024px) keeps every rule above untouched.
+   ============================================================ */
+@media (min-width: 1024px) {
+  /* 1. Hero */
+  .hero__desc-lead {
+    font-size: var(--fs-hero-title);
+    line-height: 1.25;
+    font-weight: var(--fw-regular);
+  }
+
+  /* 2. Portfolio category titles — grid card + the open category's own
+     h1 read as one size, a step above the video titles below them. */
+  .format-card h3,
+  .category-hero h1 {
+    font-size: var(--fs-category-title);
+    line-height: var(--lh-title);
+    font-weight: var(--fw-bold);
+  }
+
+  /* 3. Section headings — one shared size regardless of length */
+  .section__head h2,
+  #portfolio .section__head h2,
+  #values .section__head h2,
+  #formats .section__head h2,
+  .clients__lead,
+  .showreel__lead {
+    font-size: var(--fs-section-title);
+    line-height: var(--lh-title);
+    font-weight: var(--fw-bold);
+  }
+
+  /* 4. Video titles — a step below the category title above them */
+  .project-card h2,
+  .project-card h3,
+  .project-card--case h3 {
+    font-size: var(--fs-card-title);
+    line-height: 1.25;
+    font-weight: var(--fw-bold);
+  }
+
+  /* 5. Body text */
+  .showreel__caption,
+  .benefit p,
+  .flow__line,
+  .flow__after-list li {
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    font-weight: var(--fw-regular);
+  }
+
+  /* 6. Small body text */
+  .hero__desc-body,
+  .category-hero p {
+    font-size: var(--fs-body-small);
+    line-height: var(--lh-body);
+    font-weight: var(--fw-regular);
+  }
+
+  /* 7. Category card description (unchanged) */
+  .format-card p {
+    font-size: var(--fs-secondary);
+    line-height: var(--lh-secondary);
+    font-weight: var(--fw-regular);
+  }
+
+  /* 7b. Video caption under a video title — smaller and quieter still */
+  .project-card p,
+  .project-card--case p {
+    font-size: var(--fs-caption);
+    line-height: 1.3;
+    font-weight: var(--fw-regular);
+  }
+
+  /* 8. Captions / footnotes */
+  .project-card__credit,
+  .clients__trust,
+  .flow__note {
+    font-size: var(--fs-caption);
+    line-height: var(--lh-secondary);
+    font-weight: var(--fw-regular);
+  }
+  /* 8b. Eyebrow labels — process steps + benefit headings */
+  .flow__eyebrow,
+  .benefit h3 {
+    font-size: var(--fs-caption);
+  }
+
+  /* 9. Buttons and navigation */
+  .category-hero__back,
+  .hero__cta,
+  .cases__all {
+    font-size: var(--fs-control);
+    line-height: 1.2;
+    font-weight: var(--fw-medium);
+  }
+  .nav-drawer a {
+    font-size: 18px;
+    line-height: var(--lh-title);
+    font-weight: var(--fw-bold);
+  }
+}
+
+/* ============================================================
+   Portfolio hierarchy on mobile (max-width: 720px only)
+   Restores the category-title > video-title > video-caption
+   scale on small screens. Nothing else on mobile is touched.
+   ============================================================ */
+@media (max-width: 720px) {
+  .format-card h3,
+  .category-hero h1 {
+    font-size: 14.5px;
+  }
+  .project-card h2,
+  .project-card h3,
+  .project-card--case h3 {
+    font-size: 12.5px;
+  }
+  .project-card p,
+  .project-card--case p {
+    font-size: 9.5px;
+  }
+  .flow__eyebrow,
+  .benefit h3 {
+    font-size: 9.5px;
+  }
+}
