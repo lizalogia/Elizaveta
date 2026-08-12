@@ -2022,7 +2022,7 @@ html.js .project-card--case.reveal.is-visible {
      с заголовками разделов (17px); затем ещё мельче и плотнее по правке.
      Ещё раз уменьшен — рядом с мелким .flow__eyebrow (9.5px) текст читался
      непропорционально крупным. */
-  font-size: clamp(12px, 1.5vw, 13px);
+  font-size: clamp(12px, 1.4vw, 14px);
   line-height: 1.5;
   color: var(--ink);
   margin: 0;
@@ -2039,7 +2039,7 @@ html.js .project-card--case.reveal.is-visible {
 }
 .flow__after-list li {
   font-family: var(--font-body);
-  font-size: clamp(12px, 1.5vw, 13px);
+  font-size: clamp(12px, 1.4vw, 14px);
   line-height: 1.5;
   color: var(--ink);
 }
