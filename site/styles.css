@@ -1856,6 +1856,14 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 }
 .project-card--case {
   flex: 0 0 clamp(200px, 20vw, 264px);
+  /* Forces each card onto its own GPU layer. Without this, Safari's
+     compositor can leave stale/ghosted paint from a neighbouring card
+     visible in the gap between cards during the continuous JS-driven
+     scroll (worse the more cards there are in the track). */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 /* Cards fly in with a scale, not just a rise — a livelier entrance for a
    strip that's otherwise in constant, gentle motion. */
