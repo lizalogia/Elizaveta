@@ -1977,7 +1977,7 @@ html.js .project-card--case.reveal.is-visible {
   padding-top: clamp(48px, 7vw, 80px);
   border-top: 1px solid var(--line-soft);
 }
-.stat { display: flex; flex-direction: column; gap: clamp(14px, 1.8vw, 18px); }
+.stat { display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(14px, 1.8vw, 18px); }
 .stat__num {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 400;
