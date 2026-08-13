@@ -1071,7 +1071,9 @@ html.js.has-fine-pointer .project-card:hover {
 
 .process {
   position: relative;
-  background: var(--warm-gradient);
+  /* A touch warmer/richer than --warm-gradient (crème-brûlée cream)
+     for this section and .benefits below it. */
+  background: linear-gradient(180deg, #f8f1dd 0%, #f4e8cc 48%, #eeddb8 100%);
   border-top: 1px solid var(--line-soft);
 }
 .process::before {
@@ -1936,6 +1938,11 @@ html.js .project-card--case.reveal.is-visible {
 }
 
 /* ---------- Benefits (что получает клиент) ---------- */
+.benefits {
+  /* Same crème-brûlée cream as .process, so the two sections read as one
+     continuous warm background instead of a seam back to the paler body. */
+  background: linear-gradient(180deg, #f8f1dd 0%, #f4e8cc 48%, #eeddb8 100%);
+}
 .benefits__grid {
   list-style: none;
   margin: 0;
