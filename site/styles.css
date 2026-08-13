@@ -707,7 +707,13 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 /* ---------- Clients ---------- */
 
-.clients { background: var(--warm-gradient); padding-bottom: clamp(96px, 14vw, 180px); padding-top: clamp(104px, 15vw, 188px); }
+.clients {
+  /* Same crème-brûlée cream as .process/.benefits, per request — was the
+     paler shared --warm-gradient. */
+  background: linear-gradient(180deg, #f8f1dd 0%, #f4e8cc 48%, #eeddb8 100%);
+  padding-bottom: clamp(96px, 14vw, 180px);
+  padding-top: clamp(104px, 15vw, 188px);
+}
 /* A quiet lead-in line, not a section title — it hands the eye straight
    over to the marquee instead of competing with the logos. */
 .clients__lead {
@@ -860,7 +866,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 /* ---------- Marquee ---------- */
 
 .marquee { overflow: hidden; padding: 16px 0; }
-.marquee--light { background: var(--warm-gradient); border-top: 1px solid var(--line-soft); }
+.marquee--light { background: linear-gradient(180deg, #f8f1dd 0%, #f4e8cc 48%, #eeddb8 100%); border-top: 1px solid var(--line-soft); }
 .marquee__track {
   display: flex;
   align-items: center;
