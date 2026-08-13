@@ -1437,10 +1437,11 @@ html.js.has-fine-pointer .project-card:hover {
   overflow: hidden;
   text-align: left;
   background:
-    radial-gradient(85% 70% at 78% 10%, #f5f1ea 0%, rgba(230, 214, 190, 0.55) 30%, rgba(107, 84, 66, 0.18) 55%, transparent 74%),
+    radial-gradient(85% 70% at 78% 10%, rgba(245, 241, 234, 0.62) 0%, rgba(230, 214, 190, 0.4) 34%, rgba(107, 84, 66, 0.14) 60%, transparent 82%),
     linear-gradient(160deg, var(--brown-deep) 0%, var(--brown-mid) 55%, var(--brown-deep) 100%);
 }
-/* Slow drifting light — the section breathes like a stage wash. */
+/* Slow drifting light — the section breathes like a stage wash. Softened
+   to a diffuse ambient glow rather than a distinct spotlit circle. */
 .contacts::before {
   content: '';
   position: absolute;
@@ -1451,8 +1452,8 @@ html.js.has-fine-pointer .project-card:hover {
   z-index: 1;
   pointer-events: none;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(250, 244, 233, 0.5), rgba(236, 220, 197, 0.16) 55%, transparent 75%);
-  filter: blur(10px);
+  background: radial-gradient(closest-side, rgba(250, 244, 233, 0.32), rgba(236, 220, 197, 0.1) 60%, transparent 82%);
+  filter: blur(34px);
   will-change: transform;
 }
 @media (prefers-reduced-motion: no-preference) {
