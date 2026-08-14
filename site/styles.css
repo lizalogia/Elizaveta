@@ -26,7 +26,10 @@
   --line-soft: rgba(60, 47, 40, 0.1);
   --line-on-dark: rgba(243, 238, 230, 0.16);
   --pad-x: clamp(22px, 5vw, 64px);
-  --warm-gradient: linear-gradient(180deg, #faf6ef 0%, #f4efe6 48%, #ece1d3 100%);
+  /* Cool, muted "bedding" beige — no golden/yellow undertone, one shared
+     tone across every light section (Мне доверяют, Портфолио, Почему
+     выбирают меня, footer). */
+  --warm-gradient: linear-gradient(180deg, #ece8e0 0%, #e7e2d8 100%);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-sym: cubic-bezier(0.65, 0, 0.35, 1);
@@ -708,9 +711,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 /* ---------- Clients ---------- */
 
 .clients {
-  /* Same crème-brûlée cream as .process/.benefits, per request — was the
-     paler shared --warm-gradient. */
-  background: linear-gradient(180deg, #f8f1dd 0%, #f4e8cc 48%, #eeddb8 100%);
+  background: var(--warm-gradient);
   padding-bottom: clamp(96px, 14vw, 180px);
   padding-top: clamp(104px, 15vw, 188px);
 }
@@ -866,7 +867,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 /* ---------- Marquee ---------- */
 
 .marquee { overflow: hidden; padding: 16px 0; }
-.marquee--light { background: linear-gradient(180deg, #f8f1dd 0%, #f4e8cc 48%, #eeddb8 100%); border-top: 1px solid var(--line-soft); }
+.marquee--light { background: var(--warm-gradient); border-top: 1px solid var(--line-soft); }
 .marquee__track {
   display: flex;
   align-items: center;
@@ -1202,10 +1203,11 @@ html.js.has-fine-pointer .project-card:hover {
 .formats {
   position: relative;
   --fade: clamp(150px, 24vw, 300px);
-  /* Full light crème-brûlée instead of the fade-to-dark-middle — keeps
-     the alternation to Мне доверяют (light) → Личный бренд (dark) →
-     Портфолио (light) → Как проходит съёмка (dark). */
-  background: linear-gradient(180deg, #f8f1dd 0%, #f4e8cc 48%, #eeddb8 100%);
+  /* Full light instead of the fade-to-dark-middle — keeps the alternation
+     to Мне доверяют (light) → Личный бренд (dark) → Портфолио (light) →
+     Как проходит съёмка (dark), same shared tone as the other light
+     sections. */
+  background: var(--warm-gradient);
   color: var(--brown);
   padding-top: var(--fade);
   padding-bottom: var(--fade);
@@ -1960,9 +1962,8 @@ html.js .project-card--case.reveal.is-visible {
 
 /* ---------- Benefits (что получает клиент) ---------- */
 .benefits {
-  /* Same crème-brûlée cream as .process, so the two sections read as one
-     continuous warm background instead of a seam back to the paler body. */
-  background: linear-gradient(180deg, #f8f1dd 0%, #f4e8cc 48%, #eeddb8 100%);
+  /* Same shared cool beige as every other light section. */
+  background: var(--warm-gradient);
 }
 .benefits__grid {
   list-style: none;
