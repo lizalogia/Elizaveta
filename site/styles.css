@@ -10,6 +10,11 @@
   --brown-deep: #2f231e;
   --brown: #3c2f28;
   --brown-mid: #6b5442;
+  /* Richer, more saturated dark-chocolate pair for full-bleed dark
+     sections (.cases-section, .process) — deeper than --brown-mid, warmer
+     than --brown-deep, no grey undertone. */
+  --cacao-deep: #241609;
+  --cacao-mid: #4a2e17;
   /* Затемнены против исходных #8f7659 / #b6a488 — те не добирали 4.5:1
      на кремовом фоне. Размеры и гарнитуры не тронуты. */
   --taupe: #7a6244;
@@ -1078,9 +1083,8 @@ html.js.has-fine-pointer .project-card:hover {
 
 .process {
   position: relative;
-  /* Dark chocolate, matching .cases-section/.contacts — alternates
-     with the light crème-brûlée sections around it. */
-  background: linear-gradient(160deg, var(--brown-deep) 0%, var(--brown-mid) 55%, var(--brown-deep) 100%);
+  /* Rich, premium dark chocolate — matches .cases-section. */
+  background: linear-gradient(160deg, var(--cacao-deep) 0%, var(--cacao-mid) 55%, var(--cacao-deep) 100%);
   border-top: 1px solid var(--line-on-dark);
 }
 .process::before {
@@ -1793,8 +1797,9 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   gap: clamp(40px, 6vw, 74px);
   min-height: 92svh;
   padding: clamp(96px, 14vw, 184px) 0;
-  /* Warmed from near-black espresso to a richer dark-chocolate brown. */
-  background: radial-gradient(120% 80% at 50% 40%, var(--brown-mid) 0%, var(--brown-deep) 70%, #1c130d 100%);
+  /* Rich, premium dark chocolate — deeper than the first pass, but never
+     flat black or grey. */
+  background: radial-gradient(120% 80% at 50% 40%, var(--cacao-mid) 0%, var(--cacao-deep) 65%, #170e07 100%);
 }
 .cases-section > .showreel__intro { padding-left: var(--pad-x); padding-right: var(--pad-x); }
 /* БАГ: правило переопределяло собственный padding кнопки, из-за чего
