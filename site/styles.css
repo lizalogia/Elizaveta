@@ -10,11 +10,6 @@
   --brown-deep: #2f231e;
   --brown: #3c2f28;
   --brown-mid: #6b5442;
-  /* Richer, more saturated dark-chocolate pair for full-bleed dark
-     sections (.cases-section, .process) — deeper than --brown-mid, warmer
-     than --brown-deep, no grey undertone. */
-  --cacao-deep: #241609;
-  --cacao-mid: #4a2e17;
   /* Затемнены против исходных #8f7659 / #b6a488 — те не добирали 4.5:1
      на кремовом фоне. Размеры и гарнитуры не тронуты. */
   --taupe: #7a6244;
@@ -31,10 +26,7 @@
   --line-soft: rgba(60, 47, 40, 0.1);
   --line-on-dark: rgba(243, 238, 230, 0.16);
   --pad-x: clamp(22px, 5vw, 64px);
-  /* Cool, muted "bedding" beige — no golden/yellow undertone, one shared
-     tone across every light section (Мне доверяют, Портфолио, Почему
-     выбирают меня, footer). */
-  --warm-gradient: linear-gradient(180deg, #ece8e0 0%, #e7e2d8 100%);
+  --warm-gradient: linear-gradient(180deg, #faf6ef 0%, #f4efe6 48%, #ece1d3 100%);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-sym: cubic-bezier(0.65, 0, 0.35, 1);
@@ -715,11 +707,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 /* ---------- Clients ---------- */
 
-.clients {
-  background: var(--warm-gradient);
-  padding-bottom: clamp(96px, 14vw, 180px);
-  padding-top: clamp(104px, 15vw, 188px);
-}
+.clients { background: var(--warm-gradient); padding-bottom: clamp(96px, 14vw, 180px); padding-top: clamp(104px, 15vw, 188px); }
 /* A quiet lead-in line, not a section title — it hands the eye straight
    over to the marquee instead of competing with the logos. */
 .clients__lead {
@@ -1083,9 +1071,8 @@ html.js.has-fine-pointer .project-card:hover {
 
 .process {
   position: relative;
-  /* Rich, premium dark chocolate — matches .cases-section. */
-  background: linear-gradient(160deg, var(--cacao-deep) 0%, var(--cacao-mid) 55%, var(--cacao-deep) 100%);
-  border-top: 1px solid var(--line-on-dark);
+  background: var(--warm-gradient);
+  border-top: 1px solid var(--line-soft);
 }
 .process::before {
   content: '';
@@ -1093,28 +1080,9 @@ html.js.has-fine-pointer .project-card:hover {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: radial-gradient(70% 55% at 12% 15%, rgba(214, 191, 158, 0.1), transparent 65%);
+  background: radial-gradient(70% 55% at 12% 15%, rgba(107, 84, 66, 0.12), transparent 65%);
 }
 .process > * { position: relative; z-index: 1; }
-/* Flip every process text/decoration color for the dark background.
-   #process (not .process) so this always wins over the later
-   unconditional .flow__* overrides further down the file regardless
-   of source order. */
-#process .section__head h2 { color: var(--cream-soft); }
-#process .flow__eyebrow { color: var(--taupe-soft); }
-#process .flow__line,
-#process .flow__after-list li,
-#process .flow__step .flow__line { color: rgba(243, 238, 230, 0.88); }
-#process .flow__note { color: rgba(243, 238, 230, 0.55); }
-#process .flow__arrow { color: var(--taupe-soft); }
-#process .flow__chain::before {
-  background: linear-gradient(180deg, rgba(243, 238, 230, 0.3) 0%, rgba(243, 238, 230, 0.12) 68%, rgba(243, 238, 230, 0) 100%);
-}
-#process .flow__step::before {
-  background: var(--brown-deep);
-  border-color: var(--taupe-soft);
-  box-shadow: 0 0 0 5px #4a382c;
-}
 
 .process-steps {
   display: flex;
@@ -1207,15 +1175,20 @@ html.js.has-fine-pointer .project-card:hover {
 .formats {
   position: relative;
   --fade: clamp(150px, 24vw, 300px);
-  /* Full light instead of the fade-to-dark-middle — keeps the alternation
-     to Мне доверяют (light) → Личный бренд (dark) → Портфолио (light) →
-     Как проходит съёмка (dark), same shared tone as the other light
-     sections. */
-  background: var(--warm-gradient);
-  color: var(--brown);
+  --formats-deep: #3b2c21;
+  background: linear-gradient(180deg,
+    var(--cream) 0%,
+    #7a604a calc(var(--fade) * 0.5),
+    var(--formats-deep) var(--fade),
+    var(--formats-deep) calc(100% - var(--fade)),
+    #7a604a calc(100% - var(--fade) * 0.5),
+    var(--cream) 100%
+  );
+  color: var(--cream-soft);
   padding-top: var(--fade);
   padding-bottom: var(--fade);
 }
+.formats .section__head h2 { color: var(--cream-soft); }
 .formats .section__head, .formats__grid { position: relative; z-index: 1; }
 
 /* Faint film-grain noise on solid dark surfaces so they read as a material,
@@ -1308,7 +1281,7 @@ html.js.has-fine-pointer .project-card:hover {
 /* Заметно мельче заголовка карточки (h3, 12–14px) на любом брейкпоинте —
    иначе некрупный uppercase-заголовок визуально проигрывал обычному тексту
    того же кегля. */
-.format-card p { font-family: 'Neutral Face', var(--font-display); font-weight: 400; font-size: clamp(10.5px, 1.4vw, 11.5px); line-height: 1.6; color: var(--brown-mid); margin: 0; max-width: 32ch; }
+.format-card p { font-family: 'Neutral Face', var(--font-display); font-weight: 400; font-size: clamp(10.5px, 1.4vw, 11.5px); line-height: 1.6; color: rgba(239, 231, 217, 0.78); margin: 0; max-width: 32ch; }
 @media (max-width: 720px) {
   .format-card p { font-size: 10.5px; }
 }
@@ -1456,11 +1429,10 @@ html.js.has-fine-pointer .project-card:hover {
   overflow: hidden;
   text-align: left;
   background:
-    radial-gradient(85% 70% at 78% 10%, rgba(245, 241, 234, 0.62) 0%, rgba(230, 214, 190, 0.4) 34%, rgba(107, 84, 66, 0.14) 60%, transparent 82%),
+    radial-gradient(85% 70% at 78% 10%, #f5f1ea 0%, rgba(230, 214, 190, 0.55) 30%, rgba(107, 84, 66, 0.18) 55%, transparent 74%),
     linear-gradient(160deg, var(--brown-deep) 0%, var(--brown-mid) 55%, var(--brown-deep) 100%);
 }
-/* Slow drifting light — the section breathes like a stage wash. Softened
-   to a diffuse ambient glow rather than a distinct spotlit circle. */
+/* Slow drifting light — the section breathes like a stage wash. */
 .contacts::before {
   content: '';
   position: absolute;
@@ -1471,8 +1443,8 @@ html.js.has-fine-pointer .project-card:hover {
   z-index: 1;
   pointer-events: none;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(250, 244, 233, 0.32), rgba(236, 220, 197, 0.1) 60%, transparent 82%);
-  filter: blur(34px);
+  background: radial-gradient(closest-side, rgba(250, 244, 233, 0.5), rgba(236, 220, 197, 0.16) 55%, transparent 75%);
+  filter: blur(10px);
   will-change: transform;
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -1797,9 +1769,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   gap: clamp(40px, 6vw, 74px);
   min-height: 92svh;
   padding: clamp(96px, 14vw, 184px) 0;
-  /* Rich, premium dark chocolate — deeper than the first pass, but never
-     flat black or grey. */
-  background: radial-gradient(120% 80% at 50% 40%, var(--cacao-mid) 0%, var(--cacao-deep) 65%, #170e07 100%);
+  background: radial-gradient(120% 80% at 50% 40%, #2a1d12 0%, #17110b 70%, #120c07 100%);
 }
 .cases-section > .showreel__intro { padding-left: var(--pad-x); padding-right: var(--pad-x); }
 /* БАГ: правило переопределяло собственный padding кнопки, из-за чего
@@ -1966,10 +1936,6 @@ html.js .project-card--case.reveal.is-visible {
 }
 
 /* ---------- Benefits (что получает клиент) ---------- */
-.benefits {
-  /* Same shared cool beige as every other light section. */
-  background: var(--warm-gradient);
-}
 .benefits__grid {
   list-style: none;
   margin: 0;
