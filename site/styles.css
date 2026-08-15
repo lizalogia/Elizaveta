@@ -658,6 +658,11 @@ img { max-width: 100%; display: block; }
 .section[data-theme="dark"]::after {
   background: radial-gradient(130% 70% at 50% -10%, rgba(255, 255, 255, 0.06), transparent 60%);
 }
+/* .benefits is short enough that this per-section top bloom washes out
+   most of its height, leaving it visibly lighter than the flat tone the
+   taller .process section settles into — kill the bloom here so both
+   read as the same plain background. */
+.benefits::after { background: none; }
 @media (prefers-reduced-motion: no-preference) {
   .section::after { animation: ambient-breathe 18s ease-in-out infinite; }}
 @keyframes ambient-breathe {
