@@ -317,7 +317,7 @@ img { max-width: 100%; display: block; }
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(180deg, var(--brown-deep) 0%, var(--brown-deep) 80%, var(--brown-mid) 91%, #f5f1ea 100%);
+  background: linear-gradient(180deg, var(--brown-deep) 0%, var(--brown-deep) 80%, var(--brown-mid) 100%);
 }
 
 @media (max-width: 720px) {
@@ -386,10 +386,7 @@ img { max-width: 100%; display: block; }
     --hero-fade-b: 42%;
     --hero-fade-c: 74%;
     --hero-fade-d: 86%;
-    /* Тот же переход, что и мобильный (§ .hero background выше), но
-       растянут на более длинный отрезок, чтобы стык с секцией «Мне
-       доверяют» ниже не читался резкой границей. */
-    background: linear-gradient(180deg, var(--brown-deep) 0%, var(--brown-deep) 60%, var(--brown-mid) 84%, #f5f1ea 100%);
+    background: linear-gradient(180deg, var(--brown-deep) 0%, var(--brown-deep) 60%, var(--brown-mid) 100%);
   }
   /* Сам край кадра — тёмная сцена, заметно темнее и «зернистее» ровного
      фона: цветной оверлей поверх (::before ниже) один этот перепад не
@@ -1937,20 +1934,50 @@ html.js .project-card--case.reveal.is-visible {
   margin: -6px 0 clamp(30px, 4vw, 48px);
 }
 
+/* ---------- Section divider (between process and benefits) ---------- */
+.section-divider {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--pad-x);
+}
+.section-divider::before {
+  content: '';
+  width: clamp(48px, 8vw, 96px);
+  height: 1px;
+  background: var(--line);
+}
+
 /* ---------- Benefits (что получает клиент) ---------- */
 .benefits__grid {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--line);
+  counter-reset: benefit;
 }
 .benefit {
-  padding: clamp(26px, 3.4vw, 40px) 0;
-  border-bottom: 1px solid var(--line);
+  padding: clamp(18px, 2.4vw, 28px) 0 clamp(18px, 2.4vw, 28px) 34px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
+  position: relative;
+  counter-increment: benefit;
   transition: padding-left 0.45s var(--ease-out-expo);
+}
+/* Editorial index numbers (01–04) replace the old horizontal divider
+   lines — quieter than a border, and reuses the section-numbering
+   language already established elsewhere on the page. */
+.benefit::before {
+  content: counter(benefit, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: clamp(18px, 2.4vw, 28px);
+  font-family: 'Neutral Face', var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--taupe);
 }
 .benefit h3 {
   /* Типографика вынесена в общее правило .flow__eyebrow, .benefit h3
@@ -1977,7 +2004,7 @@ html.js .project-card--case.reveal.is-visible {
     align-items: baseline;
   }}
 @media (hover: hover) {
-  .benefit:hover { padding-left: 14px; }
+  .benefit:hover { padding-left: 40px; }
   .benefit:hover h3 { color: var(--taupe); }}
 
 /* ---------- Stats ---------- */
