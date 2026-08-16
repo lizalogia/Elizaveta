@@ -212,47 +212,19 @@
     marquee.addEventListener('touchcancel', () => marquee.classList.remove('is-touched'));
   });
 
-  // Case reel: auto-scrolls via native scrollLeft (rAF) instead of a CSS
-  // transform, so a real swipe, trackpad, mouse wheel, or click-drag always
-  // takes over immediately — the strip is genuinely user-scrollable, not
-  // just a decorative animation. Cards are duplicated in the markup so the
-  // loop can reset seamlessly once scrollLeft passes the halfway point.
+  // Case reel: a plain finite horizontal strip — no auto-scroll, no loop.
+  // Touch already scrolls natively; this just adds click-and-drag for mice.
   const casesTrack = document.querySelector('.marquee--cases');
   if (casesTrack) {
-    const casesReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let autoPlay = !casesReduceMotion;
     let isDragging = false;
     let dragMoved = 0;
     let dragStartX = 0;
     let dragStartScroll = 0;
 
-    const normalizeLoop = () => {
-      const half = casesTrack.scrollWidth / 2;
-      if (casesTrack.scrollLeft >= half) casesTrack.scrollLeft -= half;
-      else if (casesTrack.scrollLeft < 0) casesTrack.scrollLeft += half;
-    };
-
-    const tick = () => {
-      if (autoPlay && !isDragging) {
-        casesTrack.scrollLeft += 0.3;
-        normalizeLoop();
-      }
-      requestAnimationFrame(tick);
-    };
-    if (!casesReduceMotion) requestAnimationFrame(tick);
-
-    casesTrack.addEventListener('mouseenter', () => { autoPlay = false; });
-    casesTrack.addEventListener('mouseleave', () => { if (!isDragging) autoPlay = !casesReduceMotion; });
-    casesTrack.addEventListener('touchstart', () => { autoPlay = false; }, { passive: true });
-    casesTrack.addEventListener('touchend', () => { autoPlay = !casesReduceMotion; });
-    casesTrack.addEventListener('wheel', () => { autoPlay = false; }, { passive: true });
-
-    // Click-and-drag with a mouse (touch already scrolls natively).
     casesTrack.addEventListener('pointerdown', (e) => {
       if (e.pointerType === 'touch') return;
       isDragging = true;
       dragMoved = 0;
-      autoPlay = false;
       dragStartX = e.clientX;
       dragStartScroll = casesTrack.scrollLeft;
       casesTrack.classList.add('is-dragging');
@@ -267,8 +239,6 @@
       if (!isDragging) return;
       isDragging = false;
       casesTrack.classList.remove('is-dragging');
-      normalizeLoop();
-      autoPlay = !casesReduceMotion;
     });
 
     // Suppress the video-modal click that would otherwise fire on the card
