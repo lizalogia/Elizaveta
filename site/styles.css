@@ -1081,8 +1081,9 @@ html.js.has-fine-pointer .project-card:hover {
   /* Dark, per the alternating light/dark/light/dark/light rhythm:
      Мне доверяют (light) → Личный бренд (dark) → Почему выбирают меня
      (light) → Как проходит съёмка (dark) → Портфолио (light) →
-     Контакты (dark, unchanged). */
-  background: linear-gradient(160deg, var(--brown-deep) 0%, var(--brown-mid) 55%, var(--brown-deep) 100%);
+     Контакты (dark, unchanged). Flat, like the nav-drawer's brown-deep —
+     barely-there gradient. */
+  background: linear-gradient(180deg, var(--brown-deep) 0%, #241a15 100%);
   border-top: 1px solid var(--line-on-dark);
 }
 .process > * { position: relative; z-index: 1; }
@@ -1099,7 +1100,7 @@ html.js.has-fine-pointer .project-card:hover {
 #process .flow__step::before {
   background: var(--brown-deep);
   border-color: var(--taupe-soft);
-  box-shadow: 0 0 0 5px #4a382c;
+  box-shadow: 0 0 0 5px #291f19;
 }
 
 .process-steps {
@@ -1779,7 +1780,9 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   gap: clamp(40px, 6vw, 74px);
   min-height: 92svh;
   padding: clamp(96px, 14vw, 184px) 0;
-  background: radial-gradient(120% 80% at 50% 40%, #2a1d12 0%, #17110b 70%, #120c07 100%);
+  /* Flat, like the nav-drawer's brown-deep — barely-there gradient, not a
+     glowing radial highlight. */
+  background: linear-gradient(180deg, var(--brown-deep) 0%, #241a15 100%);
 }
 .cases-section > .showreel__intro { padding-left: var(--pad-x); padding-right: var(--pad-x); }
 /* БАГ: правило переопределяло собственный padding кнопки, из-за чего
