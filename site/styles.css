@@ -1853,14 +1853,13 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   /* On mobile the reel is the primary way to browse cases by hand, so give
      it a real resting position: left inset matching the rest of the page
      (instead of the first card sitting flush against the viewport edge,
-     half-hidden by the fade mask) and a gentle snap so a swipe settles on
-     a whole card rather than stopping mid-card. */
+     half-hidden by the fade mask). No scroll-snap here — it fights the
+     continuous JS auto-scroll (scrollLeft += every frame) on iOS Safari,
+     causing a stutter/jump-back that looks like overlapping or repeating
+     cards. */
   .marquee--cases {
     padding-left: var(--pad-x);
-    scroll-snap-type: x proximity;
-    scroll-padding-left: var(--pad-x);
   }
-  .project-card--case { scroll-snap-align: start; }
 }
 .project-card--case {
   flex: 0 0 clamp(200px, 20vw, 264px);
