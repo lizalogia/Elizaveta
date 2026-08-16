@@ -1078,10 +1078,29 @@ html.js.has-fine-pointer .project-card:hover {
 
 .process {
   position: relative;
-  background: var(--warm-gradient);
-  border-top: 1px solid var(--line-soft);
+  /* Dark, per the alternating light/dark/light/dark/light rhythm:
+     Мне доверяют (light) → Личный бренд (dark) → Почему выбирают меня
+     (light) → Как проходит съёмка (dark) → Портфолио (light) →
+     Контакты (dark, unchanged). */
+  background: linear-gradient(160deg, var(--brown-deep) 0%, var(--brown-mid) 55%, var(--brown-deep) 100%);
+  border-top: 1px solid var(--line-on-dark);
 }
 .process > * { position: relative; z-index: 1; }
+#process .section__head h2 { color: var(--cream-soft); }
+#process .flow__eyebrow { color: var(--taupe-soft); }
+#process .flow__line,
+#process .flow__after-list li,
+#process .flow__step .flow__line { color: rgba(243, 238, 230, 0.88); }
+#process .flow__note { color: rgba(243, 238, 230, 0.55); }
+#process .flow__arrow { color: var(--taupe-soft); }
+#process .flow__chain::before {
+  background: linear-gradient(180deg, rgba(243, 238, 230, 0.3) 0%, rgba(243, 238, 230, 0.12) 68%, rgba(243, 238, 230, 0) 100%);
+}
+#process .flow__step::before {
+  background: var(--brown-deep);
+  border-color: var(--taupe-soft);
+  box-shadow: 0 0 0 5px #4a382c;
+}
 
 .process-steps {
   display: flex;
@@ -1174,20 +1193,12 @@ html.js.has-fine-pointer .project-card:hover {
 .formats {
   position: relative;
   --fade: clamp(150px, 24vw, 300px);
-  --formats-deep: #3b2c21;
-  background: linear-gradient(180deg,
-    var(--cream) 0%,
-    #7a604a calc(var(--fade) * 0.5),
-    var(--formats-deep) var(--fade),
-    var(--formats-deep) calc(100% - var(--fade)),
-    #7a604a calc(100% - var(--fade) * 0.5),
-    var(--cream) 100%
-  );
-  color: var(--cream-soft);
+  /* Light, per the alternating rhythm — was fade-to-dark-middle. */
+  background: var(--warm-gradient);
+  color: var(--brown);
   padding-top: var(--fade);
   padding-bottom: var(--fade);
 }
-.formats .section__head h2 { color: var(--cream-soft); }
 .formats .section__head, .formats__grid { position: relative; z-index: 1; }
 
 /* Faint film-grain noise on solid dark surfaces so they read as a material,
@@ -1280,7 +1291,7 @@ html.js.has-fine-pointer .project-card:hover {
 /* Заметно мельче заголовка карточки (h3, 12–14px) на любом брейкпоинте —
    иначе некрупный uppercase-заголовок визуально проигрывал обычному тексту
    того же кегля. */
-.format-card p { font-family: 'Neutral Face', var(--font-display); font-weight: 400; font-size: clamp(10.5px, 1.4vw, 11.5px); line-height: 1.6; color: rgba(239, 231, 217, 0.78); margin: 0; max-width: 32ch; }
+.format-card p { font-family: 'Neutral Face', var(--font-display); font-weight: 400; font-size: clamp(10.5px, 1.4vw, 11.5px); line-height: 1.6; color: var(--brown-mid); margin: 0; max-width: 32ch; }
 @media (max-width: 720px) {
   .format-card p { font-size: 10.5px; }
 }
