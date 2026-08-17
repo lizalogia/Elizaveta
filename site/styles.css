@@ -1006,7 +1006,7 @@ html.js.has-fine-pointer .project-card:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: clamp(680px, 46vw + 500px, 980px);
+  min-height: clamp(700px, 46vw + 500px, 980px);
 }
 .process {
   position: relative;
