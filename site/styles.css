@@ -31,20 +31,15 @@
      no such seam no matter how many sections share it. */
   --warm-gradient: #f4efe6;
 
-  /* Section washes: one shared gradient character across the whole page —
-     a light bloom from the upper left settling into a deeper tone below.
-     Light and dark sections use the same geometry so the rhythm reads as
-     one system, only the palette differs. Applied per section (never to
-     body), so the bloom starts at each section's own top edge.
+  /* Atmospheric wash, used only where the light is motivated by the
+     content: the hero (a real photo with real stage light) and the
+     closing Контакты. Every band in between is a flat colour, so the
+     light reads as a deliberate device that bookends the page rather
+     than decoration repeated on every section.
 
-     Stops are in px, not %, on purpose: a %-based gradient stretches to
-     the section's height, so on a tall section (Портфолио is ~4100px) the
-     whole transition spreads over several screens and the eye reads it as
-     flat. Anchoring the fade to ~820px makes every section — short or
-     tall — show the same visible falloff, then hold the settled tone. */
-  --wash-light:
-    radial-gradient(130% 640px at 24% 0%, rgba(255, 253, 249, 0.95) 0%, rgba(252, 248, 241, 0.45) 42%, transparent 78%),
-    linear-gradient(180deg, #f7f3ec 0px, #e3d9c8 820px);
+     Stops are px, not %: a %-based gradient stretches to the element's
+     height, so on a tall section the transition spreads over several
+     screens and reads as flat. */
   --wash-dark:
     radial-gradient(130% 640px at 24% 0%, rgba(178, 148, 114, 0.5) 0%, rgba(112, 88, 68, 0.2) 42%, transparent 78%),
     linear-gradient(180deg, #3c2d24 0px, #1d1510 820px);
@@ -617,31 +612,12 @@ img { max-width: 100%; display: block; }
 }
 .section > * { position: relative; z-index: 1; }
 
-/* One shared ambient light-bloom across every section — light or dark —
-   so the whole page reads as one continuous scene rather than a stack of
-   independently-styled blocks. */
-.section::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(130% 70% at 50% -10%, rgba(255, 255, 255, 0.5), transparent 60%);
-}
-.section[data-theme="dark"]::after {
-  background: radial-gradient(130% 70% at 50% -10%, rgba(255, 255, 255, 0.06), transparent 60%);
-}
-/* .benefits is short enough that this per-section top bloom washes out
-   most of its height, leaving it visibly lighter than the flat tone the
-   taller .process section settles into — kill the bloom here so both
-   read as the same plain background. */
-.benefits::after { background: none; }
-@media (prefers-reduced-motion: no-preference) {
-  .section::after { animation: ambient-breathe 18s ease-in-out infinite; }}
-@keyframes ambient-breathe {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(1.03); }
-}
+/* The per-section ambient bloom that used to live here is gone. It
+   restarted a light source at the top of every band, so a page of six
+   sections read as six separate lamps — and on a tall section it washed
+   out most of the height, leaving neighbouring bands visibly mismatched.
+   The in-between sections are now flat colour; atmospheric light appears
+   only in the hero and Контакты, where the content motivates it. */
 
 .section__head { display: flex; align-items: baseline; gap: 20px; margin-bottom: clamp(44px, 6.5vw, 76px); }
 /* Section numbers now live only in the nav menu, not in on-page headings. */
@@ -690,7 +666,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 /* ---------- Clients ---------- */
 
-.clients { background: var(--wash-light); padding-bottom: clamp(96px, 14vw, 180px); padding-top: clamp(104px, 15vw, 188px); }
+.clients { background: var(--warm-gradient); padding-bottom: clamp(96px, 14vw, 180px); padding-top: clamp(104px, 15vw, 188px); }
 /* A quiet lead-in line, not a section title — it hands the eye straight
    over to the marquee instead of competing with the logos. */
 .clients__lead {
@@ -1054,11 +1030,11 @@ html.js.has-fine-pointer .project-card:hover {
 
 .process {
   position: relative;
-  /* Dark, per the alternating light/dark/light/dark/light rhythm:
+  /* Flat, per the alternating light/dark rhythm:
      Мне доверяют (light) → Личный бренд (dark) → Почему выбирают меня
      (light) → Как проходит съёмка (dark) → Портфолио (light) →
-     Контакты (dark). */
-  background: var(--wash-dark);
+     Контакты (dark, the one lit band besides the hero). */
+  background: var(--brown-deep);
   border-top: 1px solid var(--line-on-dark);
 }
 .process > * { position: relative; z-index: 1; }
@@ -1170,7 +1146,7 @@ html.js.has-fine-pointer .project-card:hover {
   position: relative;
   --fade: clamp(150px, 24vw, 300px);
   /* Light, per the alternating rhythm — was fade-to-dark-middle. */
-  background: var(--wash-light);
+  background: var(--warm-gradient);
   color: var(--brown);
   padding-top: var(--fade);
   padding-bottom: var(--fade);
@@ -1733,7 +1709,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   gap: clamp(40px, 6vw, 74px);
   min-height: 92svh;
   padding: clamp(96px, 14vw, 184px) 0;
-  background: var(--wash-dark);
+  background: var(--brown-deep);
 }
 .cases-section > .showreel__intro { padding-left: var(--pad-x); padding-right: var(--pad-x); }
 /* БАГ: правило переопределяло собственный padding кнопки, из-за чего
@@ -1960,7 +1936,7 @@ html.js .project-card--case.reveal.is-visible {
 }
 
 /* ---------- Benefits (что получает клиент) ---------- */
-.benefits { background: var(--wash-light); }
+.benefits { background: var(--warm-gradient); }
 .benefits__grid {
   list-style: none;
   margin: 0;
