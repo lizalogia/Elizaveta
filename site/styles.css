@@ -1417,8 +1417,8 @@ html.js.has-fine-pointer .project-card:hover {
   .contacts__eyebrow { margin-bottom: clamp(12px, 3vw, 16px); }
   .contacts__cta {
     margin-top: clamp(8px, 2vw, 10px);
-    font-size: 8px;
-    padding: 5px 12px;
+    font-size: 6px;
+    padding: 3px 8px;
   }
 }
 .contacts__headline {
