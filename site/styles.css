@@ -1427,11 +1427,11 @@ html.js.has-fine-pointer .project-card:hover {
     margin: clamp(56px, 14vw, 84px) auto clamp(20px, 5vw, 28px);
   }
   .contacts__grid { gap: clamp(12px, 2.6vw, 16px); }
-  .contacts__eyebrow { margin-bottom: clamp(20px, 5vw, 28px); }
+  .contacts__eyebrow { margin-bottom: clamp(12px, 3vw, 16px); }
   .contacts__cta {
     margin-top: clamp(12px, 2.6vw, 16px);
-    font-size: 10.5px;
-    padding: 9px 19px;
+    font-size: 9.5px;
+    padding: 7px 16px;
   }
 }
 .contacts__headline {
