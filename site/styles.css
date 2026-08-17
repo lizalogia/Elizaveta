@@ -1429,7 +1429,7 @@ html.js.has-fine-pointer .project-card:hover {
   .contacts__grid { gap: clamp(12px, 2.6vw, 16px); }
   .contacts__eyebrow { margin-bottom: clamp(12px, 3vw, 16px); }
   .contacts__cta {
-    margin-top: clamp(12px, 2.6vw, 16px);
+    margin-top: clamp(6px, 1.5vw, 10px);
     font-size: 9.5px;
     padding: 7px 16px;
   }
