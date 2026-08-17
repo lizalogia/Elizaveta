@@ -31,18 +31,9 @@
      no such seam no matter how many sections share it. */
   --warm-gradient: #f4efe6;
 
-  /* Atmospheric wash, used only where the light is motivated by the
-     content: the hero (a real photo with real stage light) and the
-     closing Контакты. Every band in between is a flat colour, so the
-     light reads as a deliberate device that bookends the page rather
-     than decoration repeated on every section.
-
-     Stops are px, not %: a %-based gradient stretches to the element's
-     height, so on a tall section the transition spreads over several
-     screens and reads as flat. */
-  --wash-dark:
-    radial-gradient(130% 640px at 24% 0%, rgba(178, 148, 114, 0.5) 0%, rgba(112, 88, 68, 0.2) 42%, transparent 78%),
-    linear-gradient(180deg, #3c2d24 0px, #1d1510 820px);
+  /* Every band is a flat colour: light bands --warm-gradient, dark bands
+     --brown-deep. The only atmospheric light left on the page is the
+     hero's, which comes from the photograph itself. */
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-sym: cubic-bezier(0.65, 0, 0.35, 1);
@@ -1390,22 +1381,13 @@ html.js.has-fine-pointer .project-card:hover {
   justify-content: center;
   overflow: hidden;
   text-align: left;
-  /* Shared dark wash — the bright stage wash that used to live here
-     moved to the nav drawer. */
-  background: var(--wash-dark);
+  /* Flat, like every other dark band — the stage wash that used to live
+     here moved to the nav drawer. */
+  background: var(--brown-deep);
 }
-/* Soft hand-off into the beige footer — no hard seam. */
-.contacts::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: clamp(120px, 20vw, 240px);
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(250, 246, 239, 0) 0%, rgba(250, 246, 239, 0.45) 55%, #faf6ef 100%);
-}
+/* The soft fade into the beige footer is gone: every other band now meets
+   its neighbour on a crisp edge, so a 240px ramp here was the one blurred
+   seam left on the page. */
 
 .contacts__inner {
   position: relative;
@@ -1416,7 +1398,6 @@ html.js.has-fine-pointer .project-card:hover {
 @media (max-width: 720px) {
   .contacts { min-height: auto; }
   .contacts__inner { padding-bottom: clamp(48px, 10vw, 72px); }
-  .contacts::after { height: clamp(64px, 12vw, 110px); }
 }
 .contacts__headline {
   font-family: 'Blacker Sans Display', 'Lato', var(--font-display);
