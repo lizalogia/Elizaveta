@@ -32,17 +32,22 @@
   --warm-gradient: #f4efe6;
 
   /* Section washes: one shared gradient character across the whole page —
-     a soft light bloom from the upper left settling into a deeper tone at
-     the bottom. Light and dark sections use the same geometry so the
-     rhythm reads as one system, only the palette differs. Applied per
-     section (never to body), so the bloom starts at each section's own
-     top edge rather than stretching across the document. */
+     a light bloom from the upper left settling into a deeper tone below.
+     Light and dark sections use the same geometry so the rhythm reads as
+     one system, only the palette differs. Applied per section (never to
+     body), so the bloom starts at each section's own top edge.
+
+     Stops are in px, not %, on purpose: a %-based gradient stretches to
+     the section's height, so on a tall section (Портфолио is ~4100px) the
+     whole transition spreads over several screens and the eye reads it as
+     flat. Anchoring the fade to ~820px makes every section — short or
+     tall — show the same visible falloff, then hold the settled tone. */
   --wash-light:
-    radial-gradient(120% 75% at 26% 0%, #fdfbf6 0%, rgba(250, 246, 238, 0.55) 34%, transparent 72%),
-    linear-gradient(180deg, #f4efe6 0%, #e8dfd0 100%);
+    radial-gradient(130% 640px at 24% 0%, rgba(255, 253, 249, 0.95) 0%, rgba(252, 248, 241, 0.45) 42%, transparent 78%),
+    linear-gradient(180deg, #f7f3ec 0px, #e3d9c8 820px);
   --wash-dark:
-    radial-gradient(120% 75% at 26% 0%, rgba(158, 132, 104, 0.42) 0%, rgba(107, 84, 66, 0.18) 36%, transparent 72%),
-    linear-gradient(180deg, var(--brown-deep) 0%, #241a15 100%);
+    radial-gradient(130% 640px at 24% 0%, rgba(178, 148, 114, 0.5) 0%, rgba(112, 88, 68, 0.2) 42%, transparent 78%),
+    linear-gradient(180deg, #3c2d24 0px, #1d1510 820px);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-sym: cubic-bezier(0.65, 0, 0.35, 1);
