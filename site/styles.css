@@ -996,6 +996,18 @@ html.js.has-fine-pointer .project-card:hover {
 
 /* ---------- Process (vertical timeline) ---------- */
 
+/* «Как проходит съёмка» (3 steps) and «Почему выбирают меня» (4 items)
+   carry different amounts of content, so their natural heights don't
+   match at every breakpoint — sometimes one runs longer, sometimes the
+   other. A shared min-height + vertical centering keeps both bands the
+   same visual size regardless of which one currently has more text. */
+.process,
+.benefits {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(680px, 46vw + 500px, 980px);
+}
 .process {
   position: relative;
   /* Flat, per the alternating light/dark rhythm:
