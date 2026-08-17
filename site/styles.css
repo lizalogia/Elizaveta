@@ -31,6 +31,19 @@
      no such seam no matter how many sections share it. */
   --warm-gradient: #f4efe6;
 
+  /* Section washes: one shared gradient character across the whole page —
+     a soft light bloom from the upper left settling into a deeper tone at
+     the bottom. Light and dark sections use the same geometry so the
+     rhythm reads as one system, only the palette differs. Applied per
+     section (never to body), so the bloom starts at each section's own
+     top edge rather than stretching across the document. */
+  --wash-light:
+    radial-gradient(120% 75% at 26% 0%, #fdfbf6 0%, rgba(250, 246, 238, 0.55) 34%, transparent 72%),
+    linear-gradient(180deg, #f4efe6 0%, #e8dfd0 100%);
+  --wash-dark:
+    radial-gradient(120% 75% at 26% 0%, rgba(158, 132, 104, 0.42) 0%, rgba(107, 84, 66, 0.18) 36%, transparent 72%),
+    linear-gradient(180deg, var(--brown-deep) 0%, #241a15 100%);
+
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-sym: cubic-bezier(0.65, 0, 0.35, 1);
 }
@@ -672,7 +685,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 /* ---------- Clients ---------- */
 
-.clients { background: var(--warm-gradient); padding-bottom: clamp(96px, 14vw, 180px); padding-top: clamp(104px, 15vw, 188px); }
+.clients { background: var(--wash-light); padding-bottom: clamp(96px, 14vw, 180px); padding-top: clamp(104px, 15vw, 188px); }
 /* A quiet lead-in line, not a section title — it hands the eye straight
    over to the marquee instead of competing with the logos. */
 .clients__lead {
@@ -825,7 +838,7 @@ html.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
 /* ---------- Marquee ---------- */
 
 .marquee { overflow: hidden; padding: 16px 0; }
-.marquee--light { background: var(--warm-gradient); border-top: 1px solid var(--line-soft); }
+.marquee--light { background: transparent; border-top: 1px solid var(--line-soft); }
 .marquee__track {
   display: flex;
   align-items: center;
@@ -1039,9 +1052,8 @@ html.js.has-fine-pointer .project-card:hover {
   /* Dark, per the alternating light/dark/light/dark/light rhythm:
      Мне доверяют (light) → Личный бренд (dark) → Почему выбирают меня
      (light) → Как проходит съёмка (dark) → Портфолио (light) →
-     Контакты (dark, unchanged). Flat, like the nav-drawer's brown-deep —
-     barely-there gradient. */
-  background: linear-gradient(180deg, var(--brown-deep) 0%, #241a15 100%);
+     Контакты (dark). */
+  background: var(--wash-dark);
   border-top: 1px solid var(--line-on-dark);
 }
 .process > * { position: relative; z-index: 1; }
@@ -1153,7 +1165,7 @@ html.js.has-fine-pointer .project-card:hover {
   position: relative;
   --fade: clamp(150px, 24vw, 300px);
   /* Light, per the alternating rhythm — was fade-to-dark-middle. */
-  background: var(--warm-gradient);
+  background: var(--wash-light);
   color: var(--brown);
   padding-top: var(--fade);
   padding-bottom: var(--fade);
@@ -1397,9 +1409,9 @@ html.js.has-fine-pointer .project-card:hover {
   justify-content: center;
   overflow: hidden;
   text-align: left;
-  /* Same flat brown-deep as .cases-section / .process — the bright stage
-     wash that used to live here moved to the nav drawer. */
-  background: linear-gradient(180deg, var(--brown-deep) 0%, #241a15 100%);
+  /* Shared dark wash — the bright stage wash that used to live here
+     moved to the nav drawer. */
+  background: var(--wash-dark);
 }
 /* Soft hand-off into the beige footer — no hard seam. */
 .contacts::after {
@@ -1716,9 +1728,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   gap: clamp(40px, 6vw, 74px);
   min-height: 92svh;
   padding: clamp(96px, 14vw, 184px) 0;
-  /* Flat, like the nav-drawer's brown-deep — barely-there gradient, not a
-     glowing radial highlight. */
-  background: linear-gradient(180deg, var(--brown-deep) 0%, #241a15 100%);
+  background: var(--wash-dark);
 }
 .cases-section > .showreel__intro { padding-left: var(--pad-x); padding-right: var(--pad-x); }
 /* БАГ: правило переопределяло собственный padding кнопки, из-за чего
@@ -1945,6 +1955,7 @@ html.js .project-card--case.reveal.is-visible {
 }
 
 /* ---------- Benefits (что получает клиент) ---------- */
+.benefits { background: var(--wash-light); }
 .benefits__grid {
   list-style: none;
   margin: 0;
