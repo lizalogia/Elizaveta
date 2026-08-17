@@ -1207,19 +1207,6 @@ html.js.has-fine-pointer .project-card:hover {
 @media (max-width: 720px) {
   .format-card h3 { font-size: 12px; margin-bottom: 8px; }
 }
-.format-card h3::after {
-  content: '\2192';
-  opacity: 0;
-  transform: translateX(-6px);
-  transition: opacity 0.3s ease, transform 0.35s var(--ease-out-expo);
-  font-weight: 400;
-  color: var(--taupe-soft);
-}
-.format-card:hover h3::after,
-.format-card:focus-visible h3::after {
-  opacity: 1;
-  transform: translateX(0);
-}
 /* Заметно мельче заголовка карточки (h3, 12–14px) на любом брейкпоинте —
    иначе некрупный uppercase-заголовок визуально проигрывал обычному тексту
    того же кегля. */
@@ -1430,8 +1417,8 @@ html.js.has-fine-pointer .project-card:hover {
   .contacts__eyebrow { margin-bottom: clamp(12px, 3vw, 16px); }
   .contacts__cta {
     margin-top: clamp(6px, 1.5vw, 10px);
-    font-size: 9.5px;
-    padding: 7px 16px;
+    font-size: 8.5px;
+    padding: 6px 14px;
   }
 }
 .contacts__headline {
