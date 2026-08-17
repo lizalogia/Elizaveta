@@ -1389,20 +1389,66 @@ html.js.has-fine-pointer .project-card:hover {
    its neighbour on a crisp edge, so a 240px ramp here was the one blurred
    seam left on the page. */
 
+.contacts__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(32px, 5vw, 80px);
+  max-width: 1080px;
+}
 .contacts__inner {
   position: relative;
   z-index: 2;
   max-width: 560px;
   padding: clamp(120px, 16vw, 184px) var(--pad-x) clamp(88px, 12vw, 132px);
 }
+.contacts__photo {
+  position: relative;
+  flex: none;
+  order: 1;
+  width: clamp(360px, 36vw, 480px);
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.55);
+}
+.contacts__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  display: block;
+}
+/* Матовая растушёвка снизу — фото не спорит с текстом контактов по контрасту. */
+.contacts__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(47, 35, 30, 0) 60%, rgba(47, 35, 30, 0.35) 100%);
+  pointer-events: none;
+}
 @media (max-width: 720px) {
   .contacts { min-height: auto; }
-  .contacts__inner { padding-bottom: clamp(48px, 10vw, 72px); }
+  .contacts__row { flex-direction: column; align-items: center; }
+  .contacts__inner { padding-top: 0; padding-bottom: clamp(48px, 10vw, 72px); }
+  .contacts__photo {
+    order: -1;
+    width: clamp(220px, 58vw, 300px);
+    margin: clamp(56px, 14vw, 84px) auto clamp(20px, 5vw, 28px);
+  }
+  .contacts__grid { gap: clamp(12px, 2.6vw, 16px); }
+  .contacts__eyebrow { margin-bottom: clamp(20px, 5vw, 28px); }
+  .contacts__cta {
+    margin-top: clamp(24px, 5vw, 32px);
+    font-size: 10.5px;
+    padding: 9px 19px;
+  }
 }
 .contacts__headline {
   font-family: 'Blacker Sans Display', 'Lato', var(--font-display);
   font-weight: 300;
-  font-size: clamp(27px, 4.5vw, 39px);
+  font-size: clamp(22px, 3.6vw, 31px);
   line-height: 1.15;
   letter-spacing: 0.005em;
   margin: 0 0 20px;
