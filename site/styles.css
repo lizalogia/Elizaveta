@@ -1769,45 +1769,6 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   gap: clamp(16px, 2vw, 24px);
   padding-right: clamp(16px, 2vw, 24px);
 }
-/* Closing line of the (finite, non-looping) reel. Deliberately not a card:
-   no fill, no radius, no card footprint — just the phrase and its arrow,
-   centred against the strip so it reads as a sentence the row ends on. */
-.cases-row__cta {
-  flex: 0 0 auto;
-  align-self: center;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 clamp(28px, 7vw, 56px) 0 clamp(10px, 3vw, 20px);
-  color: var(--cream-soft);
-  text-decoration: none;
-  white-space: nowrap;
-}
-/* Hairline arrow drawn as SVG, not a glyph — the ↗ character rendered as
-   a coloured emoji on iOS and never matched the site's thin-stroke line
-   work (hero scroll cue, showreel arrow). */
-.cases-row__cta-arrow {
-  display: block;
-  flex: none;
-  width: 19px;
-  height: 19px;
-  color: var(--taupe-soft);
-  transition: transform 0.4s var(--ease-out-expo), color 0.3s ease;
-}
-.cases-row__cta-arrow svg { width: 100%; height: 100%; display: block; }
-.cases-row__cta strong {
-  font-family: 'Neutral Face', var(--font-display);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-@media (max-width: 720px) {
-  .cases-row__cta strong { font-size: 11px; }
-}
-@media (hover: hover) {
-  .cases-row__cta:hover .cases-row__cta-arrow { transform: translate(4px, -4px); color: var(--cream-soft); }
-}
 /* Лента на главной: тот же кегль, что и в карточках категорий портфолио —
    единый размер заголовков роликов по всему сайту. */
 .project-card--case h3 { font-size: 13px; }
