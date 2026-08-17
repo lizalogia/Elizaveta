@@ -1815,11 +1815,17 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
   text-decoration: none;
   transition: background 0.3s ease, transform 0.3s var(--ease-out-expo);
 }
+/* Hairline arrow drawn as SVG, not a glyph — the ↗ character rendered as
+   a coloured emoji on iOS and never matched the site's thin-stroke line
+   work (hero scroll cue, showreel arrow). */
 .cases-row__cta-arrow {
-  font-size: 26px;
-  line-height: 1;
-  transition: transform 0.3s var(--ease-out-expo);
+  display: block;
+  width: 30px;
+  height: 30px;
+  color: var(--taupe-soft);
+  transition: transform 0.4s var(--ease-out-expo), color 0.3s ease;
 }
+.cases-row__cta-arrow svg { width: 100%; height: 100%; display: block; }
 .cases-row__cta strong {
   font-family: 'Neutral Face', var(--font-display);
   font-weight: 700;
@@ -1832,7 +1838,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 }
 @media (hover: hover) {
   .cases-row__cta:hover { background: linear-gradient(160deg, rgba(243, 238, 230, 0.16), rgba(243, 238, 230, 0.04)); }
-  .cases-row__cta:hover .cases-row__cta-arrow { transform: translate(3px, -3px); }
+  .cases-row__cta:hover .cases-row__cta-arrow { transform: translate(4px, -4px); color: var(--cream-soft); }
 }
 /* Лента на главной: тот же кегль, что и в карточках категорий портфолио —
    единый размер заголовков роликов по всему сайту. */
