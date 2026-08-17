@@ -1411,20 +1411,20 @@ html.js.has-fine-pointer .project-card:hover {
   .contacts__photo {
     order: -1;
     width: clamp(220px, 58vw, 300px);
-    margin: clamp(56px, 14vw, 84px) auto clamp(20px, 5vw, 28px);
+    margin: clamp(56px, 14vw, 84px) auto clamp(10px, 3vw, 14px);
   }
-  .contacts__grid { gap: clamp(12px, 2.6vw, 16px); }
+  .contacts__grid { gap: clamp(8px, 2vw, 10px); }
   .contacts__eyebrow { margin-bottom: clamp(12px, 3vw, 16px); }
   .contacts__cta {
-    margin-top: clamp(6px, 1.5vw, 10px);
-    font-size: 8.5px;
-    padding: 6px 14px;
+    margin-top: clamp(8px, 2vw, 10px);
+    font-size: 8px;
+    padding: 5px 12px;
   }
 }
 .contacts__headline {
   font-family: 'Blacker Sans Display', 'Lato', var(--font-display);
   font-weight: 300;
-  font-size: clamp(22px, 3.6vw, 31px);
+  font-size: clamp(26px, 4.2vw, 36px);
   line-height: 1.15;
   letter-spacing: 0.005em;
   margin: 0 0 20px;
