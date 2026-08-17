@@ -215,30 +215,7 @@ img { max-width: 100%; display: block; }
   transition: transform 0.5s var(--ease-out-expo);
 }
 .nav-drawer.is-open { transform: translateX(0); }
-/* Slow drifting stage wash, moved here from .contacts — softened so it
-   reads as ambient depth behind the menu, never as a bright spot. */
-.nav-drawer::after {
-  content: '';
-  position: absolute;
-  top: -18%;
-  right: -14%;
-  width: 78%;
-  height: 62%;
-  z-index: 0;
-  pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(250, 244, 233, 0.16), rgba(236, 220, 197, 0.05) 58%, transparent 82%);
-  filter: blur(42px);
-  will-change: transform;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .nav-drawer.is-open::after { animation: drawer-drift 16s ease-in-out infinite alternate; }
-}
-@keyframes drawer-drift {
-  from { transform: translate3d(0, 0, 0) scale(1); opacity: 0.8; }
-  to   { transform: translate3d(-6%, 6%, 0) scale(1.1); opacity: 1; }
-}
-/* Menu links sit above both the grain (::before) and the wash (::after). */
+/* Menu links sit above the grain (::before). */
 .nav-drawer a { position: relative; z-index: 1; }
 .nav-drawer a {
   position: relative;
@@ -1440,7 +1417,7 @@ html.js.has-fine-pointer .project-card:hover {
   .contacts__grid { gap: clamp(12px, 2.6vw, 16px); }
   .contacts__eyebrow { margin-bottom: clamp(20px, 5vw, 28px); }
   .contacts__cta {
-    margin-top: clamp(24px, 5vw, 32px);
+    margin-top: clamp(12px, 2.6vw, 16px);
     font-size: 10.5px;
     padding: 9px 19px;
   }
@@ -1928,7 +1905,10 @@ html.js .project-card--case.reveal.is-visible {
   counter-reset: benefit;
 }
 .benefit {
-  padding: clamp(18px, 2.4vw, 28px) 0 clamp(18px, 2.4vw, 28px) 34px;
+  /* Same combined vertical rhythm as .flow__step's clamp(36px, 5.2vw, 60px)
+     gap — halved onto each side so the two sections read with one shared
+     spacing scale instead of two similar-but-not-equal ones. */
+  padding: calc(clamp(36px, 5.2vw, 60px) / 2) 0 calc(clamp(36px, 5.2vw, 60px) / 2) 34px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
@@ -1943,7 +1923,7 @@ html.js .project-card--case.reveal.is-visible {
   content: counter(benefit, decimal-leading-zero);
   position: absolute;
   left: 0;
-  top: clamp(18px, 2.4vw, 28px);
+  top: calc(clamp(36px, 5.2vw, 60px) / 2);
   font-family: 'Neutral Face', var(--font-display);
   font-size: 12px;
   letter-spacing: 0.04em;
