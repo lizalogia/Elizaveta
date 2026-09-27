@@ -115,19 +115,15 @@
     return match ? `https://drive.google.com/file/d/${match[1]}/preview` : null;
   };
 
-  // RuTube links (including /shorts/) embed the same way via its own player.
-  // Unlisted videos live under /video/private/<id>/?p=<access token>; the token
-  // has to travel with the embed URL or the player answers with a black frame,
-  // and "private" must not be mistaken for the id itself.
-  const getRutubeEmbedUrl = (src) => {
-    const match = src.match(/rutube\.ru\/(?:video\/private|video|shorts)\/([a-zA-Z0-9]+)/);
-    if (!match) return null;
-    const token = src.match(/[?&]p=([a-zA-Z0-9_-]+)/);
-    return `https://rutube.ru/play/embed/${match[1]}${token ? `?p=${token[1]}` : ''}`;
-  };
+  // RuTube's embed player (used inside our modal iframe) renders a visibly
+  // lower-quality, hazier stream than rutube.ru's own page — confirmed by
+  // comparing the same video through both. Rather than show that degraded
+  // playback, RuTube links open in a new tab on rutube.ru itself instead of
+  // the in-page modal; Drive links are unaffected and still use the modal.
+  const isRutubeUrl = (src) => /rutube\.ru\/(?:video\/private|video|shorts)\//.test(src);
 
   const openVideoModal = (src) => {
-    const embedUrl = src ? (getDriveEmbedUrl(src) || getRutubeEmbedUrl(src)) : null;
+    const embedUrl = src ? getDriveEmbedUrl(src) : null;
     videoPlayer.style.display = 'none';
     videoFrame.style.display = 'none';
     videoEmpty.style.display = 'none';
@@ -165,12 +161,20 @@
     if (lastVideoTrigger && lastVideoTrigger.isConnected) lastVideoTrigger.focus({ preventScroll: true });
   };
 
+  const activateVideoCard = (src) => {
+    if (src && isRutubeUrl(src)) {
+      window.open(src, '_blank', 'noopener');
+    } else {
+      openVideoModal(src);
+    }
+  };
+
   document.querySelectorAll('[data-video]').forEach((card) => {
-    card.addEventListener('click', () => openVideoModal(card.dataset.video));
+    card.addEventListener('click', () => activateVideoCard(card.dataset.video));
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        openVideoModal(card.dataset.video);
+        activateVideoCard(card.dataset.video);
       }
     });
   });
