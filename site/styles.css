@@ -1525,6 +1525,7 @@ html.js .contacts__cta.reveal { transition-delay: 0.86s; }
 .page-expert    { --cat-tint: 74, 104, 158;  --cat-deep: 21, 25, 35; }
 .page-cinema    { --cat-tint: 150, 68, 68;   --cat-deep: 36, 22, 20; }
 .page-backstage { --cat-tint: 168, 128, 72;  --cat-deep: 38, 30, 21; }
+.page-stories   { --cat-tint: 72, 150, 136;  --cat-deep: 20, 34, 31; }
 .page-trends    { --cat-tint: 150, 78, 112;  --cat-deep: 36, 22, 30; }
 
 .category-hero {
