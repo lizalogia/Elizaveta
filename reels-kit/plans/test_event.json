@@ -1,0 +1,12 @@
+{
+  "music": "music/test_track.mp3",
+  "beats": "work/beats_test_track.json",
+  "name": "test_event",
+  "clips": [
+    {"src": "sources/test_event_landscape.mp4", "start": 2.0,  "beats": 4},
+    {"src": "sources/test_event_vertical.mp4",  "start": 1.0,  "beats": 2},
+    {"src": "sources/test_event_landscape.mp4", "start": 9.0,  "beats": 2},
+    {"src": "sources/test_event_vertical.mp4",  "start": 6.0,  "beats": 4},
+    {"src": "sources/test_event_landscape.mp4", "start": 14.0, "beats": 8}
+  ]
+}

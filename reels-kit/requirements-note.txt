@@ -1,0 +1,3 @@
+Mac (Apple Silicon): pip install mlx-whisper pillow   (делает setup_mac.sh)
+Linux/Windows для проверки: pip install faster-whisper "av<16" pillow
+Системная программа: ffmpeg (на Mac: brew install ffmpeg)

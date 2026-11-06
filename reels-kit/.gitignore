@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+# Ваши настоящие исходники и готовые ролики в git не кладём (большие, личные).
+sources/*
+!sources/test_*
+output/*
+!output/test_*
+# Промежуточные файлы; оставлена только расшифровка тестового ролика
+work/*
+!work/test_expert/
+work/test_expert/*
+!work/test_expert/words.json
+!work/test_expert/transcript.txt
+music/*
+!music/test_track.mp3
